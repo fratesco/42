@@ -6,7 +6,7 @@
 /*   By: rilliano <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 14:57:31 by rilliano          #+#    #+#             */
-/*   Updated: 2022/10/22 18:07:32 by fgolino          ###   ########.fr       */
+/*   Updated: 2022/10/22 18:32:34 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,21 @@ int	base_n(char *str)
 	}
 }
 
-int	input_check(int	a, char *str)
+int	input_check(int	a, char *str, int n)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	if (a != 1 || ft_strlen(str) != (n*n) + 1)
-	{
-		write (1, "Error\n", 6);
 		return (0);
-	}
 	while (i < (n * n * 2 - 1)
 	{
-		if (argv[1][i] == ' ')
-			i = i + 2;
+		if (str[i] == ' ')
+			i++;
+		else if (str[i] > '0' && str[i] <= ('0' + n))
+			i++;
 		else
-		{
-			write (1, "Error\n", 6);
 			return (0);
-		}
 	}
 	return (1);
 }
