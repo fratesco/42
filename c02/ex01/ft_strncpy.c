@@ -6,13 +6,13 @@
 /*   By: fgolino <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 12:54:21 by fgolino           #+#    #+#             */
-/*   Updated: 2022/10/20 11:04:29 by fgolino          ###   ########.fr       */
+/*   Updated: 2022/10/24 00:47:59 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < n)
@@ -26,8 +26,10 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n)
 			}
 		}
 		else
+		{
 			dest[i] = src[i];
-		i++;
+			i++;
+		}
 	}
 	if (src[i] == 0)
 		dest[i] = 0;

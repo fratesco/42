@@ -6,13 +6,13 @@
 /*   By: fgolino <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 12:07:33 by fgolino           #+#    #+#             */
-/*   Updated: 2022/10/20 18:15:51 by fgolino          ###   ########.fr       */
+/*   Updated: 2022/10/24 00:43:04 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	print_hex(char b)
+void	print_hex(unsigned char b)
 {
 	int		dec;
 	int		f;

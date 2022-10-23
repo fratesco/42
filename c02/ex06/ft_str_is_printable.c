@@ -6,7 +6,7 @@
 /*   By: fgolino <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 09:15:03 by fgolino           #+#    #+#             */
-/*   Updated: 2022/10/20 12:43:40 by fgolino          ###   ########.fr       */
+/*   Updated: 2022/10/24 00:27:36 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	ft_str_is_printable(char *str)
 	c = 0;
 	while (str[c] != 0)
 		c++;
-	c--;
 	if (c == 0)
 		return (1);
-	while (c >= 0)
+	c = 0;
+	while (str[c] != 0)
 	{
 		if (str[c] >= 32 && str[c] <= 126)
-			continue ;
+			c++;
 		else
 			return (0);
 	}

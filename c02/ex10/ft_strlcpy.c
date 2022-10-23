@@ -6,23 +6,23 @@
 /*   By: fgolino <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 11:06:14 by fgolino           #+#    #+#             */
-/*   Updated: 2022/10/20 12:02:54 by fgolino          ###   ########.fr       */
+/*   Updated: 2022/10/24 00:39:44 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strlcpy(char *dest, char *src, unsigned int n)
+unsigned int	*ft_strlcpy(char *dest, char *src, unsigned int size)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
-	while (i < n - 1)
+	while (src[i] != 0 && i < size - 1)
 	{
 		dest[i] = src[i];
 		i++;
 	}
-	dest[n - 1] = 0;
+	dest[i] = 0;
+	i = 0;
 	while (src[i] != 0)
 		i++;
-	i++;
 	return (i);
 }

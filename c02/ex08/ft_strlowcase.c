@@ -6,24 +6,20 @@
 /*   By: fgolino <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 09:20:18 by fgolino           #+#    #+#             */
-/*   Updated: 2022/10/20 09:20:52 by fgolino          ###   ########.fr       */
+/*   Updated: 2022/10/24 00:30:45 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlowcase(char *str)
+char	*ft_strlowcase(char *str)
 {
 	int	c;
 
 	c = 0;
 	while (str[c] != 0)
-		c++;
-	c--;
-	while (c >= 0)
 	{
 		if (str[c] >= 65 && str[c] <= 90)
 			str[c] = str[c] + 32;
-		else
-			continue ;
+		c++;
 	}
 	return (str);
 }
