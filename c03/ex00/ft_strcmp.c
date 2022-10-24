@@ -6,7 +6,7 @@
 /*   By: fgolino <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 18:20:38 by fgolino           #+#    #+#             */
-/*   Updated: 2022/10/20 18:37:29 by fgolino          ###   ########.fr       */
+/*   Updated: 2022/10/24 00:52:59 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int	ft_strcmp(char *s1, char *s2)
 	while (s1[i] != 0)
 	{
 		if (s1[i] > s2[i])
-			return(1);
+			return (1);
 		else if (s1[i] < s2[i])
-			return(-1);
+			return (-1);
 		else if (s1[i] == s2[i])
-			continue ;
-		i++;
+			i++;
 	}
+	return (0);
 }

@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgolino <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/21 12:10:44 by fgolino           #+#    #+#             */
-/*   Updated: 2022/10/23 23:38:28 by fgolino          ###   ########.fr       */
+/*   Created: 2022/10/23 22:17:41 by fgolino           #+#    #+#             */
+/*   Updated: 2022/10/24 00:53:32 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+char	*ft_strcat(char	*dest, char	*src)
 {
-	unsigned int	i;
+	int	counter;
+	int	i;
 
+	counter = 0;
 	i = 0;
-	while (s1[i] != 0 && and i <= n)
+	while (dest[counter] != 0)
+		counter++;
+	while (src[i] != 0)
 	{
-		if (s1[i] > s2[i])
-			return (1);
-		else if (s1[i] < s2[i])
-			return (-1);
-		else if (s1[i] == s2[i])
-			i++;
+		dest[counter + i] = src[i];
+		i++;
 	}
-	return (0);
+	dest[counter + i] = 0;
+	return (dest);
 }
