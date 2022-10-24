@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_prime.c                                      :+:      :+:    :+:   */
+/*   ft_find_next_prime.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgolino <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 05:58:08 by fgolino           #+#    #+#             */
-/*   Updated: 2022/10/24 06:28:35 by fgolino          ###   ########.fr       */
+/*   Created: 2022/10/24 06:22:39 by fgolino           #+#    #+#             */
+/*   Updated: 2022/10/24 06:29:13 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_is_prime(int nb)
+int	ft_find_next_prime(int nb)
 {
 	int	n;
 
 	n = 2;
 	while (n <= nb / 2)
 	{
-		if ((nb % n) == 0)
-			return (0);
+		if ((nb & n) == n)
+			return (n);
 		n++;
 	}
-	return (1);
+	return (ft_find_next_prime(nb + 1));
 }
