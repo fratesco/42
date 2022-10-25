@@ -6,7 +6,7 @@
 /*   By: fgolino <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 12:07:33 by fgolino           #+#    #+#             */
-/*   Updated: 2022/10/24 00:43:04 by fgolino          ###   ########.fr       */
+/*   Updated: 2022/10/25 17:48:32 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void	ft_putstr_non_printable(char *str)
 	c = 0;
 	while (str[c] != 0)
 	{
-		if (str[c] >= 33 && str[c] <= 126)
+		if (str[c] >= 32 && str[c] <= 126)
 			write(1, &str[c], 1);
-		else if (str[c] < 32 && str[c] > 126)
+		else if (str[c] < 32 || str[c] > 126)
 			print_hex(str[c]);
 		c++;
 	}
