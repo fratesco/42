@@ -6,7 +6,7 @@
 /*   By: fgolino <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 10:24:31 by fgolino           #+#    #+#             */
-/*   Updated: 2022/10/16 18:19:56 by fgolino          ###   ########.fr       */
+/*   Updated: 2022/10/26 09:11:15 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -58,10 +58,13 @@ void	positivo(int nb)
 
 void	ft_putnbr(int nb)
 {
-	if (nb < 0)
+	long num;
+
+	num = nb;
+	if (num < 0)
 	{		
-		nb = nb * (-1);
+		num = num * (-1);
 		write(1, "-", 1);
 	}
-	positivo(nb);
+	positivo(num);
 }

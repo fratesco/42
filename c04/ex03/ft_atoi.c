@@ -6,7 +6,7 @@
 /*   By: fgolino <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 01:07:01 by fgolino           #+#    #+#             */
-/*   Updated: 2022/10/25 12:49:28 by fgolino          ###   ########.fr       */
+/*   Updated: 2022/10/26 09:09:26 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	ft_atoi(char *str)
 			nb = loop(str, i);
 			return (nb * sign);
 		}
+		else
+			i++;
 	}
 	return (0);
 }
