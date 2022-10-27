@@ -6,7 +6,7 @@
 /*   By: fgolino <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 05:37:14 by fgolino           #+#    #+#             */
-/*   Updated: 2022/10/24 05:50:40 by fgolino          ###   ########.fr       */
+/*   Updated: 2022/10/27 17:35:35 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@ int	ft_sqrt(int nb)
 	int	n;
 
 	n = 1;
-	while (n <= nb / 2)
+	if (n < 0)
+		return (0);
+	while (n <= nb / n)
 	{
 		if ((nb / n) == n)
 			return (n);

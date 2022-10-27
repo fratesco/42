@@ -6,7 +6,7 @@
 /*   By: fgolino <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 06:22:39 by fgolino           #+#    #+#             */
-/*   Updated: 2022/10/24 06:29:13 by fgolino          ###   ########.fr       */
+/*   Updated: 2022/10/27 17:24:57 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@ int	ft_find_next_prime(int nb)
 	int	n;
 
 	n = 2;
-	while (n <= nb / 2)
+	if (nb <= 2)
+		return (2);
+	while (n <= (nb / n) + 1)
 	{
-		if ((nb & n) == n)
-			return (n);
+		if ((nb % n) == 0)
+			return (ft_find_next_prime(nb + 1));
 		n++;
 	}
-	return (ft_find_next_prime(nb + 1));
+	return (nb);
 }
