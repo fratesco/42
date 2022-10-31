@@ -6,7 +6,7 @@
 /*   By: fgolino <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 10:24:31 by fgolino           #+#    #+#             */
-/*   Updated: 2022/10/26 09:11:15 by fgolino          ###   ########.fr       */
+/*   Updated: 2022/10/27 12:27:04 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -24,7 +24,7 @@ int	potenza(int e, int b)
 	return (b);
 }
 
-int	cifre(int nb)
+int	cifre(long nb)
 {
 	int	c;
 
@@ -37,7 +37,7 @@ int	cifre(int nb)
 	return (c);
 }
 
-void	positivo(int nb)
+void	positivo(long nb)
 {
 	int		a;
 	char	scritta;
@@ -58,7 +58,7 @@ void	positivo(int nb)
 
 void	ft_putnbr(int nb)
 {
-	long num;
+	long	num;
 
 	num = nb;
 	if (num < 0)

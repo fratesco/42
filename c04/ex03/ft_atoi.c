@@ -5,48 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgolino <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 01:07:01 by fgolino           #+#    #+#             */
-/*   Updated: 2022/10/30 11:10:38 by fgolino          ###   ########.fr       */
+/*   Created: 2022/10/30 12:11:37 by fgolino           #+#    #+#             */
+/*   Updated: 2022/10/30 12:11:47 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	loop(char *str, int i)
-{
-	long	nb;
-
-	nb = 0;
-	while (str[i] < 58 && str[i] > 47 && str[i] != 0)
-	{
-		nb = (nb * 10) + (str[i] - 48);
-		i++;
-	}
-	return ((int)nb);
-}
-
 int	ft_atoi(char *str)
 {
-	int	i;
-	int	sign;
-	long	nb;
+	int		i;
+	int		m;
+	int		n;
 
+	n = 0;
+	m = 0;
 	i = 0;
-	sign = 1;
-	while (str[i] != 0)
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	while (str[i] == '+' || str[i] == '-')
 	{
-		if ((str[i] < 14 && str[i] > 8) || str[i] == '+' || str[i] == ' ')
-			i++;
-		else if (str[i] == '-')
-		{
-			sign = sign * (-1);
-			i++;
-		}
-		else if (str[i] < 58 && str[i] > 47)
-		{
-			nb = loop(str, i);
-			return (int(nb * sign));
-		}
-		else
-			i++;
+		if (str[i] == '-')
+			m++;
+		i++;
 	}
-	return (0);
+	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
+	{
+		n = n * 10 + str[i] - '0';
+		i++;
+	}
+	if (m % 2 == 0)
+		return (n);
+	return (n *= -1);
 }

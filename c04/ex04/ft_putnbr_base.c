@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgolino <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 03:53:51 by fgolino           #+#    #+#             */
-/*   Updated: 2022/10/24 03:53:56 by fgolino          ###   ########.fr       */
+/*   Created: 2022/10/27 12:00:31 by fgolino           #+#    #+#             */
+/*   Updated: 2022/10/27 12:23:38 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int		check(char *base);
 void	print(char *num, int i, char *base);
-int		check0(int nbr);
+int		check0(int nbr, char *b);
 
 void	ft_putnbr_base(int nbr, char *base)
 {
 	int		nb;
 	int		i;
 	long	lnbr;
-	char	num[31];
+	char	num[32];
 
-	if (check0(nbr) == 1)
+	if (check0(nbr, base) == 1)
 		return ;
 	nb = check(base);
 	if (nb == 1)
@@ -44,11 +44,11 @@ void	ft_putnbr_base(int nbr, char *base)
 	print(num, i, base);
 }
 
-int	check0(int nbr)
+int	check0(int nbr, char *b)
 {
 	if (nbr == 0)
 	{
-		write(1, "0", 1);
+		write(1, &b[0], 1);
 		return (1);
 	}
 	return (0);
@@ -56,7 +56,7 @@ int	check0(int nbr)
 
 void	print(char *num, int i, char *base)
 {
-	int		x;
+	int	x;
 
 	i--;
 	while (i >= 0)
@@ -69,8 +69,8 @@ void	print(char *num, int i, char *base)
 
 int	check(char *base)
 {
-	int		nb;
-	int		i;
+	int	nb;
+	int	i;
 
 	nb = 0;
 	while (base[nb])
