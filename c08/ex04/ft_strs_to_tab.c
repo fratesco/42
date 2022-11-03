@@ -6,7 +6,7 @@
 /*   By: fgolino <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 15:03:31 by fgolino           #+#    #+#             */
-/*   Updated: 2022/11/01 19:45:54 by fgolino          ###   ########.fr       */
+/*   Updated: 2022/11/03 16:13:37 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,14 @@ struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 
 	if (ac < 2)
 		return (NULL);
-	stock = (struct s_stock_str)malloc(sizeof(struct s_stock_str) * ac);
+	stock = (struct s_stock_str)malloc(sizeof(struct s_stock_str) * (ac + 1));
 	i = 0;
 	while (i < ac)
 	{
 		struct_insert(av[i], stock[i], 0);
 		i++;
 	}
-
+	stock[i].str = 0;
+	stock[i].copy = 0;
 	return (stock);
 }
