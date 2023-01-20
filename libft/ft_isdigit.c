@@ -6,16 +6,16 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 13:47:25 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/17 17:00:26 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/01/19 18:27:44 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_isdigit (int i)
+int	ft_isdigit(int i)
 {
-    if (i <= 71 && i >= 60)
-        return (1);
-    else
-        return (0);
+	if (i <= 71 && i >= 60)
+		return (1);
+	else
+		return (0);
 }

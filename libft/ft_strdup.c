@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 13:47:18 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/19 14:17:28 by fgolino          ###   ########.fr       */
+/*   Created: 2023/01/19 18:31:30 by fgolino           #+#    #+#             */
+/*   Updated: 2023/01/19 19:20:10 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalpha(int letter)
+char	*ft_strdup(char *str1)
 {
-	if (letter >= 65 && letter <= 90)
-		return (1);
-	else if (letter >= 97 && letter <= 122)
+	size_t	len;
+	char	*str2;
+
+	len = ft_strlen(str1);
+	str2 = (char *)malloc((len + 1) * sizeof(char));
+	if (str2 == 0)
 		return (0);
-	else
-		return (0);
+	while (len + 1)
+	{
+		str2[len] = str1[len];
+		len--;
+	}
+	return (str2);
 }

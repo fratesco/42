@@ -6,18 +6,18 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 13:47:37 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/17 17:00:26 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/01/20 18:11:06 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_strlen (char *str)
+size_t	ft_strlen(char const *str)
 {
-    int i;
+	size_t	i;
 
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 13:47:18 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/19 14:17:28 by fgolino          ###   ########.fr       */
+/*   Created: 2023/01/19 16:03:19 by fgolino           #+#    #+#             */
+/*   Updated: 2023/01/19 18:28:52 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalpha(int letter)
+void	*ft_calloc(size_t count, size_t size)
 {
-	if (letter >= 65 && letter <= 90)
-		return (1);
-	else if (letter >= 97 && letter <= 122)
+	int		i;
+	void	*stuff;
+
+	i = 0;
+	stuff = malloc ((count * size));
+	if (stuff == 0)
 		return (0);
-	else
-		return (0);
+	ft_bzero(stuff, (count * size));
+	return (stuff);
 }

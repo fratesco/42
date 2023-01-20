@@ -6,13 +6,13 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:03:06 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/17 18:04:42 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/01/19 14:58:41 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *buffer, int byte, int len)
+void	*ft_memset(void *buffer, int byte, size_t len)
 {
 	int	i;
 
