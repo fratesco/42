@@ -13,71 +13,57 @@
 #include <stdlib.h>
 #include "libft.h"
 
-char	*str_ncpy(char *str, int end)
+char	*s_ncpy(char const *s, int end)
 {
-	char	*strcpy;
+	char	*scpy;
 	int		i;
 
 	i = 0;
-	strcpy = (char *)malloc(sizeof(char) * (end + 1));
+	scpy = (char *)malloc(sizeof(char) * (end + 1));
 	while (i < end)
 	{
-		strcpy[i] = str[i];
+		scpy[i] = s[i];
 		i++;
 	}
-	strcpy[i] = 0;
-	return (strcpy);
+	scpy[i] = 0;
+	return (scpy);
 }
 
-int	is_sep(char str, char *sep)
-{
-	int	i;
-
-	i = 0;
-	while (sep[i])
-	{
-		if (str == sep[i])
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-int	a_size(char *str, char *sep)
+int	a_size(char const *s, char sep)
 {
 	int	i;
 	int	len;
 
 	i = 0;
 	len = 0;
-	while (str[i])
+	while (s[i])
 	{
-		if (is_sep(str[i], sep))
+		if (s[i] == sep)
 			i++;
 		else
 		{
 			len++;
-			while (!((is_sep(str[i], sep))) && str[i])
+			while (!(s[i] == sep) && s[i])
 				i++;
 		}
 	}
 	return (len);
 }
 
-void	skip(int *i, int *k, char *str, char *charset)
+void	skip(int *i, int *k, char const *s, char c)
 {
-	while ((is_sep(str[*i], charset)) && str[*i])
+	while (s[*i] == c && s[*i])
 		(*i)++;
-	while (!(is_sep(str[*i], charset)) && str[*i])
+	while (!(s[*i] == c) && s[*i])
 	{
 		(*k)++;
 		(*i)++;
 	}
-	while ((is_sep(str[*i], charset)) && str[*i])
+	while (s[*i] == c && s[*i])
 		(*i)++;
 }
 
-char	**ft_split(char *str, char *charset)
+char	**ft_split(char const *s, char c)
 {
 	char	**array;
 	int		k;
@@ -85,17 +71,17 @@ char	**ft_split(char *str, char *charset)
 	int		j;
 	int		z;
 
-	if (str == 0 || charset == 0)
+	if (s == 0 || c == 0)
 		return (0);
-	array = (char **)malloc(sizeof(char *) * (a_size(str, charset) + 1));
+	array = (char **)malloc(sizeof(char *) * (a_size(s, c) + 1));
 	i = 0;
 	k = 0;
 	j = 0;
 	z = 0;
-	while (str[i])
+	while (s[i])
 	{
-		skip(&i, &k, str, charset);
-		array[j++] = str_ncpy(&str[z], k);
+		skip(&i, &k, s, c);
+		array[j++] = s_ncpy(&s[z], k);
 		z = i;
 		k = 0;
 	}
