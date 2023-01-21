@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 14:15:48 by root              #+#    #+#             */
-/*   Updated: 2023/01/21 14:42:14 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/01/21 15:19:54 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,24 @@ char	*ft_itoa(int n)
 	long	temp;
 
 	temp = n;
-	while (temp)
-	{
+	i = 0;
+	while (temp && ++i)
 		temp /= 10;
-		i++;
-	}
-	if (n < 0)
+	if (n <= 0)
 		i++;
 	num = (char *)malloc(sizeof(char) * (i + 1));
 	if (n < 0)
 		num[0] = '-';
 	num[i--] = 0;
-	while (n >= 0 ^ n < 0)
+	if (n == 0)
+		num[0] == 48;
+	while (n > 0 ^ n < 0)
 	{
 		if (n < 0)
-			num[i] = n % 10 * (-1);
+			num[i--] = n % 10 * (-1) + 48;
 		else
-			num[i] = n % 10;
-		i--;
+			num[i--] = n % 10 + 48;
+		n /= 10;
 	}
 	return (num);
 }
