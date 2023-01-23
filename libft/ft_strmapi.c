@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 14:42:12 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/23 14:49:16 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/01/23 15:01:02 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,14 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char			*str;
 
 	i = ft_strlen(s);
-	
+	str = (char *)malloc((i + 1) * sizeof(char));
+	if (str == 0)
+		return (0);
+	str[i--] = 0;
+	while (i >= 0)
+	{
+		str[i] = f(i,s[i]);
+		i++;
+	}
+	return (str);
 } 
