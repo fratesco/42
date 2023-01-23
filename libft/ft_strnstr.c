@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 17:06:42 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/19 18:43:29 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/01/23 18:13:44 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*ft_strstr(char *str, char *to_find, size_t len)
 {
-	int		i;
-	int		j;
-	int		lt;
+	size_t		i;
+	int			j;
+	int			lt;
 
 	i = 0;
 	if (to_find[0] == 0)

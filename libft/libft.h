@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:38:34 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/23 16:18:35 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/01/23 18:09:47 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void			*ft_memmove(void *dst, void *src, size_t len);
 void			*ft_memcpy(void *dst, void *src, size_t len);
 char			*ft_strchr(char *str, int c);
 char			*ft_strnstr(char *str, char *to_find, size_t len);
-size_t			*ft_strlcpy(char *dest, char *src, size_t size);
+size_t			ft_strlcpy(char *dest, char *src, size_t size);
 void			*ft_memchr(void *str, int c, size_t n);
 int				ft_memcmp(void *s1, void *s2, size_t n);
 int				ft_atoi(char *str);

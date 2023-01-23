@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 14:42:12 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/23 15:40:30 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/01/23 18:12:22 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	unsigned int	i;
-	char			*str;
+	int		i;
+	char	*str;
 
 	if (s == 0)
 		return (0);
@@ -27,7 +27,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	while (i >= 0)
 	{
 		str[i] = f(i,s[i]);
-		i++;
+		i--;
 	}
 	return (str);
 }

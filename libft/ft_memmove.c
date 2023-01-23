@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 13:47:33 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/19 14:58:34 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/01/23 18:05:42 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,5 @@
 
 void	*memmove(void *dst, void *src, size_t len)
 {
-	int		i;
-	char	tmp;
-
-	i = 0;
-	while (len)
-	{
-		
-	}
+	return (0);
 }
