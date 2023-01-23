@@ -6,7 +6,7 @@
 #    By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/23 17:38:45 by fgolino           #+#    #+#              #
-#    Updated: 2023/01/23 18:14:04 by fgolino          ###   ########.fr        #
+#    Updated: 2023/01/23 18:34:00 by fgolino          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,13 @@ clean:
 			rm -f $(OBJS)
 fclean:		clean
 			rm -f $(NAME)
-re:			fclean all
+			
+re:			fclean $(NAME)
+
+bonus: 
+
+.PHONY :
+			all clean fclean re
 
 
 

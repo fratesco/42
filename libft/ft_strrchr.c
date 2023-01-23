@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 16:57:48 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/19 18:24:28 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/01/23 18:32:15 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 char	*ft_strchr(char *str, int c)
 {
 	int		i;
-	char	*last = 0;
+	char	*last;
 
 	i = 0;
+	last = 0;
 	while (str[i])
 	{
 		if (str[i] == c)
