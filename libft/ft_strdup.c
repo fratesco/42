@@ -6,13 +6,13 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 18:31:30 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/19 19:20:10 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/01/25 14:36:35 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(char *str1)
+char	*ft_strdup(char const *str1)
 {
 	size_t	len;
 	char	*str2;

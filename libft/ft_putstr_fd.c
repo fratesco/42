@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:02:27 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/23 16:08:55 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/01/27 15:53:10 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ void	ft_putstr_fd(char *s, int fd)
 	int	i;
 
 	i = 0;
-	while (s[i++])
-		write(fd, &s[i], 1);
+	while (s != 0 && s[i])
+		write(fd, &(s[i++]), 1);
 }

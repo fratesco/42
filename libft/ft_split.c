@@ -6,12 +6,13 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:23:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/21 14:17:46 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/01/27 15:14:45 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
+#include <stdio.h>
 
 char	*s_ncpy(char const *s, int end)
 {
@@ -38,53 +39,58 @@ int	a_size(char const *s, char sep)
 	len = 0;
 	while (s[i])
 	{
-		if (s[i] == sep)
+		while (s[i] == sep)
 			i++;
-		else
+		if (!(s[i] == sep) && s[i])
 		{
 			len++;
-			while (!(s[i] == sep) && s[i])
-				i++;
+			i++;
 		}
+		while (!(s[i] == sep) && s[i])
+			i++;
 	}
 	return (len);
 }
 
-void	skip(int *i, int *k, char const *s, char c)
+void	skip(int *num, char const *s, char c)
 {
-	while (s[*i] == c && s[*i])
-		(*i)++;
-	while (!(s[*i] == c) && s[*i])
+	while (s[num[0]] == c && s[num[0]])
+		(num[0])++;
+	num[1] = num[0];
+	while (!(s[num[0]] == c) && s[num[0]])
 	{
-		(*k)++;
-		(*i)++;
+		(num[3])++;
+		(num[0])++;
 	}
-	while (s[*i] == c && s[*i])
-		(*i)++;
+	while (s[num[0]] == c && s[num[0]])
+		(num[0])++;
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**array;
-	int		k;
-	int		i;
-	int		j;
-	int		z;
+	int		*num;
 
-	if (s == 0 || c == 0)
+	num = ft_calloc(4, sizeof(int));
+	if (!num)
 		return (0);
-	array = (char **)malloc(sizeof(char *) * (a_size(s, c) + 1));
-	i = 0;
-	k = 0;
-	j = 0;
-	z = 0;
-	while (s[i])
+	if (s == 0)
+		return (0);
+	if (s[0] != 0)
 	{
-		skip(&i, &k, s, c);
-		array[j++] = s_ncpy(&s[z], k);
-		z = i;
-		k = 0;
+		array = (char **)malloc(sizeof(char *) * (a_size(s, c) + 1));
+		if (!array)
+			return (NULL);
 	}
-	array[j] = 0;
+	while (s[num[0]] && a_size(s, c) > 0)
+	{
+		skip(num, s, c);
+		array[num[2]++] = s_ncpy(&s[(num[1])], num[3]);
+		num[1] = num[0];
+		num[3] = 0;
+	}
+	if (!s[0])
+		array = (char **)malloc(sizeof(char *));
+	array[num[2]] = 0;
 	return (array);
 }

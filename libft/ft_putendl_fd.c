@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 16:11:03 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/23 16:17:02 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/01/27 15:52:28 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ void	ft_putendl_fd(char *s, int fd)
 {
 	int	i;
 
-	i = ft_strlen(s);
-	write (fd, s, i);
-	write (fd, "\n", 1);
+	if (s != 0)
+	{
+		i = ft_strlen(s);
+		write (fd, s, i);
+		write (fd, "\n", 1);
+	}
 }

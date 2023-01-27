@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 17:29:35 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/20 18:09:54 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/01/27 15:32:48 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	back_check(char const *s1, char const *set)
 	i = 0;
 	counter = 0;
 	x = ft_strlen(s1) - 1;
-	while (set[i])
+	while (set[i] && x >= 0)
 	{
 		if (set[i] == s1[x])
 		{
@@ -62,8 +62,25 @@ char	*ft_strtrim(char const *s1, char const *set)
 {
 	int		i;
 	char	*str;
+	int		back;
+	int		front;
+	int		len;
 
-	i = ft_strlen(s1) - (front_check(s1, set) + back_check(s1, set)) + 1;
-	str = (char *)malloc(i * sizeof(char));
+	if (!s1)
+		return (0);
+	if (!set)
+		return (ft_strdup(s1));
+	len = ft_strlen(s1);
+	back = back_check(s1, set);
+	front = front_check(s1, set);
+	if (len == 0 || (len == back && back == front))
+		return (ft_strdup(""));
+	str = (char *)malloc((len - back - front + 1) * sizeof(char));
+	if (!str)
+		return (0);
+	i = 0;
+	while ((i + front + back <= len))
+		i++;
+	ft_strlcpy(str, &(s1[front]), i);
 	return (str);
 }

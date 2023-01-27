@@ -6,13 +6,13 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 16:57:48 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/23 18:32:15 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/01/24 16:34:27 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(char *str, int c)
+char	*ft_strrchr(char *str, int c)
 {
 	int		i;
 	char	*last;
