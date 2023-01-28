@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:23:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/27 15:14:45 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/01/28 11:56:47 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,25 @@ void	skip(int *num, char const *s, char c)
 		(num[0])++;
 }
 
+char	**prevent_leak(void *str)
+{
+	free (str);
+	return (0);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**array;
 	int		*num;
 
 	num = ft_calloc(4, sizeof(int));
-	if (!num)
-		return (0);
-	if (s == 0)
-		return (0);
+	if (s == 0 || !num)
+		return (prevent_leak(num));
 	if (s[0] != 0)
 	{
 		array = (char **)malloc(sizeof(char *) * (a_size(s, c) + 1));
 		if (!array)
-			return (NULL);
+			return (0);
 	}
 	while (s[num[0]] && a_size(s, c) > 0)
 	{
@@ -92,5 +96,6 @@ char	**ft_split(char const *s, char c)
 	if (!s[0])
 		array = (char **)malloc(sizeof(char *));
 	array[num[2]] = 0;
+	prevent_leak(num);
 	return (array);
 }

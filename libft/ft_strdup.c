@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 18:31:30 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/25 14:36:35 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/01/28 11:17:57 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ char	*ft_strdup(char const *str1)
 	str2 = (char *)malloc((len + 1) * sizeof(char));
 	if (str2 == 0)
 		return (0);
-	while (len + 1)
+	len = 0;
+	while (str1[len])
 	{
 		str2[len] = str1[len];
-		len--;
+		len++;
 	}
+	str2[len] = 0;
 	return (str2);
 }
