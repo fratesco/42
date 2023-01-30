@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   printf_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 12:07:36 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/30 16:53:25 by fgolino          ###   ########.fr       */
+/*   Created: 2023/01/30 16:31:05 by fgolino           #+#    #+#             */
+/*   Updated: 2023/01/30 17:35:44 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
+#include "libftprintf.h"
 
-# define LIBFTPRINTF_H
-# define ERROR -1
-# define FOUND 1
-# define NOTHING 0
-# include <unistd.h>
-# include <stdarg.h>
-# include <stdlib.h>
+int	check_special(const char *str)
+{
+	int	i;
 
-int		ft_printf(const char *str, ...);
-void	ft_putstr_special(const char *str);
-size_t	ft_strlen(const char *str);
-int		check_special(const char *str);
+	i = 0;
+	while (str[i + 1])
+	{
+		if (str[i] == '%' && str[i + 1] != '%')
+			return (FOUND);
+		i++;
+	}
+	if (str[i] == '%')
+		return (ERROR);
+	return (NOTHING);
+}
 
-#endif
+int	parsing_checking(const char *str, va_list list)
+{
+	
+}
