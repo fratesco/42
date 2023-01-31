@@ -6,13 +6,13 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 12:00:31 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/31 16:37:11 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/01/31 16:45:15 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	ft_putnbr_base(int nbr, char *base, int *n)
+void	ft_putnbr_base(int nbr, int base, size_t *n)
 {
 	int		nb;
 	int		i;
@@ -21,7 +21,7 @@ void	ft_putnbr_base(int nbr, char *base, int *n)
 
 	if (check0(nbr, base, n) == 1)
 		return ;
-	nb = check(base);
+	nb = base;
 	if (nb == 1)
 		return ;
 	lnbr = nbr;
@@ -41,7 +41,7 @@ void	ft_putnbr_base(int nbr, char *base, int *n)
 	print(num, i, base, n);
 }
 
-int	check0(int nbr, char *b, int *n)
+int	check0(int nbr, char *b, size_t *n)
 {
 	if (nbr == 0)
 	{
@@ -52,7 +52,7 @@ int	check0(int nbr, char *b, int *n)
 	return (0);
 }
 
-void	print(char *num, int i, char *base, int *n)
+void	print(char *num, int i, char *base, size_t *n)
 {
 	int	x;
 
@@ -64,30 +64,4 @@ void	print(char *num, int i, char *base, int *n)
 		*n += 1;
 		i--;
 	}
-}
-
-int	check(char *base)
-{
-	int	nb;
-	int	i;
-
-	nb = 0;
-	while (base[nb])
-	{
-		if (base[nb] == '+' || base[nb] == '-')
-			return (1);
-		if (base[nb] > 126 || base[nb] < 32)
-			return (1);
-		i = nb + 1;
-		while (base[i])
-		{
-			if (base[i] == base[nb])
-				return (1);
-			i++;
-		}
-		nb++;
-	}
-	if (nb <= 1)
-		return (1);
-	return (nb);
 }
