@@ -1,5 +1,5 @@
 
-SRCS	:=
+SRCS	:=	printf_check.c ft_printf.c\ 
 
 OBJS	:=	$(SRCS:.c=.o)
 
