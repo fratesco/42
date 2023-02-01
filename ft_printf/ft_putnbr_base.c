@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 12:00:31 by fgolino           #+#    #+#             */
-/*   Updated: 2023/02/01 14:49:29 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/02/01 17:57:03 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_putnbr_hex(int nbr, int caser, size_t *n)
 {
-	int		nb;
-	int		i;
-	long	lnbr;
-	char	num[32];
+	int				nb;
+	int				i;
+	unsigned int	lnbr;
+	char			num[32];
 
 	if (check0(nbr, n) == 1)
 		return ;
@@ -29,6 +29,32 @@ void	ft_putnbr_hex(int nbr, int caser, size_t *n)
 		lnbr *= -1;
 		*n += 1;
 	}
+	i = 0;
+	while (lnbr > 0)
+	{
+		num[i] = lnbr % nb;
+		lnbr /= nb;
+		i++;
+	}
+	print(num, i, caser, n);
+}
+
+void	ft_putnbr_void(uintptr_t nbr, int caser, size_t *n)
+{
+	int				nb;
+	int				i;
+	uintptr_t		lnbr;
+	char			num[32];
+
+	lnbr = nbr;
+	ft_putstr_special("0x", n);
+	if (lnbr == 0)
+	{
+		write(1, "0", 1);
+		(*n)++;
+		return ;
+	}
+	nb = 16;
 	i = 0;
 	while (lnbr > 0)
 	{

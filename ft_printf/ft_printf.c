@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 12:24:50 by fgolino           #+#    #+#             */
-/*   Updated: 2023/02/01 16:35:45 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/02/01 18:00:09 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_putstr_special(const char *str, size_t *n)
 			if (((++counter) % 2) == 0)
 			{
 				write(1, "%", 1);
-				*n += 1;
+				(*n)++;
 			}
 		}
 		else

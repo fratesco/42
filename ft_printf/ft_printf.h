@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 12:07:36 by fgolino           #+#    #+#             */
-/*   Updated: 2023/02/01 14:48:53 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/02/01 17:37:23 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ void	print(char *num, int i, int base, size_t *n);
 int		check0(int nbr, size_t *n);
 void	ft_putnbr_hex(int nbr, int caser, size_t *n);
 void	ft_putnbr(long nbr, size_t *n);
+void	ft_putnbr_void(uintptr_t nbr, int caser, size_t *n);
 
 #endif

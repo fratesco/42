@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 16:31:05 by fgolino           #+#    #+#             */
-/*   Updated: 2023/02/01 15:51:55 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/02/01 18:02:25 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_special(const char *str)
 	i = 0;
 	while (str[i + 1])
 	{
-		if (str[i] == '%' && str[i + 1] != '%')
+		if (str[i] == '%')
 			return (FOUND);
 		i++;
 	}
@@ -41,7 +41,7 @@ void	conversion(const char c, va_list list, size_t *n)
 	else if (c == 's')
 		ft_putstr_special(va_arg(list, char *), n);
 	else if (c == 'p')
-		ft_putnbr_hex(va_arg(list, unsigned long), 0, n);
+		ft_putnbr_void(va_arg(list, uintptr_t), 0, n);
 	else if (c == 'd' || c == 'i')
 		ft_putnbr(va_arg(list, int), n);
 	else if (c == 'u')
@@ -50,6 +50,8 @@ void	conversion(const char c, va_list list, size_t *n)
 		ft_putnbr_hex(va_arg(list, int), 0, n);
 	else if (c == 'X')
 		ft_putnbr_hex(va_arg(list, int), 1, n);
+	else
+		ft_putchar(c, n);
 }
 
 int	parsing_checking(const char *str, va_list list, size_t *n)
@@ -65,7 +67,7 @@ int	parsing_checking(const char *str, va_list list, size_t *n)
 			check = TRUE;
 		else if (check && str[i] == '%')
 		{
-			ft_putchar(str[i++], n);
+			ft_putchar(str[i], n);
 			check = FALSE;
 		}
 		else if (check)
@@ -74,7 +76,7 @@ int	parsing_checking(const char *str, va_list list, size_t *n)
 			check = FALSE;
 		}
 		else
-			ft_putchar(str[i], n);	
+			ft_putchar(str[i], n);
 		i++;
 	}
 	return (NOTHING);
