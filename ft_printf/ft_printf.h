@@ -6,13 +6,13 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 12:07:36 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/31 16:45:29 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/02/01 14:48:53 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
+#ifndef FT_PRINTF_H
 
-# define LIBFTPRINTF_H
+# define FT_PRINTF_H
 # define ERROR -1
 # define FOUND 1
 # define NOTHING 0
@@ -28,11 +28,11 @@ size_t	ft_strlen(const char *str);
 int		check_special(const char *str);
 int		parsing_checking(const char *str, va_list list, size_t *n);
 void	ft_putchar(const char c, size_t *n);
-void	conversion(const char c, va_list list);
+void	conversion(const char c, va_list list, size_t *n);
 void	ft_putnbr_pointer(unsigned long pointer, size_t *n);
 void	print(char *num, int i, int base, size_t *n);
-int		check0(int nbr, char *b, int *n);
-void	ft_putnbr_base(int nbr, char *base, size_t *n);
-void	ft_putnbr(unsigned int nbr, size_t *n);
+int		check0(int nbr, size_t *n);
+void	ft_putnbr_hex(int nbr, int caser, size_t *n);
+void	ft_putnbr(long nbr, size_t *n);
 
 #endif

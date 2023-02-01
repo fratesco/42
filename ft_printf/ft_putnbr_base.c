@@ -6,24 +6,22 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 12:00:31 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/31 16:45:15 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/02/01 14:49:29 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-void	ft_putnbr_base(int nbr, int base, size_t *n)
+void	ft_putnbr_hex(int nbr, int caser, size_t *n)
 {
 	int		nb;
 	int		i;
 	long	lnbr;
 	char	num[32];
 
-	if (check0(nbr, base, n) == 1)
+	if (check0(nbr, n) == 1)
 		return ;
-	nb = base;
-	if (nb == 1)
-		return ;
+	nb = 16;
 	lnbr = nbr;
 	if (lnbr < 0)
 	{
@@ -38,24 +36,29 @@ void	ft_putnbr_base(int nbr, int base, size_t *n)
 		lnbr /= nb;
 		i++;
 	}
-	print(num, i, base, n);
+	print(num, i, caser, n);
 }
 
-int	check0(int nbr, char *b, size_t *n)
+int	check0(int nbr, size_t *n)
 {
 	if (nbr == 0)
 	{
-		write(1, &b[0], 1);
+		write(1, "0", 1);
 		*n += 1;
 		return (1);
 	}
 	return (0);
 }
 
-void	print(char *num, int i, char *base, size_t *n)
+void	print(char *num, int i, int caser, size_t *n)
 {
-	int	x;
+	int		x;
+	char	*base;
 
+	if (caser == 0)
+		base = "0123456789abcdef\0";
+	else if (caser == 1)
+		base = "0123456789ABCDEF\0";
 	i--;
 	while (i >= 0)
 	{
