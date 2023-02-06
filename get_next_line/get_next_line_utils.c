@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:25:13 by fgolino           #+#    #+#             */
-/*   Updated: 2023/02/03 15:54:19 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/02/06 16:09:53 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		str[len + i] = s2[i];
 		i++;
 	}
+	free(s2);
 	str[len + i] = 0;
 	return (str);
 }
@@ -49,7 +50,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	sub = (char *)malloc(len * sizeof(char));
 	if (sub == 0)
 		return (0);
-	while (len && s[i + start])
+	while (len && s && s[i + start])
 	{
 		sub[i] = s[i + start];
 		len--;
