@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:03:11 by fgolino           #+#    #+#             */
-/*   Updated: 2023/02/03 16:05:13 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/02/06 18:58:29 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-typedef enum mybool{FALSE, TRUE}	t_bool;
+typedef enum mybool{FALSE = 0, TRUE = 1}	t_bool;
 
 size_t	ft_strlen(char	*str);
 char	*ft_substr(char const *s, unsigned int start, size_t len);

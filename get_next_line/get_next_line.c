@@ -6,12 +6,11 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:17:39 by fgolino           #+#    #+#             */
-/*   Updated: 2023/02/06 16:09:26 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/02/06 19:08:21 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
 
 char	*line_parsing(char	*str, int fd)
 {
@@ -22,10 +21,11 @@ char	*line_parsing(char	*str, int fd)
 
 	i = 0;
 	check = FALSE;
-	whatever = (char *)malloc(sizeof(char) * BUFFER_SIZE);
+	whatever = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	whatever[BUFFER_SIZE] = 0;
 	while (i < BUFFER_SIZE)
 	{
-		if (str[i] == '\n' || str[i] == '\0')
+		if (str[i] == '\n' || str[i] == '\0' || str[i] == 4)
 		{
 			line = ft_substr(str, 0, (i + 1));
 			check = TRUE;
@@ -54,7 +54,6 @@ char	*parse_file(int fd)
 	}
 	if (!(read(fd, str, BUFFER_SIZE)))
 	{
-		write(1, "c", 1);
 		free(str);
 		return (NULL);
 	}
