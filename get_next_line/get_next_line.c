@@ -6,13 +6,18 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:17:39 by fgolino           #+#    #+#             */
-/*   Updated: 2023/02/06 19:08:21 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/02/07 12:37:00 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*line_parsing(char	*str, int fd)
+char	*life_saver(char	*str, char	*rest)
+{
+	
+}
+
+char	*line_parsing(char	*str, int fd, char *savior)
 {
 	int		i;
 	char	*line;
@@ -29,20 +34,20 @@ char	*line_parsing(char	*str, int fd)
 		{
 			line = ft_substr(str, 0, (i + 1));
 			check = TRUE;
-			i = BUFFER_SIZE; 
+			i = BUFFER_SIZE;
 		}
 		i++;
 	}
 	if (check == FALSE)
 	{
 		read(fd, whatever, BUFFER_SIZE);
-		line = ft_strjoin(str, line_parsing(whatever, fd));
+		line = ft_strjoin(str, line_parsing(whatever, fd, savior));
 	}
 	free(whatever);
 	return (line);
 }
 
-char	*parse_file(int fd)
+char	*parse_file(int fd, char *savior)
 {
 	char	*str;
 	char	*line;
@@ -57,20 +62,21 @@ char	*parse_file(int fd)
 		free(str);
 		return (NULL);
 	}
-	line = line_parsing(str, fd);
+	line = line_parsing(str, fd, savior);
 	free(str);
 	return (line);
 }
 
 char	*get_next_line(int fd)
 {
-	char	*line;
-	int		i;
+	char		*line;
+	int			i;
+	static char	*savior;
 
 	i = BUFFER_SIZE;
 	if (fd < 0 || i <= 0)
 		return (0);
-	line = parse_file(fd);
+	line = parse_file(fd, savior);
 	if (line && line[0] == 0)
 	{
 		free(line);
