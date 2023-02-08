@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:25:13 by fgolino           #+#    #+#             */
-/*   Updated: 2023/02/07 11:33:13 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/02/08 14:03:18 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,24 @@ size_t	ft_strlen(char	*str)
 	while (str[i])
 		i++;
 	return (i);
+}
+
+char	*copy(char	*str, int len)
+{
+	int		i;
+	char	*cpy;
+
+	i = 0;
+	cpy = (char *)malloc(len * sizeof(char));
+	if (!cpy)
+	{
+		free(cpy);
+		return (0);
+	}
+	while (i <= len)
+	{
+		cpy[i] = str[i];
+		i++;
+	}
+	return (cpy);
 }
