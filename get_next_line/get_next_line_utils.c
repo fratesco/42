@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 18:53:10 by fgolino           #+#    #+#             */
-/*   Updated: 2023/02/09 11:58:30 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/02/09 12:03:27 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 char	*ft_strjoin(char *s1, char const *s2)
 {
-	int		len;
 	int		i;
 	char	*str;
+	int		len;
 
 	i = 0;
 	len = ft_strlen(s1);
 	str = (char *)malloc((len + ft_strlen(s2) + 1) * sizeof(char));
 	if (!str)
 		return (0);
-	while (s1[i])
+	while (s1 && s1[i])
 	{
 		str[i] = s1[i];
 		i++;
@@ -66,7 +66,7 @@ int	ft_strlen(char const *str)
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (str && str[i])
 		i++;
 	return (i);
 }

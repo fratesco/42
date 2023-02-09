@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:47:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/02/09 11:58:48 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/02/09 12:29:18 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*flow_lines(char *str, int len, char *rest)
 	int		i;
 	char	*line;
 
+	line = 0;
 	i = 0;
 	while (i <= len)
 	{
@@ -42,9 +43,9 @@ char	*flow_lines(char *str, int len, char *rest)
 			break ;
 		}
 	}
-	if (i != len)
+	if (i != len + 1)
 		rest = (ft_substr(str, i, (len + 1)));
-	return (0);
+	return (line);
 }
 
 char	*hope_it_works(char *buffer, int len, int fd, char *rest)
@@ -75,15 +76,15 @@ char	*get_next_line(int fd)
 	static char	*rest;
 	int			len;
 	char		*line;
-	int			check;
 	char		*buffer;
 
-	if (fd < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	len = read(fd, line, BUFFER_SIZE);
+	len = read(fd, buffer, BUFFER_SIZE);
 	buffer[BUFFER_SIZE] = 0;
-	if (!buffer || !len)
+	line = 0;
+	if (buffer == 0 || len <= 0)
 	{
 		free(buffer);
 		return (0);
