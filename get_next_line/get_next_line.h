@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:44:33 by fgolino           #+#    #+#             */
-/*   Updated: 2023/02/09 12:28:56 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/02/09 17:22:57 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 
 char	*flow_lines(char *str, int len, char *rest);
 int		check_new(char	*str);

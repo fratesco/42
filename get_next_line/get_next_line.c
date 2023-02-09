@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:47:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/02/09 12:29:18 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/02/09 17:44:46 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ char	*flow_lines(char *str, int len, char *rest)
 			break ;
 		}
 	}
+	if (rest)
+		free(rest);
 	if (i != len + 1)
 		rest = (ft_substr(str, i, (len + 1)));
 	return (line);
@@ -52,22 +54,28 @@ char	*hope_it_works(char *buffer, int len, int fd, char *rest)
 {
 	int		check;
 	char	*line;
+	char	*new_line;
 
+	line = 0;
+	new_line = 0;
 	while (len)
 	{
 		check = check_new(buffer);
 		if (check == FOUND)
 		{
-			line = flow_lines(buffer, len, rest);
-			break ;
+			new_line = flow_lines(buffer, len, rest);
+			line = ft_strjoin(line, new_line);
+			len = 0;
 		}
 		else if (check == NOTHING)
 		{
 			line = ft_strjoin(line, buffer);
 			len = read(fd, buffer, BUFFER_SIZE);
-			buffer[BUFFER_SIZE] = 0;
+			buffer[len + 1] = 0;
 		}
 	}
+	if (new_line)
+		free(new_line);
 	return (line);
 }
 
@@ -92,7 +100,6 @@ char	*get_next_line(int fd)
 	if (rest)
 	{
 		line = flow_lines(rest, ft_strlen(rest), rest);
-		free(rest);
 	}
 	line = hope_it_works(buffer, len, fd, rest);
 	free(buffer);
