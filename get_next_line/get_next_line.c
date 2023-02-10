@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:47:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/02/09 17:44:46 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/02/10 18:35:27 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_new(char	*str)
 	return (NOTHING);
 }
 
-char	*flow_lines(char *str, int len, char *rest)
+char	*flow_lines(char *str, int len, char **rest)
 {
 	int		i;
 	char	*line;
@@ -42,15 +42,16 @@ char	*flow_lines(char *str, int len, char *rest)
 			line = ft_substr(str, 0, (i + 1));
 			break ;
 		}
+		i++;
 	}
-	if (rest)
-		free(rest);
-	if (i != len + 1)
-		rest = (ft_substr(str, i, (len + 1)));
+	if (*rest)
+		*rest = 0;
+	if (i + 1 < len)
+		(*rest) = (ft_substr(str, i + 1, (len + 1)));
 	return (line);
 }
 
-char	*hope_it_works(char *buffer, int len, int fd, char *rest)
+char	*hope_it_works(char *buffer, int len, int fd, char **rest)
 {
 	int		check;
 	char	*line;
@@ -71,12 +72,40 @@ char	*hope_it_works(char *buffer, int len, int fd, char *rest)
 		{
 			line = ft_strjoin(line, buffer);
 			len = read(fd, buffer, BUFFER_SIZE);
-			buffer[len + 1] = 0;
+			buffer[len] = 0;
 		}
 	}
 	if (new_line)
 		free(new_line);
 	return (line);
+}
+
+char	*handler(char **rest, int fd)
+{
+	char	*line;
+	char	*buff;
+	int		len;
+
+	line = 0;
+	buff = 0;
+	if (*rest)
+	{
+		line = flow_lines(*rest, ft_strlen(*rest), rest);
+		if (check_new(line))
+			return (line);
+		else
+		{
+			buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+			len = read(fd, buff, BUFFER_SIZE);
+			line = ft_strjoin(line, hope_it_works(buff, len, fd, rest));
+			len = 0;
+			free(buff);
+		}
+	}
+	if (buff == 0 || (len <= 0 && buff))
+		return (line);
+	else
+		return (0);
 }
 
 char	*get_next_line(int fd)
@@ -86,22 +115,21 @@ char	*get_next_line(int fd)
 	char		*line;
 	char		*buffer;
 
+	line = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	len = read(fd, buffer, BUFFER_SIZE);
-	buffer[BUFFER_SIZE] = 0;
-	line = 0;
-	if (buffer == 0 || len <= 0)
+	if (!rest)
 	{
+		buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		len = read(fd, buffer, BUFFER_SIZE);
+		buffer[len] = 0;
+		line = hope_it_works(buffer, len, fd, &rest);
 		free(buffer);
-		return (0);
 	}
-	if (rest)
+	else if (rest)
 	{
-		line = flow_lines(rest, ft_strlen(rest), rest);
+		line = handler(&rest, fd);
+		return (line);
 	}
-	line = hope_it_works(buffer, len, fd, rest);
-	free(buffer);
 	return (line);
 }

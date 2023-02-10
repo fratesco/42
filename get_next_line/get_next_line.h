@@ -6,14 +6,14 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 17:44:33 by fgolino           #+#    #+#             */
-/*   Updated: 2023/02/09 17:22:57 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/02/10 16:56:38 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 42
 # endif
 # define FOUND 1
 # define NOTHING 0
@@ -23,9 +23,9 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-char	*flow_lines(char *str, int len, char *rest);
+char	*flow_lines(char *str, int len, char **rest);
 int		check_new(char	*str);
-char	*hope_it_works(char *buffer, int len, int fd, char *rest);
+char	*hope_it_works(char *buffer, int len, int fd, char **rest);
 char	*get_next_line(int fd);
 int		ft_strlen(char const *str);
 char	*ft_strjoin(char *s1, char const *s2);

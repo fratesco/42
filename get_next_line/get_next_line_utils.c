@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 18:53:10 by fgolino           #+#    #+#             */
-/*   Updated: 2023/02/09 17:34:48 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/02/10 17:37:52 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*ft_strjoin(char *s1, char const *s2)
 		i++;
 	}
 	i = 0;
-	while (s2[i])
+	while (s2 && s2[i])
 	{
 		str[len + i] = s2[i];
 		i++;
