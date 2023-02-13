@@ -5,29 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/08 17:44:33 by fgolino           #+#    #+#             */
-/*   Updated: 2023/02/10 16:56:38 by fgolino          ###   ########.fr       */
+/*   Created: 2023/02/13 12:41:52 by fgolino           #+#    #+#             */
+/*   Updated: 2023/02/13 12:41:54 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1000
 # endif
-# define FOUND 1
-# define NOTHING 0
-# define INVALID -1
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <fcntl.h>
+# include <string.h>
 
-char	*flow_lines(char *str, int len, char **rest);
-int		check_new(char	*str);
-char	*hope_it_works(char *buffer, int len, int fd, char **rest);
 char	*get_next_line(int fd);
-int		ft_strlen(char const *str);
-char	*ft_strjoin(char *s1, char const *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*get_broken_line(int fd, char *brokenl);
+char	*get_fixed_line(const char *brokenl);
+char	*get_next_brokenl(char *brokenl);
+
+char	*ft_strchr(const char *str, int c);
+char	*ft_strjoin(char *s1, char *s2);
+int		ft_strlen(const char *s);
+void	*ft_memcpy(void *dest, const void *src, int n);
+
 #endif
