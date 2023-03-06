@@ -6,28 +6,22 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:35:13 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/06 12:00:40 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/06 13:48:37 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	client_receive(void)
+
+
+void	client_receive(int sign)
 {
-	ft_printf("Communication happened with no errors!");
-	g_client = 0;
+
 }
 
 int	client_send(char *str, int pid)
 {
-	g_server = ft_strdup(str);
-	if (g_server == 0)
-	{
-		free(g_server);
-		return (-1);
-	}
-	kill(pid, SIGUSR1);
-	return (0);
+	
 }
 
 int	main(int argc, char **argv)
@@ -53,7 +47,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		if (client_send(argv[2], pid) < 0)
-			printf("An error has occured, closing client");
+			ft_printf("An error has occured, closing client");
 		pause();
 	}
 	return (0);
