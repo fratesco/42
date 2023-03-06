@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 09:40:29 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/06 11:30:41 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/06 12:01:38 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ char	*g_server;
 int		g_client;
 void	client_receive(void);
 void	server_receive(void);
+int		client_send(char *str, int pid);
 #endif

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:35:13 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/06 11:47:50 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/06 12:00:40 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,18 @@ void	client_receive(void)
 {
 	ft_printf("Communication happened with no errors!");
 	g_client = 0;
+}
+
+int	client_send(char *str, int pid)
+{
+	g_server = ft_strdup(str);
+	if (g_server == 0)
+	{
+		free(g_server);
+		return (-1);
+	}
+	kill(pid, SIGUSR1);
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -35,14 +47,14 @@ int	main(int argc, char **argv)
 		return (0);
 	pid = ft_atoi(argv[1]);
 	if (argc < 3)
-	{
-		ft_printf("No imput parameter found, exiting");
-		return (0);
-	}
+		ft_printf("No input parameter found, exiting");
 	else if (argc > 3)
-	{
 		ft_printf("Too many arguments");
-		kill (argv[1], SIGUSR1);
-		return (0);
+	else
+	{
+		if (client_send(argv[2], pid) < 0)
+			printf("An error has occured, closing client");
+		pause();
 	}
+	return (0);
 }

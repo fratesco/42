@@ -6,11 +6,18 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 09:48:21 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/06 11:43:44 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/06 12:04:58 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+void	server_receive(void)
+{
+	ft_printf("%s", g_server);
+	free(g_server);
+	kill(g_client, SIGUSR2);
+}
 
 int	main(void)
 {
@@ -25,6 +32,7 @@ int	main(void)
 	sigaction(SIGUSR1, NULL, &old_set);
 	if (old_set.sa_handler != SIG_IGN)
 		sigaction(SIGUSR1, &set, NULL);
-	pause();
-	
+	while (1)
+		pause();
+	return (0);
 }
