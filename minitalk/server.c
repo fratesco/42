@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 09:48:21 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/06 18:11:49 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/07 12:37:33 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,12 @@ void	server_receive2(int sign)
 {
 	g_receiver = g_receiver >> 1;
 	g_receiver += 0;
-	ft_printf("%i\n", g_receiver);
 }
 
 void	server_receive1(int sign)
 {
 	g_receiver = g_receiver >> 1;
-	ft_printf("%i\n", g_receiver);
 	g_receiver += 2147483647;
-	ft_printf("%i\n", g_receiver);
-
 }
 
 void	get_stuff(void)
@@ -40,17 +36,24 @@ void	get_stuff(void)
 	while (i++ < 32)
 		pause();
 	pid = (-1 * g_receiver) - 3;
-	ft_printf("This is the pid %i\n", pid);
+	usleep(10);
 	kill(pid, SIGUSR2);
-	g_receiver = 0;
-	i = 0;
-	while (i++ < 32)
-		pause();
-	if (g_receiver == 0)
-		kill(pid, SIGUSR1);
-	else
-		ft_printf("%c", g_receiver);
+	while (g_receiver)
+	{
+		ft_printf("%i\n", g_receiver);
+		i = 0;
+		g_receiver = 0;
+		while (i++ < 32)
+			pause();
+		g_receiver = (g_receiver * -1) - 3;
+		g_receiver -= 0;
+		if (g_receiver != 0)
+			ft_printf("%c", g_receiver);
+		if (g_receiver == 0)
+			kill(pid, SIGUSR1);
+	}
 }
+
 int	main(void)
 {
 	struct sigaction	set;
@@ -68,9 +71,6 @@ int	main(void)
 	if (old_set.sa_handler != SIG_IGN)
 		sigaction(SIGUSR2, &set, NULL);
 	ft_printf("%i\n", getpid());
-	while (1)
-	{	
-		get_stuff();
-	}
+	get_stuff();
 	return (0);
 }
