@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:35:13 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/07 12:15:48 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/07 15:53:10 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@ void	bit_sender(int unit, int pid)
 	i = 0;
 	while (i++ < 32)
 	{
+		usleep(70);
 		bit = (unit & 1);
 		if (bit == 0)
 			kill(pid, SIGUSR1);
 		else if (bit == 1)
 			kill(pid, SIGUSR2);
-		usleep(20);
 		unit = unit >> 1;
 	}
 }
 
 void	client_receive_continue(int sign)
 {
-	ft_printf("suca");
+	return ;
 }
 
 void	client_all_received(int sign)
@@ -50,10 +50,9 @@ int	client_send(char *str, int pid)
 
 	i = 0;
 	client_pid = getpid();
-	ft_printf("%i\n", client_pid);
 	bit_sender(client_pid, pid);
 	pause();
-	usleep(10);
+	usleep(20);
 	while (str[i])
 		bit_sender(str[i++], pid);
 	bit_sender(0, pid);

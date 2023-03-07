@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 09:48:21 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/07 12:37:33 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/07 16:03:11 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,21 @@ void	get_stuff(void)
 	while (i++ < 32)
 		pause();
 	pid = (-1 * g_receiver) - 3;
-	usleep(10);
+	usleep(40);
 	kill(pid, SIGUSR2);
-	while (g_receiver)
+	while ((int)g_receiver != 0)
 	{
-		ft_printf("%i\n", g_receiver);
 		i = 0;
 		g_receiver = 0;
 		while (i++ < 32)
 			pause();
 		g_receiver = (g_receiver * -1) - 3;
-		g_receiver -= 0;
-		if (g_receiver != 0)
-			ft_printf("%c", g_receiver);
-		if (g_receiver == 0)
-			kill(pid, SIGUSR1);
+		ft_printf("%c", g_receiver);
 	}
+	if ((int)g_receiver == 0)
+		kill(pid, SIGUSR1);
+	ft_printf("\n");
+	g_receiver = (int)0;
 }
 
 int	main(void)
@@ -71,6 +70,9 @@ int	main(void)
 	if (old_set.sa_handler != SIG_IGN)
 		sigaction(SIGUSR2, &set, NULL);
 	ft_printf("%i\n", getpid());
-	get_stuff();
+	while (1)
+	{
+		get_stuff();
+	}
 	return (0);
 }
