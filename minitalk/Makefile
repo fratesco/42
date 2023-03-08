@@ -6,7 +6,7 @@
 #    By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 12:07:42 by fgolino           #+#    #+#              #
-#    Updated: 2023/03/07 12:16:16 by fgolino          ###   ########.fr        #
+#    Updated: 2023/03/08 18:46:50 by fgolino          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,4 +45,9 @@ fclean:   clean
 			cd $(PRINTF) make fclean 
 			cd $(LIBFT) make fclean 
 			rm -f $(NAME1) $(NAME2)
+
+re: fclean re
+
+.PHONY: 
+		all clean re fclean
  
