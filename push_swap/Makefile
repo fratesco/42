@@ -6,11 +6,11 @@
 #    By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 18:34:13 by fgolino           #+#    #+#              #
-#    Updated: 2023/03/09 11:15:34 by fgolino          ###   ########.fr        #
+#    Updated: 2023/03/09 16:01:12 by fgolino          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		:= push_swap.c
+SRC		:= push_swap.c instructions.c
 
 OBJ		:= $(SRC:.c=.o)
 
