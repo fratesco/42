@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:47:50 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/09 11:55:50 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/09 12:35:50 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,13 @@ int	stack_inserter(char	**params, long **stack, int i)
 {
 	int	j;
 	int	z;
+	int	len;
 
-	j = i;
+	j = 0;
 	z = 0;
-	while (i > 0)
-	{
-		stack[0][i - 1] = ft_atoi(params[i]);
-		i--;
-	}
+	while (j++ < i)
+		stack[0][j - 1] = ft_atoi(params[j - 1 + 1]);
+	len = --j;
 	while (j > 0)
 	{
 		z = j - 2;
@@ -38,7 +37,7 @@ int	stack_inserter(char	**params, long **stack, int i)
 		}
 		j--;
 	}
-	return (0);
+	return (len);
 }
 
 int	check_parameters(char **params, int num)
@@ -66,17 +65,22 @@ int	main(int argc, char **argv)
 {
 	long	*stack_a;
 	long	*stack_b;
+	int		len_a;
+	int		len_b;
 
 	if (argc < 2)
 		return (0);
 	if (check_parameters(argv, argc) != 0)
 		return (0);
 	stack_a = (long *)malloc(sizeof(long) * (argc - 1));
+	stack_b = (long *)malloc(sizeof(long) * (argc - 1));
 	if (stack_a == 0)
 	{
 		free(stack_a);
 		return (0);
 	}
-	if (stack_inserter(argv, &stack_a, (argc - 1)) != 0)
+	len_a = stack_inserter(argv, &stack_a, (argc - 1));
+	len_b = 0;
+	if (len_a <= 0)
 		return (0);
 }
