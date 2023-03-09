@@ -6,11 +6,31 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:47:50 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/09 16:41:14 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/09 17:21:09 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	check_status(long *stack, int len)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < len)
+	{
+		j = i;
+		while (j < len)
+		{
+			if (stack[i] > stack[j])
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
 
 int	stack_inserter(char	**params, long **stack, int i)
 {
@@ -83,6 +103,8 @@ int	main(int argc, char **argv)
 	len_a = stack_inserter(argv, &stack_a, (argc - 1));
 	len_b = 0;
 	if (len_a <= 0)
+		return (0);
+	if (check_status(stack_a, len_a) == 0)
 		return (0);
 	//push(&stack_b, &stack_a, &len_b, &len_a);
 	//while (i < len_a)
