@@ -6,7 +6,7 @@
 #    By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 12:07:42 by fgolino           #+#    #+#              #
-#    Updated: 2023/03/08 18:46:50 by fgolino          ###   ########.fr        #
+#    Updated: 2023/03/09 11:14:47 by fgolino          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,15 +38,15 @@ $(NAME2): server.o
 			$(CC) $(FLAGS) -o $(NAME2) libft/libft.a ft_printf/libftprintf.a server.o
 
 clean:   
-			cd $(LIBFT) make clean
-			cd $(PRINTF) make clean
+			cd $(LIBFT); make clean;
+			cd $(PRINTF); make clean;
 			rm -f client.o server.o
 fclean:   clean
-			cd $(PRINTF) make fclean 
-			cd $(LIBFT) make fclean 
+			cd $(PRINTF); make fclean;
+			cd $(LIBFT); make fclean;
 			rm -f $(NAME1) $(NAME2)
 
-re: fclean re
+re: fclean all
 
 .PHONY: 
 		all clean re fclean

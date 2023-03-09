@@ -6,33 +6,52 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:47:50 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/09 00:10:32 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/09 11:08:04 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	stack_inserter(char	**params, long **stack, int i)
+int	stack_inserter(char	**params, long **stack, int i)
 {
+	int	j;
+	int	z;
+
+	j = i;
 	while (i > 0)
 	{
-		stack[0][i] = ft_atoi(params[i]);
+		stack[0][i - 1] = ft_atoi(params[i]);
 		i--;
 	}
+	while (j > 0)
+	{
+		z = 0;
+		while (z < j)
+		{
+			if (stack[0][j - 1] == stack[0][z])
+			{
+				ft_printf("Error1\n");
+				return (-1);
+			}
+			z++;
+		}
+		j--;
+	}
+	return (0);
 }
 
 int	check_parameters(char **params, int num)
 {
 	int	i;
 
-	while (num > 0)
+	while (num > 1)
 	{
 		i = 0;
 		while (params[num - 1][i])
 		{
 			if (params[num - 1][i] < 48 || params[num - 1][i] > 57)
 			{
-				ft_printf("Error\n");
+				ft_printf("Error2\n");
 				return (-1);
 			}
 			i++;
@@ -52,5 +71,11 @@ int	main(int argc, char **argv)
 	if (check_parameters(argv, argc) != 0)
 		return (0);
 	stack_a = (long *)malloc(sizeof(long) * (argc - 1));
-	stack_inserter(argv, &stack_a, argc);
+	if (stack_a == 0)
+	{
+		free(stack_a);
+		return (0);
+	}
+	if (stack_inserter(argv, &stack_a, (argc - 1)) != 0)
+		return (0);
 }

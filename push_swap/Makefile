@@ -6,7 +6,7 @@
 #    By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 18:34:13 by fgolino           #+#    #+#              #
-#    Updated: 2023/03/08 18:46:49 by fgolino          ###   ########.fr        #
+#    Updated: 2023/03/09 11:15:34 by fgolino          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,14 +32,16 @@ $(NAME): $(OBJ)
 		 $(CC) $(FLAGS) -o $(NAME) $(OBJ) libft/libft.a ft_printf/libftprintf.a
 
 clean:
-		cd $(LIBFT) make clean
-		cd $(PRINTF) make clean
+		cd $(LIBFT); make clean
+		cd $(PRINTF); make clean
 		rm -f $(OBJ)
 
 fclean: clean
-		cd $(LIBFT) make fclean
-		cd $(PRINTF) make fclean
+		cd $(LIBFT); make fclean
+		cd $(PRINTF); make fclean
 		rm -f $(NAME)
+
+re:	fclean all
 
 .PHONY:
 		all re clean fclean
