@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:47:50 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/09 12:35:50 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/09 13:26:58 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,6 @@ int	main(int argc, char **argv)
 	len_b = 0;
 	if (len_a <= 0)
 		return (0);
+	push(stack_a, stack_b, len_a, len_b);
+	//fai il test printando tutte e due le stack dopo
 }
