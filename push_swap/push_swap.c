@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:47:50 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/09 11:08:04 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/09 11:55:50 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	stack_inserter(char	**params, long **stack, int i)
 	int	z;
 
 	j = i;
+	z = 0;
 	while (i > 0)
 	{
 		stack[0][i - 1] = ft_atoi(params[i]);
@@ -25,15 +26,15 @@ int	stack_inserter(char	**params, long **stack, int i)
 	}
 	while (j > 0)
 	{
-		z = 0;
-		while (z < j)
+		z = j - 2;
+		while (z >= 0)
 		{
-			if (stack[0][j - 1] == stack[0][z])
+			if ((stack[0][j - 1] == stack[0][z--]) ||
+			stack[0][j - 1] > 2147483647 || stack[0][j - 1] < -2147483648)
 			{
-				ft_printf("Error1\n");
+				ft_printf("Error\n");
 				return (-1);
 			}
-			z++;
 		}
 		j--;
 	}
@@ -51,7 +52,7 @@ int	check_parameters(char **params, int num)
 		{
 			if (params[num - 1][i] < 48 || params[num - 1][i] > 57)
 			{
-				ft_printf("Error2\n");
+				ft_printf("Error\n");
 				return (-1);
 			}
 			i++;
