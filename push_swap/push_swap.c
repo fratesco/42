@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:47:50 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/09 17:21:09 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/10 18:11:39 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,17 +95,12 @@ int	main(int argc, char **argv)
 		return (0);
 	stack_a = (long *)malloc(sizeof(long) * (argc - 1));
 	stack_b = (long *)malloc(sizeof(long) * (argc - 1));
-	if (stack_a == 0)
-	{
-		free(stack_a);
-		return (0);
-	}
 	len_a = stack_inserter(argv, &stack_a, (argc - 1));
 	len_b = 0;
-	if (len_a <= 0)
-		return (0);
-	if (check_status(stack_a, len_a) == 0)
-		return (0);
+	if (check_status(stack_a, len_a) != 0)
+	{
+		//do something
+	}
 	//push(&stack_b, &stack_a, &len_b, &len_a);
 	//while (i < len_a)
 	//{
@@ -119,5 +114,7 @@ int	main(int argc, char **argv)
 	//	ft_printf("%i ", stack_b[i]);
 	//	i++;
 	//}
-	
+	free(stack_a);
+	free(stack_b);
+	return (0);
 }

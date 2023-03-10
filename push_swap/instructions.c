@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 11:25:55 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/09 16:39:00 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/10 18:38:13 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	swap(long **stack)
 	num = stack[0][0];
 	stack[0][0] = stack[0][1];
 	stack[0][1] = num;
+	//aggiungi comando nella lista
 }
 
 void	push(long **stack_a, long **stack_b, int *len_a, int *len_b)
@@ -42,6 +43,7 @@ void	push(long **stack_a, long **stack_b, int *len_a, int *len_b)
 	}
 	*len_b -= 1;
 	*len_a += 1;
+	//aggiungi comando nella lista
 }
 
 void	rotate(long **stack, int len)
@@ -57,6 +59,7 @@ void	rotate(long **stack, int len)
 		i++;
 	}
 	(*stack)[len - 1] = buffer;
+	//aggiungi comando nella lista
 }
 
 void	reverse_rotate(long **stack, int len)
@@ -71,4 +74,5 @@ void	reverse_rotate(long **stack, int len)
 		len--;
 	}
 	(*stack)[0] = buffer;
+	//aggiungi comando nella lista
 }
