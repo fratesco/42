@@ -6,59 +6,11 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:47:50 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/13 08:38:39 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/13 17:39:16 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	check_status(long *stack, int len)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < len)
-	{
-		j = i;
-		while (j < len)
-		{
-			if (stack[i] > stack[j])
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-int	stack_inserter(char	**params, long **stack, int i)
-{
-	int	j;
-	int	z;
-	int	len;
-
-	j = 0;
-	z = 0;
-	while (j++ < i)
-		stack[0][j - 1] = ft_atoi(params[j - 1 + 1]);
-	len = --j;
-	while (j > 0)
-	{
-		z = j - 2;
-		while (z >= 0)
-		{
-			if ((stack[0][j - 1] == stack[0][z--]) ||
-			stack[0][j - 1] > 2147483647 || stack[0][j - 1] < -2147483648)
-			{
-				ft_printf("Error\n");
-				return (-1);
-			}
-		}
-		j--;
-	}
-	return (len);
-}
 
 int	check_parameters(char **params, int num)
 {
@@ -81,41 +33,77 @@ int	check_parameters(char **params, int num)
 	return (0);
 }
 
+t_stack	*stack_generator(int len, char **argv)
+{
+	t_stack	*stack;
+	t_stack	*tmp;
+	int		i;
+	int		j;
+
+	i = 1;
+	j = 0;
+	stack = new(ft_atoi(argv[i++]));
+	tmp = stack;
+	while (i < len)
+	{
+		tmp->next = new(ft_atoi(argv[i++]));
+		if (tmp->next->value < -2147483648 || tmp->next->value > 2147483647)
+		{
+			while (j <= i && stack)
+			{
+				tmp = stack;
+				stack = stack->next;
+				clear_node(tmp);
+			}
+			return (0);
+		}
+		tmp = tmp->next;
+	}
+	return (stack);
+}
+
+int	check_status(t_stack *stack, int len)
+{
+	int		i;
+	int		j;
+	t_stack	*tmp1;
+	t_stack	*tmp2;
+
+	i = 0;
+	tmp1 = stack;
+	tmp2 = stack->next;
+	while (i < len)
+	{	
+		j = i + 1;
+		while (j < len)
+		{
+			if (tmp1->value == tmp2->value)
+				return (-1);
+			tmp2 = tmp2->next;
+		}
+		tmp1 = tmp1->next;
+	}
+	tmp2 = stack->next;
+}
+
 int	main(int argc, char **argv)
 {	
-	long			*stack_a;
-	long			*stack_b;
+	t_stack			*stack_a;
+	t_stack			*stack_b;
 	int				len_a;
 	int				len_b;
-	t_instructions	*list;
 
 	if (argc < 2)
 		return (0);
 	if (check_parameters(argv, argc) != 0)
 		return (0);
-	stack_a = (long *)malloc(sizeof(long) * (argc - 1));
-	stack_b = (long *)malloc(sizeof(long) * (argc - 1));
-	len_a = stack_inserter(argv, &stack_a, (argc - 1));
-	len_b = 0;
-	list = (t_instructions *)malloc(sizeof(t_instructions));
-	if (check_status(stack_a, len_a) != 0)
+	stack_a = stack_generator(argc, argv);
+	if (stack_a == 0)
 	{
-		//do something
+		ft_printf("Error\n");
+		return (0);
 	}
-	//push(&stack_b, &stack_a, &len_b, &len_a);
-	//while (i < len_a)
-	//{
-	//	ft_printf("%i ", stack_a[i]);
-	//	i++;
-	//}
-	//ft_printf("\n");
-	//i = 0;
-	//while (i < len_b)
-	//{
-	//	ft_printf("%i ", stack_b[i]);
-	//	i++;
-	//}
-	free(stack_a);
-	free(stack_b);
-	return (0);
-}
+	stack_b = 0;
+	len_a = argc - 1;
+	len_b = 0;
+	

@@ -6,20 +6,20 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 11:25:55 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/13 08:36:46 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/13 10:24:24 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(long **stack, t_instructions **list)
+void	swap(long **stack)
 {
 	int	num;
 
 	num = stack[0][0];
 	stack[0][0] = stack[0][1];
 	stack[0][1] = num;
-	add_instruction(list, "sa");
+	ft_printf("s");
 }
 
 void	push(long **stack_a, long **stack_b, int *len_a, int *len_b)
@@ -43,9 +43,10 @@ void	push(long **stack_a, long **stack_b, int *len_a, int *len_b)
 	}
 	*len_b -= 1;
 	*len_a += 1;
+	ft_printf("p");
 }
 
-void	rotate(long **stack, int len, t_instructions **list)
+void	rotate(long **stack, int len)
 {
 	int	buffer;
 	int	i;
@@ -58,10 +59,10 @@ void	rotate(long **stack, int len, t_instructions **list)
 		i++;
 	}
 	(*stack)[len - 1] = buffer;
-	add_instruction(list, "ra");
+	ft_printf("r");
 }
 
-void	reverse_rotate(long **stack, int len, t_instructions **list)
+void	reverse_rotate(long **stack, int len)
 {
 	int	buffer;
 
@@ -73,5 +74,5 @@ void	reverse_rotate(long **stack, int len, t_instructions **list)
 		len--;
 	}
 	(*stack)[0] = buffer;
-	add_instruction(list, "rra");
+	ft_printf("rr")
 }

@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   index.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 18:28:30 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/13 17:05:00 by fgolino          ###   ########.fr       */
+/*   Created: 2023/03/13 11:00:40 by fgolino           #+#    #+#             */
+/*   Updated: 2023/03/13 16:47:58 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include "libft/libft.h"
-# include "ft_printf/ft_printf.h"
-
-typedef struct s_stack
+int	count_moves(int num, long *stack, int len1, int len2)
 {
-	long			value;
-	t_stack			*next;
-	int				biggest;
-}t_stack;
+	int	moves;
+	int	i;
 
-t_stack			*new(int value);
-void			clear_node(t_stack **list);
-int				check_parameters(char **params, int num);
-#endif
+	i = 0;
+	while (i < len2)
+	{
+		if (num < stack[i])
+		{
+			i = 0;
+			break ;
+		}
+		i++;
+	}
+	if (i == len2)
+		return (1);
+	
+}
+
+int	position_moves(num, )
