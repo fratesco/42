@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:47:50 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/10 18:11:39 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/13 08:38:39 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,12 @@ int	check_parameters(char **params, int num)
 }
 
 int	main(int argc, char **argv)
-{
-	long	*stack_a;
-	long	*stack_b;
-	int		len_a;
-	int		len_b;
-	int		i;
+{	
+	long			*stack_a;
+	long			*stack_b;
+	int				len_a;
+	int				len_b;
+	t_instructions	*list;
 
 	if (argc < 2)
 		return (0);
@@ -97,6 +97,7 @@ int	main(int argc, char **argv)
 	stack_b = (long *)malloc(sizeof(long) * (argc - 1));
 	len_a = stack_inserter(argv, &stack_a, (argc - 1));
 	len_b = 0;
+	list = (t_instructions *)malloc(sizeof(t_instructions));
 	if (check_status(stack_a, len_a) != 0)
 	{
 		//do something
