@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:47:50 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/13 17:39:16 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/14 17:59:17 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,12 @@ int	check_parameters(char **params, int num)
 	return (0);
 }
 
-t_stack	*stack_generator(int len, char **argv)
+t_stack	*stack_generator(int len, char **argv, int *stack_len, int i)
 {
 	t_stack	*stack;
 	t_stack	*tmp;
-	int		i;
 	int		j;
 
-	i = 1;
 	j = 0;
 	stack = new(ft_atoi(argv[i++]));
 	tmp = stack;
@@ -49,14 +47,15 @@ t_stack	*stack_generator(int len, char **argv)
 		tmp->next = new(ft_atoi(argv[i++]));
 		if (tmp->next->value < -2147483648 || tmp->next->value > 2147483647)
 		{
-			while (j <= i && stack)
+			while (j++ <= i && stack)
 			{
 				tmp = stack;
 				stack = stack->next;
-				clear_node(tmp);
+				clear_node(&tmp);
 			}
 			return (0);
 		}
+		(*stack_len)++;
 		tmp = tmp->next;
 	}
 	return (stack);
@@ -74,16 +73,21 @@ int	check_status(t_stack *stack, int len)
 	tmp2 = stack->next;
 	while (i < len)
 	{	
-		j = i + 1;
-		while (j < len)
+		j = i++;
+		while (j++ < len)
 		{
+			ft_printf("%p\n", tmp2);
 			if (tmp1->value == tmp2->value)
 				return (-1);
-			tmp2 = tmp2->next;
+			if ((tmp2->next) != 0)
+				tmp2 = tmp2->next;
 		}
 		tmp1 = tmp1->next;
+		if (tmp1->next->next == 0)
+			return (0);
+		tmp2 = tmp1->next->next;
 	}
-	tmp2 = stack->next;
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -97,13 +101,20 @@ int	main(int argc, char **argv)
 		return (0);
 	if (check_parameters(argv, argc) != 0)
 		return (0);
-	stack_a = stack_generator(argc, argv);
+	stack_a = stack_generator(argc, argv, &len_a, 1);
 	if (stack_a == 0)
 	{
 		ft_printf("Error\n");
 		return (0);
 	}
+	if (check_status(stack_a, len_a) < 0)
+	{
+		ft_printf("Error\n");
+		return (0);
+	}
+	ft_printf("1");
 	stack_b = 0;
 	len_a = argc - 1;
 	len_b = 0;
-	
+	return (0);
+}

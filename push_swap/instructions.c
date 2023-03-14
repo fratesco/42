@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 11:25:55 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/13 10:24:24 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/14 16:58:13 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,5 @@ void	reverse_rotate(long **stack, int len)
 		len--;
 	}
 	(*stack)[0] = buffer;
-	ft_printf("rr")
+	ft_printf("rr");
 }
