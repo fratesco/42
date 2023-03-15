@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:47:50 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/14 17:59:17 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/15 17:57:54 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,18 @@ int	check_status(t_stack *stack, int len)
 	i = 0;
 	tmp1 = stack;
 	tmp2 = stack->next;
-	while (i < len)
+	while (i++ < len)
 	{	
-		j = i++;
-		while (j++ < len)
+		j = i;
+		while (j++ <= len)
 		{
-			ft_printf("%p\n", tmp2);
 			if (tmp1->value == tmp2->value)
 				return (-1);
 			if ((tmp2->next) != 0)
 				tmp2 = tmp2->next;
 		}
 		tmp1 = tmp1->next;
-		if (tmp1->next->next == 0)
-			return (0);
-		tmp2 = tmp1->next->next;
+		tmp2 = tmp1->next;
 	}
 	return (0);
 }
@@ -112,7 +109,6 @@ int	main(int argc, char **argv)
 		ft_printf("Error\n");
 		return (0);
 	}
-	ft_printf("1");
 	stack_b = 0;
 	len_a = argc - 1;
 	len_b = 0;
