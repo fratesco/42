@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 11:25:55 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/16 16:56:20 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/16 17:36:00 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,20 +45,9 @@ void	push(t_stack **stack1, t_stack **stack2)
 	}
 }
 
-void	rotate(long **stack, int len)
+void	rotate(t_stack **stack)
 {
-	int	buffer;
-	int	i;
-
-	i = 0;
-	buffer = (*stack)[0];
-	while (i < len - 1)
-	{
-		(*stack)[i] = (*stack)[i + 1];
-		i++;
-	}
-	(*stack)[len - 1] = buffer;
-	ft_printf("r");
+	
 }
 
 void	reverse_rotate(long **stack, int len)

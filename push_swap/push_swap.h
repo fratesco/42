@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:28:30 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/16 16:57:45 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/16 17:35:43 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ t_stack			*stack_generator(int len, char **argv, int i);
 void			visualize_stack(t_stack *stack);
 void			swap(t_stack **stack);
 void			push(t_stack **stack1, t_stack **stack2);
-void			rotate(long **stack, int len);
+void			rotate(t_stack **stack);
 void			reverse_rotate(long **stack, int len);
 #endif
