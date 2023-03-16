@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 08:14:44 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/13 17:22:42 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/16 17:21:51 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,27 @@ void	clear_node(t_stack **stack)
 	tmp = (*stack);
 	(*stack) = (*stack)->next;
 	free(tmp);
+}
+
+void	visualize_stack(t_stack *stack)
+{
+	while (stack != 0)
+	{
+		ft_printf("%i ", stack->value);
+		stack = stack->next;
+	}
+	ft_printf("\n");
+}
+
+int	stack_size(t_stack *stack)
+{
+	int		i;
+
+	i = 0;
+	while (stack != 0)
+	{
+		i++;
+		stack = stack->next;
+	}
+	return (i);
 }

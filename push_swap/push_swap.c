@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:47:50 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/15 17:57:54 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/16 17:26:46 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	check_parameters(char **params, int num)
 {
 	int	i;
 
+	if (num < 2)
+		return (-1);
 	while (num > 1)
 	{
 		i = 0;
@@ -33,7 +35,7 @@ int	check_parameters(char **params, int num)
 	return (0);
 }
 
-t_stack	*stack_generator(int len, char **argv, int *stack_len, int i)
+t_stack	*stack_generator(int len, char **argv, int i)
 {
 	t_stack	*stack;
 	t_stack	*tmp;
@@ -55,7 +57,6 @@ t_stack	*stack_generator(int len, char **argv, int *stack_len, int i)
 			}
 			return (0);
 		}
-		(*stack_len)++;
 		tmp = tmp->next;
 	}
 	return (stack);
@@ -71,13 +72,16 @@ int	check_status(t_stack *stack, int len)
 	i = 0;
 	tmp1 = stack;
 	tmp2 = stack->next;
-	while (i++ < len)
+	while (i++ < len - 1)
 	{	
 		j = i;
-		while (j++ <= len)
+		while (j++ < len)
 		{
 			if (tmp1->value == tmp2->value)
+			{
+				ft_printf("Error\n");
 				return (-1);
+			}
 			if ((tmp2->next) != 0)
 				tmp2 = tmp2->next;
 		}
@@ -91,26 +95,26 @@ int	main(int argc, char **argv)
 {	
 	t_stack			*stack_a;
 	t_stack			*stack_b;
-	int				len_a;
-	int				len_b;
 
-	if (argc < 2)
-		return (0);
 	if (check_parameters(argv, argc) != 0)
 		return (0);
-	stack_a = stack_generator(argc, argv, &len_a, 1);
+	stack_a = stack_generator(argc, argv, 1);
 	if (stack_a == 0)
 	{
 		ft_printf("Error\n");
 		return (0);
 	}
-	if (check_status(stack_a, len_a) < 0)
-	{
-		ft_printf("Error\n");
+	if (check_status(stack_a, stack_size(stack_a)) < 0)
 		return (0);
-	}
 	stack_b = 0;
-	len_a = argc - 1;
-	len_b = 0;
+	visualize_stack(stack_a);
+	push(&stack_b, &stack_a);
+	//push(&stack_b, &stack_a);
+	visualize_stack(stack_a);
+	visualize_stack(stack_b);
+	while (stack_a != 0)
+		clear_node(&stack_a);
+	while (stack_b != 0)
+		clear_node(&stack_b);
 	return (0);
 }

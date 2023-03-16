@@ -6,44 +6,43 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 11:25:55 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/14 16:58:13 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/16 16:56:20 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(long **stack)
+void	swap(t_stack **stack)
 {
-	int	num;
+	t_stack	*tmp;
+	t_stack	*tmp2;
 
-	num = stack[0][0];
-	stack[0][0] = stack[0][1];
-	stack[0][1] = num;
-	ft_printf("s");
+	tmp = (*stack);
+	tmp2 = (*stack)->next->next;
+	(*stack) = tmp->next;
+	(*stack)->next = tmp;
+	(*stack)->next->next = tmp2;
 }
 
-void	push(long **stack_a, long **stack_b, int *len_a, int *len_b)
+void	push(t_stack **stack1, t_stack **stack2)
 {
-	int	i;
+	t_stack	*tmp1;
+	t_stack	*tmp2;
 
-	i = (*len_a) - 1;
-	if (*len_b == 0)
-		return ;
-	while (i >= 0)
+	tmp1 = (*stack2)->next;
+	if (*stack1 == 0)
 	{
-		(*stack_a)[i + 1] = (*stack_a)[i];
-		i--;
+		*stack1 = *stack2;
+		(*stack1)->next = 0;
+		(*stack2) = tmp1;
 	}
-	(*stack_a)[0] = (*stack_b)[0];
-	i = 0;
-	while (i < (*len_b) - 1)
+	else
 	{
-		(*stack_b)[i] = (*stack_b)[i + 1];
-		i++;
+		tmp2 = *stack1;
+		(*stack1) = (*stack2);
+		(*stack1)->next = tmp2;
+		(*stack2) = tmp1;
 	}
-	*len_b -= 1;
-	*len_a += 1;
-	ft_printf("p");
 }
 
 void	rotate(long **stack, int len)
