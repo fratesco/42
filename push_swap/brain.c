@@ -6,30 +6,34 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 16:47:59 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/14 17:03:26 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/17 12:08:12 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_efficient(long **stack1, long **stack2, int *len1, int *len2)
+void	sort_efficient(t_stack *stack1, t_stack *stack2)
 {
-	int	moves;
-	int	tmp;
-	int	i;
-	int	pos;
 
-	moves = 0;
-	i = 0;
-	while (i < *len1)
-	{
-		
-		if (tmp < moves)
-			pos = i;
-	}
-	
 }
 
+void	find_biggest(t_stack **stack)
+{
+	t_stack	*buff;
+	t_stack	*tmp;
+
+	buff = *stack;
+	tmp = (*stack)->next;
+	while (tmp)
+	{
+		if (tmp->value > buff->value)
+			buff = tmp;
+		else
+			tmp->biggest = 0;
+		tmp = tmp->next;
+	}
+	buff->biggest = 1;
+}
 //void	sorting_algo(long **stack_a, long **stack_b, int *len_a, int *len_b)
 //{
 //	int	i;
