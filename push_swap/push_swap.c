@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:47:50 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/16 18:10:16 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/17 12:01:06 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,9 @@ int	main(int argc, char **argv)
 	check_status(stack_a, stack_size(stack_a));
 	stack_b = 0;
 	visualize_stack(stack_a);
-	push(&stack_b, &stack_a);
 	//push(&stack_b, &stack_a);
+	//push(&stack_b, &stack_a);
+	reverse_rotate(&stack_a);
 	visualize_stack(stack_a);
 	visualize_stack(stack_b);
 	while (stack_a != 0)

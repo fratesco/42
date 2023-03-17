@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 11:25:55 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/16 17:36:00 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/17 12:00:04 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,28 @@ void	push(t_stack **stack1, t_stack **stack2)
 
 void	rotate(t_stack **stack)
 {
-	
+	t_stack	*tmp1;
+	t_stack	*tmp2;
+
+	tmp1 = *stack;
+	*stack = (*stack)->next;
+	tmp2 = *stack;
+	while (tmp2->next)
+		tmp2 = tmp2->next;
+	tmp2->next = tmp1;
+	tmp1->next = 0;
 }
 
-void	reverse_rotate(long **stack, int len)
+void	reverse_rotate(t_stack **stack)
 {
-	int	buffer;
+	t_stack	*tmp1;
+	t_stack	*tmp2;
 
-	buffer = (*stack)[len - 1];
-	len--;
-	while (len > 0)
-	{
-		(*stack)[len] = (*stack)[len - 1];
-		len--;
-	}
-	(*stack)[0] = buffer;
-	ft_printf("rr");
+	tmp2 = *stack;
+	while (tmp2->next->next)
+		tmp2 = tmp2->next;
+	tmp1 = tmp2->next;
+	tmp2->next = 0;
+	tmp1->next = (*stack);
+	*stack = tmp1;
 }
