@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:35:13 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/07 15:53:10 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/17 16:38:47 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	bit_sender(int unit, int pid)
 	i = 0;
 	while (i++ < 32)
 	{
-		usleep(70);
+		usleep(100);
 		bit = (unit & 1);
 		if (bit == 0)
 			kill(pid, SIGUSR1);
