@@ -6,15 +6,17 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:00:40 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/20 16:26:58 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/20 17:37:57 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	count_moves()
+int	count_moves(t_stack stack1, t_stack stack2)
 {
-	
+	int i;
+
+	while ()
 }
 
 int	position_moves()
