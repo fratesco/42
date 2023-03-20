@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 16:47:59 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/17 12:08:12 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/20 15:27:14 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	sort_efficient(t_stack *stack1, t_stack *stack2)
 {
-
+	
 }
 
 void	find_biggest(t_stack **stack)
@@ -54,32 +54,56 @@ void	find_biggest(t_stack **stack)
 //	
 //}
 
-//void	sort_3(long **stack, int *len)
-//{
-//	if (((*stack)[0] > (*stack)[1]) && ((*stack)[0] > (*stack)[2]) &&
-//	((*stack)[1] > (*stack)[2]))
-//	{
-//		rotate(stack, *len);
-//		swap(stack);
-//		ft_printf("a\n");
-//	}
-//	else if (((*stack)[0] > (*stack)[1]) && ((*stack)[0] > (*stack)[2]) &&
-//	((*stack)[1] < (*stack)[2]))
-//		rotate(stack, len);
-//	else if (((*stack)[0] < (*stack)[1]) && ((*stack)[0] < (*stack)[2]) &&
-//	((*stack)[1] > (*stack)[2]))
-//	{
-//		swap(stack);
-//		rotate(stack, *len);
-//		ft_printf("a\n");
-//	}
-//	else if (((*stack)[0] > (*stack)[1]) && ((*stack)[0] < (*stack)[2]) &&
-//	((*stack)[1] < (*stack)[2]))
-//		swap(stack);
-//	else
-//		reverse_rotate(stack, *len);
-//	ft_printf("a\n");
-//}
+void	sort_3(t_stack **stack)
+{
+	t_stack	*tmp;
+
+	tmp = *stack;
+	if (check_status(*stack, stack_size(*stack)) == 1)
+		return ;
+	else if (tmp->biggest == 1)
+	{
+		if (tmp->next->value < tmp->next->next->value)
+		{
+			rotate(stack);
+			ft_printf("ra\n");
+		}
+		else
+		{
+			rotate(stack);
+			swap(stack);
+			ft_printf("ra\nsa\n");
+		}
+	}
+	else
+		sort_rest(stack);
+}
+
+void	sort_rest(t_stack **stack)
+{
+	t_stack	*tmp;
+
+	tmp = (*stack)->next;
+	if (tmp->biggest == 1)
+	{
+		if (tmp->next->value > (*stack)->value)
+		{
+			reverse_rotate(stack);
+			swap(stack);
+			ft_printf("rra\nsa\n");
+		}
+		else
+		{
+			reverse_rotate(stack);
+			ft_printf("rra\n");
+		}
+	}
+	else
+	{
+		swap(stack);
+		ft_printf("sa\n");
+	}
+}
 
 //void	sort_5(long **stack_a, long **stack_b, int *len_a, int *len_b)
 //{

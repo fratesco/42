@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:28:30 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/17 12:08:52 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/17 16:08:48 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void			clear_node(t_stack **list);
 int				stack_size(t_stack *stack);
 int				check_parameters(char **params, int num);
 int				check_status(t_stack *stack, int len);
+int				check_order(t_stack *stack);
 t_stack			*stack_generator(int len, char **argv, int i);
 void			visualize_stack(t_stack *stack);
 void			swap(t_stack **stack);
