@@ -6,13 +6,13 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 08:14:44 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/16 17:21:51 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/20 16:40:12 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*new(int value)
+t_stack	*new(long value)
 {
 	t_stack			*stack;
 	size_t			len;

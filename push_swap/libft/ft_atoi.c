@@ -6,13 +6,13 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:04:43 by fgolino           #+#    #+#             */
-/*   Updated: 2023/01/28 10:34:43 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/20 16:33:29 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	int		i;
 	long	num;

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 11:25:55 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/17 15:36:44 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/20 16:53:15 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,16 @@ void	reverse_rotate(t_stack **stack)
 	tmp2->next = 0;
 	tmp1->next = (*stack);
 	*stack = tmp1;
+}
+
+void	check_one_argument(char *string)
+{
+	long	i;
+
+	i = ft_atoi(string);
+	if (i < -2147483648 || i > 2147483647)
+	{
+		ft_printf("Error\n");
+		exit (0);
+	}
 }

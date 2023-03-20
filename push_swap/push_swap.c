@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:47:50 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/17 16:09:27 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/20 16:51:32 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	check_parameters(char **params, int num)
 			}
 			i++;
 		}
+		if (num == 2)
+			check_one_argument(params[1]);
 		num -= 1;
 	}
 	return (0);

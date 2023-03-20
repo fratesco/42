@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:28:30 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/17 16:08:48 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/20 16:51:50 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@ typedef struct s_stack
 	long					value;
 	struct s_stack			*next;
 	int						biggest;
+	int						moves;
 }t_stack;
 
-t_stack			*new(int value);
+t_stack			*new(long value);
 void			clear_node(t_stack **list);
 int				stack_size(t_stack *stack);
+void			check_one_argument(char *string);
 int				check_parameters(char **params, int num);
 int				check_status(t_stack *stack, int len);
 int				check_order(t_stack *stack);
@@ -36,4 +38,5 @@ void			push(t_stack **stack1, t_stack **stack2);
 void			rotate(t_stack **stack);
 void			reverse_rotate(t_stack **stack);
 void			find_biggest(t_stack **stack);
+void			sort_rest(t_stack **stack);
 #endif
