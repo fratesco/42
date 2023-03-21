@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 16:47:59 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/20 15:27:14 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/21 15:02:12 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	sort_efficient(t_stack *stack1, t_stack *stack2)
 {
-	
+	//dobbiamo sempre controllare se il numero che stiamo spostando da stack1 è un nuovo massimo o monimo per stack2
+	//in quel caso il numero di mosse necessarie per preparare stack2 è zero
 }
 
 void	find_biggest(t_stack **stack)
@@ -33,6 +34,15 @@ void	find_biggest(t_stack **stack)
 		tmp = tmp->next;
 	}
 	buff->biggest = 1;
+	buff = *stack;
+	tmp = (*stack)->next;
+	while (tmp)
+	{
+		if (tmp->value < buff->value)
+			buff = tmp;
+		tmp = tmp->next;
+	}
+	buff->biggest = -1;
 }
 //void	sorting_algo(long **stack_a, long **stack_b, int *len_a, int *len_b)
 //{
