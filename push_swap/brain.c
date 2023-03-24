@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 16:47:59 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/24 16:41:46 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/24 17:15:43 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,4 @@ void	mega_pusher(t_stack **stack1, t_stack **stack2)
 {
 	while (*stack2)
 		push(stack1, stack2, 'a');
-}
-
-void	sort_3(t_stack **stack)
-{
-	
 }

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:28:30 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/24 16:51:13 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/24 17:16:01 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void			find_biggest(t_stack **stack);
 void			how_to_sort(t_stack **stack1, t_stack **stack2);
 void			sort_3(t_stack **stack);
 void			sort_4(t_stack **stack1, t_stack **stack2);
+void			sort_5(t_stack **stack1, t_stack **stack2);
 void			sorter(t_stack **stack1, t_stack **stack2);
 void			mega_pusher(t_stack **stack1, t_stack **stack2);
 #endif

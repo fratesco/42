@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 15:35:41 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/24 17:06:21 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/24 17:19:38 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,20 @@ void	sort_4(t_stack **stack1, t_stack **stack2)
 		rotate(stack1, 'a');
 	}
 	else
-		reverse_rotate(stack1);
+		reverse_rotate(stack1, 'a');
 	push(stack2, stack1, 'b');
 	sort_3(stack1);
+	push(stack1, stack2, 'a');
+}
+
+void	sort_5(t_stack **stack1, t_stack **stack2)
+{
+	push(stack2, stack1, 'b');
+	push(stack2, stack1, 'b');
+	sort_3(stack1);
+	if ((*stack2)->value < (*stack2)->next->value)
+		swap(stack2, 'b');
+	push(stack1, stack2, 'a');
+	rotate(stack1, 'a');
 	push(stack1, stack2, 'a');
 }
