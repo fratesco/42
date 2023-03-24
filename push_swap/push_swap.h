@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:28:30 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/20 16:51:50 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/24 11:33:01 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_stack
 	struct s_stack			*next;
 	int						biggest;
 	int						moves;
+	int						index;
 }t_stack;
 
 t_stack			*new(long value);

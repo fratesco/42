@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 16:47:59 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/21 15:02:12 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/24 11:35:31 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,21 @@ void	find_biggest(t_stack **stack)
 		tmp = tmp->next;
 	}
 	buff->biggest = -1;
+}
+
+void	indexer(t_stack **stack)
+{
+	t_stack	*tmp;
+	int		i;
+
+	tmp = stack;
+	i = 1;
+	while (tmp)
+	{
+		tmp->index = i;
+		i++;
+		tmp = tmp->next;
+	}
 }
 //void	sorting_algo(long **stack_a, long **stack_b, int *len_a, int *len_b)
 //{
