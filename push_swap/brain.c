@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 16:47:59 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/24 15:42:11 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/24 16:41:46 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ void	how_to_sort(t_stack **stack1, t_stack **stack2)
 	if (stack_size(*stack1) == 3)
 		sort_3(stack1);
 	else if (stack_size(*stack1) == 4)
-	{
 		sort_4(stack1, stack2);
-	
-	}
 	else if (stack_size(*stack1) == 5)
 		sort_5(stack1, stack2);
 	else

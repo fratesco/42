@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 11:25:55 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/24 15:38:20 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/24 16:07:28 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	rotate(t_stack **stack, char a)
 	ft_printf("r%c\n", a);
 }
 
-void	reverse_rotate(t_stack **stack)
+void	reverse_rotate(t_stack **stack, char a)
 {
 	t_stack	*tmp1;
 	t_stack	*tmp2;
@@ -74,6 +74,7 @@ void	reverse_rotate(t_stack **stack)
 	tmp2->next = 0;
 	tmp1->next = (*stack);
 	*stack = tmp1;
+	ft_printf("rr%c\n", a);
 }
 
 void	check_one_argument(char *string)

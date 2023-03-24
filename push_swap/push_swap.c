@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:47:50 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/24 13:15:17 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/24 17:06:35 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int	main(int argc, char **argv)
 	find_biggest(&stack_a);
 	visualize_stack(stack_a);
 	visualize_stack(stack_b);
-	sorter(&stack_a, &stack_b);
+	how_to_sort(&stack_a, &stack_b);
 	visualize_stack(stack_a);
 	visualize_stack(stack_b);
 	while (stack_a != 0)
