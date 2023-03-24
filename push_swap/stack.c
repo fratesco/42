@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 08:14:44 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/20 16:40:12 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/24 13:20:53 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ t_stack	*new(long value)
 	i = 0;
 	stack = (t_stack *)malloc(sizeof(t_stack));
 	stack->value = value;
-	stack->biggest = 0;
 	stack->next = 0;
+	stack->index = 0;
 	return (stack);
 }
 
