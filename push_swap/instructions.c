@@ -6,13 +6,13 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 11:25:55 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/24 13:06:16 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/24 15:38:20 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_stack **stack)
+void	swap(t_stack **stack, char a)
 {
 	t_stack	*tmp;
 	t_stack	*tmp2;
@@ -22,6 +22,7 @@ void	swap(t_stack **stack)
 	(*stack) = tmp->next;
 	(*stack)->next = tmp;
 	(*stack)->next->next = tmp2;
+	ft_printf("s%c\n", a);
 }
 
 void	push(t_stack **stack1, t_stack **stack2, char a)
