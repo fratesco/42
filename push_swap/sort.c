@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 15:35:41 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/24 17:19:38 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/28 19:10:34 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	sort_3(t_stack **stack)
 
 	tmp2 = (*stack)->next->value;
 	tmp3 = (*stack)->next->next->value;
-	if ((*stack)->value > tmp2 && (*stack)->value > tmp3)
+	if (((*stack)->value > tmp2) && ((*stack)->value > tmp3))
 	{
 		if (tmp3 > tmp2)
 			rotate(stack, 'a');
@@ -73,9 +73,22 @@ void	sort_5(t_stack **stack1, t_stack **stack2)
 	push(stack2, stack1, 'b');
 	push(stack2, stack1, 'b');
 	sort_3(stack1);
-	if ((*stack2)->value < (*stack2)->next->value)
-		swap(stack2, 'b');
-	push(stack1, stack2, 'a');
-	rotate(stack1, 'a');
-	push(stack1, stack2, 'a');
+	while (check_order(*stack1) || *stack2)
+	{
+		if (!(*stack2))
+			break ;
+		if (*stack2 && (*stack2)->index == ((*stack1)->index - 1))
+			push(stack1, stack2, 'a');
+		else if (*stack2 && (*stack2)->index > (*stack1)->index)
+			rotate(stack1, 'a');
+		else if (*stack2 && (*stack2)->index < (*stack1)->index)
+			reverse_rotate(stack1, 'a');
+	}
+	while (check_order(*stack1))
+	{
+		if ((*stack1)->index > (*stack1)->next->index)
+			rotate(stack1, 'a');
+		else
+			reverse_rotate(stack1, 'a');
+	}
 }
