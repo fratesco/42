@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 16:47:59 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/24 17:15:43 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/29 10:58:58 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,27 @@ void	mega_pusher(t_stack **stack1, t_stack **stack2)
 {
 	while (*stack2)
 		push(stack1, stack2, 'a');
+}
+
+t_stack	*string_argument(char *str)
+{
+	char	**tmp;
+	int		i;
+	t_stack	*buffer;
+
+	i = 0;
+	tmp = ft_split(str, ' ');
+	while (tmp[i])
+		i++;
+	if (check_parameters(tmp, i) != 0)
+	{
+		while (i >= 0)
+			free(tmp[i--]);
+		exit(0);
+	}
+	buffer = (stack_generator(i, tmp, 0));
+	while (i >= 0)
+		free(tmp[i--]);
+	free(tmp);
+	return (buffer);
 }

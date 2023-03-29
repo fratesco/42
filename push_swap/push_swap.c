@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:47:50 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/24 17:06:35 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/29 10:59:14 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	check_parameters(char **params, int num)
 			}
 			i++;
 		}
-		if (num == 2)
-			check_one_argument(params[1]);
+		//if (num == 2)
+		//	check_one_argument(params[1]);
 		num -= 1;
 	}
 	return (0);
@@ -111,19 +111,21 @@ int	main(int argc, char **argv)
 	t_stack			*stack_a;
 	t_stack			*stack_b;
 
-	if (check_parameters(argv, argc) != 0)
-		return (0);
-	stack_a = stack_generator(argc, argv, 1);
-	check_status(stack_a, stack_size(stack_a));
-	if (!check_order(stack_a))
-		exit(0);
-	stack_b = 0;
-	find_biggest(&stack_a);
-	visualize_stack(stack_a);
-	visualize_stack(stack_b);
-	how_to_sort(&stack_a, &stack_b);
-	visualize_stack(stack_a);
-	visualize_stack(stack_b);
+	if (argc == 2)
+		stack_a = string_argument(argv[1]);
+	else
+	{
+		if (check_parameters(argv, argc) != 0)
+			return (0);
+		stack_a = stack_generator(argc, argv, 1);
+		check_status(stack_a, stack_size(stack_a));
+	}
+	if (check_order(stack_a))
+	{
+		stack_b = 0;
+		find_biggest(&stack_a);
+		how_to_sort(&stack_a, &stack_b);
+	}
 	while (stack_a != 0)
 		clear_node(&stack_a);
 	while (stack_b != 0)
