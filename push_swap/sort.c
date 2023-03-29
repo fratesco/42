@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 15:35:41 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/29 11:30:10 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/29 12:32:52 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	sort_5(t_stack **stack1, t_stack **stack2)
 	{
 		if (!(*stack2))
 			break ;
+		if (bigger_than_stack(stack1, stack2))
+			continue ;
 		if (*stack2 && (*stack2)->index == ((*stack1)->index - 1))
 			push(stack1, stack2, 'a');
 		else if (*stack2 && (*stack2)->index > (*stack1)->index)
@@ -88,4 +90,34 @@ void	sort_5(t_stack **stack1, t_stack **stack2)
 		else
 			reverse_rotate(stack1, 'a');
 	}
+	bigger_than_stack(stack1, stack2);
+}
+
+int	bigger_than_stack(t_stack **stack1, t_stack **stack2)
+{
+	t_stack	*tmp;
+	int		check;
+
+	tmp = *stack1;
+	check = 1;
+	while (tmp)
+	{
+		if ((*stack2)->index < tmp->index)
+			check = 0;
+		tmp = tmp->next;
+	}
+	if ((*stack2) && (*stack2)->next && check)
+	{
+		if ((*stack2)->index == (*stack2)->next->index + 1)
+			swap(stack2, 'b');
+	}
+	if (check)
+	{
+		if (!(*stack2)->next)
+			return (0);
+		push(stack1, stack2, 'a');
+		rotate(stack1, 'a');
+		return (1);
+	}
+	return (0);
 }

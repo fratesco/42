@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:28:30 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/29 10:50:30 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/29 12:26:59 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,5 @@ void			sort_5(t_stack **stack1, t_stack **stack2);
 void			sorter(t_stack **stack1, t_stack **stack2);
 void			mega_pusher(t_stack **stack1, t_stack **stack2);
 t_stack			*string_argument(char *str);
+int				bigger_than_stack(t_stack **stack1, t_stack **stack2);
 #endif
