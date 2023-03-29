@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 15:35:41 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/29 12:32:52 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/29 21:29:50 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	sort_5(t_stack **stack1, t_stack **stack2)
 		else
 			reverse_rotate(stack1, 'a');
 	}
-	bigger_than_stack(stack1, stack2);
 }
 
 int	bigger_than_stack(t_stack **stack1, t_stack **stack2)
@@ -100,21 +99,19 @@ int	bigger_than_stack(t_stack **stack1, t_stack **stack2)
 
 	tmp = *stack1;
 	check = 1;
+	if ((*stack2) && (*stack2)->next)
+	{
+		if ((*stack2)->index > (*stack2)->next->index)
+			swap(stack2, 'b');
+	}
 	while (tmp)
 	{
 		if ((*stack2)->index < tmp->index)
 			check = 0;
 		tmp = tmp->next;
 	}
-	if ((*stack2) && (*stack2)->next && check)
-	{
-		if ((*stack2)->index == (*stack2)->next->index + 1)
-			swap(stack2, 'b');
-	}
 	if (check)
 	{
-		if (!(*stack2)->next)
-			return (0);
 		push(stack1, stack2, 'a');
 		rotate(stack1, 'a');
 		return (1);
