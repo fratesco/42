@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 15:35:41 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/28 19:10:34 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/29 11:30:10 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void	sort_3(t_stack **stack)
 			reverse_rotate(stack, 'a');
 		}
 	}
-	else if ((*stack)->value < tmp2 && (*stack)->value < tmp3)
+	else if ((*stack)->value < tmp2 && (*stack)->value < tmp3 && tmp2 > tmp3)
 	{
 		swap(stack, 'a');
 		rotate(stack, 'a');
 	}
 	else if ((*stack)->value > tmp2 && tmp2 < tmp3)
 		swap(stack, 'a');
-	else
+	else if (check_order(*stack))
 		reverse_rotate(stack, 'a');
 }
 
@@ -51,17 +51,14 @@ void	sort_4(t_stack **stack1, t_stack **stack2)
 	tmp2 = (*stack1)->next->value;
 	tmp3 = (*stack1)->next->next->value;
 	tmp4 = (*stack1)->next->next->next->value;
-	if (tmp1 < tmp2 && tmp1 < tmp3 && tmp1 < tmp4)
-	{
-	}
-	else if (tmp2 < tmp1 && tmp2 < tmp3 && tmp2 < tmp4)
+	if (tmp2 < tmp1 && tmp2 < tmp3 && tmp2 < tmp4)
 		rotate(stack1, 'a');
 	else if (tmp3 < tmp1 && tmp3 < tmp2 && tmp3 < tmp4)
 	{
 		rotate(stack1, 'a');
 		rotate(stack1, 'a');
 	}
-	else
+	else if (tmp4 < tmp1 && tmp4 < tmp2 && tmp4 < tmp3)
 		reverse_rotate(stack1, 'a');
 	push(stack2, stack1, 'b');
 	sort_3(stack1);
