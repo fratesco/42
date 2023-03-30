@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 15:35:41 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/29 21:29:50 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/03/30 13:57:20 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,11 @@ void	sort_5(t_stack **stack1, t_stack **stack2)
 	push(stack2, stack1, 'b');
 	push(stack2, stack1, 'b');
 	sort_3(stack1);
+	bigger_than_stack(stack1, stack2);
 	while (check_order(*stack1) || *stack2)
 	{
 		if (!(*stack2))
 			break ;
-		if (bigger_than_stack(stack1, stack2))
-			continue ;
 		if (*stack2 && (*stack2)->index == ((*stack1)->index - 1))
 			push(stack1, stack2, 'a');
 		else if (*stack2 && (*stack2)->index > (*stack1)->index)
@@ -92,29 +91,29 @@ void	sort_5(t_stack **stack1, t_stack **stack2)
 	}
 }
 
-int	bigger_than_stack(t_stack **stack1, t_stack **stack2)
+void	bigger_than_stack(t_stack **stack1, t_stack **stack2)
 {
 	t_stack	*tmp;
-	int		check;
+	int		check1;
 
-	tmp = *stack1;
-	check = 1;
-	if ((*stack2) && (*stack2)->next)
+	tmp = (*stack1)->next->next;
+	check1 = 0;
+	if ((*stack2)->index < tmp->index)
+		check1 += 1;
+	if ((*stack2)->next->index < tmp->index)
+		check1 += 2;
+	if ((!check1 && (*stack2)->index > (*stack2)->next->index) || (check1 == 1))
+		swap(stack2, 'b');
+	if (check1 == 3)
 	{
-		if ((*stack2)->index > (*stack2)->next->index)
+		if ((*stack2)->index < (*stack2)->next->index)
 			swap(stack2, 'b');
+		return ;
 	}
-	while (tmp)
-	{
-		if ((*stack2)->index < tmp->index)
-			check = 0;
-		tmp = tmp->next;
-	}
-	if (check)
-	{
-		push(stack1, stack2, 'a');
-		rotate(stack1, 'a');
-		return (1);
-	}
-	return (0);
+	push(stack1, stack2, 'a');
+	rotate(stack1, 'a');
+	if (check1 != 0)
+		return ;
+	push(stack1, stack2, 'a');
+	rotate(stack1, 'a');
 }
