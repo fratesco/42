@@ -6,7 +6,17 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 09:12:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/14 09:12:18 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/14 12:23:50 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "so_long.h"
+
+int	main(void)
+{
+	char	**map;
+
+	map = map_parser("map.ber");
+	map_freerer(map);
+	return (0);
+}
