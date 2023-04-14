@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 12:41:52 by fgolino           #+#    #+#             */
-/*   Updated: 2023/02/13 12:41:54 by fgolino          ###   ########.fr       */
+/*   Created: 2023/04/14 11:05:13 by fgolino           #+#    #+#             */
+/*   Updated: 2023/04/14 11:07:51 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,13 @@
 # include <fcntl.h>
 # include <string.h>
 
-char	*get_next_line(int fd);
-char	*get_broken_line(int fd, char *brokenl);
-char	*get_fixed_line(const char *brokenl);
-char	*get_next_brokenl(char *brokenl);
-
-char	*ft_strchr(const char *str, int c);
-char	*ft_strjoin(char *s1, char *s2);
-int		ft_strlen(const char *s);
-void	*ft_memcpy(void *dest, const void *src, int n);
+char		*get_next_line(int fd);
+char		*get_broken_line(int fd, char *brokenl);
+char		*get_fixed_line(const char *brokenl);
+char		*get_next_brokenl(char *brokenl);
+char		*ft_strchr(const char *str, int c);
+char		*ft_strjoin(char *s1, char *s2);
+size_t		ft_strlen(const char *s);
+void		*ft_memcpy(void *dest, const void *src, int n);
 
 #endif
