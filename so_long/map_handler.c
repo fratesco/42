@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:02:40 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/14 09:48:49 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/14 10:13:14 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ char	**map_parser(char *file)
 	map = (char **)malloc((win + 1) * sizeof(char *));
 	fd = open(file, O_RDONLY);
 	i = 0;
-	while (win-- > 0)
+	win--;
+	while (i <= win)
 		map[i++] = get_next_line(fd);
-	map [i] = 0;
+	map[i] = 0;
 	close(fd);
 	len = ft_strlen(map[0]);
 	map_checker(map, len, win);
@@ -39,7 +40,48 @@ char	**map_parser(char *file)
 
 void	map_checker(char **map, int len, int win)
 {
-	
+	if (len < 4)
+	{
+		ft_printf("Error/nInvadlid Map Size/n");
+		map_freerer(map);
+		exit(0);
+	}
+	if (check_first_line(map[0]) || check_first_line(map[win])
+		|| check_border(map, win, len))
+	{
+		ft_printf("Error/nMap not surrounded by walls/n");
+		map_freerer(map);
+		exit(0);
+	}
+	if (check_items(map))
+	{
+		ft_printf("Error/nA key component is missing/n");
+		map_freerer(map);
+		exit(0);
+	}
+}
+
+int	check_border(char **map, int win, int len)
+{
+	while (map[(win)])
+	{
+		if (map[(win)][0] != '1' || map[(win--)][len] != '1')
+			return (1);
+	}
+	return (0);
+}
+
+int	check_first_line(char *map_line)
+{
+	int	i;
+
+	i = 0;
+	while (map_line[i])
+	{
+		if (map_line[i++] != '1')
+			return (1);
+	}
+	return (0);
 }
 
 void	map_freerer(char **map)
