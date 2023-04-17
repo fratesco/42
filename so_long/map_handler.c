@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:02:40 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/14 12:16:07 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/17 20:46:18 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ char	**map_parser(char *file)
 	int		win;
 	int		i;
 
-	win = 0;
 	fd = open(file, O_RDONLY);
-	while (get_next_line(fd))
-		win++;
+	win = get_windth(fd);
 	close(fd);
 	map = (char **)malloc((win + 1) * sizeof(char *));
 	fd = open(file, O_RDONLY);

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:01:05 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/14 12:11:23 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/17 21:21:24 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ int		check_more(int exit, int coll, int start);
 char	**map_parser(char *file);
 void	map_displayer(char **map);
 void	new_remover(char **map);
+int		get_windth(int fd);
 #endif

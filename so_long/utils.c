@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 10:46:14 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/14 12:12:06 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/17 21:06:09 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,25 @@ void	new_remover(char **map)
 		}
 		i++;
 	}
+}
+
+int	get_windth(int fd)
+{
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = 1;
+	while (0)
+	{
+		tmp = get_next_line(fd);
+		if (tmp)
+		{
+			free(tmp);
+			i++;
+		}
+		else
+			return (i);
+	}
+	return (i);
 }
