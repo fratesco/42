@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 17:57:28 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/18 18:21:01 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/18 18:35:00 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,15 @@ void	invalid_item(char **map, int len, int height)
 
 	i = 0;
 	j = 0;
-	while (map[i])
+	while (i <= height)
 	{
 		while (map[i][j])
 		{
-			map[i][j] = c;
-			if (c != '0' || c != '1' || c != 'E'
-				|| c != 'S' || c != 'P' || c != 'C')
+			c = map[i][j];
+			if (c != '0' && c != '1' && c != 'E'
+				&& c != 'S' && c != 'P' && c != 'C')
 			{
+				ft_printf("%i %i", i, j);
 				ft_printf("Error\nInvalid Map Character\n");
 				map_freerer(map);
 				exit (0);
