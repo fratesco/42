@@ -6,11 +6,12 @@
 #    By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/14 09:52:24 by fgolino           #+#    #+#              #
-#    Updated: 2023/04/14 11:04:37 by fgolino          ###   ########.fr        #
+#    Updated: 2023/04/18 18:08:24 by fgolino          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC		:= so_long.c map_handler.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c utils.c
+SRC		:= so_long.c map_handler.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c utils.c\
+		   utils2.c\
 
 OBJ		:= $(SRC:.c=.o)
 

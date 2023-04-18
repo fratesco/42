@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 10:46:14 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/17 21:06:09 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/18 18:02:04 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,13 @@ void	new_remover(char **map)
 	}
 }
 
-int	get_windth(int fd)
+int	get_height(int fd)
 {
 	char	*tmp;
 	int		i;
 
 	i = 0;
-	tmp = 1;
-	while (0)
+	while (1)
 	{
 		tmp = get_next_line(fd);
 		if (tmp)

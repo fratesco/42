@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:02:40 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/17 20:46:18 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/18 18:13:18 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,40 +17,41 @@ char	**map_parser(char *file)
 	char	**map;
 	int		fd;
 	int		len;
-	int		win;
+	int		height;
 	int		i;
 
 	fd = open(file, O_RDONLY);
-	win = get_windth(fd);
+	height = get_height(fd);
 	close(fd);
-	map = (char **)malloc((win + 1) * sizeof(char *));
+	map = (char **)malloc((height + 1) * sizeof(char *));
 	fd = open(file, O_RDONLY);
 	i = 0;
-	win--;
-	while (i <= win)
+	height--;
+	while (i <= height)
 		map[i++] = get_next_line(fd);
 	map[i] = 0;
 	close(fd);
 	len = ft_strlen(map[0]) - 1;
-	map_checker(map, len, win);
+	map_checker(map, len, height);
 	return (map);
 }
 
-void	map_checker(char **map, int len, int win)
+void	map_checker(char **map, int len, int height)
 {
 	int	i;
 
 	i = 0;
 	new_remover(map);
 	map_displayer(map);
-	if (len < 4)
+	if (len < 4 || map_size(map, height))
 	{
 		ft_printf("Error\nInvadlid Map Size\n");
 		map_freerer(map);
 		exit(0);
 	}
-	if (check_first_line(map[0]) || check_first_line(map[win])
-		|| check_border(map, win, len))
+	invalid_item(map, len, height);
+	if (check_first_line(map[0]) || check_first_line(map[height])
+		|| check_border(map, height, len))
 	{
 		ft_printf("Error\nMap not surrounded by walls\n");
 		map_freerer(map);
@@ -64,7 +65,7 @@ void	map_checker(char **map, int len, int win)
 	}
 }
 
-int	check_border(char **map, int win, int len)
+int	check_border(char **map, int height, int len)
 {
 	int	i;
 
