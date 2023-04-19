@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:01:05 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/19 12:52:48 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/19 12:58:00 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_game
 	t_coin		*coins;
 }	t_game;
 
-void	map_freerer(char **map);
+void	game_freerer(t_game *game);
 int		check_first_line(char *map_line);
 int		check_border(char **map, int win, int len);
 void	map_checker(char **map, int len, int win, t_game *game);
@@ -55,7 +55,7 @@ void	map_displayer(char **map);
 void	new_remover(char **map);
 int		get_height(int fd);
 int		map_size(char **map, int height);
-void	invalid_item(char **map, int len, int height);
+void	invalid_item(char **map, int len, int height, t_game *game);
 char	*input_handler(int ac, char **av);
 void	get_positions(t_game *game, char **map);
 #endif

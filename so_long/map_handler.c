@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:02:40 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/19 12:52:54 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/19 12:57:37 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,21 @@ void	map_checker(char **map, int len, int height, t_game *game)
 	if (len < 3 || height < 3 || map_size(map, height - 1) || len + height < 8)
 	{
 		ft_printf("Error\nInvadlid Map Size\n");
-		map_freerer(map);
+		game_freerer(game);
 		exit(0);
 	}
-	invalid_item(map, len, height - 1);
+	invalid_item(map, len, height - 1, game);
 	if (check_first_line(map[0]) || check_first_line(map[height - 1])
 		|| check_border(map, height - 1, len))
 	{
 		ft_printf("Error\nMap not surrounded by walls\n");
-		map_freerer(map);
+		game_freerer(game);
 		exit(0);
 	}
 	if (check_items(map, i, game))
 	{
 		ft_printf("Error\nA key component is missing\n");
-		map_freerer(map);
+		game_freerer(game);
 		exit(0);
 	}
 }
@@ -90,15 +90,15 @@ int	check_first_line(char *map_line)
 	return (0);
 }
 
-void	map_freerer(char **map)
+void	game_freerer(t_game *game)
 {
 	int	i;
 
 	i = 0;
-	if (!map)
+	if (!game->map)
 		return ;
-	while (map[i])
-		free(map[i++]);
-	free(map[i]);
-	free(map);
+	while (game->map[i])
+		free(game->map[i++]);
+	free(game->map[i]);
+	free(game->map);
 }

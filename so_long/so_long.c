@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 09:12:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/19 12:47:10 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/19 12:55:49 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int	main(int argc, char **argv)
 	game.player = &player;
 	game.filename = input_handler(argc, argv);
 	game.map = map_parser(game.filename, &game);
-	map_freerer(game.map);
+	game_freerer(&game);
 	return (0);
 }

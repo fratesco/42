@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 17:57:28 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/19 12:53:06 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/19 12:58:12 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	map_size(char **map, int height)
 	return (0);
 }
 
-void	invalid_item(char **map, int len, int height)
+void	invalid_item(char **map, int len, int height, t_game *game)
 {
 	int		i;
 	int		j;
@@ -51,7 +51,7 @@ void	invalid_item(char **map, int len, int height)
 			{
 				ft_printf("%i %i", i, j);
 				ft_printf("Error\nInvalid Map Character\n");
-				map_freerer(map);
+				game_freerer(game);
 				exit (0);
 			}
 			j++;
@@ -77,7 +77,6 @@ void	get_positions(t_game *game, char **map)
 		{
 			if (map[i][j] == 'C')
 			{
-				ft_printf("qui");
 				game->coins->x[coins] = j;
 				game->coins->y[coins] = i;
 				coins++;
