@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:01:05 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/19 12:58:00 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/19 15:50:03 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "get_next_line/get_next_line.h"
 # include "ft_printf/ft_printf.h"
+# include "minilibx-linux/mlx.h"
 
 typedef struct s_coin
 {
@@ -34,6 +35,8 @@ typedef struct s_player
 typedef struct s_game
 {
 	char		**map;
+	void		*mlx;
+	void		*wind;
 	int			height;
 	int			lenght;
 	char		*filename;
