@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 09:12:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/18 18:30:14 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/19 12:47:10 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 char	*input_handler(int ac, char **av)
 {
+	int	i;
+
 	if (ac < 2)
 	{
 		ft_printf("Too few arguments\n");
@@ -24,16 +26,28 @@ char	*input_handler(int ac, char **av)
 		ft_printf("Too many arguments\n");
 		exit (0);
 	}
-	return (av[1]);
+	i = ft_strlen(av[1]);
+	if ((i >= 4) && (av[1][i - 1] == 'r') && (av[1][i - 2] == 'e')
+		&& (av[1][i - 3] == 'b') && (av[1][i - 4] == '.'))
+		return (av[1]);
+	else
+	{
+		ft_printf("Not a '.ber' file");
+		exit(0);
+	}
 }
 
 int	main(int argc, char **argv)
 {
-	char	**map;
-	char	*filename;
+	t_game		game;
+	t_coin		coins;
+	t_player	player;
 
-	filename = input_handler(argc, argv);
-	map = map_parser(filename);
-	map_freerer(map);
+	game.coins = &coins;
+	game.coins->num = 0;
+	game.player = &player;
+	game.filename = input_handler(argc, argv);
+	game.map = map_parser(game.filename, &game);
+	map_freerer(game.map);
 	return (0);
 }

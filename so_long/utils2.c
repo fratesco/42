@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 17:57:28 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/18 18:35:00 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/19 12:53:06 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,3 +59,32 @@ void	invalid_item(char **map, int len, int height)
 		i++;
 	}
 }
+
+void	get_positions(t_game *game, char **map)
+{
+	int	i;
+	int	j;
+	int	coins;
+	int	exits;
+
+	i = 0;
+	coins = 0;
+	exits = 0;
+	while (i < game->height)
+	{
+		j = 0;
+		while (j < game->lenght)
+		{
+			if (map[i][j] == 'C')
+			{
+				ft_printf("qui");
+				game->coins->x[coins] = j;
+				game->coins->y[coins] = i;
+				coins++;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+

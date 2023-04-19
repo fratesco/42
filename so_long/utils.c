@@ -6,13 +6,13 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 10:46:14 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/18 18:02:04 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/19 12:46:08 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_items(char **map, int i)
+int	check_items(char **map, int i, t_game *game)
 {
 	int	j;
 	int	exit;
@@ -37,11 +37,17 @@ int	check_items(char **map, int i)
 		}
 		i++;
 	}
-	return (check_more(exit, coll, start));
+	return (check_more(exit, coll, start, game));
 }
 
-int	check_more(int exit, int coll, int start)
+int	check_more(int exit, int coll, int start, t_game *game)
 {
+	game->coins->num = coll;
+	game->exits = exit;
+	game->coins->x = (int *)malloc(coll * sizeof(int));
+	game->coins->y = (int *)malloc(coll * sizeof(int));
+	game->exit_x = (int *)malloc(exit * sizeof(int));
+	game->exit_y = (int *)malloc(exit * sizeof(int));
 	if (exit == 0 || coll == 0 || start == 0)
 		return (1);
 	if (start > 1)
