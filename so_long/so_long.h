@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:01:05 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/20 15:23:35 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/20 17:13:12 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include "get_next_line/get_next_line.h"
 # include "ft_printf/ft_printf.h"
 # include "minilibx_opengl_20191021/mlx.h"
+
+# define PLAYER "../sprites/solaire.xpm"
+# define WALLS "../sprites/wall.xpm"
+# define COLLECTIBLE "../sprites/estus.xpm"
 
 typedef struct s_coin
 {
