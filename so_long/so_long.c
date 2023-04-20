@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 09:12:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/20 15:40:44 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/20 18:18:46 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	main(int argc, char **argv)
 	t_coin		coins;
 	t_player	player;
 
+	game.game_iteration = 0;
 	game.coins = &coins;
 	game.coins->num = 0;
 	game.player = &player;
@@ -58,6 +59,7 @@ int	main(int argc, char **argv)
 	game.wind = mlx_new_window(game.mlx, game.lenght * 32, game.height * 32,
 			"so_long");
 	mlx_hook(game.wind, 17, 0, close_game, (&game));
+	mlx_loop_hook(game.mlx, image_handler, &game);
 	//mlx_key_hook(game.wind, key_handler, &game);
 	mlx_loop(game.mlx);
 	game_freerer(&game);
