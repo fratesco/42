@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:01:05 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/19 15:50:03 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/20 15:23:35 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "get_next_line/get_next_line.h"
 # include "ft_printf/ft_printf.h"
-# include "minilibx-linux/mlx.h"
+# include "minilibx_opengl_20191021/mlx.h"
 
 typedef struct s_coin
 {
@@ -61,4 +61,5 @@ int		map_size(char **map, int height);
 void	invalid_item(char **map, int len, int height, t_game *game);
 char	*input_handler(int ac, char **av);
 void	get_positions(t_game *game, char **map);
+int		close_game(t_game *game);
 #endif
