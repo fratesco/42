@@ -6,7 +6,7 @@
 #    By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/14 09:52:24 by fgolino           #+#    #+#              #
-#    Updated: 2023/04/20 18:14:09 by fgolino          ###   ########.fr        #
+#    Updated: 2023/04/22 13:45:32 by fgolino          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ PRINTF	:= ft_printf/
 MLX     := minilibx_opengl_20191021/
 
 all: $(NAME)
-
+		
 $(NAME): $(OBJ)
 		make -C $(LIBFT)
 		make -C $(PRINTF)
