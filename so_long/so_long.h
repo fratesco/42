@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:01:05 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/23 15:54:39 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/23 16:35:18 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define LEFT 2
 # define RIGHT 3
 # define STILL -1
+# define TAKEN 1
 
 typedef struct s_coin
 {
@@ -36,6 +37,7 @@ typedef struct s_coin
 	int		num;
 	int		*x;
 	int		*y;
+	int		flag;
 	void	*sprite[4];
 }	t_coin;
 

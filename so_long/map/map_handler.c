@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:02:40 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/20 15:24:56 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/23 16:31:45 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,8 @@ void	game_freerer(t_game *game)
 		free(game->map[i++]);
 	free(game->map[i]);
 	free(game->map);
+	free(game->coins->x);
+	free(game->coins->y);
+	free(game->exit_x);
+	free(game->exit_y);
 }

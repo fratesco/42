@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:26:07 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/23 15:55:35 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/23 16:33:39 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,9 @@ int	image_handler(t_game *game)
 {
 	if (game->game_iteration == 0)
 		xpm_handler(game);
+	//dal secondo loop in poi il programma non avrà bisogno di controllare le lettere della mappa
+	//gli basterà andare a vedere se il personaggio ha una velocità e agire di conseguenza
+	//in caso il personaggio abbia cammintato su un coin una flag lo segnalerà
+	//e il programma capirà quale coin togliere in base alla attuale posizione del personaggio
 	return (0);
 }
