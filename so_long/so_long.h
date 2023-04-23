@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:01:05 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/23 16:35:18 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/23 17:45:11 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,16 @@ int		map_size(char **map, int height);
 void	invalid_item(char **map, int len, int height, t_game *game);
 char	*input_handler(int ac, char **av);
 void	get_positions(t_game *game, char **map);
+void	get_coin(t_game *game, int x, int y);
+void	get_player(t_game *game, int x, int y);
 int		close_game(t_game *game);
+void	reset_game(t_game *game);
 int		image_handler(t_game *game);
 int		key_handler(int key, t_game *game);
 void	print_game_start(t_game *game, int pix, int i, int j);
 void	xpm_handler(t_game *game);
+void	right_movement(t_game *game);
+void	left_movement(t_game *game);
+void	up_movement(t_game *game);
+void	down_movement(t_game *game);
 #endif

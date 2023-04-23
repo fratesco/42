@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 17:57:28 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/23 15:56:25 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/23 17:43:09 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	get_coin(t_game *game, int x, int y)
 	game->coins->x[game->coins->num] = x;
 	game->coins->y[game->coins->num] = y;
 	game->coins->num += 1;
+	game->coins->animation_step = 0;
 }
 
 void	get_player(t_game *game, int x, int y)
