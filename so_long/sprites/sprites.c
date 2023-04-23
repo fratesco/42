@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:26:07 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/23 16:33:39 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/23 17:49:53 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,17 @@ void	xpm_handler(t_game *game)
 	i = 0;
 	j = 0;
 	pix = PIXELS;
-	game->walls_sprite
-		= mlx_xpm_file_to_image(game->mlx, WALLS, &pix, &pix);
-	game->coins->sprite[0]
-		= mlx_xpm_file_to_image(game->mlx, COLLECTIBLE, &pix, &pix);
-	game->player->sprite
-		= mlx_xpm_file_to_image(game->mlx, PLAYER, &pix, &pix);
-	game->terrain_sprite
-		= mlx_xpm_file_to_image(game->mlx, TERRAIN, &pix, &pix);
+	if (game->frame == 0)
+	{
+		game->walls_sprite
+			= mlx_xpm_file_to_image(game->mlx, WALLS, &pix, &pix);
+		game->coins->sprite[0]
+			= mlx_xpm_file_to_image(game->mlx, COLLECTIBLE, &pix, &pix);
+		game->player->sprite
+			= mlx_xpm_file_to_image(game->mlx, PLAYER, &pix, &pix);
+		game->terrain_sprite
+			= mlx_xpm_file_to_image(game->mlx, TERRAIN, &pix, &pix);
+	}
 	print_game_start(game, pix, i, j);
 }
 
@@ -64,6 +67,7 @@ int	image_handler(t_game *game)
 {
 	if (game->game_iteration == 0)
 		xpm_handler(game);
+	game->frame += 1;
 	//dal secondo loop in poi il programma non avrà bisogno di controllare le lettere della mappa
 	//gli basterà andare a vedere se il personaggio ha una velocità e agire di conseguenza
 	//in caso il personaggio abbia cammintato su un coin una flag lo segnalerà
