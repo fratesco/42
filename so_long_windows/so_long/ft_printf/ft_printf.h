@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 12:07:36 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/22 13:21:05 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/22 13:50:18 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <stdint.h>
+# include "../libft/libft.h"
 
 typedef enum b_bool{FALSE, TRUE}	t_bool;
 
 int		ft_printf(const char *str, ...);
 void	ft_putstr_special(const char *str, size_t *n);
-size_t	ft_strlen(const char *str);
+//size_t	ft_strlen(const char *str);
 int		check_special(const char *str);
 int		parsing_checking(const char *str, va_list list, size_t *n);
 void	ft_putchar(const char c, size_t *n);
