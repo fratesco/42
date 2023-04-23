@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:26:07 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/20 18:21:55 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/23 15:55:35 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	print_game_start(t_game *game, int pix, int i, int j)
 
 int	image_handler(t_game *game)
 {
-
 	if (game->game_iteration == 0)
 		xpm_handler(game);
 	return (0);

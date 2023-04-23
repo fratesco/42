@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 17:57:28 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/20 15:25:24 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/23 15:56:25 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,9 @@ void	get_positions(t_game *game, char **map)
 {
 	int	i;
 	int	j;
-	int	coins;
 	int	exits;
 
 	i = 0;
-	coins = 0;
 	exits = 0;
 	while (i < game->height)
 	{
@@ -76,25 +74,33 @@ void	get_positions(t_game *game, char **map)
 		while (j < game->lenght)
 		{
 			if (map[i][j] == 'C')
-			{
-				game->coins->x[coins] = j;
-				game->coins->y[coins] = i;
-				coins++;
-			}
+				get_coin(game, j, i);
 			if (map[i][j] == 'E')
 			{
-				game->exit_x[exits] = j;
-				game->exit_y[exits] = i;
-				exits++;
+				game->exit_x[game->exits] = j;
+				game->exit_y[game->exits] = i;
+				game->exits += 1;
 			}
 			if (map[i][j] == 'P')
-			{
-				game->player->start_x = j;
-				game->player->start_x = i;
-			}
+				get_player(game, j, i);
 			j++;
 		}
 		i++;
 	}
 }
 
+void	get_coin(t_game *game, int x, int y)
+{
+	game->coins->x[game->coins->num] = x;
+	game->coins->y[game->coins->num] = y;
+	game->coins->num += 1;
+}
+
+void	get_player(t_game *game, int x, int y)
+{
+	game->player->start_x = x;
+	game->player->start_y = y;
+	game->player->x = x;
+	game->player->y = y;
+	game->player->velocity = STILL;
+}

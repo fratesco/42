@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 09:12:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/20 18:24:09 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/23 15:48:41 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	main(int argc, char **argv)
 	game.game_iteration = 0;
 	game.coins = &coins;
 	game.coins->num = 0;
+	game.exits = 0;
 	game.player = &player;
 	game.filename = input_handler(argc, argv);
 	game.map = map_parser(game.filename, &game);

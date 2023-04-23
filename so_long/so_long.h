@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:01:05 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/20 18:17:51 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/23 15:54:39 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@
 # define COLLECTIBLE "estus.xpm"
 # define OBSTACLE "sprites/"
 # define TERRAIN "terrain.xpm"
+# define UP 0
+# define DOWN 1
+# define LEFT 2
+# define RIGHT 3
+# define STILL -1
 
 typedef struct s_coin
 {
@@ -40,7 +45,7 @@ typedef struct s_player
 	int		start_y;
 	int		x;
 	int		y;
-	int		action;
+	int		velocity;
 	void	*sprite;
 }	t_player;
 
@@ -80,7 +85,7 @@ char	*input_handler(int ac, char **av);
 void	get_positions(t_game *game, char **map);
 int		close_game(t_game *game);
 int		image_handler(t_game *game);
-int		key_handler(t_game *game);
+int		key_handler(int key, t_game *game);
 void	print_game_start(t_game *game, int pix, int i, int j);
 void	xpm_handler(t_game *game);
 #endif
