@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:27:38 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/23 17:34:14 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/24 11:45:29 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ int	key_handler(int key, t_game *game)
 		right_movement(game);
 	else if (key == 15)
 		reset_game(game);
-	else if (key == 35)
+	else if (key == 53)
 		close_game(game);
 	return (0);
 }

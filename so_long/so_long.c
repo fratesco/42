@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 09:12:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/23 17:44:03 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/24 11:29:45 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	close_game(t_game *game)
 
 void	reset_game(t_game *game)
 {
-	get_postiions(game, game->map);
+	get_positions(game, game->map);
 	game->game_iteration = 0;
 }
 
@@ -62,6 +62,7 @@ int	main(int argc, char **argv)
 	game.coins->flag = 0;
 	game.exits = 0;
 	game.moves = 0;
+	game.frame = 0;
 	game.filename = input_handler(argc, argv);
 	game.map = map_parser(game.filename, &game);
 	game.mlx = mlx_init();
