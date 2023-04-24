@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:27:38 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/24 16:52:17 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/24 17:55:24 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,6 @@ void	right_movement(t_game *game)
 
 int	key_handler(int key, t_game *game)
 {
-	game->moves++;
 	if (key == 13)
 		up_movement(game);
 	else if (key == 0)

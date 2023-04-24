@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:26:07 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/24 16:50:33 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/24 18:05:37 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	xpm_handler(t_game *game)
 			= mlx_xpm_file_to_image(game->mlx, PLAYER, &pix, &pix);
 		game->terrain_sprite
 			= mlx_xpm_file_to_image(game->mlx, TERRAIN, &pix, &pix);
+		mlx_string_put(game->mlx, game->wind, 64,
+			(game->height * 32), 16777215, "0");
 	}
 	print_game_start(game, pix, i, j);
 }
@@ -59,13 +61,16 @@ void	print_game_start(t_game *game, int pix, int i, int j)
 			j++;
 		}
 		i++;
+		mlx_string_put(game->mlx, game->wind, 0,
+			(game->height * 32), 16777215, "MOVES: ");
 	}
 }
 
 int	image_handler(t_game *game)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	char	*tmp;
 
 	if (game->game_iteration == 0)
 		xpm_handler(game);
@@ -78,17 +83,27 @@ int	image_handler(t_game *game)
 			game->player->sprite, (32 * x), (32 * y));
 		velocity_handler(game, x, y);
 		coins_handler(game, x, y);
+		game->moves++;
 		if (game->coins->num == 0)
 			exit_handler(game, x, y);
+		tmp = ft_itoa(game->moves);
+		mlx_string_put(game->mlx, game->wind, 64,
+			(game->height * 32), 16777215, tmp);
+		free(tmp);
 	}
 	return (0);
 }
 
 void	coins_handler(t_game *game, int x, int y)
 {
-	int	i;
+	int		i;
+	char	*tmp;
 
 	i = 0;
+	tmp = ft_itoa(game->moves);
+	mlx_string_put(game->mlx, game->wind, 64,
+		(game->height * 32), 0, tmp);
+	free(tmp);
 	while (i < game->coins->num)
 	{
 		if (x == game->coins->x[i] && y == game->coins->y[i])
@@ -99,6 +114,7 @@ void	coins_handler(t_game *game, int x, int y)
 		}
 		i++;
 	}
+	game->coins->flag = 0;
 }
 
 void	velocity_handler(t_game *game, int x, int y)
@@ -107,20 +123,24 @@ void	velocity_handler(t_game *game, int x, int y)
 	{
 		mlx_put_image_to_window(game->mlx, game->wind,
 			game->terrain_sprite, (32 * x), (32 * (y + 1)));
+		game->player->velocity = STILL;
 	}
 	else if (game->player->velocity == DOWN)
 	{
 		mlx_put_image_to_window(game->mlx, game->wind,
 			game->terrain_sprite, (32 * x), (32 * (y - 1)));
+		game->player->velocity = STILL;
 	}
 	else if (game->player->velocity == LEFT)
 	{
 		mlx_put_image_to_window(game->mlx, game->wind,
 			game->terrain_sprite, (32 * (x + 1)), (32 * y));
+		game->player->velocity = STILL;
 	}
 	else if (game->player->velocity == RIGHT)
 	{
 		mlx_put_image_to_window(game->mlx, game->wind,
 			game->terrain_sprite, (32 * (x - 1)), (32 * y));
+		game->player->velocity = STILL;
 	}
 }

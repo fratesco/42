@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 11:05:13 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/14 11:18:36 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/24 17:37:57 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ char		*ft_strchr(const char *str, int c);
 char		*ft_strjoin(char *s1, char *s2);
 size_t		ft_strlen(const char *s);
 void		*ft_memcpy(void *dest, const void *src, int n);
-
+char		*ft_itoa(int n);
+void		loopers(char *num, int n, int i);
 #endif
