@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 09:12:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/24 14:49:43 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/24 17:05:11 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,26 @@ int	close_game(t_game *game)
 
 void	reset_game(t_game *game)
 {
-	ft_printf("reset");
 	get_positions(game, game->map);
 	game->game_iteration = 0;
 	game->frame = 0;
+}
+
+void	exit_handler(t_game *game, int x, int y)
+{
+	int	i;
+
+	i = 0;
+	while (i < game->exits)
+	{
+		ft_printf("cazzi");
+		if (x == game->exit_x[i] && y == game->exit_y[i])
+		{
+			game_freerer(game);
+			exit(0);
+		}
+		i++;
+	}
 }
 
 char	*input_handler(int ac, char **av)
@@ -61,6 +77,7 @@ int	main(int argc, char **argv)
 	game.coins = &coins;
 	game.player = &player;
 	game.coins->num = 0;
+	game.coins->max_num = 0;
 	game.coins->flag = 0;
 	game.exits = 0;
 	game.moves = 0;

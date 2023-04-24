@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:02:40 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/24 12:39:25 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/24 16:54:03 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	map_checker(char **map, int len, int height, t_game *game)
 
 	i = 0;
 	new_remover(map);
-	//map_displayer(map);
 	if (len < 3 || height < 3 || map_size(map, height - 1) || len + height < 8)
 	{
 		ft_printf("Error\nInvadlid Map Size\n");

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:26:07 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/24 15:18:53 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/24 16:50:33 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	xpm_handler(t_game *game)
 			= mlx_xpm_file_to_image(game->mlx, PLAYER, &pix, &pix);
 		game->terrain_sprite
 			= mlx_xpm_file_to_image(game->mlx, TERRAIN, &pix, &pix);
-		ft_printf("suca");
 	}
 	print_game_start(game, pix, i, j);
 }
@@ -78,7 +77,9 @@ int	image_handler(t_game *game)
 		mlx_put_image_to_window(game->mlx, game->wind,
 			game->player->sprite, (32 * x), (32 * y));
 		velocity_handler(game, x, y);
-		coins_handler(game, x , y);
+		coins_handler(game, x, y);
+		if (game->coins->num == 0)
+			exit_handler(game, x, y);
 	}
 	return (0);
 }
