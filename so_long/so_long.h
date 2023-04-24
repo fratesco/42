@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:01:05 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/23 17:45:11 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/24 12:32:40 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 
 # define PIXELS 32
 
-# define PLAYER "solaire.xpm"
-# define WALLS "wall.xpm"
-# define COLLECTIBLE "estus.xpm"
+# define PLAYER "/Users/fgolino/42_git/so_long/sprites/solaire.xpm"
+# define WALLS "/Users/fgolino/42_git/so_long/sprites/wall.xpm"
+# define COLLECTIBLE "/Users/fgolino/42_git/so_long/sprites/estus.xpm"
 # define OBSTACLE "sprites/"
-# define TERRAIN "terrain.xpm"
+# define TERRAIN "/Users/fgolino/42_git/so_long/sprites/terrain.xpm"
 # define UP 0
 # define DOWN 1
 # define LEFT 2

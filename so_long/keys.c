@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:27:38 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/24 11:45:29 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/24 12:53:02 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	up_movement(t_game *game)
 	int	i;
 
 	i = 0;
+	ft_printf("up");
 	position = game->player->y - 1;
 	if (position >= 0 && game->map[position][game->player->x] != '1')
 	{
@@ -47,6 +48,7 @@ void	down_movement(t_game *game)
 	int	i;
 
 	i = 0;
+	ft_printf("down");
 	position = game->player->y + 1;
 	if (position >= 0 && game->map[position][game->player->x] != '1')
 	{
@@ -76,6 +78,7 @@ void	left_movement(t_game *game)
 	int	i;
 
 	i = 0;
+	ft_printf("left");
 	position = game->player->x - 1;
 	if (position >= 0 && game->map[game->player->y][position] != '1')
 	{
@@ -105,6 +108,7 @@ void	right_movement(t_game *game)
 	int	i;
 
 	i = 0;
+	ft_printf("right");
 	position = game->player->x + 1;
 	if (position >= 0 && game->map[game->player->y][position] != '1')
 	{

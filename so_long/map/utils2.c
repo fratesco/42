@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 17:57:28 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/23 17:43:09 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/24 12:39:55 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	invalid_item(char **map, int len, int height, t_game *game)
 			if (c != '0' && c != '1' && c != 'E'
 				&& c != 'S' && c != 'P' && c != 'C')
 			{
-				ft_printf("%i %i", i, j);
 				ft_printf("Error\nInvalid Map Character\n");
 				game_freerer(game);
 				exit (0);

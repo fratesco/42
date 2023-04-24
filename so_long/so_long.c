@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 09:12:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/24 11:29:45 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/24 12:54:57 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	close_game(t_game *game)
 
 void	reset_game(t_game *game)
 {
+	ft_printf("reset");
 	get_positions(game, game->map);
 	game->game_iteration = 0;
 }

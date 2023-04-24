@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:26:07 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/24 11:41:14 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/24 12:45:21 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,16 @@ void	xpm_handler(t_game *game)
 	pix = PIXELS;
 	if (game->frame == 0)
 	{
-		game->walls_sprite = mlx_xpm_file_to_image(game->mlx, "./wall.xpm", &pix, &pix);
-		ft_printf("%p", game->walls_sprite);
-		game->coins->sprite[0] = mlx_xpm_file_to_image(game->mlx, COLLECTIBLE, &pix, &pix);
-		game->player->sprite = mlx_xpm_file_to_image(game->mlx, PLAYER, &pix, &pix);
-		game->terrain_sprite = mlx_xpm_file_to_image(game->mlx, TERRAIN, &pix, &pix);
+		game->walls_sprite
+			= mlx_xpm_file_to_image(game->mlx, WALLS, &pix, &pix);
+		game->coins->sprite[0]
+			= mlx_xpm_file_to_image(game->mlx, COLLECTIBLE, &pix, &pix);
+		game->player->sprite
+			= mlx_xpm_file_to_image(game->mlx, PLAYER, &pix, &pix);
+		game->terrain_sprite
+			= mlx_xpm_file_to_image(game->mlx, TERRAIN, &pix, &pix);
 	}
-	//print_game_start(game, pix, i, j);
+	print_game_start(game, pix, i, j);
 }
 
 void	print_game_start(t_game *game, int pix, int i, int j)
@@ -41,17 +44,16 @@ void	print_game_start(t_game *game, int pix, int i, int j)
 		{
 			mlx_put_image_to_window(game->mlx, game->wind,
 				game->terrain_sprite, (j * pix), (i * pix));
-			ft_printf("%i", j);
 			if (game->map[i][j] == '1')
 				mlx_put_image_to_window(game->mlx, game->wind,
 					game->walls_sprite, (j * pix), (i * pix));
 			else if (game->map[i][j] != '1')
 				mlx_put_image_to_window(game->mlx, game->wind,
 					game->terrain_sprite, (j * pix), (i * pix));
-			else if (game->map[i][j] == 'P')
+			if (game->map[i][j] == 'P')
 				mlx_put_image_to_window(game->mlx, game->wind,
 					game->player->sprite, (j * pix), (i * pix));
-			else if (game->map[i][j] == 'C')
+			if (game->map[i][j] == 'C')
 				mlx_put_image_to_window(game->mlx, game->wind,
 					game->coins->sprite[0], (j * pix), (i * pix));
 			j++;
