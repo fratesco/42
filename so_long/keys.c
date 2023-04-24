@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:27:38 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/24 12:53:02 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/24 14:58:23 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	up_movement(t_game *game)
 	int	i;
 
 	i = 0;
-	ft_printf("up");
+	ft_printf("%i %i\n", game->player->x, game->player->y);
 	position = game->player->y - 1;
 	if (position >= 0 && game->map[position][game->player->x] != '1')
 	{
@@ -134,6 +134,7 @@ void	right_movement(t_game *game)
 
 int	key_handler(int key, t_game *game)
 {
+	game->moves++;
 	if (key == 13)
 		up_movement(game);
 	else if (key == 0)

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 17:57:28 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/24 12:39:55 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/24 14:56:50 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ void	get_positions(t_game *game, char **map)
 		{
 			if (map[i][j] == 'C')
 				get_coin(game, j, i);
-			if (map[i][j] == 'E')
+			else if (map[i][j] == 'E')
 			{
 				game->exit_x[game->exits] = j;
 				game->exit_y[game->exits] = i;
 				game->exits += 1;
 			}
-			if (map[i][j] == 'P')
+			else if (map[i][j] == 'P')
 				get_player(game, j, i);
 			j++;
 		}

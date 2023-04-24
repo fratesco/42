@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:01:05 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/24 12:32:40 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/24 15:18:40 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,6 @@ void	right_movement(t_game *game);
 void	left_movement(t_game *game);
 void	up_movement(t_game *game);
 void	down_movement(t_game *game);
+void	velocity_handler(t_game *game, int x, int y);
+void	coins_handler(t_game *game, int x, int y);
 #endif

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:26:07 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/24 12:45:21 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/24 15:18:53 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ void	xpm_handler(t_game *game)
 			= mlx_xpm_file_to_image(game->mlx, PLAYER, &pix, &pix);
 		game->terrain_sprite
 			= mlx_xpm_file_to_image(game->mlx, TERRAIN, &pix, &pix);
+		ft_printf("suca");
 	}
 	print_game_start(game, pix, i, j);
 }
 
 void	print_game_start(t_game *game, int pix, int i, int j)
 {
-	while (game->map[i])
+	while (game->map[i] && game->frame == 0)
 	{
 		j = 0;
 		while (game->map[i][j])
@@ -64,12 +65,61 @@ void	print_game_start(t_game *game, int pix, int i, int j)
 
 int	image_handler(t_game *game)
 {
+	int	x;
+	int	y;
+
 	if (game->game_iteration == 0)
 		xpm_handler(game);
 	game->frame += 1;
-	//dal secondo loop in poi il programma non avrà bisogno di controllare le lettere della mappa
-	//gli basterà andare a vedere se il personaggio ha una velocità e agire di conseguenza
-	//in caso il personaggio abbia cammintato su un coin una flag lo segnalerà
-	//e il programma capirà quale coin togliere in base alla attuale posizione del personaggio
+	if (game->player->velocity != STILL)
+	{
+		x = game->player->x;
+		y = game->player->y;
+		mlx_put_image_to_window(game->mlx, game->wind,
+			game->player->sprite, (32 * x), (32 * y));
+		velocity_handler(game, x, y);
+		coins_handler(game, x , y);
+	}
 	return (0);
+}
+
+void	coins_handler(t_game *game, int x, int y)
+{
+	int	i;
+
+	i = 0;
+	while (i < game->coins->num)
+	{
+		if (x == game->coins->x[i] && y == game->coins->y[i])
+		{
+			game->coins->x[i] = -1;
+			game->coins->y[i] = -1;
+			game->coins->num -= 1;
+		}
+		i++;
+	}
+}
+
+void	velocity_handler(t_game *game, int x, int y)
+{
+	if (game->player->velocity == UP)
+	{
+		mlx_put_image_to_window(game->mlx, game->wind,
+			game->terrain_sprite, (32 * x), (32 * (y + 1)));
+	}
+	else if (game->player->velocity == DOWN)
+	{
+		mlx_put_image_to_window(game->mlx, game->wind,
+			game->terrain_sprite, (32 * x), (32 * (y - 1)));
+	}
+	else if (game->player->velocity == LEFT)
+	{
+		mlx_put_image_to_window(game->mlx, game->wind,
+			game->terrain_sprite, (32 * (x + 1)), (32 * y));
+	}
+	else if (game->player->velocity == RIGHT)
+	{
+		mlx_put_image_to_window(game->mlx, game->wind,
+			game->terrain_sprite, (32 * (x - 1)), (32 * y));
+	}
 }
