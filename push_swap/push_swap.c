@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:47:50 by fgolino           #+#    #+#             */
-/*   Updated: 2023/03/29 22:31:17 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/26 12:40:43 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_parameters(char **params, int num)
 				i = i;
 			else if (params[num - 1][i] < 48 || params[num - 1][i] > 57)
 			{
-				ft_printf("Error\n");
+				write(2, "Error\n", 6);
 				return (-1);
 			}
 			i++;
@@ -59,7 +59,7 @@ t_stack	*stack_generator(int len, char **argv, int i)
 				stack = stack->next;
 				clear_node(&tmp);
 			}
-			ft_printf("Error\n");
+			write(2, "Error\n", 6);
 			exit(0);
 		}
 		tmp = tmp->next;
@@ -84,8 +84,8 @@ int	check_status(t_stack *stack, int len)
 		{
 			if (tmp1->value == tmp2->value)
 			{
-				ft_printf("Error\n");
-				exit (0);
+				write(2, "Error\n", 6);
+				exit (1);
 			}
 				tmp2 = tmp2->next;
 		}
@@ -116,7 +116,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		if (check_parameters(argv, argc) != 0)
-			return (0);
+			return (1);
 		stack_a = stack_generator(argc, argv, 1);
 	}
 	check_status(stack_a, stack_size(stack_a));
