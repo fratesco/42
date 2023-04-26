@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 09:12:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/24 18:04:16 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/26 12:06:41 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,17 @@ int	close_game(t_game *game)
 
 void	reset_game(t_game *game)
 {
+	char	*tmp;
+
+	game->coins->num = 0;
+	game->coins->max_num = 0;
+	tmp = ft_itoa(game->moves);
+	game->moves = 0;
+	mlx_string_put(game->mlx, game->wind, 0,
+		(game->height * 32), 0, "MOVES:");
+	mlx_string_put(game->mlx, game->wind, 64,
+		(game->height * 32), 0, tmp);
+	free(tmp);
 	get_positions(game, game->map);
 	game->game_iteration = 0;
 	game->frame = 0;
@@ -32,7 +43,6 @@ void	exit_handler(t_game *game, int x, int y)
 	i = 0;
 	while (i < game->exits)
 	{
-		ft_printf("cazzi");
 		if (x == game->exit_x[i] && y == game->exit_y[i])
 		{
 			game_freerer(game);
