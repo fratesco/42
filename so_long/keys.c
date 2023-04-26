@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:27:38 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/24 17:55:24 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/26 16:01:21 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	up_movement(t_game *game)
 	{
 		while (i < game->coins->num)
 		{
-			if (game->player->x == game->coins->x[i] &&
-				game->player->y == game->coins->y[i])
+			if (game->player->x == game->coins->x[i]
+				&& game->player->y == game->coins->y[i])
 			{
 				game->coins->x[i] = -1;
 				game->coins->y[i] = -1;
@@ -57,8 +57,8 @@ void	down_movement(t_game *game)
 	{
 		while (i < game->coins->num)
 		{
-			if (game->player->x == game->coins->x[i] &&
-				game->player->y == game->coins->y[i])
+			if (game->player->x == game->coins->x[i]
+				&& game->player->y == game->coins->y[i])
 			{
 				game->coins->x[i] = -1;
 				game->coins->y[i] = -1;
@@ -86,8 +86,8 @@ void	left_movement(t_game *game)
 	{
 		while (i < game->coins->num)
 		{
-			if (game->player->x == game->coins->x[i] &&
-				game->player->y == game->coins->y[i])
+			if (game->player->x == game->coins->x[i]
+				&&game->player->y == game->coins->y[i])
 			{
 				game->coins->x[i] = -1;
 				game->coins->y[i] = -1;
@@ -115,8 +115,8 @@ void	right_movement(t_game *game)
 	{
 		while (i < game->coins->num)
 		{
-			if (game->player->x == game->coins->x[i] &&
-				game->player->y == game->coins->y[i])
+			if (game->player->x == game->coins->x[i]
+				&&game->player->y == game->coins->y[i])
 			{
 				game->coins->x[i] = -1;
 				game->coins->y[i] = -1;

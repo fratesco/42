@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 10:46:14 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/24 17:03:11 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/26 15:56:38 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,18 @@ int	check_more(int exit, int coll, int start, t_game *game)
 	return (0);
 }
 
-void	map_displayer(char **map)
+void	initializer(t_game *game)
 {
-	int	i;
-
-	i = 0;
-	if (!map)
-		ft_printf("NULL\n");
-	while (map[i])
-	{
-		ft_printf("%s\n", map[i]);
-		i++;
-	}
+	game->exit_x = 0;
+	game->exit_y = 0;
+	game->coins->x = 0;
+	game->coins->y = 0;
+	game->coins->num = 0;
+	game->coins->max_num = 0;
+	game->coins->flag = 0;
+	game->exits = 0;
+	game->moves = 0;
+	game->frame = 0;
 }
 
 void	new_remover(char **map)

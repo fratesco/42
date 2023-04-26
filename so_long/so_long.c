@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 09:12:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/26 12:06:41 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/26 15:57:27 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	close_game(t_game *game)
 {
-	game_freerer(game);
+	game_freerer(game, game->map);
 	exit(0);
 }
 
@@ -45,7 +45,7 @@ void	exit_handler(t_game *game, int x, int y)
 	{
 		if (x == game->exit_x[i] && y == game->exit_y[i])
 		{
-			game_freerer(game);
+			game_freerer(game, game->map);
 			exit(0);
 		}
 		i++;
@@ -86,12 +86,7 @@ int	main(int argc, char **argv)
 	game.game_iteration = 0;
 	game.coins = &coins;
 	game.player = &player;
-	game.coins->num = 0;
-	game.coins->max_num = 0;
-	game.coins->flag = 0;
-	game.exits = 0;
-	game.moves = 0;
-	game.frame = 0;
+	initializer(&game);
 	game.filename = input_handler(argc, argv);
 	game.map = map_parser(game.filename, &game);
 	game.mlx = mlx_init();
@@ -101,6 +96,6 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(game.mlx, image_handler, &game);
 	mlx_key_hook(game.wind, key_handler, &game);
 	mlx_loop(game.mlx);
-	game_freerer(&game);
+	game_freerer(&game, game.map);
 	return (0);
 }
