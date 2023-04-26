@@ -1,29 +1,27 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+int	check(char c,  char *str, int len)
+{
+	int i = 0;
+	while (str[i] && (i < len || len == -1))
+	{
+		if (str[i++] == c)
+			return (1);
+	}
+	return (0);
+}
+
 int main(int argc, char **argv)
 {
+	int i;
 	if (argc == 3)
 	{
-		int i, j, k,z = 0;
+		i = 0;
 		while (argv[1][i])
 		{
-			j = 0;
-			while ((j < i && argv[1][j] != argv[1][i]) || (i == 0 && z == 0))
-			{
-				k = 0;
-				while (argv[2][k])
-				{
-					if (argv[2][k] == argv[1][i])
-					{
-						write(1, &argv[1][i], 1);
-						z++;
-						break ;
-					}
-					k++;
-				}
-				j++;
-			}
+			if (!check(argv[1][i], argv[1], i) && check(argv[1][i], argv[2], -1))
+				write(1, &argv[1][i], 1);
 			i++;
 		}
 	}
