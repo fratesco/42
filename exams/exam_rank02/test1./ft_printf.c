@@ -10,7 +10,7 @@ void ft_putstr(char *str, int *size)
 	else
 		while (str[i]) 
 		{
-			*size += write(1, &str[i], 1);
+			*size += write(1, &str[i++], 1);
 		}
 }
 
@@ -44,11 +44,11 @@ int	ft_printf(char *str, ...)
 			size += write(1, str, 1);
 		str++;
 	}
-	return (va_end(arg), size-=1);
+	return (va_end(arg), size);
 }
 
-int main (void)
-{
-	int i = 0;
-	put_base(ft_printf("robaaaaaa\0 %x\n", 32), "0123456789", 10, &i);
-}
+//int main (void)
+//{
+//	int i = 0;
+//	put_base(ft_printf("robaaaaaa\0 %x\n", 32), "0123456789", 10, &i);
+//}

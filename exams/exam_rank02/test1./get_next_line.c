@@ -24,6 +24,11 @@ char *get_next_line (int fd)
 int main (void)
 {
 	int fd = open("suca", O_RDONLY);
-	printf("%i : ", printf("%s", get_next_line(fd)));
+	ft_printf("%d\n", ft_printf("%s", get_next_line(fd)));
+	ft_printf("%d\n", ft_printf("%s", get_next_line(fd)));
+	ft_printf("%d\n", ft_printf("%s", get_next_line(fd)));
+	ft_printf("%d\n", ft_printf("%s", get_next_line(fd)));
+	ft_printf("%d\n", ft_printf("%s", get_next_line(fd)));
+	close(fd);
 	return 0;
 }
