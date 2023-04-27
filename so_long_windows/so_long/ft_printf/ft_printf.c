@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 12:24:50 by fgolino           #+#    #+#             */
-/*   Updated: 2023/02/01 18:00:09 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/27 09:43:23 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,6 @@ void	ft_putnbr(long nbr, size_t *n)
 		write(1, &(nbr), 1);
 		*n += 1;
 	}
-}
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
 }
 
 void	ft_putstr_special(const char *str, size_t *n)

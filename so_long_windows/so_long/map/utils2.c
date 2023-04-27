@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 17:57:28 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/20 15:25:24 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/26 15:48:23 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,8 @@ void	invalid_item(char **map, int len, int height, t_game *game)
 			if (c != '0' && c != '1' && c != 'E'
 				&& c != 'S' && c != 'P' && c != 'C')
 			{
-				ft_printf("%i %i", i, j);
 				ft_printf("Error\nInvalid Map Character\n");
-				game_freerer(game);
+				game_freerer(game, map);
 				exit (0);
 			}
 			j++;
@@ -64,11 +63,9 @@ void	get_positions(t_game *game, char **map)
 {
 	int	i;
 	int	j;
-	int	coins;
 	int	exits;
 
 	i = 0;
-	coins = 0;
 	exits = 0;
 	while (i < game->height)
 	{
@@ -76,25 +73,35 @@ void	get_positions(t_game *game, char **map)
 		while (j < game->lenght)
 		{
 			if (map[i][j] == 'C')
+				get_coin(game, j, i);
+			else if (map[i][j] == 'E')
 			{
-				game->coins->x[coins] = j;
-				game->coins->y[coins] = i;
-				coins++;
+				game->exit_x[game->exits] = j;
+				game->exit_y[game->exits] = i;
+				game->exits += 1;
 			}
-			if (map[i][j] == 'E')
-			{
-				game->exit_x[exits] = j;
-				game->exit_y[exits] = i;
-				exits++;
-			}
-			if (map[i][j] == 'P')
-			{
-				game->player->start_x = j;
-				game->player->start_x = i;
-			}
+			else if (map[i][j] == 'P')
+				get_player(game, j, i);
 			j++;
 		}
 		i++;
 	}
 }
 
+void	get_coin(t_game *game, int x, int y)
+{
+	game->coins->x[game->coins->num] = x;
+	game->coins->y[game->coins->num] = y;
+	game->coins->num += 1;
+	game->coins->max_num += 1;
+	game->coins->animation_step = 0;
+}
+
+void	get_player(t_game *game, int x, int y)
+{
+	game->player->start_x = x;
+	game->player->start_y = y;
+	game->player->x = x;
+	game->player->y = y;
+	game->player->velocity = STILL;
+}

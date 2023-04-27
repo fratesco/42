@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:38:34 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/22 13:21:16 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/27 09:42:38 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int		ft_strncmp(const char *str1, const char *str2, size_t n);
 void	*ft_memset(void *buffer, int byte, size_t len);
 void	ft_bzero(void *str, size_t len);
 void	*ft_memmove(void *dst, const void *src, size_t len);
-void	*ft_memcpy(void *dst, const void *src, size_t len);
-char	*ft_strchr(char *str, int c);
+//void	*ft_memcpy(void *dst, const void *src, size_t len);
+//char	*ft_strchr(char *str, int c);
 char	*ft_strrchr(char *str, int c);
 char	*ft_strnstr(const char *str, const char *to_find, size_t len);
 size_t	ft_strlcpy(char *dest, char const *src, size_t size);
@@ -47,7 +47,7 @@ size_t	ft_strlcat(char *dst, char const *src, size_t len);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strdup(char const *str1);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strjoin(char const *s1, char const *s2);
+//char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
