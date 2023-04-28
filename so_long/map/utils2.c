@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 17:57:28 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/26 15:48:23 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/28 17:42:01 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,12 @@ void	invalid_item(char **map, int len, int height, t_game *game)
 	}
 }
 
-void	get_positions(t_game *game, char **map)
+void	get_positions(t_game *game, char **map, int exits)
 {
 	int	i;
 	int	j;
-	int	exits;
 
 	i = 0;
-	exits = 0;
 	while (i < game->height)
 	{
 		j = 0;
@@ -82,6 +80,8 @@ void	get_positions(t_game *game, char **map)
 			}
 			else if (map[i][j] == 'P')
 				get_player(game, j, i);
+			else if (map[i][j] == 'N')
+				get_enemy(game, j, i, 0);
 			j++;
 		}
 		i++;
@@ -104,4 +104,5 @@ void	get_player(t_game *game, int x, int y)
 	game->player->x = x;
 	game->player->y = y;
 	game->player->velocity = STILL;
+	game->player->status = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 09:12:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/28 15:18:27 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/28 17:47:09 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,27 @@ int	close_game(t_game *game)
 void	reset_game(t_game *game)
 {
 	char	*tmp;
+	int		i;
 
+	i = 7;
 	game->coins->num = 0;
 	game->coins->max_num = 0;
 	tmp = ft_itoa(game->moves);
 	game->moves = 0;
 	mlx_string_put(game->mlx, game->wind, 0,
 		(game->height * 32), 0, "MOVES:");
-	mlx_string_put(game->mlx, game->wind, 64,
-		(game->height * 32), 0, tmp);
+	while (i-- >= 4)
+	{
+		mlx_string_put(game->mlx, game->wind, 64,
+			(game->height * 32), 0, tmp);
+	}
+	while (i-- >= 0)
+	{
+		mlx_string_put(game->mlx, game->wind, (((game->lenght / 2) - 2) * 32),
+			(game->height * 32), 0, "YOU DIED");
+	}
 	free(tmp);
-	get_positions(game, game->map);
+	get_positions(game, game->map, 0);
 	game->game_iteration = 0;
 	game->frame = 0;
 }
@@ -82,10 +92,12 @@ int	main(int argc, char **argv)
 	t_game		game;
 	t_coin		coins;
 	t_player	player;
+	t_enemy		enemy;
 
 	game.game_iteration = 0;
 	game.coins = &coins;
 	game.player = &player;
+	game.enemy = &enemy;
 	initializer(&game);
 	game.filename = input_handler(argc, argv);
 	game.map = map_parser(game.filename, &game);

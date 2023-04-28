@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:26:07 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/28 15:18:22 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/28 17:01:34 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	xpm_handler(t_game *game)
 			= mlx_xpm_file_to_image(game->mlx, TERRAIN, &pix, &pix);
 		game->exit_sprite
 			= mlx_xpm_file_to_image(game->mlx, EXIT, &pix, &pix);
+		game->enemy->sprite
+			= mlx_xpm_file_to_image(game->mlx, ENEMY, &pix, &pix);
 		mlx_string_put(game->mlx, game->wind, 64,
 			(game->height * 32), 16777215, "0");
 	}
@@ -48,18 +50,8 @@ void	print_game_start(t_game *game, int pix, int i, int j)
 		{
 			mlx_put_image_to_window(game->mlx, game->wind,
 				game->terrain_sprite, (j * pix), (i * pix));
-			if (game->map[i][j] == '1')
-				mlx_put_image_to_window(game->mlx, game->wind,
-					game->walls_sprite, (j * pix), (i * pix));
-			if (game->map[i][j] == 'E')
-				mlx_put_image_to_window(game->mlx, game->wind,
-					game->exit_sprite, (j * pix), (i * pix));
-			if (game->map[i][j] == 'P')
-				mlx_put_image_to_window(game->mlx, game->wind,
-					game->player->sprite, (j * pix), (i * pix));
-			if (game->map[i][j] == 'C')
-				mlx_put_image_to_window(game->mlx, game->wind,
-					game->coins->sprite[0], (j * pix), (i * pix));
+			if (game->map[i][j] != '0')
+				load_stuff(game, i, j, pix);
 			j++;
 		}
 		i++;

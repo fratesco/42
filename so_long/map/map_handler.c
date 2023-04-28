@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:02:40 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/26 15:58:56 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/28 15:52:09 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	**map_parser(char *file, t_game *game)
 	close(fd);
 	game->lenght = ft_strlen(map[0]) - 1;
 	map_checker(map, game->lenght, game->height, game);
-	get_positions(game, map);
+	get_positions(game, map, 0);
 	return (map);
 }
 
@@ -38,7 +38,7 @@ void	map_checker(char **map, int len, int height, t_game *game)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	new_remover(map);
 	if (len < 3 || height < 3 || map_size(map, height - 1) || len + height < 8)
 	{
@@ -54,7 +54,7 @@ void	map_checker(char **map, int len, int height, t_game *game)
 		game_freerer(game, map);
 		exit(0);
 	}
-	if (check_items(map, i, game))
+	if (check_items(map, i, game, 0))
 	{
 		ft_printf("Error\nA key component is missing\n");
 		game_freerer(game, map);
@@ -108,4 +108,8 @@ void	game_freerer(t_game *game, char **map)
 		free(game->exit_x);
 	if (game->exit_y)
 		free(game->exit_y);
+	if (game->enemy->x)
+		free(game->enemy->x);
+	if (game->enemy->y)
+		free(game->enemy->y);
 }
