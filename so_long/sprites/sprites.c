@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:26:07 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/26 11:49:20 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/28 15:18:22 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	xpm_handler(t_game *game)
 			= mlx_xpm_file_to_image(game->mlx, PLAYER, &pix, &pix);
 		game->terrain_sprite
 			= mlx_xpm_file_to_image(game->mlx, TERRAIN, &pix, &pix);
+		game->exit_sprite
+			= mlx_xpm_file_to_image(game->mlx, EXIT, &pix, &pix);
 		mlx_string_put(game->mlx, game->wind, 64,
 			(game->height * 32), 16777215, "0");
 	}
@@ -49,9 +51,9 @@ void	print_game_start(t_game *game, int pix, int i, int j)
 			if (game->map[i][j] == '1')
 				mlx_put_image_to_window(game->mlx, game->wind,
 					game->walls_sprite, (j * pix), (i * pix));
-			else if (game->map[i][j] != '1')
+			if (game->map[i][j] == 'E')
 				mlx_put_image_to_window(game->mlx, game->wind,
-					game->terrain_sprite, (j * pix), (i * pix));
+					game->exit_sprite, (j * pix), (i * pix));
 			if (game->map[i][j] == 'P')
 				mlx_put_image_to_window(game->mlx, game->wind,
 					game->player->sprite, (j * pix), (i * pix));
@@ -104,7 +106,7 @@ void	coins_handler(t_game *game, int x, int y)
 	mlx_string_put(game->mlx, game->wind, 64,
 		(game->height * 32), 0, tmp);
 	free(tmp);
-	while (i < game->coins->num)
+	while (i < game->coins->max_num)
 	{
 		if (x == game->coins->x[i] && y == game->coins->y[i])
 		{

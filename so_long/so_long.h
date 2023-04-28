@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:01:05 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/26 15:57:12 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/28 14:59:00 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define COLLECTIBLE "/Users/fgolino/42_git/so_long/sprites/estus.xpm"
 # define OBSTACLE "sprites/"
 # define TERRAIN "/Users/fgolino/42_git/so_long/sprites/terrain.xpm"
+# define EXIT "/Users/fgolino/42_git/so_long/sprites/exit.xpm"
 # define UP 0
 # define DOWN 1
 # define LEFT 2
@@ -68,6 +69,7 @@ typedef struct s_game
 	int			moves;
 	void		*walls_sprite;
 	void		*terrain_sprite;
+	void		*exit_sprite;
 	t_player	*player;
 	t_coin		*coins;
 }	t_game;

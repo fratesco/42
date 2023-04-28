@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:27:38 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/26 16:01:21 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/04/28 15:32:57 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,16 @@ void	up_movement(t_game *game)
 
 	i = 0;
 	position = game->player->y - 1;
-	if (position >= 0 && game->map[position][game->player->x] != '1')
+	if (position >= 0 && (game->map[position][game->player->x] == 'E'
+		&& game->coins->num > 0))
+	{
+		mlx_string_put(game->mlx, game->wind, ((game->lenght - 5) * 32),
+			(game->height * 32), 16777215, "EXIT CLOSED");
+	}
+	else if (position >= 0 && game->map[position][game->player->x] != '1' )
 	{
 		game->player->velocity = UP;
 		game->player->y = position;
-	}
-	if (position >= 0 && game->map[position][game->player->x] == 'C')
-	{
-		while (i < game->coins->num)
-		{
-			if (game->player->x == game->coins->x[i]
-				&& game->player->y == game->coins->y[i])
-			{
-				game->coins->x[i] = -1;
-				game->coins->y[i] = -1;
-				game->coins->num -= 1;
-				game->coins->flag = TAKEN;
-			}
-			i++;
-		}
 	}
 }
 
@@ -48,25 +39,16 @@ void	down_movement(t_game *game)
 
 	i = 0;
 	position = game->player->y + 1;
-	if (position >= 0 && game->map[position][game->player->x] != '1')
+	if (position >= 0 && (game->map[position][game->player->x] == 'E'
+		&& game->coins->num > 0))
+	{
+		mlx_string_put(game->mlx, game->wind, ((game->lenght - 5) * 32),
+			(game->height * 32), 16777215, "EXIT CLOSED");
+	}
+	else if (position >= 0 && game->map[position][game->player->x] != '1')
 	{
 		game->player->velocity = DOWN;
 		game->player->y = position;
-	}
-	if (position >= 0 && game->map[position][game->player->x] == 'C')
-	{
-		while (i < game->coins->num)
-		{
-			if (game->player->x == game->coins->x[i]
-				&& game->player->y == game->coins->y[i])
-			{
-				game->coins->x[i] = -1;
-				game->coins->y[i] = -1;
-				game->coins->num -= 1;
-				game->coins->flag = TAKEN;
-			}
-			i++;
-		}
 	}
 }
 
@@ -77,25 +59,16 @@ void	left_movement(t_game *game)
 
 	i = 0;
 	position = game->player->x - 1;
-	if (position >= 0 && game->map[game->player->y][position] != '1')
+	if (position >= 0 && (game->map[game->player->y][position] == 'E'
+		&& game->coins->num > 0))
+	{
+		mlx_string_put(game->mlx, game->wind, ((game->lenght - 5) * 32),
+			(game->height * 32), 16777215, "EXIT CLOSED");
+	}
+	else if (position >= 0 && game->map[game->player->y][position] != '1')
 	{
 		game->player->velocity = LEFT;
 		game->player->x = position;
-	}
-	if (position >= 0 && game->map[game->player->y][position] == 'C')
-	{
-		while (i < game->coins->num)
-		{
-			if (game->player->x == game->coins->x[i]
-				&&game->player->y == game->coins->y[i])
-			{
-				game->coins->x[i] = -1;
-				game->coins->y[i] = -1;
-				game->coins->num -= 1;
-				game->coins->flag = TAKEN;
-			}
-			i++;
-		}
 	}
 }
 
@@ -106,25 +79,16 @@ void	right_movement(t_game *game)
 
 	i = 0;
 	position = game->player->x + 1;
-	if (position >= 0 && game->map[game->player->y][position] != '1')
+	if (position >= 0 && (game->map[game->player->y][position] == 'E'
+		&& game->coins->num > 0))
+	{
+		mlx_string_put(game->mlx, game->wind, ((game->lenght - 5) * 32),
+			(game->height * 32), 16777215, "EXIT CLOSED");
+	}
+	else if (position >= 0 && game->map[game->player->y][position] != '1')
 	{
 		game->player->velocity = RIGHT;
 		game->player->x = position;
-	}
-	if (position >= 0 && game->map[game->player->y][position] == 'C')
-	{
-		while (i < game->coins->num)
-		{
-			if (game->player->x == game->coins->x[i]
-				&&game->player->y == game->coins->y[i])
-			{
-				game->coins->x[i] = -1;
-				game->coins->y[i] = -1;
-				game->coins->num -= 1;
-				game->coins->flag = TAKEN;
-			}
-			i++;
-		}
 	}
 }
 
