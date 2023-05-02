@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:26:07 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/28 17:01:34 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/05/02 15:52:28 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	print_game_start(t_game *game, int pix, int i, int j)
 {
 	while (game->map[i] && game->frame == 0)
 	{
+		game->coins->sprite[1]
+			= mlx_xpm_file_to_image(game->mlx, COLLECTIBLE2, &pix, &pix);
 		j = 0;
 		while (game->map[i][j])
 		{
@@ -69,6 +71,7 @@ int	image_handler(t_game *game)
 	if (game->game_iteration == 0)
 		xpm_handler(game);
 	game->frame += 1;
+	animation(game, game->coins, 32);
 	if (game->player->velocity != STILL)
 	{
 		x = game->player->x;

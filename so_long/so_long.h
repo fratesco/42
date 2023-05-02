@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:01:05 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/28 17:26:49 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/05/02 15:52:43 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define TERRAIN "/Users/fgolino/42_git/so_long/sprites/terrain.xpm"
 # define EXIT "/Users/fgolino/42_git/so_long/sprites/exit.xpm"
 # define ENEMY "/Users/fgolino/42_git/so_long/sprites/enemy.xpm"
+# define COLLECTIBLE2 "/Users/fgolino/42_git/so_long/sprites/estus2.xpm"
 # define UP 0
 # define DOWN 1
 # define LEFT 2
@@ -116,4 +117,5 @@ void	down_movement(t_game *game);
 void	velocity_handler(t_game *game, int x, int y);
 void	coins_handler(t_game *game, int x, int y);
 void	exit_handler(t_game *game, int x, int y);
+void	animation(t_game *game, t_coin *coins, int p);
 #endif
