@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:38:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/05/02 16:54:14 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/05/09 17:52:46 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	animation(t_game *game, t_coin *coins, int p)
 	{
 		if (game->coins->x[i] != -1)
 		{
-			if (coins->animation_step % 6 == 0)
+			if (coins->animation_step % (game->coins->max_num + 1) == 0)
 			{
 				mlx_put_image_to_window(game->mlx, game->wind,
 					game->terrain_sprite, (coins->x[i] * p), (coins->y[i] * p));
@@ -71,4 +71,13 @@ void	animation(t_game *game, t_coin *coins, int p)
 		game->coins->animation_step++;
 		i++;
 	}
+}
+
+void	image_destroyer(t_game *game)
+{
+	mlx_destroy_image(game->mlx, game->walls_sprite);
+	mlx_destroy_image(game->mlx, game->exit_sprite);
+	mlx_destroy_image(game->mlx, game->player->sprite);
+	mlx_destroy_image(game->mlx, game->coins->sprite[0]);
+	mlx_destroy_image(game->mlx, game->coins->sprite[1]);
 }

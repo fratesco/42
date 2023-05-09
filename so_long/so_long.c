@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 09:12:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/28 17:47:09 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/05/09 17:56:52 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	reset_game(t_game *game)
 	free(tmp);
 	get_positions(game, game->map, 0);
 	game->game_iteration = 0;
+	image_destroyer(game);
 	game->frame = 0;
 }
 

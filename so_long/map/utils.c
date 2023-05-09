@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 10:46:14 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/28 17:27:13 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/05/09 17:54:00 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ int	check_items(char **map, int i, t_game *game, int enemy)
 	return (check_more(exit, coll, start, game));
 }
 
-int	check_more(int exit, int coll, int start, t_game *game)
+int	check_more(int rexit, int coll, int start, t_game *game)
 {
 	game->coins->x = (int *)malloc(coll * sizeof(int));
 	game->coins->y = (int *)malloc(coll * sizeof(int));
-	game->exit_x = (int *)malloc(exit * sizeof(int));
-	game->exit_y = (int *)malloc(exit * sizeof(int));
-	if (exit == 0 || coll == 0 || start == 0)
+	game->exit_x = (int *)malloc(rexit * sizeof(int));
+	game->exit_y = (int *)malloc(rexit * sizeof(int));
+	if (rexit == 0 || coll == 0 || start == 0)
 		return (1);
 	if (start > 1)
 		return (1);

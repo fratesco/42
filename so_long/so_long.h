@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:01:05 by fgolino           #+#    #+#             */
-/*   Updated: 2023/05/02 15:52:43 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/05/09 17:53:15 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,4 +118,5 @@ void	velocity_handler(t_game *game, int x, int y);
 void	coins_handler(t_game *game, int x, int y);
 void	exit_handler(t_game *game, int x, int y);
 void	animation(t_game *game, t_coin *coins, int p);
+void	image_destroyer(t_game *game);
 #endif

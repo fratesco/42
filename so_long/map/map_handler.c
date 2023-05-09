@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 18:02:40 by fgolino           #+#    #+#             */
-/*   Updated: 2023/04/28 15:52:09 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/05/09 17:53:24 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	map_checker(char **map, int len, int height, t_game *game)
 	}
 	if (check_items(map, i, game, 0))
 	{
-		ft_printf("Error\nA key component is missing\n");
+		ft_printf("Error\nA key component is missing or too many spawns\n");
 		game_freerer(game, map);
 		exit(0);
 	}
@@ -112,4 +112,5 @@ void	game_freerer(t_game *game, char **map)
 		free(game->enemy->x);
 	if (game->enemy->y)
 		free(game->enemy->y);
+	image_destroyer(game);
 }
