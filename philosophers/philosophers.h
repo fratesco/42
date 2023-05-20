@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 13:32:37 by fgolino           #+#    #+#             */
-/*   Updated: 2023/05/20 13:21:12 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/05/20 13:22:57 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ typedef struct s_info
 	int				sleep_time;
 	int				num_philo;
 	int				eat_num;
+	t_philo			*philosophers;
 	pthread_mutex_t	*forks;
-	t_philo	*philosophers;
 }	t_info;
 
 typedef struct s_philo
@@ -46,4 +46,5 @@ int		error_handler(int id);
 int		ft_atoi(const char *str);
 void	philo_genearator(t_info *info);
 int		argument_checker(int argc, char **argv);
+void	argument_handler(t_info *info, int argc, char **argv);
 #endif
