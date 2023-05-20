@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:58:21 by fgolino           #+#    #+#             */
-/*   Updated: 2023/05/20 11:11:26 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/05/20 13:25:25 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ void	philo_genearator(t_info *info)
 		info->philosophers[i].is_dead = 0;
 		info->philosophers[i].eat_num = 0;
 		info->philosophers[i].last_meal = 0;
+		info->philosophers[i].info = info;
 	}
 }

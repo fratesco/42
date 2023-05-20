@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:36:40 by fgolino           #+#    #+#             */
-/*   Updated: 2023/05/20 10:37:00 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/05/20 13:28:12 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,13 @@ int	ft_atoi(const char *str)
 	if (sign % 2 == 0)
 		return (num);
 	return (-num);
+}
+
+void	freerer(t_info *info)
+{
+	if (info->forks)
+		free(info->forks);
+	if (info->philosophers)
+		free(info->philosophers);
+	
 }
