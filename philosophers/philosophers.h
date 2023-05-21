@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 13:32:37 by fgolino           #+#    #+#             */
-/*   Updated: 2023/05/20 17:48:58 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/05/21 16:59:32 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_info
 	int				time_eat;
 	int				time_death;
 	int				sleep_time;
-	int				start_time;
+	u_int16_t		start_time;
 	int				num_philo;
 	int				eat_num;
 	t_philo			*philosophers;
