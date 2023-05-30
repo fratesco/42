@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:36:40 by fgolino           #+#    #+#             */
-/*   Updated: 2023/05/30 12:07:33 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/05/30 12:29:20 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,14 @@ void	print_action(t_info *info, t_philo *philo)
 
 	gettimeofday(&t, NULL);
 	time = (t.tv_sec * 1000) + (t.tv_usec / 1000) - info->start_time;
+	if (philo->is_dead)
+		printf("%llu %i died", time, philo->philo_id);
+	else if (philo->action == SLEEPING)
+		printf("%llu %i is sleeping", time, philo->philo_id);
+	else if (philo->action == EATING)
+		printf("%llu %i is eating", time, philo->philo_id);
+	else if (philo->action == THINKING)
+		printf("%llu %i is thinking", time, philo->philo_id);
+	else if (philo->action == PICKING_FORK)
+		printf("%llu %i has taken a fork", time, philo->philo_id);
 }
