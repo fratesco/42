@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 13:32:37 by fgolino           #+#    #+#             */
-/*   Updated: 2023/05/21 16:59:32 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/05/30 11:29:54 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,22 @@
 # include <sys/time.h>
 # include <pthread.h>
 
+# define THINKING 0
+# define PICKING FORK 1
+# define EATING 2
+# define SLEEPING 3
+
 typedef struct s_info
 {
-	pthread_t		*tid;
-	int				time_eat;
-	int				time_death;
-	int				sleep_time;
-	u_int16_t		start_time;
-	int				num_philo;
-	int				eat_num;
-	t_philo			*philosophers;
-	pthread_mutex_t	*forks;
+	pthread_t			*tid;
+	int					time_eat;
+	int					time_death;
+	int					sleep_time;
+	long long int		start_time;
+	int					num_philo;
+	int					eat_num;
+	t_philo				*philosophers;
+	pthread_mutex_t		*forks;
 }	t_info;
 
 typedef struct s_philo
