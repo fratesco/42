@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:36:40 by fgolino           #+#    #+#             */
-/*   Updated: 2023/05/30 11:28:19 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/05/30 12:07:33 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,9 @@ void	freerer(t_info *info)
 
 void	print_action(t_info *info, t_philo *philo)
 {
-	
+	unsigned long long int	time;
+	struct timeval			t;
+
+	gettimeofday(&t, NULL);
+	time = (t.tv_sec * 1000) + (t.tv_usec / 1000) - info->start_time;
 }

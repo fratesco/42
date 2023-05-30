@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:25:12 by fgolino           #+#    #+#             */
-/*   Updated: 2023/05/20 11:19:16 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/05/30 11:57:45 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ int	argument_checker(int argc, char **argv)
 
 void	argument_handler(t_info *info, int argc, char **argv)
 {
-	int	i;
+	int				i;
+	struct timeval	t;
 
 	info->num_philo = ft_atoi(argv[1]);
 	info->time_death = ft_atoi(argv[2]);
@@ -62,6 +63,8 @@ void	argument_handler(t_info *info, int argc, char **argv)
 		info->eat_num = ft_atoi(argv[5]);
 	else
 		info->eat_num = -1;
+	gettimeofday(&t, NULL);
+	info->start_time = (t.tv_sec * 1000) + (t.tv_usec / 1000);
 }
 
 int	main(int argc, char **argv)
