@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 13:32:37 by fgolino           #+#    #+#             */
-/*   Updated: 2023/05/30 12:07:48 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:58:57 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,6 @@ void	philo_genearator(t_info *info);
 int		argument_checker(int argc, char **argv);
 void	argument_handler(t_info *info, int argc, char **argv);
 void	freerer(t_info *info);
+void	print_action(t_info *info, t_philo *philo);
+void	fork_generator(t_info *info);
 #endif

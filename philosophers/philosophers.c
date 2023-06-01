@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:25:12 by fgolino           #+#    #+#             */
-/*   Updated: 2023/05/30 11:57:45 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/01 16:58:03 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,16 @@ void	argument_handler(t_info *info, int argc, char **argv)
 	info->start_time = (t.tv_sec * 1000) + (t.tv_usec / 1000);
 }
 
+void	fork_generator(t_info *info)
+{
+	int	i;
+
+	i = 0;
+	info->forks = malloc(sizeof(pthread_mutex_t) * info->num_philo);
+	while (i < info->num_philo)
+		pthread_mutex_init(&(info->forks[i++]), NULL);
+}
+
 int	main(int argc, char **argv)
 {
 	t_info	info;
@@ -79,5 +89,6 @@ int	main(int argc, char **argv)
 		return (1);
 	else
 		argument_handler(&info, argc, argv);
+	fork_generator(&info);
 	philo_generator(&info);
 }
