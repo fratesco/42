@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:58:21 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/01 17:03:51 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/01 17:16:51 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,15 @@ void	philo_genearator(t_info *info)
 		info->philosophers[i].left_fork = &(info->fork[i]);
 		info->philosophers[i].right_fork = &(info->fork[(i + 1) % info->num_philo];
 	}
+}
+
+void	start_philo_thread(t_info *info)
+{
+	int	i;
+
+	i = 0;
+	while (i < info->num_philo)
+		pthread_create(info->philosophers[i].id, NULL, &philo_routine, (void *)info->philosophers[i++]);
+	
+	
 }

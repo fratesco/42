@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:36:40 by fgolino           #+#    #+#             */
-/*   Updated: 2023/05/30 12:29:20 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/01 17:10:14 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	freerer(t_info *info)
 		free(info->forks);
 	if (info->philosophers)
 		free(info->philosophers);
-	if (info->tid)
-		free(info->tid);
 }
 
 void	print_action(t_info *info, t_philo *philo)

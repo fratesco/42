@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 13:32:37 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/01 16:58:57 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/01 17:19:19 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@
 
 typedef struct s_info
 {
-	pthread_t					*tid;
 	int							time_eat;
 	int							time_death;
 	int							sleep_time;
 	unsigned long long int		start_time;
 	int							num_philo;
 	int							eat_num;
+	int							philo_dead;
 	t_philo						*philosophers;
 	pthread_mutex_t				*forks;
 }	t_info;
@@ -46,6 +46,7 @@ typedef struct s_philo
 	int				eat_num;
 	int				last_meal;
 	t_info			*info;
+	pthread_t		thread_id;
 	pthread_mutex_t	write_right;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;	
