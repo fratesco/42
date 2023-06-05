@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 13:32:37 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/01 17:19:19 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/05 14:56:47 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_info
 	int							eat_num;
 	int							philo_dead;
 	t_philo						*philosophers;
+	pthread_mutex_t				write_right;
 	pthread_mutex_t				*forks;
 }	t_info;
 
@@ -47,7 +48,6 @@ typedef struct s_philo
 	int				last_meal;
 	t_info			*info;
 	pthread_t		thread_id;
-	pthread_mutex_t	write_right;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;	
 }	t_philo;
@@ -60,4 +60,6 @@ void	argument_handler(t_info *info, int argc, char **argv);
 void	freerer(t_info *info);
 void	print_action(t_info *info, t_philo *philo);
 void	fork_generator(t_info *info);
+void	start_philo_thread(t_info *info);
+void	philo_death(t_philo *philo);
 #endif

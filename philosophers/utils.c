@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:36:40 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/01 17:10:14 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/05 15:02:24 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,26 @@ void	freerer(t_info *info)
 		free(info->philosophers);
 }
 
+void	philo_death(t_philo *philo)
+{
+	pthread_mutex_lock(philo->info->write_right);
+	print_action(philo->info, philo);
+	pthread_mutex_unlock(philo->info->write_right);
+}
+
+unsigned long long int	get_time(t_info *info)
+{
+	struct timeval	t;
+
+	gettimeofday(&t, NULL);
+	return ((t.tv_sec * 1000) + (t.tv_usec / 1000) - info->start_time);
+}
+
 void	print_action(t_info *info, t_philo *philo)
 {
 	unsigned long long int	time;
-	struct timeval			t;
 
-	gettimeofday(&t, NULL);
-	time = (t.tv_sec * 1000) + (t.tv_usec / 1000) - info->start_time;
+	time = get_time(info);
 	if (philo->is_dead)
 		printf("%llu %i died", time, philo->philo_id);
 	else if (philo->action == SLEEPING)
