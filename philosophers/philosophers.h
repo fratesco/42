@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 13:32:37 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/05 14:56:47 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/06 17:34:32 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,19 @@
 # define EATING 2
 # define SLEEPING 3
 
+typedef struct s_philo
+{
+	int				philo_id;
+	int				action;
+	int				is_dead;
+	int				eat_num;
+	int				last_meal;
+	struct s_info	*info;
+	pthread_t		thread_id;
+	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	*left_fork;	
+}	t_philo;
+
 typedef struct s_info
 {
 	int							time_eat;
@@ -39,27 +52,19 @@ typedef struct s_info
 	pthread_mutex_t				*forks;
 }	t_info;
 
-typedef struct s_philo
-{
-	int				philo_id;
-	int				action;
-	int				is_dead;
-	int				eat_num;
-	int				last_meal;
-	t_info			*info;
-	pthread_t		thread_id;
-	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	*left_fork;	
-}	t_philo;
-
-int		error_handler(int id);
-int		ft_atoi(const char *str);
-void	philo_genearator(t_info *info);
-int		argument_checker(int argc, char **argv);
-void	argument_handler(t_info *info, int argc, char **argv);
-void	freerer(t_info *info);
-void	print_action(t_info *info, t_philo *philo);
-void	fork_generator(t_info *info);
-void	start_philo_thread(t_info *info);
-void	philo_death(t_philo *philo);
+int						error_handler(int id);
+int						ft_atoi(const char *str);
+void					philo_generator(t_info *info);
+int						argument_checker(int argc, char **argv);
+void					argument_handler(t_info *info, int argc, char **argv);
+void					freerer(t_info *info);
+void					print_action(t_info *info, t_philo *philo);
+void					fork_generator(t_info *info);
+void					start_philo_thread(t_info *info);
+void					*philo_death(t_philo *philo);
+int						is_dead(t_philo *philo);
+void					philo_eater(t_philo *philo);
+void					lock_forks(t_philo	*philo);
+void					*philo_routine(void *plato);
+unsigned long long int	get_time(t_info *info);
 #endif

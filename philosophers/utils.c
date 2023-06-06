@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:36:40 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/05 15:02:24 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/06 17:33:55 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,12 @@ void	freerer(t_info *info)
 		free(info->philosophers);
 }
 
-void	philo_death(t_philo *philo)
+void	*philo_death(t_philo *philo)
 {
-	pthread_mutex_lock(philo->info->write_right);
+	pthread_mutex_lock(&(philo->info->write_right));
 	print_action(philo->info, philo);
-	pthread_mutex_unlock(philo->info->write_right);
+	pthread_mutex_unlock(&(philo->info->write_right));
+	return (0);
 }
 
 unsigned long long int	get_time(t_info *info)

@@ -6,13 +6,13 @@
 #    By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/20 10:45:15 by fgolino           #+#    #+#              #
-#    Updated: 2023/05/21 14:51:43 by fgolino          ###   ########.fr        #
+#    Updated: 2023/06/06 17:16:24 by fgolino          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= philophers
+NAME	:= philosophers
 
-SRC		:= philosophers.c utils.c philo_stuff.c
+SRC		:= philosophers.c utils.c philo_stuff.c more_stuff.c
 
 OBJ		:= $(SRC:.c=.o)
 
