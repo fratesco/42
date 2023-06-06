@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 13:32:37 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/06 17:52:03 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/06 18:42:23 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int						error_handler(int id);
 int						ft_atoi(const char *str);
 void					philo_generator(t_info *info);
 int						argument_checker(int argc, char **argv);
-int					argument_handler(t_info *info, int argc, char **argv);
+int						argument_handler(t_info *info, int argc, char **argv);
 void					freerer(t_info *info);
 void					print_action(t_info *info, t_philo *philo);
 void					fork_generator(t_info *info);
@@ -68,4 +68,6 @@ void					philo_eater(t_philo *philo);
 void					lock_forks(t_philo	*philo);
 void					*philo_routine(void *plato);
 unsigned long long int	get_time(t_info *info);
+int						full_or_dead(t_philo *philo);
+int						all_full(t_info *info);
 #endif

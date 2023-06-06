@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:05:43 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/06 18:16:39 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/06 18:41:34 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ int	is_dead(t_philo *philo)
 		return (1);
 	else
 		return (0);
+}
+
+int	full_or_dead(t_philo *philo)
+{
+	if (!is_dead(philo) && !all_full(philo->info) && !philo->info->philo_dead)
+		return (0);
+	return (1);
 }
 
 int	all_full(t_info *info)
