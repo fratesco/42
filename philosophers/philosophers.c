@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:25:12 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/06 18:00:36 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/06 18:10:22 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ int	main(int argc, char **argv)
 {
 	t_info	info;
 
-	printf("qua");
 	if (argc < 5)
 		return (error_handler(1));
 	else if (argc > 6)

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:36:40 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/06 17:33:55 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/06 18:25:09 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ void	print_action(t_info *info, t_philo *philo)
 
 	time = get_time(info);
 	if (philo->is_dead)
-		printf("%llu %i died", time, philo->philo_id);
+		printf("%llu %i died\n", time, philo->philo_id);
 	else if (philo->action == SLEEPING)
-		printf("%llu %i is sleeping", time, philo->philo_id);
+		printf("%llu %i is sleeping\n", time, philo->philo_id);
 	else if (philo->action == EATING)
-		printf("%llu %i is eating", time, philo->philo_id);
+		printf("%llu %i is eating\n", time, philo->philo_id);
 	else if (philo->action == THINKING)
-		printf("%llu %i is thinking", time, philo->philo_id);
+		printf("%llu %i is thinking\n", time, philo->philo_id);
 	else if (philo->action == PICKING_FORK)
-		printf("%llu %i has taken a fork", time, philo->philo_id);
+		printf("%llu %i has taken a fork\n", time, philo->philo_id);
 }

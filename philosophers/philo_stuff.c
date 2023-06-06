@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:58:21 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/06 17:38:14 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/06 18:32:25 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,12 @@ void	philo_generator(t_info *info)
 		info->philosophers[i].last_meal = 0;
 		info->philosophers[i].info = info;
 		info->philosophers[i].left_fork = &(info->forks[i]);
-		info->philosophers[i].right_fork = &(info->forks[(i + 1)
-				% info->num_philo]);
+		if (info->num_philo > 1)
+			info->philosophers[i].right_fork = &(info->forks[(i + 1)
+					% info->num_philo]);
+		else
+			info->philosophers[i].right_fork = 0;
+		i++;
 	}
 }
 
@@ -52,16 +56,19 @@ void	start_philo_thread(t_info *info)
 void	philo_eater(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->info->write_right);
-	if (philo->info->philo_dead == 0 && is_dead(philo) == 0)
+	if (philo->info->philo_dead == 0 && is_dead(philo) == 0
+		&& philo->right_fork != 0)
 	{
 		philo->action = EATING;
 		print_action(philo->info, philo);
+		philo->last_meal = get_time(philo->info);
 		pthread_mutex_unlock(&philo->info->write_right);
 		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
 		usleep((philo->info->time_eat) * 1000);
 	}
-	if (philo->info->philo_dead == 0 && is_dead(philo) == 0)
+	if (philo->info->philo_dead == 0 && is_dead(philo) == 0
+		&& philo->right_fork != 0)
 	{
 		philo->action = SLEEPING;
 		print_action(philo->info, philo);
@@ -82,7 +89,10 @@ void	lock_forks(t_philo	*philo)
 		return ;
 	}
 	pthread_mutex_unlock(&philo->info->write_right);
-	pthread_mutex_lock(philo->right_fork);
+	if (philo->right_fork == 0)
+		usleep(philo->info->time_death * 1000);
+	else
+		pthread_mutex_lock(philo->right_fork);
 	pthread_mutex_lock(&philo->info->write_right);
 	if (philo->info->philo_dead == 0 && is_dead(philo) == 0)
 		print_action(philo->info, philo);
@@ -92,8 +102,6 @@ void	lock_forks(t_philo	*philo)
 		return ;
 	}
 	pthread_mutex_unlock(&philo->info->write_right);
-	if (philo->info->philo_dead == 0 && is_dead(philo) == 0)
-		philo_eater(philo);
 }
 
 void	*philo_routine(void *plato)
@@ -116,5 +124,8 @@ void	*philo_routine(void *plato)
 		}
 		if (!(philo->info->philo_dead == 1) && philo->is_dead == 0)
 			lock_forks(philo);
+		if (philo->info->philo_dead == 0 && is_dead(philo) == 0
+			&& philo->right_fork != 0)
+			philo_eater(philo);
 	}
 }
