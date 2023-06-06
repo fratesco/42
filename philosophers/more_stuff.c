@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:05:43 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/06 17:35:14 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/06 17:51:55 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,27 @@ int	is_dead(t_philo *philo)
 		return (1);
 	else
 		return (0);
+}
+
+int	all_full(t_info *info)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	if (info->eat_num > 0)
+	{
+		while (i < info->num_philo)
+		{
+			if (info->philosophers[i].action == FULL)
+				j++;
+			else
+				return (0);
+			i++;
+		}
+		if (j == info->num_philo)
+			return (1);
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:58:21 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/06 17:33:41 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/06 17:38:14 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	*philo_routine(void *plato)
 			philo->info->philo_dead = 1;
 			continue ;
 		}
-		if (!philo->info->philo_dead == 1 && philo->is_dead == 0)
+		if (!(philo->info->philo_dead == 1) && philo->is_dead == 0)
 			lock_forks(philo);
 	}
 }

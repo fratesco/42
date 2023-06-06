@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:25:12 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/06 17:16:15 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/06 17:47:56 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	argument_checker(int argc, char **argv)
 	return (0);
 }
 
-void	argument_handler(t_info *info, int argc, char **argv)
+int	argument_handler(t_info *info, int argc, char **argv)
 {
 	int				i;
 	struct timeval	t;
@@ -62,10 +62,14 @@ void	argument_handler(t_info *info, int argc, char **argv)
 	if (argc == 6)
 		info->eat_num = ft_atoi(argv[5]);
 	else
-		info->eat_num = -1;
+		info->eat_num = 0;
+	if (info->num_philo < 0 || info->time_death < 0 || info->time_eat < 0
+		|| info->sleep_time < 0 || info->eat_num < 0)
+		return (1);
 	gettimeofday(&t, NULL);
 	info->start_time = (t.tv_sec * 1000) + (t.tv_usec / 1000);
 	info->philo_dead = 0;
+	return (0);
 }
 
 void	fork_generator(t_info *info)
@@ -88,9 +92,11 @@ int	main(int argc, char **argv)
 		return (error_handler(2));
 	else if (argument_checker(argc, argv))
 		return (1);
-	else
-		argument_handler(&info, argc, argv);
+	else if (argument_handler(&info, argc, argv))
+		return (1);
+	printf("qui");
 	fork_generator(&info);
+	printf("qua");
 	philo_generator(&info);
 	return (0);
 }

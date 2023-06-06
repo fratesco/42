@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 13:32:37 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/06 17:34:32 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/06 17:52:03 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define PICKING_FORK 1
 # define EATING 2
 # define SLEEPING 3
+# define FULL 4
 
 typedef struct s_philo
 {
@@ -56,7 +57,7 @@ int						error_handler(int id);
 int						ft_atoi(const char *str);
 void					philo_generator(t_info *info);
 int						argument_checker(int argc, char **argv);
-void					argument_handler(t_info *info, int argc, char **argv);
+int					argument_handler(t_info *info, int argc, char **argv);
 void					freerer(t_info *info);
 void					print_action(t_info *info, t_philo *philo);
 void					fork_generator(t_info *info);
