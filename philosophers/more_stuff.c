@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:05:43 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/06 18:41:34 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/07 10:46:43 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	all_full(t_info *info)
 	{
 		while (i < info->num_philo)
 		{
-			if (info->philosophers[i].action == FULL)
+			if (info->philosophers[i].eat_num >= info->eat_num)
 				j++;
 			else
 				return (0);

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 13:32:37 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/06 18:42:23 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/07 10:44:55 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_philo
 	int				is_dead;
 	int				eat_num;
 	int				last_meal;
+	int				full;
 	struct s_info	*info;
 	pthread_t		thread_id;
 	pthread_mutex_t	*right_fork;

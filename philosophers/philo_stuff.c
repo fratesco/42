@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:58:21 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/06 18:40:40 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/07 10:51:16 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,12 @@ void	philo_eater(t_philo *philo)
 	{
 		philo->action = EATING;
 		print_action(philo->info, philo);
-		philo->last_meal = get_time(philo->info);
 		pthread_mutex_unlock(&philo->info->write_right);
+		usleep((philo->info->time_eat) * 1000);
 		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
-		usleep((philo->info->time_eat) * 1000);
+		philo->eat_num++;
+		philo->last_meal = get_time(philo->info);
 	}
 	if (!full_or_dead(philo)
 		&& philo->right_fork != 0)
@@ -78,17 +79,20 @@ void	philo_eater(t_philo *philo)
 
 void	lock_forks(t_philo	*philo)
 {
-	pthread_mutex_lock(philo->left_fork);
+	if (philo->philo_id % 2 == 0)
+		pthread_mutex_lock(philo->left_fork);
+	else
+	{
+		usleep(100);
+		pthread_mutex_lock(philo->left_fork);
+	}
 	pthread_mutex_lock(&philo->info->write_right);
 	philo->action = PICKING_FORK;
 	if (!full_or_dead(philo))
 		print_action(philo->info, philo);
-	else
-	{
-		pthread_mutex_unlock(&philo->info->write_right);
-		return ;
-	}
 	pthread_mutex_unlock(&philo->info->write_right);
+	if (full_or_dead(philo))
+		return ;
 	if (philo->right_fork == 0)
 		usleep(philo->info->time_death * 1000);
 	else
@@ -96,12 +100,9 @@ void	lock_forks(t_philo	*philo)
 	pthread_mutex_lock(&philo->info->write_right);
 	if (!full_or_dead(philo))
 		print_action(philo->info, philo);
-	else
-	{
-		pthread_mutex_unlock(&philo->info->write_right);
-		return ;
-	}
 	pthread_mutex_unlock(&philo->info->write_right);
+	if (full_or_dead(philo))
+		return ;
 }
 
 void	*philo_routine(void *plato)
@@ -115,11 +116,12 @@ void	*philo_routine(void *plato)
 			return (0);
 		else if (philo->is_dead == 1)
 			return (philo_death(philo));
+		if (all_full(philo->info))
+			return (0);
 		if ((get_time(philo->info) - philo->last_meal)
 			>= philo->info->time_death)
 		{
 			philo->is_dead = 1;
-			philo->info->philo_dead = 1;
 			continue ;
 		}
 		if (!(philo->info->philo_dead == 1) && philo->is_dead == 0)
