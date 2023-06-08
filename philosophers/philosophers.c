@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:25:12 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/07 10:30:45 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/08 03:16:49 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int	argument_handler(t_info *info, int argc, char **argv)
 	if (argc == 6)
 		info->eat_num = ft_atoi(argv[5]);
 	else
-		info->eat_num = 0;
+		info->eat_num = -1;
 	if (info->num_philo < 0 || info->time_death < 0 || info->time_eat < 0
-		|| info->sleep_time < 0 || info->eat_num < 0)
+		|| info->sleep_time < 0 || info->eat_num < -1)
 		return (1);
 	gettimeofday(&t, NULL);
 	info->start_time = (t.tv_sec * 1000) + (t.tv_usec / 1000);

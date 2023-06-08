@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:05:43 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/07 10:46:43 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/08 03:35:14 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	is_dead(t_philo *philo)
 		&& philo->info->philo_dead == 0)
 	{
 		philo->is_dead = 1;
-		philo->info->philo_dead = 1;
 		return (1);
 	}
 	else if (philo->info->philo_dead == 1)
@@ -41,7 +40,7 @@ int	all_full(t_info *info)
 
 	i = 0;
 	j = 0;
-	if (info->eat_num > 0)
+	if (info->eat_num > -1)
 	{
 		while (i < info->num_philo)
 		{
@@ -55,4 +54,13 @@ int	all_full(t_info *info)
 			return (1);
 	}
 	return (0);
+}
+
+void	philo_thinking(t_philo *philo)
+{
+	philo->action = THINKING;
+	pthread_mutex_lock(&(philo->info->write_right));
+	if (!full_or_dead(philo))
+		print_action(philo->info, philo);
+	pthread_mutex_unlock(&(philo->info->write_right));
 }

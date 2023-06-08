@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 13:32:37 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/07 10:44:55 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/08 03:34:32 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # define PICKING_FORK 1
 # define EATING 2
 # define SLEEPING 3
-# define FULL 4
 
 typedef struct s_philo
 {
@@ -71,4 +70,5 @@ void					*philo_routine(void *plato);
 unsigned long long int	get_time(t_info *info);
 int						full_or_dead(t_philo *philo);
 int						all_full(t_info *info);
+void					philo_thinking(t_philo *philo);
 #endif
