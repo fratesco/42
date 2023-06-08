@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:58:21 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/08 07:24:17 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/08 08:14:46 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ void	start_philo_thread(t_info *info)
 
 void	philo_eater(t_philo *philo)
 {
-	if (!full_or_dead(philo)
+	if (full_or_dead(philo))
+		unlocker(philo, 3);
+	else if (!full_or_dead(philo)
 		&& philo->right_fork != 0)
 	{
 		philo->action = EATING;
@@ -73,8 +75,6 @@ void	philo_eater(t_philo *philo)
 		print_action(philo->info, philo);
 		ft_sleep((philo->info->sleep_time), philo);
 	}
-	else if (full_or_dead(philo))
-		unlocker(philo, 3);
 	philo->action = THINKING;
 	if (!full_or_dead(philo))
 		print_action(philo->info, philo);
@@ -82,9 +82,9 @@ void	philo_eater(t_philo *philo)
 
 void	lock_forks(t_philo	*philo)
 {
-	if (philo->philo_id % 2 == 0)
-		ft_sleep(1, philo);
-	pthread_mutex_lock(philo->left_fork);
+	ft_sleep(philo->philo_id, philo);
+	if (!full_or_dead(philo))
+		pthread_mutex_lock(philo->left_fork);
 	philo->action = PICKING_FORK;
 	if (!full_or_dead(philo))
 		print_action(philo->info, philo);
@@ -95,7 +95,8 @@ void	lock_forks(t_philo	*philo)
 		ft_sleep(philo->info->time_death, philo);
 		return ;
 	}
-	pthread_mutex_lock(philo->right_fork);
+	if (!full_or_dead(philo))
+		pthread_mutex_lock(philo->right_fork);
 	if (!full_or_dead(philo))
 		print_action(philo->info, philo);
 	if (full_or_dead(philo))
