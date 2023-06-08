@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:58:21 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/08 05:31:24 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/08 05:57:55 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	philo_eater(t_philo *philo)
 		philo->action = EATING;
 		print_action(philo->info, philo);
 		philo->last_meal = get_time(philo->info);
-		usleep((philo->info->time_eat) * 1000);
+		ft_sleep((philo->info->time_eat) * 1000);
 		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
 		philo->eat_num++;
@@ -71,7 +71,7 @@ void	philo_eater(t_philo *philo)
 	{
 		philo->action = SLEEPING;
 		print_action(philo->info, philo);
-		usleep((philo->info->sleep_time) * 1000);
+		ft_sleep((philo->info->sleep_time) * 1000);
 	}
 	else if (full_or_dead(philo))
 		unlocker(philo, 3);

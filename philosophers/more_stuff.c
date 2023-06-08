@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:05:43 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/08 05:29:41 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/08 05:59:28 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	is_dead(t_philo *philo)
 {
-	if ((get_time(philo->info) - philo->last_meal) >= philo->info->time_death
-		&& philo->info->philo_dead == 0)
+	if ((get_time(philo->info) - philo->last_meal)
+		>= (philo->info->time_death) && philo->info->philo_dead == 0)
 	{
 		philo->is_dead = 1;
 		return (1);
@@ -73,7 +73,7 @@ void	ft_sleep(int i)
 {
 	while (i > 0)
 	{
-		usleep(21);
-		i -= 21;
+		usleep(20);
+		i -= 20;
 	}
 }
