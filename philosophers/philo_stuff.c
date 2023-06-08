@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:58:21 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/08 03:34:16 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/08 03:45:06 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	philo_eater(t_philo *philo)
 		print_action(philo->info, philo);
 		usleep((philo->info->sleep_time) * 1000);
 	}
+	else if (full_or_dead(philo))
+		unlocker(philo, 3);
 	philo_thinking(philo);
 }
 
@@ -89,7 +91,7 @@ void	lock_forks(t_philo	*philo)
 		print_action(philo->info, philo);
 	pthread_mutex_unlock(&philo->info->write_right);
 	if (full_or_dead(philo))
-		return ;
+		return (unlocker(philo, 1));
 	if (philo->right_fork == 0)
 	{
 		usleep(philo->info->time_death * 1000);
@@ -103,7 +105,7 @@ void	lock_forks(t_philo	*philo)
 		print_action(philo->info, philo);
 	pthread_mutex_unlock(&philo->info->write_right);
 	if (full_or_dead(philo))
-		return ;
+		return (unlocker(philo, 3));
 }
 
 void	*philo_routine(void *plato)

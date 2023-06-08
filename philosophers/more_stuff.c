@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:05:43 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/08 03:35:14 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/08 03:44:26 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,17 @@ void	philo_thinking(t_philo *philo)
 	if (!full_or_dead(philo))
 		print_action(philo->info, philo);
 	pthread_mutex_unlock(&(philo->info->write_right));
+}
+
+void	unlocker(t_philo *philo, int i)
+{
+	if (i == 1)
+		pthread_mutex_unlock(philo->left_fork);
+	else if (i == 2)
+		pthread_mutex_unlock(philo->right_fork);
+	else if (i == 3)
+	{
+		pthread_mutex_unlock(philo->left_fork);
+		pthread_mutex_unlock(philo->right_fork);
+	}
 }
