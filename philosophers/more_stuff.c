@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:05:43 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/08 03:44:26 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/08 04:11:36 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,8 @@ int	all_full(t_info *info)
 void	philo_thinking(t_philo *philo)
 {
 	philo->action = THINKING;
-	pthread_mutex_lock(&(philo->info->write_right));
 	if (!full_or_dead(philo))
 		print_action(philo->info, philo);
-	pthread_mutex_unlock(&(philo->info->write_right));
 }
 
 void	unlocker(t_philo *philo, int i)

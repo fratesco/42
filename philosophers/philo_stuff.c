@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:58:21 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/08 03:45:06 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/08 04:11:27 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,11 @@ void	start_philo_thread(t_info *info)
 
 void	philo_eater(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->info->write_right);
 	if (!full_or_dead(philo)
 		&& philo->right_fork != 0)
 	{
 		philo->action = EATING;
 		print_action(philo->info, philo);
-		pthread_mutex_unlock(&philo->info->write_right);
 		usleep((philo->info->time_eat) * 1000);
 		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
@@ -85,11 +83,9 @@ void	lock_forks(t_philo	*philo)
 	if (philo->philo_id % 2 == 0)
 		usleep(100);
 	pthread_mutex_lock(philo->left_fork);
-	pthread_mutex_lock(&philo->info->write_right);
 	philo->action = PICKING_FORK;
 	if (!full_or_dead(philo))
 		print_action(philo->info, philo);
-	pthread_mutex_unlock(&philo->info->write_right);
 	if (full_or_dead(philo))
 		return (unlocker(philo, 1));
 	if (philo->right_fork == 0)
@@ -100,10 +96,8 @@ void	lock_forks(t_philo	*philo)
 	else if (philo->philo_id % 2 == 0)
 		usleep(100);
 	pthread_mutex_lock(philo->right_fork);
-	pthread_mutex_lock(&philo->info->write_right);
 	if (!full_or_dead(philo))
 		print_action(philo->info, philo);
-	pthread_mutex_unlock(&philo->info->write_right);
 	if (full_or_dead(philo))
 		return (unlocker(philo, 3));
 }
@@ -117,7 +111,7 @@ void	*philo_routine(void *plato)
 	{
 		if (philo->info->philo_dead == 1 && philo->is_dead == 0)
 			return (0);
-		else if (philo->is_dead == 1)
+		else if (philo->is_dead == 1 && philo->info->philo_dead == 0)
 			return (philo_death(philo));
 		if (all_full(philo->info))
 			return (0);
