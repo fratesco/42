@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:36:40 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/08 04:50:36 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/08 05:42:43 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,16 @@ void	print_action(t_info *info, t_philo *philo)
 
 	if (!philo->info->philo_dead && !all_full(philo->info))
 	{
-		pthread_mutex_lock(&(philo->info->write_right));
 		time = get_time(info);
 		if (philo->is_dead && !philo->info->philo_dead)
 		{
-			printf("%llu %i died\n", time, philo->philo_id);
 			philo->info->philo_dead = 1;
+			pthread_mutex_lock(&(philo->info->write_right));
+			printf("%llu %i died\n", time, philo->philo_id);
 		}
-		else if (philo->action == SLEEPING && !full_or_dead(philo))
+		else if (!philo->info->philo_dead)
+			pthread_mutex_lock(&(philo->info->write_right));
+		if (philo->action == SLEEPING && !full_or_dead(philo))
 			printf("%llu %i is sleeping\n", time, philo->philo_id);
 		else if (philo->action == EATING && !full_or_dead(philo))
 			printf("%llu %i is eating\n", time, philo->philo_id);

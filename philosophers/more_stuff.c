@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:05:43 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/08 04:11:36 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/08 05:29:41 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,6 @@ int	all_full(t_info *info)
 	return (0);
 }
 
-void	philo_thinking(t_philo *philo)
-{
-	philo->action = THINKING;
-	if (!full_or_dead(philo))
-		print_action(philo->info, philo);
-}
-
 void	unlocker(t_philo *philo, int i)
 {
 	if (i == 1)
@@ -73,5 +66,14 @@ void	unlocker(t_philo *philo, int i)
 	{
 		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
+	}
+}
+
+void	ft_sleep(int i)
+{
+	while (i > 0)
+	{
+		usleep(21);
+		i -= 21;
 	}
 }

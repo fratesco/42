@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 13:32:37 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/08 03:44:41 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/08 05:11:55 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,5 @@ int						full_or_dead(t_philo *philo);
 int						all_full(t_info *info);
 void					philo_thinking(t_philo *philo);
 void					unlocker(t_philo *philo, int i);
+void					ft_sleep(int i);
 #endif
