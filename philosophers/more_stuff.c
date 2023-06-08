@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:05:43 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/08 07:25:01 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/08 08:19:16 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ int	is_dead(t_philo *philo)
 	int	i;
 
 	i = 0;
-	while (i < philo->info->num_philo)
-	{
-		if ((get_time(philo->info) - philo->info->philosophers[i].last_meal)
+	//while (i < philo->info->num_philo)
+	//{
+		if ((get_time(philo->info) - philo->last_meal)
 			>= (philo->info->time_death) && philo->info->philo_dead == 0)
 		{
-			philo->info->philosophers[i].is_dead = 1;
+			philo->is_dead = 1;
 			return (1);
 		}
-		i++;
-	}
+	//	i++;
+	//}
 	if (philo->info->philo_dead == 1)
 		return (1);
 	else
