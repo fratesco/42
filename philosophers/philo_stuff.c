@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:58:21 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/08 05:57:55 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/08 07:24:17 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	philo_eater(t_philo *philo)
 		philo->action = EATING;
 		print_action(philo->info, philo);
 		philo->last_meal = get_time(philo->info);
-		ft_sleep((philo->info->time_eat) * 1000);
+		ft_sleep((philo->info->time_eat), philo);
 		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
 		philo->eat_num++;
@@ -71,7 +71,7 @@ void	philo_eater(t_philo *philo)
 	{
 		philo->action = SLEEPING;
 		print_action(philo->info, philo);
-		ft_sleep((philo->info->sleep_time) * 1000);
+		ft_sleep((philo->info->sleep_time), philo);
 	}
 	else if (full_or_dead(philo))
 		unlocker(philo, 3);
@@ -83,7 +83,7 @@ void	philo_eater(t_philo *philo)
 void	lock_forks(t_philo	*philo)
 {
 	if (philo->philo_id % 2 == 0)
-		usleep(philo->info->time_eat * 100);
+		ft_sleep(1, philo);
 	pthread_mutex_lock(philo->left_fork);
 	philo->action = PICKING_FORK;
 	if (!full_or_dead(philo))
@@ -92,11 +92,9 @@ void	lock_forks(t_philo	*philo)
 		return (unlocker(philo, 1));
 	if (philo->right_fork == 0)
 	{
-		usleep(philo->info->time_death * 1000);
+		ft_sleep(philo->info->time_death, philo);
 		return ;
 	}
-	else if (philo->philo_id % 2 == 0)
-		usleep(philo->info->time_eat * 100);
 	pthread_mutex_lock(philo->right_fork);
 	if (!full_or_dead(philo))
 		print_action(philo->info, philo);
@@ -128,5 +126,7 @@ void	*philo_routine(void *plato)
 		if (!full_or_dead(philo)
 			&& philo->right_fork != 0)
 			philo_eater(philo);
+		if (philo->info->philo_dead && philo->is_dead)
+			return (0);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:05:43 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/08 05:59:28 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/08 07:25:01 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,20 @@
 
 int	is_dead(t_philo *philo)
 {
-	if ((get_time(philo->info) - philo->last_meal)
-		>= (philo->info->time_death) && philo->info->philo_dead == 0)
+	int	i;
+
+	i = 0;
+	while (i < philo->info->num_philo)
 	{
-		philo->is_dead = 1;
-		return (1);
+		if ((get_time(philo->info) - philo->info->philosophers[i].last_meal)
+			>= (philo->info->time_death) && philo->info->philo_dead == 0)
+		{
+			philo->info->philosophers[i].is_dead = 1;
+			return (1);
+		}
+		i++;
 	}
-	else if (philo->info->philo_dead == 1)
+	if (philo->info->philo_dead == 1)
 		return (1);
 	else
 		return (0);
@@ -58,10 +65,14 @@ int	all_full(t_info *info)
 
 void	unlocker(t_philo *philo, int i)
 {
-	if (i == 1)
+	if (i == 1 && philo->philo_id % 2 == 0)
 		pthread_mutex_unlock(philo->left_fork);
-	else if (i == 2)
+	else if (i == 1)
 		pthread_mutex_unlock(philo->right_fork);
+	else if (i == 2 && philo->philo_id % 2 == 0)
+		pthread_mutex_unlock(philo->right_fork);
+	else if (i == 2)
+		pthread_mutex_unlock(philo->left_fork);
 	else if (i == 3)
 	{
 		pthread_mutex_unlock(philo->left_fork);
@@ -69,11 +80,11 @@ void	unlocker(t_philo *philo, int i)
 	}
 }
 
-void	ft_sleep(int i)
+void	ft_sleep(int i, t_philo *philo)
 {
-	while (i > 0)
-	{
-		usleep(20);
-		i -= 20;
-	}
+	unsigned long long int	start;
+
+	start = get_time(philo->info);
+	while ((get_time(philo->info) - start < i) && !full_or_dead(philo))
+		usleep(50);
 }
