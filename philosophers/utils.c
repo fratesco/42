@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:36:40 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/08 04:07:56 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/08 04:50:36 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,8 @@ void	freerer(t_info *info)
 
 void	*philo_death(t_philo *philo)
 {
-	//pthread_mutex_lock(&(philo->info->write_right));
 	if (philo->info->philo_dead == 0)
 		print_action(philo->info, philo);
-	//philo->info->philo_dead = 1;
-	//pthread_mutex_unlock(&(philo->info->write_right));
 	return (0);
 }
 
@@ -70,10 +67,10 @@ void	print_action(t_info *info, t_philo *philo)
 {
 	unsigned long long int	time;
 
-	time = get_time(info);
 	if (!philo->info->philo_dead && !all_full(philo->info))
 	{
 		pthread_mutex_lock(&(philo->info->write_right));
+		time = get_time(info);
 		if (philo->is_dead && !philo->info->philo_dead)
 		{
 			printf("%llu %i died\n", time, philo->philo_id);
