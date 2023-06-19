@@ -6,7 +6,7 @@
 #    By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/20 10:45:15 by fgolino           #+#    #+#              #
-#    Updated: 2023/06/16 16:10:08 by fgolino          ###   ########.fr        #
+#    Updated: 2023/06/19 17:38:35 by fgolino          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CC		:= gcc
 FLAGS	:= -Wextra -Werror -Wall
 
 $(NAME) : $(OBJ)
-		 $(CC) $(FLAGS) $(OBJ) -o $(NAME) -lpthread
+		 $(CC) $(FLAGS) -g $(OBJ) -o $(NAME) -lpthread
 
 all		: $(NAME)
 

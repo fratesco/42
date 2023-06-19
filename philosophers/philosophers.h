@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 13:32:37 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/08 06:15:17 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/19 16:43:31 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_info
 	int							philo_dead;
 	t_philo						*philosophers;
 	pthread_mutex_t				write_right;
+	pthread_mutex_t				death_right;
 	pthread_mutex_t				*forks;
 }	t_info;
 

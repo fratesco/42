@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:05:43 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/16 16:36:27 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/19 17:11:22 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	is_dead(t_philo *philo)
 		>= (philo->info->time_death) && philo->info->philo_dead == 0)
 	{
 		philo->is_dead = 1;
+		print_action(philo->info, philo);
 		return (1);
 	}
 	if (philo->info->philo_dead == 1)

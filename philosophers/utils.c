@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:36:40 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/08 06:27:46 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/19 17:45:13 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,13 @@ void	print_action(t_info *info, t_philo *philo)
 	{
 		if (philo->is_dead && !philo->info->philo_dead)
 		{
+			if (pthread_mutex_trylock(&(philo->info->death_right)))
+				return ;
 			philo->info->philo_dead = 1;
 			pthread_mutex_lock(&(philo->info->write_right));
 			printf("%llu %i died\n", get_time(info), philo->philo_id);
 		}
-		else if (!philo->info->philo_dead)
+		if (!philo->info->philo_dead)
 			pthread_mutex_lock(&(philo->info->write_right));
 		if (philo->action == SLEEPING && !full_or_dead(philo))
 			printf("%llu %i is sleeping\n", get_time(info), philo->philo_id);
