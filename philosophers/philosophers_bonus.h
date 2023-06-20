@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:42:08 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/16 16:42:52 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/20 16:14:16 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define EATING 2
 # define SLEEPING 3
 
-typedef struct s_philo
+typedef struct s_philo_bonus
 {
 	int				philo_id;
 	int				action;
@@ -35,12 +35,10 @@ typedef struct s_philo
 	int				last_meal;
 	int				full;
 	struct s_info	*info;
-	pthread_t		thread_id;
-	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	*left_fork;	
-}	t_philo;
+	sem_t			*forks;	
+}	t_philo_bonus;
 
-typedef struct s_info
+typedef struct s_info_bonus
 {
 	int							time_eat;
 	int							time_death;
@@ -51,28 +49,8 @@ typedef struct s_info
 	int							philo_dead;
 	t_philo						*philosophers;
 	pthread_mutex_t				write_right;
-	pthread_mutex_t				*forks;
-}	t_info;
-
-int						error_handler(int id);
-int						ft_atoi(const char *str);
-void					philo_generator(t_info *info);
-int						argument_checker(int argc, char **argv);
-int						argument_handler(t_info *info, int argc, char **argv);
-void					freerer(t_info *info);
-void					print_action(t_info *info, t_philo *philo);
-void					fork_generator(t_info *info);
-void					start_philo_thread(t_info *info);
-void					*philo_death(t_philo *philo);
-int						is_dead(t_philo *philo);
-void					philo_eater(t_philo *philo);
-void					lock_forks(t_philo	*philo);
-void					*philo_routine(void *plato);
-unsigned long long int	get_time(t_info *info);
-int						full_or_dead(t_philo *philo);
-int						all_full(t_info *info);
-void					philo_thinking(t_philo *philo);
-void					unlocker(t_philo *philo, int i);
-void					ft_sleep(int i, t_philo *philo);
+	pthread_mutex_t				death_rigth;
+	sem_t						forks;
+}	t_info_bonus;
 
 #endif
