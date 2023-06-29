@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:51:24 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/20 16:20:15 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/29 17:57:04 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	argument_handler(t_info_bonus *info, int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	t_info	info;
+	t_info_bonus	info;
 
 	if (argc < 5)
 		return (error_handler(1));
@@ -88,7 +88,7 @@ int	main(int argc, char **argv)
 		return (1);
 	sem_init(info->forks, 1, info->num_philo);
 	philo_generator(&info);
-	start_philo_thread(&info);
+	start_processes(&info);
 	freerer(&info);
 	return (0);
 }

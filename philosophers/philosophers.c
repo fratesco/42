@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:25:12 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/19 17:31:24 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/29 16:52:45 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	fork_generator(t_info *info)
 
 int	main(int argc, char **argv)
 {
-	t_info	info;
+	t_info	info; 
 
 	if (argc < 5)
 		return (error_handler(1));

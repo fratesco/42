@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:17:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/20 16:21:50 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/29 17:55:08 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,7 @@ void	start_processes(t_info_bonus *info)
 			continue ;
 		bonus_routine(i);
 	}
+	
 }
+
+void	bonus_routine
