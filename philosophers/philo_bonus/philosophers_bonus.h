@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:42:08 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/20 16:14:16 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/30 11:35:44 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/time.h>
+# include <sys/wait.h>
 # include <pthread.h>
 # include <semaphores.h>
 
@@ -26,7 +27,7 @@
 # define EATING 2
 # define SLEEPING 3
 
-typedef struct s_philo_bonus
+typedef struct s_philo
 {
 	int				philo_id;
 	int				action;
@@ -36,9 +37,9 @@ typedef struct s_philo_bonus
 	int				full;
 	struct s_info	*info;
 	sem_t			*forks;	
-}	t_philo_bonus;
+}	t_philo;
 
-typedef struct s_info_bonus
+typedef struct s_info
 {
 	int							time_eat;
 	int							time_death;
@@ -51,6 +52,14 @@ typedef struct s_info_bonus
 	pthread_mutex_t				write_right;
 	pthread_mutex_t				death_rigth;
 	sem_t						forks;
-}	t_info_bonus;
+}	t_info;
 
+int						argument_handler(t_info *info, int argc, char **argv);
+int						argument_checker(int argc, char **argv);
+int						error_handler(int id);
+void					philo_generator(t_info *info);
+void					start_processes(t_info *info);
+void					bonus_routine(t_philo *philo);
+int						ft_atoi(const char *str);
+unsigned long long int	get_time(t_info *info);
 #endif

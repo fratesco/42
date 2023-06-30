@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_bonus                                        :+:      :+:    :+:   */
+/*   philo_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:17:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/29 17:55:08 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/30 11:43:46 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,21 @@ void	philo_generator(t_info_bonus *info)
 	}
 }
 
-void	start_processes(t_info_bonus *info)
+void	start_processes(t_info *info)
 {
-	int	i
-	
-	i = 0;
-	while (i++ < info->num_philo)
+	int	i;
+
+	i = -1;
+	while (i++ < info->num_philo - 1)
 	{
 		if (fork())
 			continue ;
-		bonus_routine(i);
+		bonus_routine(&(info->philosophers[i]));
 	}
-	
+	while (waitpid(-1, NULL, 0) > 0);
 }
 
-void	bonus_routine
+void	bonus_routine(t_philo *philo)
+{
+	
+}

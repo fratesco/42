@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:51:24 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/29 17:57:04 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/06/30 11:33:52 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	argument_checker(int argc, char **argv)
 	return (0);
 }
 
-int	argument_handler(t_info_bonus *info, int argc, char **argv)
+int	argument_handler(t_info *info, int argc, char **argv)
 {
 	int				i;
 	struct timeval	t;
@@ -76,7 +76,7 @@ int	argument_handler(t_info_bonus *info, int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	t_info_bonus	info;
+	t_info	info;
 
 	if (argc < 5)
 		return (error_handler(1));
