@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:17:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/30 11:43:46 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/03 16:48:51 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,7 @@ void	start_processes(t_info *info)
 
 void	bonus_routine(t_philo *philo)
 {
-	
-}
+	while (1)
+	{
+		if 
+	}

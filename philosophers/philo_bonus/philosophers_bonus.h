@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:42:08 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/30 11:35:44 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/03 17:26:25 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <sys/time.h>
 # include <sys/wait.h>
 # include <pthread.h>
-# include <semaphores.h>
+# include <semaphore.h>
 
 # define THINKING 0
 # define PICKING_FORK 1
@@ -41,17 +41,17 @@ typedef struct s_philo
 
 typedef struct s_info
 {
-	int							time_eat;
-	int							time_death;
-	int							sleep_time;
-	unsigned long long int		start_time;
-	int							num_philo;
-	int							eat_num;
-	int							philo_dead;
-	t_philo						*philosophers;
-	pthread_mutex_t				write_right;
-	pthread_mutex_t				death_rigth;
-	sem_t						forks;
+	int									time_eat;
+	int									time_death;
+	int									sleep_time;
+	unsigned long long int				start_time;
+	int									num_philo;
+	int									eat_num;
+	int									philo_dead;
+	struct s_philo						*philosophers;
+	pthread_mutex_t						write_right;
+	pthread_mutex_t						death_rigth;
+	sem_t								forks;
 }	t_info;
 
 int						argument_handler(t_info *info, int argc, char **argv);
@@ -62,4 +62,8 @@ void					start_processes(t_info *info);
 void					bonus_routine(t_philo *philo);
 int						ft_atoi(const char *str);
 unsigned long long int	get_time(t_info *info);
+void					freerer(t_info *info);
+int						is_dead(t_philo *philo);
+int						all_full(t_info *info);
+int						full_or_dead(t_philo *philo);
 #endif

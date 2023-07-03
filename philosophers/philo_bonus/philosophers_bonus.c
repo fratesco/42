@@ -6,11 +6,18 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:51:24 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/30 11:33:52 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/03 17:20:14 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
+
+int	full_or_dead(t_philo *philo)
+{
+	if (!is_dead(philo) && !all_full(philo->info) && !philo->info->philo_dead)
+		return (0);
+	return (1);
+}
 
 int	error_handler(int id)
 {
