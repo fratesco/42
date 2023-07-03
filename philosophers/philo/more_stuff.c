@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:05:43 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/19 17:11:22 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/03 17:23:56 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	all_full(t_info *info)
 
 	i = 0;
 	j = 0;
-	if (info->eat_num > -1)
+	if (info->eat_num > 0)
 	{
 		while (i < info->num_philo)
 		{
