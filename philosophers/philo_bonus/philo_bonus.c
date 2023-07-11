@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:17:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/03 16:48:51 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/11 16:21:06 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,53 @@ void	start_processes(t_info *info)
 			continue ;
 		bonus_routine(&(info->philosophers[i]));
 	}
-	while (waitpid(-1, NULL, 0) > 0);
+	while (waitpid(-1, NULL, 0) > 0)
+		continue ;
 }
 
 void	bonus_routine(t_philo *philo)
 {
 	while (1)
 	{
-		if 
+		if (philo->info->philo_dead == 1 && philo->is_dead == 0)
+			return (0);
+		else if (philo->is_dead == 1 && philo->info->philo_dead == 0)
+			return (philo_death(philo));
+		if (all_full(philo->info))
+			return (0);
+		if ((get_time(philo->info) - philo->last_meal)
+			>= philo->info->time_death)
+		{
+			philo->is_dead = 1;
+			continue ;
+		}
+		if (!(philo->info->philo_dead == 1) && philo->is_dead == 0)
+			lock_forks(philo);
+		if (philo->right_fork != 0)
+			philo_eater(philo);
+		if (philo->info->philo_dead && philo->is_dead)
+			return (0);
 	}
+}
+
+void	lock_forks(t_philo	*philo)
+{
+	ft_sleep(philo->philo_id - 1, philo);
+	if (!full_or_dead(philo))
+		sem_wait(philo->forks);
+	philo->action = PICKING_FORK;
+	print_action(philo->info, philo);
+	if (full_or_dead(philo))
+		return (unlocker(philo, 1));
+	if (philo->right_fork == 0)
+		ft_sleep(philo->info->time_death, philo);
+	while (!full_or_dead(philo) && philo->right_fork != 0)
+	{
+		if (pthread_mutex_trylock(philo->right_fork))
+			continue ;
+		break ;
+	}
+	print_action(philo->info, philo);
+	if (full_or_dead(philo) && philo->right_fork != 0)
+		return (unlocker(philo, 3));
+}
