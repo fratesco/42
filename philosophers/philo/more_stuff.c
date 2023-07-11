@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:05:43 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/11 17:59:56 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/11 22:55:30 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	ft_sleep(int i, t_philo *philo)
 	unsigned long long int	start;
 
 	start = get_time(philo->info);
-	while ((get_time(philo->info) - start < i) && !full_or_dead(philo))
+	while ((get_time(philo->info) - start < i) && !(philo->info->full)
+		&& !philo->info->philo_dead)
 		usleep(50);
 }

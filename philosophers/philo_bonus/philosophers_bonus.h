@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:42:08 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/11 16:14:41 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/11 22:48:52 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_philo
 	int				last_meal;
 	int				full;
 	struct s_info	*info;
-	sem_t			*forks;	
+	sem_t			*forks;
 }	t_philo;
 
 typedef struct s_info
