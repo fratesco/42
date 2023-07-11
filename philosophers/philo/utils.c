@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:36:40 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/19 17:45:13 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/11 17:15:47 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,23 @@ void	freerer(t_info *info)
 		free(info->philosophers);
 }
 
-void	*philo_death(t_philo *philo)
+void	*checker_routine(void *in)
 {
-	if (philo->info->philo_dead == 0)
-		print_action(philo->info, philo);
-	return (0);
+	t_info	*info;
+	int		i;
+
+	info = (t_info *)in;
+	while (1)
+	{
+		i = 0;
+		while (i < info->num_philo)
+		{
+			full_or_dead(&(info->philosophers[i]));
+			i++;
+		}
+		if (info->philo_dead == 1 || info->full == 1)
+			return (0);
+	}
 }
 
 unsigned long long int	get_time(t_info *info)
@@ -65,25 +77,17 @@ unsigned long long int	get_time(t_info *info)
 
 void	print_action(t_info *info, t_philo *philo)
 {
-	if (!philo->info->philo_dead && !all_full(philo->info))
+	if (!any_dead(info))
 	{
-		if (philo->is_dead && !philo->info->philo_dead)
-		{
-			if (pthread_mutex_trylock(&(philo->info->death_right)))
-				return ;
-			philo->info->philo_dead = 1;
+		if (!any_dead(info))
 			pthread_mutex_lock(&(philo->info->write_right));
-			printf("%llu %i died\n", get_time(info), philo->philo_id);
-		}
-		if (!philo->info->philo_dead)
-			pthread_mutex_lock(&(philo->info->write_right));
-		if (philo->action == SLEEPING && !full_or_dead(philo))
+		if (philo->action == SLEEPING && !any_dead(info))
 			printf("%llu %i is sleeping\n", get_time(info), philo->philo_id);
-		else if (philo->action == EATING && !full_or_dead(philo))
+		else if (philo->action == EATING && !any_dead(info))
 			printf("%llu %i is eating\n", get_time(info), philo->philo_id);
-		else if (philo->action == THINKING && !full_or_dead(philo))
+		else if (philo->action == THINKING && !any_dead(info))
 			printf("%llu %i is thinking\n", get_time(info), philo->philo_id);
-		else if (philo->action == PICKING_FORK && !full_or_dead(philo))
+		else if (philo->action == PICKING_FORK && !any_dead(info))
 			printf("%llu %i has taken a fork\n",
 				get_time(info), philo->philo_id);
 		pthread_mutex_unlock(&(philo->info->write_right));

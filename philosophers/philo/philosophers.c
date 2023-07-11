@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:25:12 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/29 16:52:45 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/11 17:45:44 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,26 +68,28 @@ int	argument_handler(t_info *info, int argc, char **argv)
 		return (1);
 	gettimeofday(&t, NULL);
 	info->start_time = (t.tv_sec * 1000) + (t.tv_usec / 1000);
+	printf("%llu", info->start_time);
 	info->philo_dead = 0;
 	pthread_mutex_init(&(info->write_right), NULL);
-	pthread_mutex_init(&(info->death_right), NULL);
+	info->full = 0;
 	return (0);
 }
 
-void	fork_generator(t_info *info)
+int	any_dead(t_info *info)
 {
-	int	i;
-
-	i = 0;
-	info->forks = malloc(sizeof(pthread_mutex_t) * info->num_philo);
-	while (i < info->num_philo)
-		pthread_mutex_init(&(info->forks[i++]), NULL);
+	if (info->philo_dead)
+		return (1);
+	if (info->full)
+		return (1);
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_info	info; 
+	int		i;
+	t_info	info;
 
+	i = 0;
 	if (argc < 5)
 		return (error_handler(1));
 	else if (argc > 6)
@@ -96,7 +98,9 @@ int	main(int argc, char **argv)
 		return (1);
 	else if (argument_handler(&info, argc, argv))
 		return (1);
-	fork_generator(&info);
+	info.forks = malloc(sizeof(pthread_mutex_t) * info.num_philo);
+	while (i < info.num_philo)
+		pthread_mutex_init(&(info.forks[i++]), NULL);
 	philo_generator(&info);
 	start_philo_thread(&info);
 	freerer(&info);

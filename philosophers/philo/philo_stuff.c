@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:58:21 by fgolino           #+#    #+#             */
-/*   Updated: 2023/06/19 17:32:56 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/11 17:42:51 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,16 @@ void	start_philo_thread(t_info *info)
 			(void *)&(info->philosophers[i]));
 		i++;
 	}
+	pthread_create(&(info->checker), NULL, &checker_routine, (void *)info);
 	i = 0;
 	while (i < info->num_philo)
 		pthread_join((info->philosophers[i++].thread_id), NULL);
+	pthread_join((info->checker), NULL);
 }
 
 void	philo_eater(t_philo *philo)
 {
-	if (full_or_dead(philo))
+	if (any_dead(philo->info))
 		unlocker(philo, 3);
 	if (philo->right_fork != 0)
 	{
@@ -80,26 +82,18 @@ void	philo_eater(t_philo *philo)
 void	lock_forks(t_philo	*philo)
 {
 	ft_sleep(philo->philo_id - 1, philo);
-	while (!full_or_dead(philo))
-	{
-		if (pthread_mutex_trylock(philo->left_fork))
-			continue ;
-		break ;
-	}
+	if (!any_dead(philo->info))
+		pthread_mutex_lock(philo->left_fork);
 	philo->action = PICKING_FORK;
 	print_action(philo->info, philo);
-	if (full_or_dead(philo))
+	if (any_dead(philo->info))
 		return (unlocker(philo, 1));
 	if (philo->right_fork == 0)
 		ft_sleep(philo->info->time_death, philo);
-	while (!full_or_dead(philo) && philo->right_fork != 0)
-	{
-		if (pthread_mutex_trylock(philo->right_fork))
-			continue ;
-		break ;
-	}
+	if (!any_dead(philo->info))
+		pthread_mutex_lock(philo->right_fork);
 	print_action(philo->info, philo);
-	if (full_or_dead(philo) && philo->right_fork != 0)
+	if (any_dead(philo->info) && philo->right_fork != 0)
 		return (unlocker(philo, 3));
 }
 
@@ -110,23 +104,15 @@ void	*philo_routine(void *plato)
 	philo = (t_philo *)plato;
 	while (1)
 	{
-		if (philo->info->philo_dead == 1 && philo->is_dead == 0)
+		if (any_dead(philo->info))
 			return (0);
-		else if (philo->is_dead == 1 && philo->info->philo_dead == 0)
-			return (philo_death(philo));
 		if (all_full(philo->info))
 			return (0);
-		if ((get_time(philo->info) - philo->last_meal)
-			>= philo->info->time_death)
-		{
-			philo->is_dead = 1;
-			continue ;
-		}
-		if (!(philo->info->philo_dead == 1) && philo->is_dead == 0)
+		if (!any_dead(philo->info))
 			lock_forks(philo);
 		if (philo->right_fork != 0)
 			philo_eater(philo);
-		if (philo->info->philo_dead && philo->is_dead)
+		if (any_dead(philo->info))
 			return (0);
 	}
 }
