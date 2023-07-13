@@ -6,13 +6,13 @@
 #    By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/20 10:45:15 by fgolino           #+#    #+#              #
-#    Updated: 2023/06/30 11:23:11 by fgolino          ###   ########.fr        #
+#    Updated: 2023/07/13 13:10:32 by fgolino          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	:= philo_bonus
 
-SRC		:= philosophers_bonus.c philo_bonus.c
+SRC		:= philosophers_bonus.c philo_bonus.c more_utils.c bonus_utils.c
 
 OBJ		:= $(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:42:08 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/11 22:48:52 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/13 15:34:10 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sys/wait.h>
 # include <pthread.h>
 # include <semaphore.h>
+# include <signal.h>
 
 # define THINKING 0
 # define PICKING_FORK 1
@@ -34,9 +35,9 @@ typedef struct s_philo
 	int				is_dead;
 	int				eat_num;
 	int				last_meal;
-	int				full;
 	struct s_info	*info;
 	sem_t			*forks;
+	sem_t			*write_right;
 }	t_philo;
 
 typedef struct s_info
@@ -48,9 +49,10 @@ typedef struct s_info
 	int									num_philo;
 	int									eat_num;
 	int									philo_dead;
+	int									full;
+	int									*pid;
 	struct s_philo						*philosophers;
-	pthread_mutex_t						write_right;
-	pthread_mutex_t						death_rigth;
+	sem_t								write_right;
 	sem_t								forks;
 }	t_info;
 
@@ -66,6 +68,11 @@ void					freerer(t_info *info);
 int						is_dead(t_philo *philo);
 int						all_full(t_info *info);
 int						full_or_dead(t_philo *philo);
-void					print_action(t_philo *philo);
+void					print_action(t_info *info, t_philo *philo);
 void					ft_sleep(int i, t_philo *philo);
+void					unlocker(t_philo *philo, int i);
+void					*checker_routine(t_info *info);
+int						any_dead(t_info *info);
+void					lock_forks(t_philo	*philo);
+void					philo_eater(t_philo *philo);
 #endif

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:51:24 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/03 17:20:14 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/13 15:34:42 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,13 @@ int	argument_handler(t_info *info, int argc, char **argv)
 	gettimeofday(&t, NULL);
 	info->start_time = (t.tv_sec * 1000) + (t.tv_usec / 1000);
 	info->philo_dead = 0;
-	pthread_mutex_init(&(info->write_right), NULL);
-	pthread_mutex_init(&(info->death_right), NULL);
+	info->pid = (int *)malloc(sizeof(int) * info->num_philo);
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_info	info;
+	t_info			info;
 
 	if (argc < 5)
 		return (error_handler(1));
@@ -93,7 +92,8 @@ int	main(int argc, char **argv)
 		return (1);
 	else if (argument_handler(&info, argc, argv))
 		return (1);
-	sem_init(info->forks, 1, info->num_philo);
+	sem_init(&(info.write_right), 1, 1);
+	sem_init(&(info.forks), 1, info.num_philo);
 	philo_generator(&info);
 	start_processes(&info);
 	freerer(&info);

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:05:43 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/11 22:55:30 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/13 12:41:06 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int	is_dead(t_philo *philo)
 		philo->info->philo_dead = 1;
 		pthread_mutex_lock(&philo->info->write_right);
 		printf("%llu %i died\n", get_time(philo->info), philo->philo_id);
-		if ((get_time(philo->info) - (philo->last_meal)) >= (philo->info->time_death))
-			printf(" suca %llu\n", get_time(philo->info));
 		pthread_mutex_unlock(&philo->info->write_right);
 		return (1);
 	}

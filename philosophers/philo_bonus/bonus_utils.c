@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 11:24:52 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/03 17:26:07 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/13 15:44:35 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,25 @@ void	freerer(t_info *info)
 {
 	if (info->philosophers)
 		free(info->philosophers);
+	if (info->pid)
+		free(info->pid);
 }
 
 int	is_dead(t_philo *philo)
 {
-	if ((get_time(philo->info) - philo->last_meal)
+	int	i;
+
+	i = 0;
+	if ((get_time(philo->info) - ((philo->last_meal)))
 		>= (philo->info->time_death) && philo->info->philo_dead == 0)
 	{
-		philo->is_dead = 1;
-		print_action(philo->info, philo);
-		return (1);
+		philo->info->philo_dead = 1;
+		sem_wait(&philo->info->write_right);
+		printf("%llu %i died\n", get_time(philo->info), philo->philo_id);
+		//while (i < philo->info->num_philo)
+		//	kill(philo->info->pid[i], SIGTERM);
+		sem_post(&philo->info->write_right);
+		exit(0);
 	}
 	if (philo->info->philo_dead == 1)
 		return (1);
@@ -76,7 +85,9 @@ int	all_full(t_info *info)
 
 	i = 0;
 	j = 0;
-	if (info->eat_num > -1)
+	if (info->full == 1)
+		return (1);
+	if (info->eat_num > 0)
 	{
 		while (i < info->num_philo)
 		{
@@ -87,7 +98,10 @@ int	all_full(t_info *info)
 			i++;
 		}
 		if (j == info->num_philo)
+		{
+			info->full = 1;
 			return (1);
+		}
 	}
 	return (0);
 }
