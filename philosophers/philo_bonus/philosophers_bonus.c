@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:51:24 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/18 11:34:20 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/18 15:13:51 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	full_or_dead(t_philo *philo)
 {
-	if (!is_dead(philo) && !all_full(philo->info) && !philo->info->philo_dead)
+	if (!is_dead(philo)) //&& !all_full(philo->info) && !philo->info->philo_dead)
 		return (0);
 	return (1);
 }
@@ -75,7 +75,6 @@ int	argument_handler(t_info *info, int argc, char **argv)
 		return (1);
 	gettimeofday(&t, NULL);
 	info->start_time = (t.tv_sec * 1000) + (t.tv_usec / 1000);
-	info->philo_dead = 0;
 	info->pid = (int *)malloc(sizeof(int) * info->num_philo);
 	return (0);
 }
@@ -85,6 +84,7 @@ int	main(int argc, char **argv)
 	t_info			info;
 	sem_t			*forks;
 	sem_t			*write_right;
+
 	if (argc < 5)
 		return (error_handler(1));
 	else if (argc > 6)
@@ -93,14 +93,11 @@ int	main(int argc, char **argv)
 		return (1);
 	else if (argument_handler(&info, argc, argv))
 		return (1);
-	write_right = sem_open("(write", O_CREAT, 0666, 1);
+	write_right = sem_open("/write", O_CREAT, 0666, 1);
 	forks = sem_open("/forks", O_CREAT, 0666, info.num_philo);
+	info.end = sem_open("/end", O_CREAT, 0666, 1);
 	sem_unlink("/forks");
 	sem_unlink("/write");
-	if (sem_trywait(forks) == 0)
-		printf("funziona\n");
-	sem_post(forks);
-	philo_generator(&info);
 	start_processes(&info);
 	freerer(&info);
 	return (0);
