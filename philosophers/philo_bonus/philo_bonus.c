@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:17:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/13 15:42:39 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/18 11:47:28 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	philo_generator(t_info *info)
 		info->philosophers[i].eat_num = 0;
 		info->philosophers[i].last_meal = 0;
 		info->philosophers[i].info = info;
-		info->philosophers[i].forks = &(info->forks);
-		info->philosophers[i].write_right = &info->write_right;
 		i++;
 	}
 }
@@ -56,10 +54,13 @@ void	start_processes(t_info *info)
 
 void	bonus_routine(t_philo *philo)
 {
+	sem_t *forks = sem_open("/forks", 0);
+	sem_t*write_right = sem_open("/write", 0);
 	while (1)
 	{
-		if (!any_dead(philo->info))
-			lock_forks(philo);
+		if (sem_trywait(forks) == 0)
+			printf("suca");
+		lock_forks(philo);
 		if (philo->info->num_philo > 1)
 			philo_eater(philo);
 	}
@@ -68,18 +69,19 @@ void	bonus_routine(t_philo *philo)
 void	lock_forks(t_philo	*philo)
 {
 	ft_sleep(philo->philo_id - 1, philo);
-	if (!any_dead(philo->info))
+	if (!philo->is_dead)
 		sem_wait(philo->forks);
+	printf("obh\n");
 	philo->action = PICKING_FORK;
 	print_action(philo->info, philo);
-	if (any_dead(philo->info))
+	if (!philo->is_dead)
 		return (unlocker(philo, 1));
 	if (philo->info->num_philo == 1)
 		ft_sleep(philo->info->time_death, philo);
-	if (!any_dead(philo->info))
+	if (!philo->is_dead)
 		sem_wait(philo->forks);
 	print_action(philo->info, philo);
-	if (any_dead(philo->info) && (philo->info->num_philo > 1))
+	if (philo->is_dead && (philo->info->num_philo > 1))
 		return (unlocker(philo, 2));
 }
 

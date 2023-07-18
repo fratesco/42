@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 11:24:52 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/13 15:44:35 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/18 11:13:30 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ int	is_dead(t_philo *philo)
 		>= (philo->info->time_death) && philo->info->philo_dead == 0)
 	{
 		philo->info->philo_dead = 1;
-		sem_wait(&philo->info->write_right);
+		sem_wait(philo->write_right);
 		printf("%llu %i died\n", get_time(philo->info), philo->philo_id);
 		//while (i < philo->info->num_philo)
 		//	kill(philo->info->pid[i], SIGTERM);
-		sem_post(&philo->info->write_right);
+		sem_post(philo->write_right);
 		exit(0);
 	}
 	if (philo->info->philo_dead == 1)

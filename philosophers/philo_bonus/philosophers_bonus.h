@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:42:08 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/13 15:34:10 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/18 11:40:40 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <pthread.h>
 # include <semaphore.h>
 # include <signal.h>
+# include <fcntl.h>
+# include <errno.h>
 
 # define THINKING 0
 # define PICKING_FORK 1
@@ -52,8 +54,8 @@ typedef struct s_info
 	int									full;
 	int									*pid;
 	struct s_philo						*philosophers;
-	sem_t								write_right;
-	sem_t								forks;
+	sem_t								*write_right;
+	sem_t								*forks;
 }	t_info;
 
 int						argument_handler(t_info *info, int argc, char **argv);
