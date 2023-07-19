@@ -6,21 +6,24 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:17:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/18 15:36:16 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/19 11:20:20 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
-void	philo_generator(int id, unsigned long long int start_time, int eat, t_philo *tmp)
+void	philo_generator(int id, t_info *info, t_philo *tmp)
 {
 	tmp->id = id;
 	tmp->action = 0;
 	tmp->is_dead = 0;
 	tmp->eat_num = 0;
 	tmp->last_meal = 0;
-	tmp->eat_max = eat;
-	tmp->start = start_time;
+	tmp->eat_max = info->eat_num;
+	tmp->start = info->start_time;
+	tmp->sleep_time = info->sleep_time;
+	tmp->time_eat = info->time_eat;
+	tmp->time_death = info->time_death;
 	tmp->write_right = sem_open("/write", 0);
 	tmp->forks = sem_open("/forks", 0);
 }
@@ -37,21 +40,24 @@ void	start_processes(t_info *info)
 			continue ;
 		else
 		{
-			bonus_routine(i, info->start_time, info->eat_num);
+			//printf("a\n");
+			bonus_routine(i + 1, info);
 			exit (0);
 		}
 	}
-	while (waitpid(-1, NULL, 0));
+	while (waitpid(-1, NULL, 0))
+		continue ;
 }
 
-void	bonus_routine(int id, unsigned long long int start, int eat)
+void	bonus_routine(int id, t_info *info)
 {
 	t_philo		*philo;
 	pthread_t	tmp;
 
-	philo_generator(id, start, eat, philo);
+	philo_generator(id, info, philo);
 	pthread_create(&tmp, NULL, &checker_routine, (void *)philo);
 	pthread_detach(tmp);
+	printf("cazzi\n");
 	while (1)
 	{
 		lock_forks(philo);

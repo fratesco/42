@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:42:08 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/18 15:27:32 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/19 10:55:19 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,11 @@ typedef struct s_info
 int						argument_handler(t_info *info, int argc, char **argv);
 int						argument_checker(int argc, char **argv);
 int						error_handler(int id);
-void					philo_generator(int id, unsigned long long int start,
-							int eat, t_philo *philo);
+void					philo_generator(int id, t_info *info, t_philo *philo);
 void					start_processes(t_info *info);
-void					bonus_routine(int id, unsigned long long int start, int eat_num);
+void					bonus_routine(int id, t_info *info);
 int						ft_atoi(const char *str);
-unsigned long long int	get_time(unsigned long long int);
+unsigned long long int	get_time(unsigned long long int start);
 void					freerer(t_info *info);
 int						is_dead(t_philo *philo);
 int						all_full(t_info *info);

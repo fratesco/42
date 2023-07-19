@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:27:06 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/18 15:29:21 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/19 11:23:07 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,17 @@
 
 void	print_action(t_philo *philo)
 {
-	{
-		sem_wait((philo->write_right));
-		if (philo->action == SLEEPING)
-			printf("%llu %i is sleeping\n", get_time(philo->start), philo->id);
-		else if (philo->action == EATING)
-			printf("%llu %i is eating\n", get_time(philo->start), philo->id);
-		else if (philo->action == THINKING)
-			printf("%llu %i is thinking\n", get_time(philo->start), philo->id);
-		else if (philo->action == PICKING_FORK)
-			printf("%llu %i has taken a fork\n",
-				get_time(philo->start), philo->id);
-		sem_post((philo->write_right));
-	}
+	sem_wait((philo->write_right));
+	if (philo->action == SLEEPING)
+		printf("%llu %i is sleeping\n", get_time(philo->start), philo->id);
+	else if (philo->action == EATING)
+		printf("%llu %i is eating\n", get_time(philo->start), philo->id);
+	else if (philo->action == THINKING)
+		printf("%llu %i is thinking\n", get_time(philo->start), philo->id);
+	else if (philo->action == PICKING_FORK)
+		printf("%llu %i has taken a fork\n",
+			get_time(philo->start), philo->id);
+	sem_post((philo->write_right));
 }
 
 void	ft_sleep(int i, t_philo *philo)
@@ -53,7 +51,7 @@ void	*checker_routine(void *arg)
 
 int	any_dead(t_info *info)
 {
-
+	return (0);
 }
 
 void	unlocker(t_philo *philo, int i)
