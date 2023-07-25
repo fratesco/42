@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 10:25:12 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/11 17:45:44 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/25 17:25:14 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int	argument_handler(t_info *info, int argc, char **argv)
 		return (1);
 	gettimeofday(&t, NULL);
 	info->start_time = (t.tv_sec * 1000) + (t.tv_usec / 1000);
-	printf("%llu", info->start_time);
 	info->philo_dead = 0;
 	pthread_mutex_init(&(info->write_right), NULL);
 	info->full = 0;
