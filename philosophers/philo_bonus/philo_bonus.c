@@ -6,26 +6,23 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:17:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/19 11:20:20 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/26 18:13:56 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
-void	philo_generator(int id, t_info *info, t_philo *tmp)
+void	philo_generator(t_info *info)
 {
-	tmp->id = id;
-	tmp->action = 0;
-	tmp->is_dead = 0;
-	tmp->eat_num = 0;
-	tmp->last_meal = 0;
-	tmp->eat_max = info->eat_num;
-	tmp->start = info->start_time;
-	tmp->sleep_time = info->sleep_time;
-	tmp->time_eat = info->time_eat;
-	tmp->time_death = info->time_death;
-	tmp->write_right = sem_open("/write", 0);
-	tmp->forks = sem_open("/forks", 0);
+	info->philo.action = 0;
+	info->philo.eat_num = 0;
+	info->philo.is_dead = 0;
+	info->philo.last_meal = 0;
+}
+
+void	parent_checker()
+{
+	
 }
 
 void	start_processes(t_info *info)
@@ -35,58 +32,55 @@ void	start_processes(t_info *info)
 	i = -1;
 	while (++i < info->num_philo)
 	{
-		info->pid[i] = fork();
-		if (info->pid[i])
-			continue ;
-		else
+		info->pid = fork();
+		if (!info->pid)
 		{
-			//printf("a\n");
-			bonus_routine(i + 1, info);
-			exit (0);
+			info->philo.id = i + 1;
+			break ;
 		}
 	}
+	if (!info->pid)
+	{
+		bonus_routine(info);
+		exit (0);
+	}
+	//parent_checker(info);
 	while (waitpid(-1, NULL, 0))
 		continue ;
 }
 
-void	bonus_routine(int id, t_info *info)
+void	bonus_routine(t_info *info)
 {
-	t_philo		*philo;
-	pthread_t	tmp;
-
-	philo_generator(id, info, philo);
-	pthread_create(&tmp, NULL, &checker_routine, (void *)philo);
-	pthread_detach(tmp);
-	printf("cazzi\n");
+	philo_generator(info);
 	while (1)
 	{
-		lock_forks(philo);
-		philo_eater(philo);
+		lock_forks(info);
+		philo_eater(info);
 	}
 }
 
-void	lock_forks(t_philo	*philo)
+void	lock_forks(t_info *info)
 {
-	ft_sleep(philo->id - 1, philo);
-	sem_wait(philo->forks);
-	philo->action = PICKING_FORK;
-	print_action(philo);
-	sem_wait(philo->forks);
-	print_action(philo);
+	ft_sleep(info->philo.id - 1, info);
+	sem_wait(info->forks);
+	info->philo.action = PICKING_FORK;
+	print_action(info);
+	sem_wait(info->forks);
+	print_action(info);
 }
 
-void	philo_eater(t_philo *philo)
+void	philo_eater(t_info *info)
 {
-	philo->action = EATING;
-	print_action(philo);
-	philo->last_meal = get_time(philo->start);
-	ft_sleep((philo->time_eat), philo);
-	sem_post(philo->forks);
-	sem_post(philo->forks);
-	philo->eat_num++;
-	philo->action = SLEEPING;
-	print_action(philo);
-	ft_sleep((philo->sleep_time), philo);
-	philo->action = THINKING;
-	print_action(philo);
+	info->philo.action = EATING;
+	print_action(info);
+	info->philo.last_meal = get_time(info->start_time);
+	ft_sleep((info->time_eat), info);
+	//sem_post(info->forks);
+	//sem_post(info->forks);
+	info->philo.eat_num++;
+	info->philo.action = SLEEPING;
+	print_action(info);
+	ft_sleep((info->sleep_time), info);
+	info->philo.action = THINKING;
+	print_action(info);
 }
