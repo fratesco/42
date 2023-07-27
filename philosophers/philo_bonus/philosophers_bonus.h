@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:42:08 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/27 17:59:15 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/27 23:43:16 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ typedef struct s_info
 	unsigned long long int				start_time;
 	int									num_philo;
 	int									eat_num;
+	int									current_eat;
 	int									pid;
 	t_philo								philo;
 	sem_t								*write;
 	sem_t								*forks;
-	sem_t								*end;
 }	t_info;
 
 int						argument_handler(t_info *info, int argc, char **argv);
@@ -75,5 +75,5 @@ void					*checker_routine(void *arg);
 int						any_dead(t_info *info);
 void					lock_forks(t_info *info);
 void					philo_eater(t_info *info);
-void					parent_checker(void);
+void					parent_checker(t_info *info);
 #endif

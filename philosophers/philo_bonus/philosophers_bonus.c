@@ -6,18 +6,11 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:51:24 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/27 18:02:34 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/27 23:48:28 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
-
-int	full_or_dead(t_info *info)
-{
-	if (!is_dead(info)) //&& !all_full(info->philo.info) && !info->philo.info->philo_dead)
-		return (0);
-	return (1);
-}
 
 int	error_handler(int id)
 {
@@ -75,13 +68,13 @@ int	argument_handler(t_info *info, int argc, char **argv)
 		return (1);
 	gettimeofday(&t, NULL);
 	info->start_time = (t.tv_sec * 1000) + (t.tv_usec / 1000);
+	info->current_eat = 0;
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	t_info			info;
-	int				value;
 
 	if (argc < 5)
 		return (error_handler(1));
@@ -95,10 +88,6 @@ int	main(int argc, char **argv)
 	sem_unlink("/write");
 	info.write = sem_open("/write", O_CREAT, 0666, 1);
 	info.forks = sem_open("/forks", O_CREAT, 0666, info.num_philo);
-	info.end = sem_open("/end", O_CREAT, 0666, 1);
-	value = (int)info.forks;
-	printf("%i\n", value);
 	start_processes(&info);
-	// freerer(&info);
 	return (0);
 }

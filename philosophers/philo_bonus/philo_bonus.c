@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:17:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/27 18:01:58 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/27 23:47:46 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	start_processes(t_info *info)
 		bonus_routine(info);
 		exit (0);
 	}
-	parent_checker();
+	parent_checker(info);
 }
 
 void	bonus_routine(t_info *info)
@@ -79,6 +79,8 @@ void	philo_eater(t_info *info)
 		sem_post(info->forks);
 		sem_post(info->forks);
 		info->philo.eat_num++;
+		if (info->philo.eat_num == info->eat_num)
+			exit(0);
 		info->philo.action = SLEEPING;
 		print_action(info);
 		ft_sleep((info->sleep_time), info);

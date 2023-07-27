@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:27:06 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/27 16:45:01 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/27 23:50:11 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,28 +36,20 @@ void	ft_sleep(int i, t_info *info)
 
 	start = get_time(info->start_time);
 	while ((get_time(info->start_time) - start < i) && !is_dead(info))
-		usleep(50);
+		usleep(30);
 }
 
-void	parent_checker(void)
+void	parent_checker(t_info *info)
 {
 	int	status;
 
-	while (waitpid(-1, &status, 0))
+	while (waitpid(0, &status, 0))
 	{
-		//printf("%p\n", status);
-	}
-}
-
-int	any_dead(t_info *info)
-{
-	return (0);
-}
-
-void	unlocker(t_info *info, int i)
-{
-	while (i--)
-	{
-		sem_post(info->forks);
+		info->current_eat++;
+		if (info->current_eat == info->eat_num)
+		{
+			kill(0, SIGTERM);
+			return ;
+		}
 	}
 }

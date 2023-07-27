@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 11:24:52 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/27 16:27:40 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/27 23:43:31 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,6 @@ unsigned long long int	get_time(unsigned long long int start)
 	return ((t.tv_sec * 1000) + (t.tv_usec / 1000) - start);
 }
 
-// void	freerer(t_info *info)
-// {
-// 	if (info->pid)
-// 		free(info->pid);
-// }
-
 int	is_dead(t_info *info)
 {
 	int	i;
@@ -71,31 +65,3 @@ int	is_dead(t_info *info)
 	else
 		return (0);
 }
-
-//int	all_full(t_info *info)
-//{
-//	int	i;
-//	int	j;
-//
-//	i = 0;
-//	j = 0;
-//	if (info->full == 1)
-//		return (1);
-//	if (info->eat_num > 0)
-//	{
-//		while (i < info->num_philo)
-//		{
-//			if (info->philosophers[i].eat_num >= info->eat_num)
-//				j++;
-//			else
-//				return (0);
-//			i++;
-//		}
-//		if (j == info->num_philo)
-//		{
-//			info->full = 1;
-//			return (1);
-//		}
-//	}
-//	return (0);
-//}
