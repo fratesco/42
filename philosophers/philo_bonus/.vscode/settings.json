@@ -1,0 +1,14 @@
+{
+	"files.associations": {
+		"cdefs.h": "c",
+		"types.h": "c",
+		"_pthread_t.h": "c",
+		"_pthread_rwlockattr_t.h": "c",
+		"_pthread_rwlock_t.h": "c",
+		"_pthread_once_t.h": "c",
+		"_pthread_mutexattr_t.h": "c",
+		"_pthread_mutex_t.h": "c",
+		"fcntl.h": "c",
+		"semaphore.h": "c"
+	}
+}

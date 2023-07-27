@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:51:24 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/26 18:04:55 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/27 18:02:34 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int	argument_handler(t_info *info, int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	t_info			info;
+	int				value;
 
 	if (argc < 5)
 		return (error_handler(1));
@@ -95,6 +96,8 @@ int	main(int argc, char **argv)
 	info.write = sem_open("/write", O_CREAT, 0666, 1);
 	info.forks = sem_open("/forks", O_CREAT, 0666, info.num_philo);
 	info.end = sem_open("/end", O_CREAT, 0666, 1);
+	value = (int)info.forks;
+	printf("%i\n", value);
 	start_processes(&info);
 	// freerer(&info);
 	return (0);

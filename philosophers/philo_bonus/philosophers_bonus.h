@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 16:42:08 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/26 18:04:55 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/27 17:59:15 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <sys/wait.h>
+# include <sys/semaphore.h>
+# include <sys/sem.h>
 # include <pthread.h>
 # include <semaphore.h>
 # include <signal.h>
@@ -73,4 +75,5 @@ void					*checker_routine(void *arg);
 int						any_dead(t_info *info);
 void					lock_forks(t_info *info);
 void					philo_eater(t_info *info);
+void					parent_checker(void);
 #endif

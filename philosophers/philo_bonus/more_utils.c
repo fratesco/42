@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:27:06 by fgolino           #+#    #+#             */
-/*   Updated: 2023/07/26 18:11:20 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/07/27 16:45:01 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@ void	print_action(t_info *info)
 {
 	sem_wait((info->write));
 	if (info->philo.action == SLEEPING)
-		printf("%llu %i is sleeping\n", get_time(info->start_time), info->philo.id);
+		printf("%llu %i is sleeping\n",
+			get_time(info->start_time), info->philo.id);
 	else if (info->philo.action == EATING)
-		printf("%llu %i is eating\n", get_time(info->start_time), info->philo.id);
+		printf("%llu %i is eating\n",
+			get_time(info->start_time), info->philo.id);
 	else if (info->philo.action == THINKING)
-		printf("%llu %i is thinking\n", get_time(info->start_time), info->philo.id);
+		printf("%llu %i is thinking\n",
+			get_time(info->start_time), info->philo.id);
 	else if (info->philo.action == PICKING_FORK)
 		printf("%llu %i has taken a fork\n",
 			get_time(info->start_time), info->philo.id);
@@ -36,18 +39,15 @@ void	ft_sleep(int i, t_info *info)
 		usleep(50);
 }
 
-// void	*checker_routine(void *arg)
-// {
-// 	int		i;
-// 	t_info *info;
+void	parent_checker(void)
+{
+	int	status;
 
-// 	philo = (t_philo *)arg;
-// 	while (1)
-// 	{
-// 		full_or_dead(info);
-// 	}
-// 	exit (0);
-// }
+	while (waitpid(-1, &status, 0))
+	{
+		//printf("%p\n", status);
+	}
+}
 
 int	any_dead(t_info *info)
 {
