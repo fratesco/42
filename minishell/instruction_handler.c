@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   instruction_handler.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/08/18 15:38:20 by fgolino          ###   ########.fr       */
+/*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
+/*   Updated: 2023/08/18 15:41:43 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-# include "libft/libft.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdbool.h>
-# include <readline/history.h>
-# include <readline/readline.h>
+#include "minishell.h"
 
-void	start(char *instruction);
-void	free_matrix(char **matrix);
+void	start(char *instruction)
+{
+	char	**tokens;
+	int		len;
 
-#endif
+	tokens = ft_split(instruction, ' ');
+	len = 0;
+	while (tokens && tokens[len])
+		len++;
+	if (len == 0)
+		return (free_matrix(tokens));
+	
+	free_matrix(tokens);
+}

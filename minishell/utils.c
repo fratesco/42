@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/08/18 15:38:20 by fgolino          ###   ########.fr       */
+/*   Created: 2023/08/18 15:38:35 by fgolino           #+#    #+#             */
+/*   Updated: 2023/08/18 15:40:45 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-# include "libft/libft.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdbool.h>
-# include <readline/history.h>
-# include <readline/readline.h>
+#include "minishell.h"
 
-void	start(char *instruction);
-void	free_matrix(char **matrix);
+void	free_matrix(char **matrix)
+{
+	int	i;
 
-#endif
+	i = 0;
+	while (matrix[i] && matrix != NULL)
+		free(matrix[i++]);
+	free(matrix);
+}
