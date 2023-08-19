@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instruction_handler.c                              :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/08/19 17:10:14 by fgolino          ###   ########.fr       */
+/*   Created: 2023/08/19 16:46:52 by fgolino           #+#    #+#             */
+/*   Updated: 2023/08/19 17:30:53 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	start(void)
+void	interrupt(int signum)
 {
-	char	**tokens;
-	int		len;
+	if (g_info.ins_pid != 0)
+		kill(g_info.ins_pid, SIGINT);
+	printf("\n");
 
-	signal_rewire();
-	tokens = ft_split(g_info.instruction, ' ');
-	len = 0;
-	while (tokens && tokens[len])
-		len++;
-	if (len == 0)
-		return (free_matrix(tokens));
-	g_info.instr_len = len;
-	free_matrix(tokens);
+}
+
+void	signal_rewire(void)
+{
+	//qui gestisci i segnali con sigaction
 }
