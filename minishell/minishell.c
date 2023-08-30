@@ -6,11 +6,13 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/08/19 17:34:03 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/08/30 17:43:36 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+t_info	g_info;
 
 int	main(void)
 {
@@ -27,7 +29,7 @@ int	main(void)
 	//}
 	while (1)
 	{
-		g_info.instruction = readline();
+		g_info.instruction = readline("e4r6p1% "); //la shell della 42 printa il numero della postazione
 		// probabilmente è meglio se tutto quello che succede da qui in poi è gestito da un processo figlio
 		start();
 		//qui il processo genitori si mette in waitpid(0, NULL, NULL) e poi fa ripartire il suo loop

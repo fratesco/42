@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/08/19 17:23:39 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/08/30 17:26:38 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ typedef struct s_info
 	int		ins_pid;
 	char	*current_path;
 }	t_info;
-
-t_info	g_info;
 
 void	start(void);
 void	free_matrix(char **matrix);
