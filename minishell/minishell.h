@@ -6,12 +6,13 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/08/30 17:26:38 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/01 21:44:44 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+# define _XOPEN_SOURCE 700
 # include "libft/libft.h"
 # include <stdio.h>
 # include <stdlib.h>
