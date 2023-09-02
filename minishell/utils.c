@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:38:35 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/02 22:45:45 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/02 23:05:40 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	redirector(void)
 		}
 		i++;
 	}
+	return (0);
 }
 
 //int	check_string(char *str)
