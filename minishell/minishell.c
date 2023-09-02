@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/02 13:54:47 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/02 17:58:56 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ t_info	g_info;
 int	main(void)
 {
 
-	g_info.global_path = get_path(getenv("PATH"));
+	g_info.global_path = ft_split((getenv("PATH")), ':');
 	g_info.user = ft_strdup(getenv("USER"));
 	g_info.user = ft_strjoin(g_info.user, (">"));
 	signal_rewire();
 	g_info.current_path = ft_strdup(getenv("HOME"));
+	g_info.temp_stdout = 0;
 	chdir(g_info.current_path);
 	while (1)
 	{
@@ -39,11 +40,8 @@ int	main(void)
 		free_matrix(g_info.instr_token);
 		g_info.instr_token = NULL;
 	}
-	rl_clear_history();
-	free(g_info.user);
-	free(g_info.current_path);
-	free_matrix(g_info.global_path);
-	free_matrix(g_info.instr_token);
+	free_stuff();
+
 
 	return (0);
 }

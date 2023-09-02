@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/02 13:20:14 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/02 18:01:16 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,19 @@ typedef struct s_info
 	int		instr_pid;
 	char	*user;
 	char	*current_path;
+	int		temp_stdout;
+	int		temp_fd;
 }	t_info;
 
 void	start(void);
 void	free_matrix(char **matrix);
-char	**get_path(char *path);
+void	free_stuff(void);
+char	**pipe_finder(void);
 void	signal_rewire(void);
 void	interrupt(int signum);
 void	quitter(int signum);
 void	analizer(void);
 void	pwd_handler(void);
+int		redirector(void);
 
 #endif
