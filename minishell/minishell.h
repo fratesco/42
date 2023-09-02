@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/02 22:48:18 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/02 22:53:14 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	quitter(int signum);
 void	analizer(void);
 void	pwd_handler(void);
 int		redirector(void);
+void	get_environment(void);
 //int		check_string(char *str);
 //void	quote_splitter(char **tokens);
 
