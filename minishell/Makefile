@@ -6,7 +6,7 @@
 #    By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:56:46 by fgolino           #+#    #+#              #
-#    Updated: 2023/09/02 13:20:36 by fgolino          ###   ########.fr        #
+#    Updated: 2023/09/02 17:13:24 by fgolino          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,21 +22,27 @@ CC := gcc
 
 FLAGS := -Wextra -Werror -Wall 
 
+all : $(NAME)
+	  @echo Minishell compiled successfully
+
 $(NAME) : $(OBJ)
-		make -C $(LIBFT)
+		make -s -C $(LIBFT)
 		$(CC) $(FLAGS) -g $(OBJ) -o $(NAME) libft/libft.a -lreadline
 
-all : $(NAME)
 
 clean :
-		cd $(LIBFT); make clean
-		rm -r $(OBJ)
+		@cd $(LIBFT); make clean -s 
+		@rm -r $(OBJ)
+		@echo Objects cleaned
 
 fclean : clean
-		cd $(LIBFT); make fclean
-		rm -r $(NAME)
+		@cd $(LIBFT); make fclean -s 
+		@rm -r $(NAME)
+		@echo Minishell cleaned
 
 re : fclean all
+
+.SILENT : $(OBJ) $(NAME)
 
 .PHONY : 
 		all clean fclean re
