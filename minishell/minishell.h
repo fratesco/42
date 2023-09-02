@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/01 21:44:44 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/02 12:05:53 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ typedef struct s_info
 {
 	char	**global_path;
 	char	*instruction;
+	char	**instr_token;
 	int		instr_len;
-	int		ins_pid;
+	int		instr_pid;
+	char	*user;
 	char	*current_path;
 }	t_info;
 
@@ -37,5 +39,7 @@ void	start(void);
 void	free_matrix(char **matrix);
 char	**get_path(char *path);
 void	signal_rewire(void);
+void	interrupt(int signum);
+void	quitter(int signum);
 
 #endif

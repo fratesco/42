@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/01 21:30:57 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/02 12:00:12 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	start(void)
 	char	**tokens;
 	int		len;
 
-	signal_rewire();
+	//signal_rewire();
+	//printf("%s", g_info.instruction);
 	tokens = ft_split(g_info.instruction, ' ');
 	len = 0;
 	while (tokens && tokens[len])
