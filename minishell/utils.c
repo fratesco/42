@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:38:35 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/02 18:33:40 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/02 22:45:45 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	**pipe_finder(void)
 		j = 0;
 		while (g_info.instr_token[i][j])
 		{
-			if ()
+			
 		}
 	}
 }
@@ -68,3 +68,33 @@ int	redirector(void)
 		i++;
 	}
 }
+
+//int	check_string(char *str)
+//{
+//	int	i;
+//	int	num_single;
+//	int	num_double;
+//
+//	i = 0;
+//	num_single = 0;
+//	num_double = 0;
+//	while (str && str[i])
+//	{
+//		if (str[i] == '"')
+//		{
+//			num_double++;
+//			while (str && str[i])
+//			{
+//				
+//			}
+//		}
+//		else if (str[i] == "'")
+//			num_single++;
+//	}
+//	if ()
+//	{
+//		printf("Invalid quotes");
+//		return (1);
+//	}
+//	return (0);
+//}
