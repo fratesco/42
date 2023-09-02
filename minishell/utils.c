@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:38:35 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/01 21:31:13 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/02 13:48:36 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ void	free_matrix(char **matrix)
 	int	i;
 
 	i = 0;
-	while (matrix[i] && matrix != NULL)
+	while (matrix != NULL && matrix[i])
 		free(matrix[i++]);
-	free(matrix);
+	if (matrix != NULL)
+		free(matrix);
 }
 
 char	**get_path(char *path)

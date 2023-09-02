@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/02 12:05:53 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/02 13:20:14 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,7 @@ char	**get_path(char *path);
 void	signal_rewire(void);
 void	interrupt(int signum);
 void	quitter(int signum);
+void	analizer(void);
+void	pwd_handler(void);
 
 #endif
