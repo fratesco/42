@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/03 13:09:57 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/03 14:56:24 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	get_environment(void);
 int		check_string(char *str);
 void	single_quotes(char *str, int *num_single, int *i);
 void	double_quotes(char *str, int *num_single, int *i);
+char	*quote_remover(char *str, char sep);
 //void	quote_splitter(char **tokens);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/03 12:49:43 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/03 15:11:18 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	start(void)
 void	analizer(void)
 {
 	int	i;
+	int	j;
 
 	i = 0;
 	//printf("%s", g_info.instr_token[0]);

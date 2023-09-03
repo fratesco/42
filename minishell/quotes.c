@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 13:02:58 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/03 13:18:11 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/03 16:47:02 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,61 @@ int	check_string(char *str)
 		return (1);
 	}
 	return (0);
+}
+
+void	polish_tokens(void)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (g_info.instr_token && g_info.instr_token[i])
+	{
+		j = 0;
+		while (g_info.instr_token[i] && g_info.instr_token[i][j])
+		{
+			if (g_info.instr_token[i][j] == '"')
+			{
+				g_info.instr_token[i] = 
+					quote_remover(g_info.instr_token[i], '"');
+				break ;
+			}
+			else if (g_info.instr_token[i][j] == '\'')
+			{
+				g_info.instr_token[i] = 
+					quote_remover(g_info.instr_token[i], '\'');
+				break ;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+char	*quote_remover(char *str, char sep)
+{
+	char	*tmp;
+	int		first;
+	int		last;
+
+	first = 0;
+	last = ft_strlen(str) - 1;
+	while (str && str[first])
+	{
+		if (str[first++] == sep)
+			break ;
+	}
+	while (str && last >= 0)
+	{
+		if (str[last--] == sep)
+			break ;
+	}
+	tmp = (char *)malloc(sizeof(char) * (ft_strlen(str) - 1));
+	ft_strlcpy(tmp, str, first + 1);
+	ft_strlcpy(&(tmp[first]), &(str[first + 1]), (last - first));
+	ft_strlcpy(&(tmp[last - 1]), &(str[last + 1]), (ft_strlen(str) - last));
+	//qui il programma deve controllare se ci sono altre virgolette dello stesso tipo fino a last
+	//deve poi controllare se ci sono altre virgolette anche diverse dopo last
+	free(str);
+	return (tmp);
 }
