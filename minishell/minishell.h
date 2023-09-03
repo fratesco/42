@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/02 22:53:14 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/03 13:09:57 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_info
 	int		temp_stdout;
 	int		temp_fd;
 	int		num_pipe;
-	int		pos_pipe;
+	int		*pos_pipe;
 }	t_info;
 
 void	start(void);
@@ -50,7 +50,9 @@ void	analizer(void);
 void	pwd_handler(void);
 int		redirector(void);
 void	get_environment(void);
-//int		check_string(char *str);
+int		check_string(char *str);
+void	single_quotes(char *str, int *num_single, int *i);
+void	double_quotes(char *str, int *num_single, int *i);
 //void	quote_splitter(char **tokens);
 
 #endif

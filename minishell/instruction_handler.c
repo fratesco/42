@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/02 23:11:15 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/03 12:49:43 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ void	start(void)
 
 	tokens = ft_split(g_info.instruction, ' ');
 	len = 0;
+	if (!tokens)
+		return (free_matrix(tokens));
 	while (tokens && tokens[len])
 	{
-		if (!tokens) /*check_string(tokens[len])*/
+		if (check_string(tokens[len]))
 		{
-			len = 0;
-			while (tokens && tokens[len])
-				free(tokens[len++]);
-			return(free(tokens));
+			free_matrix(tokens);
+			return ;
 		}
 		len++;
 	}

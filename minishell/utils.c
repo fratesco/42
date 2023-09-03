@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:38:35 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/02 23:05:40 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/03 13:10:13 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,16 @@ void	free_matrix(char **matrix)
 
 	i = 0;
 	while (matrix != NULL && matrix[i])
-		free(matrix[i++]);
+	{
+		free(matrix[i]);
+		i++;
+	}
 	if (matrix != NULL)
+	{
+		free(matrix[i]);
 		free(matrix);
+	}
+	return ;
 }
 
 char	**pipe_finder(void)
@@ -69,33 +76,3 @@ int	redirector(void)
 	}
 	return (0);
 }
-
-//int	check_string(char *str)
-//{
-//	int	i;
-//	int	num_single;
-//	int	num_double;
-//
-//	i = 0;
-//	num_single = 0;
-//	num_double = 0;
-//	while (str && str[i])
-//	{
-//		if (str[i] == '"')
-//		{
-//			num_double++;
-//			while (str && str[i])
-//			{
-//				
-//			}
-//		}
-//		else if (str[i] == "'")
-//			num_single++;
-//	}
-//	if ()
-//	{
-//		printf("Invalid quotes");
-//		return (1);
-//	}
-//	return (0);
-//}

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/02 23:11:21 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/03 13:01:16 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,19 @@ t_info	g_info;
 
 void	get_environment(void)
 {
+	char	*tmp;
+
 	g_info.global_path = ft_split((getenv("PATH")), ':');
 	g_info.user = ft_strdup(getenv("USER"));
-	g_info.user = ft_strjoin(g_info.user, (">"));
+	tmp = ft_strjoin(g_info.user, (">"));
+	free(g_info.user);
+	g_info.user = tmp;
 	signal_rewire();
 	g_info.current_path = ft_strdup(getenv("HOME"));
 	g_info.temp_stdout = 0;
 	chdir(g_info.current_path);
+	g_info.instr_len = 0;
+	g_info.instr_token = NULL;
 }
 
 int	main(void)
@@ -42,6 +48,7 @@ int	main(void)
 		//qui il processo genitori si mette in waitpid(0, NULL, NULL) e poi fa ripartire il suo loop
 		free(g_info.instruction);
 		free_matrix(g_info.instr_token);
+		g_info.instr_len = 0;
 		g_info.instr_token = NULL;
 	}
 	free_stuff();
