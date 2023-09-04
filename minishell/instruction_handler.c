@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/03 15:11:18 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/04 17:41:21 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	analizer(void)
 
 	i = 0;
 	//printf("%s", g_info.instr_token[0]);
+	polish_tokens();
 	if (ft_strncmp(g_info.instr_token[0], "pwd", ft_strlen("pwd")) == 0)
 		pwd_handler();
 	//testare se

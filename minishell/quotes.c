@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 13:02:58 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/03 16:47:02 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/04 17:52:38 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ void	polish_tokens(void)
 			if (g_info.instr_token[i][j] == '"')
 			{
 				g_info.instr_token[i] = 
-					quote_remover(g_info.instr_token[i], '"');
+					quote_remover(g_info.instr_token[i], '"', -1);
 				break ;
 			}
 			else if (g_info.instr_token[i][j] == '\'')
 			{
 				g_info.instr_token[i] = 
-					quote_remover(g_info.instr_token[i], '\'');
+					quote_remover(g_info.instr_token[i], '\'', -1);
 				break ;
 			}
 			j++;
@@ -99,30 +99,37 @@ void	polish_tokens(void)
 	}
 }
 
-char	*quote_remover(char *str, char sep)
+char	*quote_remover(char *str, char sep, int stop)
 {
 	char	*tmp;
 	int		first;
 	int		last;
 
 	first = 0;
-	last = ft_strlen(str) - 1;
-	while (str && str[first])
+	last = stop;
+	if (stop < 0)
+		last = ft_strlen(str) - 1;
+	while (str && str[first] && first < last)
 	{
 		if (str[first++] == sep)
 			break ;
 	}
+	// visto che da problemi in dei casi non realistici ma esistenti, puoi provare a far partire last da first	
 	while (str && last >= 0)
 	{
 		if (str[last--] == sep)
 			break ;
 	}
+	if (last <= first)
+		return (0);
+	//printf("sonoqui\n");
 	tmp = (char *)malloc(sizeof(char) * (ft_strlen(str) - 1));
-	ft_strlcpy(tmp, str, first + 1);
-	ft_strlcpy(&(tmp[first]), &(str[first + 1]), (last - first));
-	ft_strlcpy(&(tmp[last - 1]), &(str[last + 1]), (ft_strlen(str) - last));
-	//qui il programma deve controllare se ci sono altre virgolette dello stesso tipo fino a last
-	//deve poi controllare se ci sono altre virgolette anche diverse dopo last
+	ft_strlcpy(tmp, str, first);
+	ft_strlcpy(&(tmp[first - 1]), &(str[first]), (last - first + 2));
+	ft_strlcpy(&(tmp[last]), &(str[last + 2]), (ft_strlen(str) - last + 1));
+	//printf("qui\n");
+	tmp = keep_removing(tmp, last, sep);
+	printf(" first :%i last :%i %s\n", first, last, tmp);
 	free(str);
 	return (tmp);
 }

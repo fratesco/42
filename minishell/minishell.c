@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/03 13:01:16 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/04 15:01:20 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	get_environment(void)
 
 	g_info.global_path = ft_split((getenv("PATH")), ':');
 	g_info.user = ft_strdup(getenv("USER"));
-	tmp = ft_strjoin(g_info.user, (">"));
+	tmp = ft_strjoin(g_info.user, (":~"));
 	free(g_info.user);
 	g_info.user = tmp;
 	signal_rewire();
