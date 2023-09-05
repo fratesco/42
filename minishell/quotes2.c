@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 15:05:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/04 17:44:47 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/05 17:29:14 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,4 @@ char	*keep_removing(char *str, int stop, char needle)
 	}
 	return (str);
 }
+

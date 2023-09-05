@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 13:02:58 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/04 17:52:38 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/05 17:58:46 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,29 +106,25 @@ char	*quote_remover(char *str, char sep, int stop)
 	int		last;
 
 	first = 0;
-	last = stop;
-	if (stop < 0)
-		last = ft_strlen(str) - 1;
-	while (str && str[first] && first < last)
+	while (str && str[first])
 	{
 		if (str[first++] == sep)
 			break ;
+		first++;
 	}
-	// visto che da problemi in dei casi non realistici ma esistenti, puoi provare a far partire last da first	
-	while (str && last >= 0)
+	last = first;
+	while (str && str[last])
 	{
-		if (str[last--] == sep)
+		if (str[last] == sep)
 			break ;
+		last++;
 	}
-	if (last <= first)
-		return (0);
-	//printf("sonoqui\n");
-	tmp = (char *)malloc(sizeof(char) * (ft_strlen(str) - 1));
-	ft_strlcpy(tmp, str, first);
-	ft_strlcpy(&(tmp[first - 1]), &(str[first]), (last - first + 2));
-	ft_strlcpy(&(tmp[last]), &(str[last + 2]), (ft_strlen(str) - last + 1));
-	//printf("qui\n");
-	tmp = keep_removing(tmp, last, sep);
+	tmp = (char *)malloc(sizeof(char) * (ft_strlen(str)));
+	ft_strlcpy(tmp, str, first + 1);
+	ft_strlcpy(&(tmp[first - 1]), &(str[first]), (last));
+	ft_strlcpy(&(tmp[last - 1]), &(str[last]), (ft_strlen(str) - last));
+	//non funziona per niente devi controllare ancora testa sucasucasuca"sucate"
+	//tmp = keep_removing(tmp, last, sep);
 	printf(" first :%i last :%i %s\n", first, last, tmp);
 	free(str);
 	return (tmp);
