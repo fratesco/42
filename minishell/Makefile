@@ -6,7 +6,7 @@
 #    By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:56:46 by fgolino           #+#    #+#              #
-#    Updated: 2023/09/04 15:55:15 by fgolino          ###   ########.fr        #
+#    Updated: 2023/09/05 11:35:56 by fgolino          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,12 +32,12 @@ $(NAME) : $(OBJ)
 
 clean :
 		@cd $(LIBFT); make clean -s 
-		@rm -r $(OBJ)
+		@rm -f $(OBJ)
 		@echo Objects cleaned
 
 fclean : clean
 		@cd $(LIBFT); make fclean -s 
-		@rm -r $(NAME)
+		@rm -f $(NAME)
 		@echo Minishell cleaned
 
 re : fclean all
