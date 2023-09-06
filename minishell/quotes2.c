@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 15:05:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/06 16:42:21 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/06 17:37:16 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	remove_more(char *str, int start, char needle)
 	int		last;
 	int		i;
 
-	last = start;
+	last = start + 1;
 	while (str && str[last])
 	{
 		if (str[last] == needle)
@@ -46,7 +46,7 @@ int	remove_more(char *str, int start, char needle)
 	i = ft_strlen(str);
 	tmp = strdup(&(str[last + 1]));
 	ft_strlcpy(&(str[start]), &(str[start + 1]), (last));
-	ft_strlcpy(&(str[last]), tmp, (i));
+	ft_strlcpy(&(str[last - 1]), tmp, (i));
 	free(tmp);
 	return (last - 2);
 }
