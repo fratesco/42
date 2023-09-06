@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 13:02:58 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/05 17:58:46 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/06 16:39:00 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,14 @@ void	polish_tokens(void)
 		{
 			if (g_info.instr_token[i][j] == '"')
 			{
-				g_info.instr_token[i] = 
-					quote_remover(g_info.instr_token[i], '"', -1);
+				//g_info.instr_token[i] = 
+					quote_remover(g_info.instr_token[i], '"');
 				break ;
 			}
 			else if (g_info.instr_token[i][j] == '\'')
 			{
-				g_info.instr_token[i] = 
-					quote_remover(g_info.instr_token[i], '\'', -1);
+				//g_info.instr_token[i] = 
+					quote_remover(g_info.instr_token[i], '\'');
 				break ;
 			}
 			j++;
@@ -99,8 +99,9 @@ void	polish_tokens(void)
 	}
 }
 
-char	*quote_remover(char *str, char sep, int stop)
+int	quote_remover(char *str, char sep)
 {
+	int		i;
 	char	*tmp;
 	int		first;
 	int		last;
@@ -108,24 +109,23 @@ char	*quote_remover(char *str, char sep, int stop)
 	first = 0;
 	while (str && str[first])
 	{
-		if (str[first++] == sep)
+		if (str[first] == sep)
 			break ;
 		first++;
 	}
-	last = first;
+	last = first + 1;
 	while (str && str[last])
 	{
 		if (str[last] == sep)
 			break ;
 		last++;
 	}
-	tmp = (char *)malloc(sizeof(char) * (ft_strlen(str)));
-	ft_strlcpy(tmp, str, first + 1);
-	ft_strlcpy(&(tmp[first - 1]), &(str[first]), (last));
-	ft_strlcpy(&(tmp[last - 1]), &(str[last]), (ft_strlen(str) - last));
-	//non funziona per niente devi controllare ancora testa sucasucasuca"sucate"
-	//tmp = keep_removing(tmp, last, sep);
-	printf(" first :%i last :%i %s\n", first, last, tmp);
-	free(str);
-	return (tmp);
+	i = ft_strlen(str);
+	tmp = strdup(&(str[last + 1]));
+	ft_strlcpy(&(str[first]), &(str[first + 1]), (last));
+	ft_strlcpy(&(str[last - 1]), tmp, (i));
+	free(tmp);
+	keep_removing(str, last - 1);
+	printf(" first :%i last :%i %s\n", first, last, str);
+	return (last);
 }

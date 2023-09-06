@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 15:05:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/05 17:29:14 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/06 16:42:21 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,39 @@
 
 extern t_info	g_info;
 
-char	*keep_removing(char *str, int stop, char needle)
+int	keep_removing(char *str, int start)
 {
 	int		i;
 	char	*tmp;
 
-	i = 0;
+	i = start;
 	tmp = 0;
-	while (str && str[i] && i < stop)
-	{
-		if (str[i] == needle)
-			return (quote_remover(str, needle, stop));
-		i++;
-	}
 	while (str && str[i])
 	{
 		if (str[i] == '"')
-			tmp = quote_remover(&str[stop - 1], '"', -1);
-		else if (str[i] == '\'')
-			tmp = quote_remover(&str[stop - 1], '\'', -1);
+			i = remove_more(str, i, '"');
 		i++;
 	}
-	if (tmp)
-	{
-		ft_strlcpy(&str[stop - 1], tmp, ft_strlen(tmp) + 1);
-		//free(tmp);
-	}
-	return (str);
+	return (i);
 }
 
+int	remove_more(char *str, int start, char needle)
+{
+	char	*tmp;
+	int		last;
+	int		i;
+
+	last = start;
+	while (str && str[last])
+	{
+		if (str[last] == needle)
+			break ;
+		last++;
+	}
+	i = ft_strlen(str);
+	tmp = strdup(&(str[last + 1]));
+	ft_strlcpy(&(str[start]), &(str[start + 1]), (last));
+	ft_strlcpy(&(str[last]), tmp, (i));
+	free(tmp);
+	return (last - 2);
+}

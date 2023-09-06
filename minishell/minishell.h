@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/04 16:21:30 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/06 16:37:17 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ int		check_string(char *str);
 void	polish_tokens(void);
 void	single_quotes(char *str, int *num_single, int *i);
 void	double_quotes(char *str, int *num_single, int *i);
-char	*quote_remover(char *str, char sep, int stop);
-char	*keep_removing(char *str, int stop, char needle);
+int		quote_remover(char *str, char sep);
+int		keep_removing(char *str, int start);
+int		remove_more(char *str, int start, char needle);
+
 //void	quote_splitter(char **tokens);
 
 #endif
