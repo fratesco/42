@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 15:05:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/06 17:37:16 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/08 15:33:51 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	keep_removing(char *str, int start)
 	{
 		if (str[i] == '"')
 			i = remove_more(str, i, '"');
+		else if (str[i] == '\'')
+			i = remove_more(str, i, '\'');
 		i++;
 	}
 	return (i);

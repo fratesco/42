@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/04 17:41:21 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/08 16:31:46 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,6 @@ void	start(void)
 	g_info.instr_token = tokens;
 	g_info.instr_len = len;
 }
-
-//void	quote_splitter(char **tokens)
-//{
-//	int	i;
-//	int	j;
-//	
-//	i = 0;
-//	while (tokens && tokens[i])
-//	{
-//		j = 0;
-//		while (tokens[i][j])
-//		{
-//			if (tokens[[i][j] == ])
-//		}
-//	}
-//}
 
 void	analizer(void)
 {
