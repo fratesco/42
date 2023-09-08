@@ -6,7 +6,11 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/09/08 16:31:46 by fgolino          ###   ########.fr       */
+=======
+/*   Updated: 2023/09/06 20:47:53 by fgolino          ###   ########.fr       */
+>>>>>>> 8f6558478d6c461f23c931e395ddfe3e8c261f9c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +48,7 @@ void	analizer(void)
 
 	i = 0;
 	//printf("%s", g_info.instr_token[0]);
+	//si potrebbe far partire polish_tokens prima di ft_split e poi aggiungere ft_split alla matrice gia creata
 	polish_tokens();
 	if (ft_strncmp(g_info.instr_token[0], "pwd", ft_strlen("pwd")) == 0)
 		pwd_handler();
