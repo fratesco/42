@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 13:02:58 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/26 18:36:45 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/26 18:37:47 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ void	polish_tokens(void)
 		{
 			if (g_info.instr_token[i][j] == '"')
 			{
-					quote_remover(g_info.instr_token[i], '"');
+				quote_remover(g_info.instr_token[i], '"');
 				break ;
 			}
 			else if (g_info.instr_token[i][j] == '\'')
 			{
-					quote_remover(g_info.instr_token[i], '\'');
+				quote_remover(g_info.instr_token[i], '\'');
 				break ;
 			}
 			j++;
