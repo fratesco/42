@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/06 16:37:17 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/26 17:42:33 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ typedef struct s_info
 {
 	char	**global_path;
 	char	*instruction;
+	// cambio di programma, adesso instrcution sarà l'interea stringa passata, mentre instr_token sarà composto da un solo comando e i relativi argomenti e flags.
+	// il check sulle pipe e redirect verrà fatto prima e verrano gestiti di conseguenza
 	char	**instr_token;
+	int		current_arg;
 	int		instr_len;
 	int		instr_pid;
 	char	*user;
@@ -48,6 +51,7 @@ void	interrupt(int signum);
 void	quitter(int signum);
 void	analizer(void);
 void	pwd_handler(void);
+void	echo_handler(void);
 int		redirector(void);
 void	get_environment(void);
 int		check_string(char *str);

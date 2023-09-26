@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 13:02:58 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/06 20:46:30 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/26 18:03:18 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,11 @@ void	polish_tokens(void)
 		{
 			if (g_info.instr_token[i][j] == '"')
 			{
-				//g_info.instr_token[i] = 
 					quote_remover(g_info.instr_token[i], '"');
 				break ;
 			}
 			else if (g_info.instr_token[i][j] == '\'')
 			{
-				//g_info.instr_token[i] = 
 					quote_remover(g_info.instr_token[i], '\'');
 				break ;
 			}
@@ -126,6 +124,6 @@ int	quote_remover(char *str, char sep)
 	ft_strlcpy(&(str[last - 1]), tmp, (i));
 	free(tmp);
 	keep_removing(str, last - 1);
-	printf(" first :%i last :%i %s\n", first, last, str);
+	//printf(" first :%i last :%i %s\n", first, last, str);
 	return (last);
 }

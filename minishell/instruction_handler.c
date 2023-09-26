@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/15 14:16:08 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/26 18:01:58 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ void	start(void)
 	int		len;
 	int		j;
 
+	//il problema è che ft_split separa anche in base agli spazi contenuti nelle virgolette, bisognerebbe modificarlo in modo da ingnorare gli spazi tra le virgolette
+	//oppure fare prima uno split in base alle virgolette e poi in base agli spazi, il problema è che dovremmo poi unire delle matrici e nasce anche il problema che
+	//dobbiamo separare solo le prime coppie di virgolette ogni volta
 	tokens = ft_split(g_info.instruction, ' ');
 	len = 0;
 	if (!tokens)
@@ -44,10 +47,11 @@ void	analizer(void)
 
 	i = 0;
 	//printf("%s", g_info.instr_token[0]);
-	//si potrebbe far partire polish_tokens prima di ft_split e poi aggiungere ft_split alla matrice gia creata
 	polish_tokens();
 	if (ft_strncmp(g_info.instr_token[0], "pwd", ft_strlen("pwd")) == 0)
 		pwd_handler();
+	else if (ft_strncmp(g_info.instr_token[0], "echo", ft_strlen("echo")) == 0)
+		echo_handler();
 	//testare se
 	//int fd_out = dup(STDOUT_FILENO) creo un altro file descriptor per stdout
 	//dup2(fd,1) imposta 1 come nuovo descriptor di fd e chiuderebbe stdout qualora non avesse un altro file descriptor
