@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/26 18:37:57 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/26 19:11:09 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	start(void)
 	len = 0;
 	if (!tokens)
 		return (free_matrix(tokens));
+	//aggiungi il check che len < instr_end così si ferma prima di raggiungere l'ipotetica pipe che abbiamio trovato
 	while (tokens && tokens[len])
 	{
 		if (check_string(tokens[len]))
@@ -52,6 +53,8 @@ void	analizer(void)
 		pwd_handler();
 	else if (ft_strncmp(g_info.instr_token[0], "echo", ft_strlen("echo")) == 0)
 		echo_handler();
+	else if (ft_strncmp(g_info.instr_token[0]), "cd", ft_strlen("cd") == 0)
+		cd_handler();
 	//testare se
 	//int fd_out = dup(STDOUT_FILENO) creo un altro file descriptor per stdout
 	//dup2(fd,1) imposta 1 come nuovo descriptor di fd e chiuderebbe stdout qualora non avesse un altro file descriptor

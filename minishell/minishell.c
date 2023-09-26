@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/26 17:38:06 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/26 19:02:06 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	get_environment(void)
 	g_info.instr_len = 0;
 	g_info.instr_token = NULL;
 	g_info.current_arg = 0;
+	g_info.num_arg = 0;
 }
 
 int	main(void)

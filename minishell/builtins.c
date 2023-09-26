@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:20:45 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/26 17:53:35 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/26 18:59:44 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,11 @@ void	echo_handler(void)
 	if (g_info.instr_token[1]
 		&& ft_strncmp(g_info.instr_token[1], "-n", 2) != 0)
 		printf("\n");
+	return ;
+}
+
+void	cd_handler(void)
+{
+	
 	return ;
 }
