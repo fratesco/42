@@ -6,15 +6,13 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/26 19:11:09 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/28 13:03:56 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_info	g_info;
-
-void	start(void)
+void	start(t_info *info)
 {
 	char	**tokens;
 	int		len;
@@ -23,7 +21,7 @@ void	start(void)
 	//il problema è che ft_split separa anche in base agli spazi contenuti nelle virgolette, bisognerebbe modificarlo in modo da ingnorare gli spazi tra le virgolette
 	//oppure fare prima uno split in base alle virgolette e poi in base agli spazi, il problema è che dovremmo poi unire delle matrici e nasce anche il problema che
 	//dobbiamo separare solo le prime coppie di virgolette ogni volta
-	tokens = ft_split(g_info.instruction, ' ');
+	tokens = ft_split(info->instruction, ' ');
 	len = 0;
 	if (!tokens)
 		return (free_matrix(tokens));
@@ -37,24 +35,24 @@ void	start(void)
 		}
 		len++;
 	}
-	g_info.instr_token = tokens;
-	g_info.instr_len = len;
+	info->instr_token = tokens;
+	info->instr_len = len;
 }
 
-void	analizer(void)
+void	analizer(t_info *info)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	//printf("%s", g_info.instr_token[0]);
-	polish_tokens();
-	if (ft_strncmp(g_info.instr_token[0], "pwd", ft_strlen("pwd")) == 0)
-		pwd_handler();
-	else if (ft_strncmp(g_info.instr_token[0], "echo", ft_strlen("echo")) == 0)
-		echo_handler();
-	else if (ft_strncmp(g_info.instr_token[0]), "cd", ft_strlen("cd") == 0)
-		cd_handler();
+	polish_tokens(info);
+	if (ft_strncmp(info->instr_token[0], "pwd", ft_strlen("pwd")) == 0)
+		pwd_handler(info);
+	else if (ft_strncmp(info->instr_token[0], "echo", ft_strlen("echo")) == 0)
+		echo_handler(info);
+	else if (ft_strncmp(info->instr_token[0], "cd", ft_strlen("cd") == 0))
+		cd_handler(info);
 	//testare se
 	//int fd_out = dup(STDOUT_FILENO) creo un altro file descriptor per stdout
 	//dup2(fd,1) imposta 1 come nuovo descriptor di fd e chiuderebbe stdout qualora non avesse un altro file descriptor

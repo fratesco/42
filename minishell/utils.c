@@ -6,13 +6,11 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:38:35 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/03 13:10:13 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/28 13:00:34 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-extern t_info	g_info;
 
 void	free_matrix(char **matrix)
 {
@@ -32,41 +30,41 @@ void	free_matrix(char **matrix)
 	return ;
 }
 
-char	**pipe_finder(void)
+char	**pipe_finder(t_info *info)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (g_info.instr_token && g_info.instr_token[i])
+	while (info->instr_token && info->instr_token[i])
 	{
 		j = 0;
-		while (g_info.instr_token[i][j])
+		while (info->instr_token[i][j])
 		{
 			
 		}
 	}
 }
 
-void	free_stuff(void)
+void	free_stuff(t_info info)
 {
-	free(g_info.user);
-	free(g_info.current_path);
-	free_matrix(g_info.global_path);
-	free_matrix(g_info.instr_token);
+	free(info.user);
+	free(info.current_path);
+	free_matrix(info.global_path);
+	free_matrix(info.instr_token);
 	rl_clear_history();
 }
 
-int	redirector(void)
+int	redirector(t_info *info)
 {
 	int	i;
 
 	i = 0;
-	while (g_info.instr_token[i] && g_info.temp_stdout == 0)
+	while (info->instr_token[i] && info->temp_stdout == 0)
 	{
-		if (ft_strncmp(">", g_info.instr_token[i], 1) == 0)
+		if (ft_strncmp(">", info->instr_token[i], 1) == 0)
 		{
-			if (i + 1 == g_info.instr_len)
+			if (i + 1 == info->instr_len)
 			{
 				printf("Syntax error\n");
 				return (-1);

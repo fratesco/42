@@ -6,36 +6,34 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:20:45 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/26 18:59:44 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/28 13:04:18 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_info	g_info;
-
-void	pwd_handler(void)
+void	pwd_handler(t_info *info)
 {
-	if (redirector() == -1)
+	if (redirector(info) == -1)
 		return ;
-	printf("%s\n", g_info.current_path);
+	printf("%s\n", info->current_path);
 }
 
-void	echo_handler(void)
+void	echo_handler(t_info *info)
 {
-	g_info.current_arg = 1;
-	while (g_info.instr_token[g_info.current_arg])
+	info->current_arg = 1;
+	while (info->instr_token[info->current_arg])
 	{
-		printf("%s ", g_info.instr_token[g_info.current_arg]);
-		g_info.current_arg++;
+		printf("%s ", info->instr_token[info->current_arg]);
+		info->current_arg++;
 	}
-	if (g_info.instr_token[1]
-		&& ft_strncmp(g_info.instr_token[1], "-n", 2) != 0)
+	if (info->instr_token[1]
+		&& ft_strncmp(info->instr_token[1], "-n", 2) != 0)
 		printf("\n");
 	return ;
 }
 
-void	cd_handler(void)
+void	cd_handler(t_info *info)
 {
 	
 	return ;

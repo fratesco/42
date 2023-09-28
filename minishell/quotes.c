@@ -6,13 +6,11 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 13:02:58 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/26 18:37:47 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/28 13:05:07 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-extern t_info	g_info;
 
 void	single_quotes(char *str, int *num_single, int *i)
 {
@@ -70,25 +68,25 @@ int	check_string(char *str)
 	return (0);
 }
 
-void	polish_tokens(void)
+void	polish_tokens(t_info *info)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (g_info.instr_token && g_info.instr_token[i])
+	while (info->instr_token && info->instr_token[i])
 	{
 		j = 0;
-		while (g_info.instr_token[i] && g_info.instr_token[i][j])
+		while (info->instr_token[i] && info->instr_token[i][j])
 		{
-			if (g_info.instr_token[i][j] == '"')
+			if (info->instr_token[i][j] == '"')
 			{
-				quote_remover(g_info.instr_token[i], '"');
+				quote_remover(info->instr_token[i], '"');
 				break ;
 			}
-			else if (g_info.instr_token[i][j] == '\'')
+			else if (info->instr_token[i][j] == '\'')
 			{
-				quote_remover(g_info.instr_token[i], '\'');
+				quote_remover(info->instr_token[i], '\'');
 				break ;
 			}
 			j++;

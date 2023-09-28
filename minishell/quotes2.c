@@ -6,13 +6,11 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 15:05:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/08 15:33:51 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/28 13:06:29 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-extern t_info	g_info;
 
 int	keep_removing(char *str, int start)
 {

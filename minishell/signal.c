@@ -6,18 +6,16 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:46:52 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/02 12:36:50 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/28 13:02:38 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_info	g_info;
-
 void	interrupt(int signum)
 {
-	if (g_info.instr_pid != 0)
-		kill(g_info.instr_pid, SIGINT);
+	//if (g_info.instr_pid != 0)
+	//	kill(g_info.instr_pid, SIGINT);
 	printf("\n");
 	rl_on_new_line();
 	rl_redisplay();
