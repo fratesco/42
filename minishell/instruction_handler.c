@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/29 17:48:23 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/29 19:40:23 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,25 @@ void	start(t_info *info)
 	//il problema è che ft_split separa anche in base agli spazi contenuti nelle virgolette, bisognerebbe modificarlo in modo da ingnorare gli spazi tra le virgolette
 	//oppure fare prima uno split in base alle virgolette e poi in base agli spazi, il problema è che dovremmo poi unire delle matrici e nasce anche il problema che
 	//dobbiamo separare solo le prime coppie di virgolette ogni volta
+	if (check_string(info->instruction))
+		return ;
 	tokens = ft_split(info->instruction, ' ');
 	len = 0;
 	if (!tokens)
 		return (free_matrix(tokens));
+	//ho fatto il check delle quotes non chiuse su tutta la stringa e non solo su quelle splittate
+	//while (tokens && tokens[len])
+	//{
+	//	if (check_string(tokens[len]))
+	//	{
+	//		free_matrix(tokens);
+	//		return ;
+	//	}
+	//	len++;
+	//}
 	//aggiungi il check che len < instr_end così si ferma prima di raggiungere l'ipotetica pipe che abbiamio trovato
 	while (tokens && tokens[len])
-	{
-		if (check_string(tokens[len]))
-		{
-			free_matrix(tokens);
-			return ;
-		}
 		len++;
-	}
 	info->instr_token = tokens;
 	info->instr_len = len;
 }

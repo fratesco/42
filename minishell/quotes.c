@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 13:02:58 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/29 17:54:58 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/29 19:26:25 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,18 @@ void	double_quotes(char *str, int *num_double, int *i)
 		(*i)++;
 	}
 }
+
+//int	new_check_string(char	*str)
+//{
+//	int	i;
+//	int	n_single;
+//	int	n_double;
+//
+//	i = 0;
+//	n_single = 0;
+//	n_double = 0;
+//	while ()
+//}
 
 int	check_string(char *str)
 {

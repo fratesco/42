@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:20:45 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/29 18:46:47 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/29 19:12:56 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,17 @@ void	cd_handler(t_info *info)
 	free(info->current_path);
 	info->current_path = getcwd(NULL, 0);
 	return ;
+}
+
+void	export_handler(t_info *info)
+{
+	//questa funzione deve poter rendere variabili globali delle variabili create attraverso la shell
+	// esempio: >a=5  | ora esiste una variabile locale con valore 5
+	// se faccio echo $a | mi scrive 5
+	// se chiamo bash e faccio echo $a ! non scrive niente
+	// la variabile locale non esiste per un sottoprocesso 
+	// se invece faccio export a=5 oppure a=5 e poi export a | la variabile ora esiste per anche per un sottoprocesso
+	// quindi se faccio bash>echo $a | mi scrive 5
+	//Subshells will have access to all variables from the parent, regardless of their exported state.
+	//Subprocesses will only see the exported variables.
 }
