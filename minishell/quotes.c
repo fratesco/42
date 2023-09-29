@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 13:02:58 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/28 13:05:07 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/29 17:54:58 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	polish_tokens(t_info *info)
 		}
 		i++;
 	}
+	info->num_arg = i;
 }
 
 int	quote_remover(char *str, char sep)

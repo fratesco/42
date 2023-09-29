@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/28 13:03:56 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/29 17:48:23 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	analizer(t_info *info)
 		pwd_handler(info);
 	else if (ft_strncmp(info->instr_token[0], "echo", ft_strlen("echo")) == 0)
 		echo_handler(info);
-	else if (ft_strncmp(info->instr_token[0], "cd", ft_strlen("cd") == 0))
+	else if (ft_strncmp(info->instr_token[0], "cd", ft_strlen("cd")) == 0)
 		cd_handler(info);
 	//testare se
 	//int fd_out = dup(STDOUT_FILENO) creo un altro file descriptor per stdout

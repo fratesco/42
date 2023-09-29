@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/28 13:03:21 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/29 18:25:55 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	double_quotes(char *str, int *num_single, int *i); //serve a check_string
 int		quote_remover(char *str, char sep); //funzione che rimuove le quotes dalle stringhe
 int		keep_removing(char *str, int start); //serve a quote_remover
 int		remove_more(char *str, int start, char needle); //serve a keep_removing
+char	*triple_join(char *start, char *middle, char *end);
 
 //void	quote_splitter(char **tokens);
 
