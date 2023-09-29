@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:20:45 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/29 18:41:52 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/09/29 18:46:47 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ void	cd_handler(t_info *info)
 	char	*tmp;
 
 	if (info->num_arg < 2)
-		return ((void)chdir(getenv("HOME")));
+		chdir(getenv("HOME"));
 	if (info->num_arg > 2)
 		printf("cd: too many arguments\n");
-	if (chdir(info->instr_token[1]) != 0)
+	if (info->num_arg == 2 && chdir(info->instr_token[1]) != 0)
 	{
-		i = 0;
-		while (info->global_path[i])
+		i = -1;
+		while (info->global_path[++i])
 		{
 			tmp = triple_join(info->global_path[i], "/", info->instr_token[1]);
 			if (!chdir(tmp))
@@ -55,7 +55,6 @@ void	cd_handler(t_info *info)
 			}
 			else
 				free(tmp);
-			i++;
 		}
 	}
 	free(info->current_path);
