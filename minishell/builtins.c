@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:20:45 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/01 18:29:25 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/01 19:49:05 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,11 @@ void	export_handler(t_info *info)
 	// la variabile locale non esiste per un sottoprocesso 
 	// se invece faccio export a=5 oppure a=5 e poi export a | la variabile ora esiste per anche per un sottoprocesso
 	// quindi se faccio bash>echo $a | mi scrive 5
-	//Subshells will have access to all variables from the parent, regardless of their exported state.
-	//Subprocesses will only see the exported variables.
+	// Subshells will have access to all variables from the parent, regardless of their exported state.
+	// Subprocesses will only see the exported variables.
+
+	// a quanto pare devo fare in modod che export aggiunga variabili globali alla lista di variabili globali (environment)
+	// deve anche poter modificare quelle gia esistenti
 }
 
 void	env_handler(t_info *info)

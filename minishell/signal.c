@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:46:52 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/01 19:01:14 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/01 19:44:20 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,17 @@ void	interrupt(int signum)
 	rl_on_new_line();
 	rl_replace_line ("", 0);
 	rl_redisplay();
-
 }
 
 void	quitter(int signum)
 {
 	printf("qui");
 	exit(0);
+}
+
+void	abort(int signum)
+{
+	//non ho capito cosa devo far fare al programma quado invii 'ctrl-backslash', perchè il mio terminale non fa nulla- non riesco a mandare l'input
 }
 
 void	signal_rewire(void)

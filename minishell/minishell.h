@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/01 16:47:58 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/01 19:54:07 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 typedef struct s_info
 {
 	char	**global_path; //la variabile globale PATH
-	char	**environment;
+	char	**environment; //contiene tutte le variabili globali e locali
 	char	*instruction; //l'intera stringa passata a minishell sul terminale. Da non confondere con current instruction che sarebbe l'ipotetica stringa che finisce su una pipe
 	// cambio di programma, adesso instrcution sarà l'interea stringa passata, mentre instr_token sarà composto da un solo comando e i relativi argomenti e flags.
 	// il check sulle pipe e redirect verrà fatto prima e verrano gestiti di conseguenza
@@ -59,6 +59,8 @@ void	pwd_handler(t_info *info); //funzione che imita il funzionamento di pwd
 void	echo_handler(t_info *info); //funzione che imita il funzionamente di echo (con flag -n)
 void	cd_handler(t_info *info); //funzione che imita il comportamento di cd
 void	env_handler(t_info *info); //funzione che imita il comportamento di env senza flag
+void	unset_handler(t_info *info); //funzione che imita il comportamento di unset senza flag
+void	export_handler(t_info *info); //funzione che imita il comportamento di export senza flag
 int		redirector(t_info *info); //funzione che modifica momentaneamente il stdout
 void	get_environment(t_info *info, char **environment); //funzione che salva le variabili globali che ci servono e inizializza le variabili della struttura
 int		check_string(char *str); //funzione che controlla se le quote della stringa siano correttamente chiuse
@@ -68,8 +70,8 @@ void	double_quotes(char *str, int *num_single, int *i); //serve a check_string
 int		quote_remover(char *str, char sep); //funzione che rimuove le quotes dalle stringhe
 int		keep_removing(char *str, int start); //serve a quote_remover
 int		remove_more(char *str, int start, char needle); //serve a keep_removing
-char	*triple_join(char *start, char *middle, char *end);
-char	**splitter(char *av, char sep, int stop, int *ac);
+char	*triple_join(char *start, char *middle, char *end); //serve a unire 3 stringhe
+char	**splitter(char *av, char sep, int stop, int *ac); //split migliorato che tiene conto delle virgolette e le salta
 
 //void	quote_splitter(char **tokens);
 
