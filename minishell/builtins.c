@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:20:45 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/01 16:50:39 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/01 18:29:25 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	env_handler(t_info *info)
 	int	i;
 
 	i = 0;
+	// potrei dover aggiungere un check per vedere se ci sono argomenti (che non vanno gestiti) e in caso scrivere un errore
 	while (info->environment[i])
 	{
 		// sembra essere così semplice

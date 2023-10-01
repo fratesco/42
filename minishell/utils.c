@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:38:35 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/01 16:38:45 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/01 19:06:44 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	free_stuff(t_info *info, int flag)
 		free_matrix(info->global_path);
 		free_matrix(info->instr_token);
 		rl_clear_history();
-		
 	}
 }
 

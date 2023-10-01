@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:46:52 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/01 16:09:43 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/01 19:01:14 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	interrupt(int signum)
 	g_signal = signum;
 	printf("\n");
 	rl_on_new_line();
+	rl_replace_line ("", 0);
 	rl_redisplay();
 
 }

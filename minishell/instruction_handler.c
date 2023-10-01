@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/01 16:15:54 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/01 19:06:49 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	start(t_info *info)
 	//il problema è che ft_split separa anche in base agli spazi contenuti nelle virgolette, bisognerebbe modificarlo in modo da ingnorare gli spazi tra le virgolette
 	//oppure fare prima uno split in base alle virgolette e poi in base agli spazi, il problema è che dovremmo poi unire delle matrici e nasce anche il problema che
 	//dobbiamo separare solo le prime coppie di virgolette ogni volta
+	if (ft_strncmp(info->instruction, "", 1) == 0)
+		return ;
 	if (check_string(info->instruction))
 		return ;
 	tokens = splitter(info->instruction, ' ', ft_strlen(info->instruction), &len);
