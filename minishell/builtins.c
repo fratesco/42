@@ -6,11 +6,13 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:20:45 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/29 20:33:20 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/01 16:15:17 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern int	g_signal;
 
 void	pwd_handler(t_info *info)
 {
@@ -77,6 +79,14 @@ void	export_handler(t_info *info)
 
 void	env_handler(t_info *info)
 {
+	int	i;
+
+	i = 0;
+	while (info->environment[i])
+	{
+		printf("%s\n", info->environment[i]);
+		i++;
+	}
 	//a quanto pare l'unica soluzione per ottenere le variabili globali è quello di aggiungere "char **envp" agli argomenti del main
 	//envp è una matrice che contiene l'environment cioè tutte le variabili globali della shell che ha fatto partire il programma
 	//avendo envp è facile fare il comando "env" senza flag, basta fare un loop e scrivere a schermo stringa per stringa envp

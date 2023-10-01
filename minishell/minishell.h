@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/29 19:28:28 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/01 16:41:21 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <signal.h>
+# include <sys/wait.h>
 
 typedef struct s_info
 {
 	char	**global_path; //la variabile globale PATH
+	char	**environment;
 	char	*instruction; //l'intera stringa passata a minishell sul terminale. Da non confondere con current instruction che sarebbe l'ipotetica stringa che finisce su una pipe
 	// cambio di programma, adesso instrcution sarà l'interea stringa passata, mentre instr_token sarà composto da un solo comando e i relativi argomenti e flags.
 	// il check sulle pipe e redirect verrà fatto prima e verrano gestiti di conseguenza
@@ -47,7 +49,7 @@ typedef struct s_info
 
 void	start(t_info *info); //funzione che splitta l'intera riga letta da readline e la prepara all'analisi
 void	free_matrix(char **matrix); //funzione che libera la memoria di una matrice
-void	free_stuff(t_info info); //funzione che libera tutta la memoria occupata dalla struttura globale
+void	free_stuff(t_info *info, int flag); //funzione che libera tutta la memoria occupata dalla struttura globale
 char	**pipe_finder(t_info *info); //funzione che trova la posizione di una pipe
 void	signal_rewire(void); //funzione che modifica la risposta ai segnali ctrl-d e ctrl-c
 void	interrupt(int signum); //nuovo handler del segnale ctrl-c
@@ -56,6 +58,7 @@ void	analizer(t_info *info); //funzione che capisce se la nuova riga presenta un
 void	pwd_handler(t_info *info); //funzione che imita il funzionamento di pwd
 void	echo_handler(t_info *info); //funzione che imita il funzionamente di echo (con flag -n)
 void	cd_handler(t_info *info); //funzione che imita il comportamento di cd
+void	env_handler(t_info *info); //funzione che imita il comportamento di env senza flag
 int		redirector(t_info *info); //funzione che modifica momentaneamente il stdout
 void	get_environment(t_info *info); //funzione che salva le variabili globali che ci servono e inizializza le variabili della struttura
 int		check_string(char *str); //funzione che controlla se le quote della stringa siano correttamente chiuse
@@ -66,6 +69,7 @@ int		quote_remover(char *str, char sep); //funzione che rimuove le quotes dalle 
 int		keep_removing(char *str, int start); //serve a quote_remover
 int		remove_more(char *str, int start, char needle); //serve a keep_removing
 char	*triple_join(char *start, char *middle, char *end);
+char	**splitter(char *av, char sep, int stop, int *ac);
 
 //void	quote_splitter(char **tokens);
 

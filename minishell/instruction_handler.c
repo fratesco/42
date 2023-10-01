@@ -6,11 +6,13 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/29 19:40:23 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/01 16:15:54 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern int	g_signal;
 
 void	start(t_info *info)
 {
@@ -23,8 +25,15 @@ void	start(t_info *info)
 	//dobbiamo separare solo le prime coppie di virgolette ogni volta
 	if (check_string(info->instruction))
 		return ;
-	tokens = ft_split(info->instruction, ' ');
+	tokens = splitter(info->instruction, ' ', ft_strlen(info->instruction), &len);
+	printf("%i\n", len);
 	len = 0;
+	while (tokens[len])
+	{
+		printf("%s\n", tokens[len]);
+		len++;
+	}
+	//return ;
 	if (!tokens)
 		return (free_matrix(tokens));
 	//ho fatto il check delle quotes non chiuse su tutta la stringa e non solo su quelle splittate
@@ -58,6 +67,8 @@ void	analizer(t_info *info)
 		echo_handler(info);
 	else if (ft_strncmp(info->instr_token[0], "cd", ft_strlen("cd")) == 0)
 		cd_handler(info);
+	else if (ft_strncmp(info->instr_token[0], "env", ft_strlen("env")) == 0)
+		env_handler(info);
 	//testare se
 	//int fd_out = dup(STDOUT_FILENO) creo un altro file descriptor per stdout
 	//dup2(fd,1) imposta 1 come nuovo descriptor di fd e chiuderebbe stdout qualora non avesse un altro file descriptor

@@ -6,11 +6,13 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 13:02:58 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/29 19:26:25 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/01 16:10:10 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern int	g_signal;
 
 void	single_quotes(char *str, int *num_single, int *i)
 {

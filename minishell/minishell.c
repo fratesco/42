@@ -6,11 +6,13 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/29 18:08:07 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/01 16:40:53 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	g_signal;
 
 void	get_environment(t_info *g_info)
 {
@@ -31,10 +33,11 @@ void	get_environment(t_info *g_info)
 	g_info->num_arg = 0;
 }
 
-int	main(void)
+int	main(int argc, char	**argv, char **envp)
 {
 	t_info	info;
 
+	info.environment = envp;
 	get_environment(&info);
 	while (1)
 	{
@@ -48,11 +51,16 @@ int	main(void)
 		if (info.instr_len != 0)
 			analizer(&info);
 		//qui il processo genitori si mette in waitpid(0, NULL, NULL) e poi fa ripartire il suo loop
-		free(info.instruction);
-		free_matrix(info.instr_token);
-		info.instr_len = 0;
-		info.instr_token = NULL;
+		//wait(NULL);
+		if (g_signal == SIGINT)
+		{
+			if (info.instr_pid != 0)
+				kill(info.instr_pid, SIGINT);
+			info.instr_pid = 0;
+			g_signal = 0;
+		}
+		free_stuff(&info, 1);
 	}
-	free_stuff(info);
+	free_stuff(&info, 0);
 	return (0);
 }

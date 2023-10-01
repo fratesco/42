@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   splitste.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:44:02 by srapuano          #+#    #+#             */
-/*   Updated: 2023/09/29 20:36:30 by srapuano         ###   ########.fr       */
+/*   Updated: 2023/09/30 10:40:35 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
- #include "minishell.h"
+#include "minishell.h"
 
-int no_words(char *av, int stop)
+int	no_words(char *av, char sep, int stop)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(av[i] && av[i] != stop)
+	while (av[i] && av[i] != stop)
 	{
-		if (av[i] != ' ')
+		if (av[i] != sep)
 			return (0);
 		i++;
 	}
@@ -33,25 +33,31 @@ int	ft_word_counter(char *s, char c, int stop)
 
 	i = 0;
 	p = 0;
-	while (s[i] && s[i] != stop && p++ >= 0)
+	while (s[i] && s[i] != stop)
 	{
-		while (s[i] != '\0' && s[i] == c )
+		while (s[i] != '\0' && s[i] == c)
 			i++;
+		if (s[i] != 0 && s[i] != c)
+			p++;
 		while (s[i] != c && s[i] != '\0')
 		{
+			printf("%c\n", s[i]);
 			if (s[i] == '\'')
 			{
+				i++;
 				while (s[i] != '\0' && s[i] != '\'')
 					i++;
 			}
-			else if  (s[i] == '"')
+			else if (s[i] == '"')
 			{
+				i++;
 				while (s[i] != '\0' && s[i] != '"')
 					i++;
 			}
 			i++;
 		}
-	}	
+	}
+	printf("%i\n", p);
 	return (p);
 }
 
@@ -64,11 +70,13 @@ int	ft_word_len(char *s, int start, char sep, int stop)
 	{
 		if (s[start + i] == '\'')
 		{
+			i++;
 			while (s[start + i] != '\0' && s[start + i] != '\'')
 				i++;
 		}
-		else if  (s[start + i] == '"')
+		else if (s[start + i] == '"')
 		{
+			i++;
 			while (s[start + i] != '\0' && s[start + i] != '"')
 				i++;
 		}
@@ -92,11 +100,13 @@ char	*ft_substr_split(char *s, int start, char sep, int stop)
 	{
 		if (s[start + i] == '\'')
 		{
+			s_word[i++] = s[start++];
 			while (s[start + i] != '\0' && s[start + i] != '\'')
 				s_word[i++] = s[start++];
 		}
-		else if  (s[start + i] == '"')
+		else if (s[start + i] == '"')
 		{
+			s_word[i++] = s[start++];
 			while (s[start + i] != '\0' && s[start + i] != '"')
 				s_word[i++] = s[start++];
 		}
@@ -106,15 +116,15 @@ char	*ft_substr_split(char *s, int start, char sep, int stop)
 	return (s_word);
 }
 
-char	**ft_split(char *av, int stop, int *ac)
+char	**splitter(char *av, char sep, int stop, int *ac)
 {
 	char	**splitted;
 	int		i;
 	int		start;
 
-	if (!av || no_words(av, stop))
+	if (!av || no_words(av, sep, stop))
 		return (NULL);
-	*ac = ft_word_counter((char *)av, ' ', stop);
+	*ac = ft_word_counter((char *)av, sep, stop);
 	splitted = malloc((*ac + 1) * sizeof(char *));
 	if (!splitted)
 		return (NULL);
@@ -122,19 +132,21 @@ char	**ft_split(char *av, int stop, int *ac)
 	start = 0;
 	while (i < *ac && av[start] != 0 && av[start] != stop)
 	{
-		while (av[start] ==' ' && av[start])
+		while (av[start] == sep && av[start])
 			start++;
-		if (av[start] !=' ' && av[start])
-			splitted[i++] = ft_substr_split((char *)av, start,' ', stop);
-		while (av[start] !=' ' && av[start] && av[start] != stop)
-	 	{
+		if (av[start] != sep && av[start])
+			splitted[i++] = ft_substr_split((char *)av, start, sep, stop);
+		while (av[start] != sep && av[start] && av[start] != stop)
+		{
 			if (av[start] == '\'')
 			{
+				start++;
 				while (av[start] != '\0' && av[start] != '\'')
 					start++;
 			}
-			else if  (av[start] == '"')
+			else if (av[start] == '"')
 			{
+				start++;
 				while (av[start] != '\0' && av[start] != '"')
 					start++;
 			}

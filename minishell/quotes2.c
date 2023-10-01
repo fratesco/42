@@ -6,11 +6,13 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 15:05:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/09/28 13:06:29 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/01 16:10:14 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern int	g_signal;
 
 int	keep_removing(char *str, int start)
 {

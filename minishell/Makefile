@@ -6,11 +6,11 @@
 #    By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:56:46 by fgolino           #+#    #+#              #
-#    Updated: 2023/09/05 11:35:56 by fgolino          ###   ########.fr        #
+#    Updated: 2023/09/30 10:02:52 by fgolino          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC := minishell.c instruction_handler.c utils.c signal.c builtins.c quotes.c quotes2.c
+SRC := minishell.c instruction_handler.c utils.c signal.c builtins.c quotes.c quotes2.c splitste.c
 
 OBJ := $(SRC:.c=.o)
 
