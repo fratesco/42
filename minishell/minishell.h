@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/01 16:41:21 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/01 16:47:58 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	echo_handler(t_info *info); //funzione che imita il funzionamente di echo (
 void	cd_handler(t_info *info); //funzione che imita il comportamento di cd
 void	env_handler(t_info *info); //funzione che imita il comportamento di env senza flag
 int		redirector(t_info *info); //funzione che modifica momentaneamente il stdout
-void	get_environment(t_info *info); //funzione che salva le variabili globali che ci servono e inizializza le variabili della struttura
+void	get_environment(t_info *info, char **environment); //funzione che salva le variabili globali che ci servono e inizializza le variabili della struttura
 int		check_string(char *str); //funzione che controlla se le quote della stringa siano correttamente chiuse
 void	polish_tokens(t_info *info); //funzione che controlla la presenza di quotes nelle stringhe e fa partire quote_remover
 void	single_quotes(char *str, int *num_single, int *i); //serve a check_string

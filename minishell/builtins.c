@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:20:45 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/01 16:15:17 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/01 16:50:39 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	env_handler(t_info *info)
 	i = 0;
 	while (info->environment[i])
 	{
+		// sembra essere così semplice
 		printf("%s\n", info->environment[i]);
 		i++;
 	}
