@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:44:02 by srapuano          #+#    #+#             */
-/*   Updated: 2023/10/02 17:34:39 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/02 17:39:27 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,13 +133,13 @@ char	**splitter(char *av, char sep, int stop, int *ac)
 		while (av[start] == sep && av[start])
 			start++;
 		if (av[start] != sep && av[start] && start != stop)
-			splitted[i++] = ft_substr_split((char *)av, start, sep, stop);
+			splitted[i++] = ft_substr_split((char *)av, start, sep, stop); // passa start come puntatore e modifica il valore così puoi togliere quello dopo
 		while (av[start] != sep && av[start] && start != stop)
 		{
 			if (av[start] == '\'')
 			{
 				start++;
-				while (av[start] != '\0' && av[start] != '\'')
+				while (av[start] != '\0' && av[start] != '\'') 
 					start++;
 			}
 			else if (av[start] == '"')
