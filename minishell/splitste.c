@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitste.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:44:02 by srapuano          #+#    #+#             */
-/*   Updated: 2023/09/30 10:40:35 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/02 16:42:02 by srapuano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	ft_word_counter(char *s, char c, int stop)
 	{
 		while (s[i] != '\0' && s[i] == c)
 			i++;
-		if (s[i] != 0 && s[i] != c)
+		if (s[i] != 0 && s[i] != c && s[i] != stop)
 			p++;
-		while (s[i] != c && s[i] != '\0')
+		while (s[i] != c && s[i] != '\0' && s[i] != stop)
 		{
 			printf("%c\n", s[i]);
 			if (s[i] == '\'')
@@ -98,16 +98,16 @@ char	*ft_substr_split(char *s, int start, char sep, int stop)
 		return (NULL);
 	while (s[start] != sep && s[start] != 0 && s[start] != stop)
 	{
-		if (s[start + i] == '\'')
+		if (s[start] == '\'')
 		{
 			s_word[i++] = s[start++];
-			while (s[start + i] != '\0' && s[start + i] != '\'')
+			while (s[start] != '\0' && s[start] != '\'')
 				s_word[i++] = s[start++];
 		}
-		else if (s[start + i] == '"')
+		else if (s[start] == '"')
 		{
 			s_word[i++] = s[start++];
-			while (s[start + i] != '\0' && s[start + i] != '"')
+			while (s[start] != '\0' && s[start] != '"')
 				s_word[i++] = s[start++];
 		}
 		s_word[i++] = s[start++];
@@ -134,7 +134,7 @@ char	**splitter(char *av, char sep, int stop, int *ac)
 	{
 		while (av[start] == sep && av[start])
 			start++;
-		if (av[start] != sep && av[start])
+		if (av[start] != sep && av[start] && av[start] != stop)
 			splitted[i++] = ft_substr_split((char *)av, start, sep, stop);
 		while (av[start] != sep && av[start] && av[start] != stop)
 		{
