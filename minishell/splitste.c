@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitste.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:44:02 by srapuano          #+#    #+#             */
-/*   Updated: 2023/10/02 17:15:17 by srapuano         ###   ########.fr       */
+/*   Updated: 2023/10/02 17:34:39 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	ft_word_counter(char *s, char c, int stop)
 			p++;
 		while (s[i] != c && s[i] != '\0' && i != stop)
 		{
-			printf("%c\n", s[i]);
 			if (s[i] == '\'')
 			{
 				i++;
@@ -57,7 +56,6 @@ int	ft_word_counter(char *s, char c, int stop)
 			i++;
 		}
 	}
-	printf("%i\n", p);
 	return (p);
 }
 

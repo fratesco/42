@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/01 19:03:37 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/02 17:15:39 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int argc, char	**argv, char **envp)
 			break ;
 		start(&info);
 		// probabilmente è meglio se tutto quello che succede da qui in poi è gestito da un processo figlio
-		if (info.instr_len != 0)
+		if (info.num_arg != 0)
 			analizer(&info);
 		//qui il processo genitori si mette in waitpid(0, NULL, NULL) e poi fa ripartire il suo loop
 		//wait(NULL);

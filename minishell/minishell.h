@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/02 15:53:25 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/02 16:44:46 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	cd_handler(t_info *info); //funzione che imita il comportamento di cd
 void	env_handler(t_info *info); //funzione che imita il comportamento di env senza flag
 void	unset_handler(t_info *info); //funzione che imita il comportamento di unset senza flag
 void	export_handler(t_info *info); //funzione che imita il comportamento di export senza flag
-void	try_find_do(t_info *info);
+void	try_find_do(t_info *info, char *name);
 int		redirector(t_info *info); //funzione che modifica momentaneamente il stdout
 void	get_environment(t_info *info, char **environment); //funzione che salva le variabili globali che ci servono e inizializza le variabili della struttura
 int		check_string(char *str); //funzione che controlla se le quote della stringa siano correttamente chiuse
