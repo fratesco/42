@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 13:02:58 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/01 16:10:10 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/02 15:57:37 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,22 +95,23 @@ void	polish_tokens(t_info *info)
 		{
 			if (info->instr_token[i][j] == '"')
 			{
-				quote_remover(info->instr_token[i], '"');
+				quote_remover(info->instr_token[i], '"',
+					ft_strlen(info->instr_token[i]));
 				break ;
 			}
 			else if (info->instr_token[i][j] == '\'')
 			{
-				quote_remover(info->instr_token[i], '\'');
+				quote_remover(info->instr_token[i], '\'',
+					ft_strlen(info->instr_token[i]));
 				break ;
 			}
 			j++;
 		}
 		i++;
 	}
-	info->num_arg = i;
 }
 
-int	quote_remover(char *str, char sep)
+int	quote_remover(char *str, char sep, size_t len)
 {
 	char	*tmp;
 	int		first;
@@ -132,7 +133,7 @@ int	quote_remover(char *str, char sep)
 	}
 	tmp = strdup(&(str[last + 1]));
 	ft_strlcpy(&(str[first]), &(str[first + 1]), (last));
-	ft_strlcpy(&(str[last - 1]), tmp, ft_strlen(str));
+	ft_strlcpy(&(str[last - 1]), tmp, len);
 	free(tmp);
 	keep_removing(str, last - 1);
 	return (last);

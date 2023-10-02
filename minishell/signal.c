@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:46:52 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/01 19:44:20 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/02 15:16:40 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	quitter(int signum)
 	exit(0);
 }
 
-void	abort(int signum)
+void	abort_handler(int signum)
 {
 	//non ho capito cosa devo far fare al programma quado invii 'ctrl-backslash', perchè il mio terminale non fa nulla- non riesco a mandare l'input
 }

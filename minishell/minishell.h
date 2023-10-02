@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/01 19:54:07 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/02 15:53:25 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,14 @@ void	cd_handler(t_info *info); //funzione che imita il comportamento di cd
 void	env_handler(t_info *info); //funzione che imita il comportamento di env senza flag
 void	unset_handler(t_info *info); //funzione che imita il comportamento di unset senza flag
 void	export_handler(t_info *info); //funzione che imita il comportamento di export senza flag
+void	try_find_do(t_info *info);
 int		redirector(t_info *info); //funzione che modifica momentaneamente il stdout
 void	get_environment(t_info *info, char **environment); //funzione che salva le variabili globali che ci servono e inizializza le variabili della struttura
 int		check_string(char *str); //funzione che controlla se le quote della stringa siano correttamente chiuse
 void	polish_tokens(t_info *info); //funzione che controlla la presenza di quotes nelle stringhe e fa partire quote_remover
 void	single_quotes(char *str, int *num_single, int *i); //serve a check_string
 void	double_quotes(char *str, int *num_single, int *i); //serve a check_string
-int		quote_remover(char *str, char sep); //funzione che rimuove le quotes dalle stringhe
+int		quote_remover(char *str, char sep, size_t len); //funzione che rimuove le quotes dalle stringhe
 int		keep_removing(char *str, int start); //serve a quote_remover
 int		remove_more(char *str, int start, char needle); //serve a keep_removing
 char	*triple_join(char *start, char *middle, char *end); //serve a unire 3 stringhe

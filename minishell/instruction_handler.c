@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/01 19:06:49 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/02 15:47:40 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	start(t_info *info)
 	tokens = splitter(info->instruction, ' ', ft_strlen(info->instruction), &len);
 	printf("%i\n", len);
 	len = 0;
-	while (tokens[len])
-	{
-		printf("%s\n", tokens[len]);
-		len++;
-	}
+	//while (tokens[len])
+	//{
+	//	printf("%s\n", tokens[len]);
+	//	len++;
+	//}
 	//return ;
 	if (!tokens)
 		return (free_matrix(tokens));
@@ -61,7 +61,6 @@ void	analizer(t_info *info)
 	int	j;
 
 	i = 0;
-	//printf("%s", g_info.instr_token[0]);
 	polish_tokens(info);
 	if (ft_strncmp(info->instr_token[0], "pwd", ft_strlen("pwd")) == 0)
 		pwd_handler(info);
@@ -71,6 +70,13 @@ void	analizer(t_info *info)
 		cd_handler(info);
 	else if (ft_strncmp(info->instr_token[0], "env", ft_strlen("env")) == 0)
 		env_handler(info);
+	else if (ft_strncmp(info->instr_token[0],
+			"export", ft_strlen("export")) == 0)
+		export_handler(info);
+	else if (ft_strncmp(info->instr_token[0], "unset", ft_strlen("unset")) == 0)
+		unset_handler(info);
+	else
+		try_find_do(info);
 	//testare se
 	//int fd_out = dup(STDOUT_FILENO) creo un altro file descriptor per stdout
 	//dup2(fd,1) imposta 1 come nuovo descriptor di fd e chiuderebbe stdout qualora non avesse un altro file descriptor
