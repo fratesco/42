@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/03 16:48:21 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/03 21:40:55 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	free_matrix(char **matrix); //funzione che libera la memoria di una matrice
 void	free_stuff(t_info *info, int flag); //funzione che libera tutta la memoria occupata dalla struttura globale
 char	**pipe_finder(t_info *info); //funzione che trova la posizione di una pipe
 void	signal_rewire(void); //funzione che modifica la risposta ai segnali ctrl-d e ctrl-c
-void	signal_fork(void);
+void	signal_fork(void); //funzione che reimposta gli handler standard; viene chiamata nel processo figlio perchè eredita gli handler modificati dal genitore
 void	interrupt(int signum); //nuovo handler del segnale ctrl-c
 void	quitter(int signum); //nuovo handler del segnale ctrl-d
 void	analizer(t_info *info); //funzione che capisce se la nuova riga presenta un comando valido e lo fa partire
@@ -63,9 +63,10 @@ void	cd_handler(t_info *info); //funzione che imita il comportamento di cd
 void	env_handler(t_info *info); //funzione che imita il comportamento di env senza flag
 void	unset_handler(t_info *info); //funzione che imita il comportamento di unset senza flag
 void	export_handler(t_info *info); //funzione che imita il comportamento di export senza flag
-void	try_find_do(t_info *info, char *name);
+void	try_find_do(t_info *info, char *name); //funzione che si occupa di controlla se esiste il comando scritto esiste ed è eseguibile, lo esegue qualore possibile
 int		redirector(t_info *info); //funzione che modifica momentaneamente il stdout
 void	get_environment(t_info *info, char **environment); //funzione che salva le variabili globali che ci servono e inizializza le variabili della struttura
+void	executing(t_info *info); //funzione creata per acorciare il main, tutto quello che è scritto qui era scritto nel loop del main
 int		check_string(char *str); //funzione che controlla se le quote della stringa siano correttamente chiuse
 void	polish_tokens(t_info *info); //funzione che controlla la presenza di quotes nelle stringhe e fa partire quote_remover
 void	single_quotes(char *str, int *num_single, int *i); //serve a check_string

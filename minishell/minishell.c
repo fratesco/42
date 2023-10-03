@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/03 17:18:55 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/03 21:34:54 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,24 @@ void	get_environment(t_info *g_info, char **environment)
 	g_info->received_signal = 0;
 }
 
+void	executing(t_info *info)
+{
+	start(info);
+	if (info->num_arg != 0)
+		analizer(info);
+	if (info->instr_pid != 0)
+	{
+		while (info->received_signal != info->instr_pid && g_signal != SIGINT)
+			info->received_signal = wait(NULL);
+	}
+	if (g_signal == SIGINT)
+	{
+		if (info->instr_pid != 0)
+			kill(info->instr_pid, SIGINT);
+	}
+		g_signal = 0;
+}
+
 int	main(int argc, char	**argv, char **envp)
 {
 	t_info	info;
@@ -49,20 +67,7 @@ int	main(int argc, char	**argv, char **envp)
 		add_history(info.instruction);
 		if (info.instruction == NULL && info.instr_pid == 0)
 			break ;
-		start(&info);
-		if (info.num_arg != 0)
-			analizer(&info);
-		if (info.instr_pid != 0)
-		{
-			while (info.received_signal != info.instr_pid && g_signal != SIGINT)
-				info.received_signal = wait(NULL);
-		}
-		if (g_signal == SIGINT)
-		{
-			if (info.instr_pid != 0)
-				kill(info.instr_pid, SIGINT);
-		}
-		g_signal = 0;
+		executing(&info);
 		free_stuff(&info, 1);
 	}
 	free_stuff(&info, 0);
