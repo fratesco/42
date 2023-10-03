@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:29:57 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/02 17:00:28 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/03 15:05:09 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,14 @@ int	found(t_info *info, char *path)
 	// se è tutto ok allora passiamo allo stadio successivo in cui facciamo partire il programma con exceve
 	printf("Trovato!\n");
 	if (!access(path, X_OK))
+	{
 		printf("Ho i permessi\n");
+		//execve(path, &info->instr_token[1], info->environment);
+		exit(0);
+	}
 	else
-		printf("No puedo\n");
-	return 1;
+		printf("Permission denied\n");
+	return (1);
 }
 
 void	try_find_do(t_info *info, char *name)

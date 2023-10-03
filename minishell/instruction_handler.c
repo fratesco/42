@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/02 17:33:07 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/03 14:51:40 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,11 @@ void	analizer(t_info *info)
 	else if (ft_strncmp(info->instr_token[0], "unset", ft_strlen("unset")) == 0)
 		unset_handler(info);
 	else
-		try_find_do(info, info->instr_token[0]);
+	{
+		info->instr_pid = fork();
+		if (!info->instr_pid)
+			try_find_do(info, info->instr_token[0]);
+	}
 	//testare se
 	//int fd_out = dup(STDOUT_FILENO) creo un altro file descriptor per stdout
 	//dup2(fd,1) imposta 1 come nuovo descriptor di fd e chiuderebbe stdout qualora non avesse un altro file descriptor

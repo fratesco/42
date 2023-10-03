@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/02 17:15:39 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/03 14:50:37 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int	main(int argc, char	**argv, char **envp)
 		// probabilmente è meglio se tutto quello che succede da qui in poi è gestito da un processo figlio
 		if (info.num_arg != 0)
 			analizer(&info);
-		//qui il processo genitori si mette in waitpid(0, NULL, NULL) e poi fa ripartire il suo loop
-		//wait(NULL);
+		if (info.instr_pid != 0)
+			wait(NULL);
 		if (g_signal == SIGINT)
 		{
 			if (info.instr_pid != 0)
