@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/03 14:50:37 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/03 17:18:55 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	get_environment(t_info *g_info, char **environment)
 	g_info->instr_token = NULL;
 	g_info->current_arg = 0;
 	g_info->num_arg = 0;
+	g_info->received_signal = 0;
 }
 
 int	main(int argc, char	**argv, char **envp)
@@ -44,22 +45,24 @@ int	main(int argc, char	**argv, char **envp)
 	while (1)
 	{
 		info.instr_pid = 0;
-		info.instruction = readline(info.user); //la shell della 42 printa il numero della postazione
+		info.instruction = readline(info.user);
 		add_history(info.instruction);
-		if (info.instruction == NULL)
+		if (info.instruction == NULL && info.instr_pid == 0)
 			break ;
 		start(&info);
-		// probabilmente è meglio se tutto quello che succede da qui in poi è gestito da un processo figlio
 		if (info.num_arg != 0)
 			analizer(&info);
 		if (info.instr_pid != 0)
-			wait(NULL);
+		{
+			while (info.received_signal != info.instr_pid && g_signal != SIGINT)
+				info.received_signal = wait(NULL);
+		}
 		if (g_signal == SIGINT)
 		{
 			if (info.instr_pid != 0)
 				kill(info.instr_pid, SIGINT);
-			g_signal = 0;
 		}
+		g_signal = 0;
 		free_stuff(&info, 1);
 	}
 	free_stuff(&info, 0);

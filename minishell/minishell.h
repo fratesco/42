@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/03 15:24:11 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/03 16:48:21 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_info
 	int		num_arg; //numero di arg che abbiamo nella current instruction
 	int		instr_len; //numero di elementi nella matrice instr_token | è lo stesso valore di num_arg quando avremo split corretto
 	int		instr_pid; //è il pid del processo figlio che sta esenguendo un comando, serve per poter aspettare che finisca e poter terminarlo in caso di int-sig
+	int		received_signal; //valore scritto da wait();
 	char	*user; //la variabile che contiene il valore della variabile globale USER
 	char	*current_path; //l'attuale folder in cui sta lavorando il processo
 	int		temp_stdout; //il salvataggio di stdout che serve per poterlo recuperare
