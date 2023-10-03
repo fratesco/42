@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:20:45 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/03 21:16:30 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/03 22:13:50 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,9 @@ void	export_handler(t_info *info)
 
 	// a quanto pare devo fare in modod che export aggiunga variabili globali alla lista di variabili globali (environment)
 	// deve anche poter modificare quelle gia esistenti
+	// ogni volta che una variabile globale viene modificata è necessario che tutte le variabili globali salvate in info venagano aggiornate
+	// sinceramente non come fare funzionare questa funzione se non aggiungendo stringhe alla fine di environnment. Questo metodo però non verrebbe riconosciuto da getenv()
+	// quindi tentare di ottenere una variabile che è stata aggiunta o modificata diverebbe fattibile solo scorrendo tutto le stringhe manualamnte
 }
 
 void	env_handler(t_info *info)

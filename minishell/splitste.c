@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitste.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 17:44:02 by srapuano          #+#    #+#             */
-/*   Updated: 2023/10/03 16:48:33 by srapuano         ###   ########.fr       */
+/*   Updated: 2023/10/03 21:50:18 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	no_words(char *av, char sep, int stop)
 
 int	ft_word_counter(char *s, char c, int stop)
 {
-	int	i;
-	int	p;
-	char t;
+	int		i;
+	int		p;
+	char	t;
 
 	i = 0;
 	p = 0;
@@ -83,12 +83,10 @@ char	*ft_substr_split(char *s, int *start, char sep, int stop)
 {
 	char	*s_word;
 	int		i;
-	char t;
+	char	t;
 
 	i = 0;
-	
 	s_word = malloc((ft_word_len(s, start, sep, stop) + 1) * sizeof(char));
-	
 	if (!s_word)
 		return (NULL);
 	while (s[*start] != sep && s[*start] != 0 && *start != stop)
@@ -101,9 +99,7 @@ char	*ft_substr_split(char *s, int *start, char sep, int stop)
 				s_word[i++] = s[(*start)++];
 		}
 		s_word[i++] = s[(*start)++];
-
 	}
-	
 	s_word[i] = '\0';
 	return (s_word);
 }

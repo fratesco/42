@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/03 17:16:53 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/03 22:02:27 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	start(t_info *info)
 		return ;
 	tokens = splitter(info->instruction, ' ',
 			ft_strlen(info->instruction), &len);
+	
 	//while (tokens[len])
 	//{
 	//	printf("%s\n", tokens[len]);
@@ -36,6 +37,8 @@ void	start(t_info *info)
 	info->instr_token = tokens;
 	info->num_arg = len;
 }
+
+
 
 void	analizer(t_info *info)
 {
@@ -52,9 +55,9 @@ void	analizer(t_info *info)
 		cd_handler(info);
 	else if (ft_strncmp(info->instr_token[0], "env", ft_strlen("env")) == 0)
 		env_handler(info);
-	else if (ft_strncmp(info->instr_token[0],
-			"export", ft_strlen("export")) == 0)
-		export_handler(info);
+	//else if (ft_strncmp(info->instr_token[0],
+	//		"export", ft_strlen("export")) == 0)
+	//	export_handler(info);
 	else if (ft_strncmp(info->instr_token[0], "unset", ft_strlen("unset")) == 0)
 		unset_handler(info);
 	else

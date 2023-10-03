@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:29:57 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/03 15:22:15 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/03 22:02:49 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ void	try_find_do(t_info *info, char *name)
 			free(tmp);
 			i++;	
 		}
+		printf("%s: no such file or director\n", name);
 	}
 }
