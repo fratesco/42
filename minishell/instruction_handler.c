@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/03 14:51:40 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/03 15:27:23 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ void	analizer(t_info *info)
 	{
 		info->instr_pid = fork();
 		if (!info->instr_pid)
+		{
+			signal_fork();
 			try_find_do(info, info->instr_token[0]);
+		}
 	}
 	//testare se
 	//int fd_out = dup(STDOUT_FILENO) creo un altro file descriptor per stdout

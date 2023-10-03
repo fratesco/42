@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:29:57 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/03 15:05:09 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/03 15:22:15 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	found(t_info *info, char *path)
 	if (!access(path, X_OK))
 	{
 		printf("Ho i permessi\n");
-		//execve(path, &info->instr_token[1], info->environment);
+		execve(path, info->instr_token, info->environment);
 		exit(0);
 	}
 	else
