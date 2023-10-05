@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/04 12:09:28 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/05 12:07:11 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_info
 {
 	char	**global_path; //la variabile globale PATH
 	char	**environment; //contiene tutte le variabili globali e locali
-	char	*instruction; //l'intera stringa passata a minishell sul terminale. Da non confondere con current instruction che sarebbe l'ipotetica stringa che finisce su una pipe
+	char	*instruction; //l'intera stringa passata a minishell sul terminale.
 	// cambio di programma, adesso instrcution sarà l'interea stringa passata, mentre instr_token sarà composto da un solo comando e i relativi argomenti e flags.
 	// il check sulle pipe e redirect verrà fatto prima e verrano gestiti di conseguenza
 	char	**instr_token; //matrice che contiene tutte le parole che compongono la current instruction
@@ -45,7 +45,7 @@ typedef struct s_info
 	int		temp_stdout; //il salvataggio di stdout che serve per poterlo recuperare
 	int		temp_fd; //il file descpitor del file che attualemente sostituisce stdout
 	int		num_pipe; //il numero totale di pipe
-	int		*pos_pipe; //la posizione della pipe che adesso stiamo considerando (potrebbe essere ridondante vista la presenza di instr_end)
+	int		pos_pipe; //la posizione della pipe che adesso stiamo considerando (potrebbe essere ridondante vista la presenza di instr_end)
 }	t_info;
 
 void	start(t_info *info); //funzione che splitta l'intera riga letta da readline e la prepara all'analisi
@@ -57,6 +57,7 @@ void	signal_fork(void); //funzione che reimposta gli handler standard; viene chi
 void	interrupt(int signum); //nuovo handler del segnale ctrl-c
 void	quitter(int signum); //nuovo handler del segnale ctrl-d
 void	analizer(t_info *info); //funzione che capisce se la nuova riga presenta un comando valido e lo fa partire
+void	dollar_handler(t_info *info);
 void	pwd_handler(t_info *info); //funzione che imita il funzionamento di pwd
 void	echo_handler(t_info *info); //funzione che imita il funzionamente di echo (con flag -n)
 void	cd_handler(t_info *info); //funzione che imita il comportamento di cd
