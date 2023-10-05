@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/05 12:07:11 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/05 12:46:33 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	signal_fork(void); //funzione che reimposta gli handler standard; viene chi
 void	interrupt(int signum); //nuovo handler del segnale ctrl-c
 void	quitter(int signum); //nuovo handler del segnale ctrl-d
 void	analizer(t_info *info); //funzione che capisce se la nuova riga presenta un comando valido e lo fa partire
-void	dollar_handler(t_info *info);
+void	dollar_handler(t_info *info); //funzione che si occupa di sostituire i $ con le rispettive variabili globali qualore esistano
 void	pwd_handler(t_info *info); //funzione che imita il funzionamento di pwd
 void	echo_handler(t_info *info); //funzione che imita il funzionamente di echo (con flag -n)
 void	cd_handler(t_info *info); //funzione che imita il comportamento di cd
@@ -77,6 +77,7 @@ int		keep_removing(char *str, int start); //serve a quote_remover
 int		remove_more(char *str, int start, char needle); //serve a keep_removing
 char	*triple_join(char *start, char *middle, char *end); //serve a unire 3 stringhe
 char	**splitter(char *av, char sep, int stop, int *ac); //split migliorato che tiene conto delle virgolette e le salta
+void	pip_index(t_info *info); //funzione che trova la posizione della prima pipe e la scrive in info.pos_pipe; viene utilizzato come stop di splitter;
 
 //void	quote_splitter(char **tokens);
 

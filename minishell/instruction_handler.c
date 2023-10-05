@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/05 12:23:19 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/05 12:47:23 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	start(t_info *info)
 		return ;
 	if (check_string(info->instruction))
 		return ;
-	tokens = splitter(info->instruction, ' ',
-			ft_strlen(info->instruction), &len);
+	pip_index(info);
+	tokens = splitter(info->instruction, ' ', info->pos_pipe, &len);
 	
 	//while (tokens[len])
 	//{
