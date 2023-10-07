@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/05 11:11:50 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/07 20:45:13 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,20 @@ void	executing(t_info *info)
 		analizer(info);
 	if (info->instr_pid != 0)
 	{
-		while (info->received_signal != info->instr_pid && g_signal != SIGINT)
+		while (info->received_signal != info->instr_pid) //&& g_signal != SIGINT)
+		{
+			//g_signal = 0;
 			info->received_signal = wait(NULL);
+		}
 	}
+	signal_rewire();
 	if (g_signal == SIGINT)
 	{
-		if (info->instr_pid != 0)
-			kill(info->instr_pid, SIGINT);
+		printf("\n");
+		//if (info->instr_pid != 0)
+		//	kill(info->instr_pid, SIGINT);
 	}
-		g_signal = 0;
+	g_signal = 0;
 }
 
 int	main(int argc, char	**argv, char **envp)
@@ -66,8 +71,9 @@ int	main(int argc, char	**argv, char **envp)
 	get_environment(&info, envp);
 	while (1)
 	{
-		info.instr_pid = 0;
 		info.instruction = readline(info.user);
+		info.instr_pid = 0;
+		g_signal = 0;
 		add_history(info.instruction);
 		if (info.instruction == NULL && info.instr_pid == 0)
 			break ;

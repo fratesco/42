@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:29:57 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/04 11:57:18 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/08 00:27:50 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,22 @@ extern int	g_signal;
 
 int	found(t_info *info, char *path)
 {
-	// qui gli diciamo di usare access per controllare i permessi
-	// se è tutto ok allora passiamo allo stadio successivo in cui facciamo partire il programma con exceve
-	printf("Trovato!\n");
+	DIR	*fd;
+
 	if (!access(path, X_OK))
 	{
-		printf("Ho i permessi\n");
-		execve(path, info->instr_token, info->environment);
-		exit(0);
+		fd = opendir(path);
+		if (fd == NULL && errno == ENOTDIR)
+		{
+			execve(path, info->instr_token, info->environment);
+			exit(0);
+		}
+		else if (fd != NULL)
+		{
+			closedir(fd);
+			printf("%s : Is a directory\n", path);
+			return (0);	
+		}
 	}
 	else
 		printf("Permission denied\n");
@@ -38,7 +46,6 @@ void	try_find_do(t_info *info, char *name)
 
 	i = 0;
 	j = 0;
-	// questa funzione si occupa di cercare il file, vedere se si possiedono i permessi necessari per esegurilo e eseguire il file
 	if (!access(name, F_OK))
 		found(info, name);
 	else
@@ -53,7 +60,7 @@ void	try_find_do(t_info *info, char *name)
 				break ;
 			}
 			free(tmp);
-			i++;	
+			i++;
 		}
 		printf("%s: no such file or director\n", name);
 	}
