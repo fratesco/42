@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/07 20:15:56 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/09 14:56:42 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,59 +34,6 @@ void	start(t_info *info)
 		return (free_matrix(tokens));
 	info->instr_token = tokens;
 	info->num_arg = len;
-}
-
-int	check_dollar(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str && str[i])
-	{
-		if (str[i] == '\'')
-		{
-			i++;
-			while (str && (str[i] != '\'') && str[i])
-				i++;
-		}
-		else if (str[i] == '$' && str[i + 1] != ' ')
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
-char	*dollar_remover(char *str, int pos)
-{
-	int		i;
-	char	*tmp;
-
-	i = pos + 1;
-	while (str[i] && str[i] != ' ' && str[i] != '"')
-		i++;
-	printf("qui\n");
-	tmp = (char *)malloc((1 + i + 1 - pos) * sizeof(char));
-	ft_strlcpy(tmp, &str[pos + 1], (i - pos));
-	printf("%i, %i, %s\n", i, pos, tmp);
-	// ora dobbiamo far ripartire check_dollar sul resto di tmp così da ripetere il processo per tutte le volte necessarie
-	free(tmp);
-}
-
-void	dollar_handler(t_info *info)
-{
-	int		i;
-	int		pos;
-	char	*tmp;
-
-	i = 0;
-	pos = -1;
-	while (info->instr_token[i])
-	{
-		pos = check_dollar(info->instr_token[i]);
-		if (pos >= 0)
-			dollar_remover(info->instr_token[i], pos);
-		i++;
-	}
 }
 
 void	analizer(t_info *info)

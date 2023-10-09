@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/08 00:17:55 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/09 15:49:21 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ void	interrupt(int signum); //nuovo handler del segnale ctrl-c
 void	quitter(int signum); //nuovo handler del segnale ctrl-d
 void	analizer(t_info *info); //funzione che capisce se la nuova riga presenta un comando valido e lo fa partire
 void	dollar_handler(t_info *info); //funzione che si occupa di sostituire i $ con le rispettive variabili globali qualore esistano
+char	*dollar_remover(char *str, int pos);
+int		check_dollar(char *str);
+char	*no_env(int start, int end, char *str);
 void	pwd_handler(t_info *info); //funzione che imita il funzionamento di pwd
 void	echo_handler(t_info *info); //funzione che imita il funzionamente di echo (con flag -n)
 void	cd_handler(t_info *info); //funzione che imita il comportamento di cd
