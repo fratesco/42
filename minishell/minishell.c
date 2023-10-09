@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/09 14:41:17 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/10 01:37:14 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,12 @@ void	get_environment(t_info *g_info, char **environment)
 {
 	char	*tmp;
 
-	g_info->environment = environment;
+	g_info->environment = matrix_crusher(environment, NULL);
 	g_info->global_path = ft_split((getenv("PATH")), ':');
 	g_info->user = ft_strdup(getenv("USER"));
 	tmp = ft_strjoin(g_info->user, (":~"));
 	free(g_info->user);
 	g_info->user = tmp;
-	// possiamo far controllare a minishell se esiste almeno un processo con qu4esto nome prma di farlo partire per controllare che sia un minishell dentro minishell
-	// utilizzare ps per scrivere i processi in un file
-	// bisogna decidere se vogliamo semplicemente creare un interrupt_handler specifico per questo caso che non si mette a scrivere a schermo
-	// oppure se vogliamo che il minishell figlio venga gestito come un qualsiasi processo figlio e quindi interrotto da ctrl-c
 	signal_rewire();
 	g_info->current_path = ft_strdup(getenv("HOME"));
 	g_info->temp_stdout = 0;
@@ -37,6 +33,7 @@ void	get_environment(t_info *g_info, char **environment)
 	g_info->current_arg = 0;
 	g_info->num_arg = 0;
 	g_info->received_signal = 0;
+	g_info->exit_status = 0;
 }
 
 void	executing(t_info *info)
@@ -45,20 +42,10 @@ void	executing(t_info *info)
 	if (info->num_arg != 0)
 		analizer(info);
 	if (info->instr_pid != 0)
-	{
-		while (info->received_signal != info->instr_pid) //&& g_signal != SIGINT)
-		{
-			//g_signal = 0;
-			info->received_signal = wait(NULL);
-		}
-	}
+		wait(&(info->exit_status));
 	signal_rewire();
 	if (g_signal == SIGINT)
-	{
 		printf("\n");
-		//if (info->instr_pid != 0)
-		//	kill(info->instr_pid, SIGINT);
-	}
 	g_signal = 0;
 }
 
@@ -67,7 +54,10 @@ int	main(int argc, char	**argv, char **envp)
 	t_info	info;
 
 	if (argc > 1)
-		exit(0); //aggiungere messaggio del tipo "Minishell takes no input argument"
+	{
+		printf("Minishell takes no argument\n");
+		exit(0);
+	}
 	get_environment(&info, envp);
 	while (1)
 	{

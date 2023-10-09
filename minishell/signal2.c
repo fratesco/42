@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 20:12:58 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/07 20:38:46 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/10 01:29:03 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void	signal_avoid(void)
 
 	new_action.sa_handler = int_child_alive;
 	sigemptyset(&new_action.sa_mask);
-	new_action.sa_flags = 0;
+	new_action.sa_flags = SA_RESTART;
 	sigaction(SIGINT, &new_action, NULL);
 }
