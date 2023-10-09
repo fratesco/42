@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/09 15:49:21 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/10 01:23:00 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_info
 	int		num_arg; //numero di arg che abbiamo nella current instruction
 	int		instr_len; //numero di elementi nella matrice instr_token | è lo stesso valore di num_arg quando avremo split corretto
 	int		instr_pid; //è il pid del processo figlio che sta esenguendo un comando, serve per poter aspettare che finisca e poter terminarlo in caso di int-sig
+	int		exit_status; //l'exit status dell'ultimo processo figlio terminato
 	int		received_signal; //valore scritto da wait();
 	char	*user; //la variabile che contiene il valore della variabile globale USER
 	char	*current_path; //l'attuale folder in cui sta lavorando il processo
@@ -87,6 +88,7 @@ int		remove_more(char *str, int start, char needle); //serve a keep_removing
 char	*triple_join(char *start, char *middle, char *end); //serve a unire 3 stringhe
 char	**splitter(char *av, char sep, int stop, int *ac); //split migliorato che tiene conto delle virgolette e le salta
 void	pip_index(t_info *info); //funzione che trova la posizione della prima pipe e la scrive in info.pos_pipe; viene utilizzato come stop di splitter;
+char	**matrix_crusher(char **matrix, char *str);
 
 //void	quote_splitter(char **tokens);
 
