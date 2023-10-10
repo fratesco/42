@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/09 14:56:42 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/10 02:03:10 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	start(t_info *info)
 
 	if (ft_strncmp(info->instruction, "", 1) == 0)
 		return ;
+	add_history(info->instruction);
 	if (check_string(info->instruction))
 		return ;
 	pip_index(info);

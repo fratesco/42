@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:38:35 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/09 14:18:13 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/10 02:14:22 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,6 @@ void	free_matrix(char **matrix)
 	return ;
 }
 
-char	**pipe_finder(t_info *info)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (info->instr_token && info->instr_token[i])
-	{
-		j = 0;
-		while (info->instr_token[i][j])
-		{
-			
-		}
-	}
-}
-
 void	free_stuff(t_info *info, int flag)
 {
 	if (flag == 1)
@@ -65,6 +49,7 @@ void	free_stuff(t_info *info, int flag)
 		free(info->user);
 		free_matrix(info->global_path);
 		free_matrix(info->instr_token);
+		free_matrix(info->environment);
 		rl_clear_history();
 	}
 }

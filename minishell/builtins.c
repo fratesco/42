@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:20:45 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/09 14:42:45 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/10 02:58:02 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	pwd_handler(t_info *info)
 	if (redirector(info) == -1)
 		return ;
 	printf("%s\n", info->current_path);
+	info->exit_status = 0;
 }
 
 void	echo_handler(t_info *info)
@@ -26,34 +27,43 @@ void	echo_handler(t_info *info)
 	info->current_arg = 1;
 	while (info->instr_token[info->current_arg])
 	{
-		printf("%s ", info->instr_token[info->current_arg]);
+		printf("%s", info->instr_token[info->current_arg]);
+		if (info->instr_token[info->current_arg][0] != 0)
+			printf(" ");
 		info->current_arg++;
 	}
 	if (info->instr_token[1]
 		&& ft_strncmp(info->instr_token[1], "-n", 2) != 0)
 		printf("\n");
+	info->exit_status = 0;
 	return ;
 }
 
 void	cd_handler(t_info *info)
 {
-
 	if (info->num_arg < 2)
 		chdir(getenv("HOME"));
 	if (info->num_arg > 2)
+	{
+		info->exit_status = 1;
 		printf("cd: too many arguments\n");
+	}
 	if (info->num_arg == 2 && chdir(info->instr_token[1]) != 0)
 	{
+		info->exit_status = 1;
 		if (errno == EACCES)
 			printf ("cd : %s : Permission denied\n", info->instr_token[1]);
 		else if (errno == ENOTDIR)
 			printf ("cd : %s : Not a directory\n", info->instr_token[1]);
 		else if (cd_loop(info))
 			printf("cd : %s : %s\n", info->instr_token[1], strerror(errno));
+		else
+			info->exit_status = 0;
 	}
+	else if (info->num_arg == 2)
+		info->exit_status = 0;
 	free(info->current_path);
 	info->current_path = getcwd(NULL, 0);
-	return ;
 }
 
 void	export_handler(t_info *info)
@@ -73,6 +83,7 @@ void	export_handler(t_info *info)
 	// ogni volta che una variabile globale viene modificata è necessario che tutte le variabili globali salvate in info venagano aggiornate
 	// sinceramente non come fare funzionare questa funzione se non aggiungendo stringhe alla fine di environnment. Questo metodo però non verrebbe riconosciuto da getenv()
 	// quindi tentare di ottenere una variabile che è stata aggiunta o modificata diverebbe fattibile solo scorrendo tutto le stringhe manualamnte
+	info->exit_status = 0;
 }
 
 void	env_handler(t_info *info)
@@ -87,6 +98,7 @@ void	env_handler(t_info *info)
 		printf("%s\n", info->environment[i]);
 		i++;
 	}
+	info->exit_status = 0;
 	//a quanto pare l'unica soluzione per ottenere le variabili globali è quello di aggiungere "char **envp" agli argomenti del main
 	//envp è una matrice che contiene l'environment cioè tutte le variabili globali della shell che ha fatto partire il programma
 	//avendo envp è facile fare il comando "env" senza flag, basta fare un loop e scrivere a schermo stringa per stringa envp

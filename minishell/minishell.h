@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/10 01:23:00 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/10 02:35:12 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct s_info
 void	start(t_info *info); //funzione che splitta l'intera riga letta da readline e la prepara all'analisi
 void	free_matrix(char **matrix); //funzione che libera la memoria di una matrice
 void	free_stuff(t_info *info, int flag); //funzione che libera tutta la memoria occupata dalla struttura globale
-char	**pipe_finder(t_info *info); //funzione che trova la posizione di una pipe
 void	signal_rewire(void); //funzione che modifica la risposta ai segnali ctrl-d e ctrl-c
 void	signal_fork(void); //funzione che reimposta gli handler standard; viene chiamata nel processo figlio perchè eredita gli handler modificati dal genitore
 void	signal_avoid(void);
@@ -67,6 +66,7 @@ void	dollar_handler(t_info *info); //funzione che si occupa di sostituire i $ co
 char	*dollar_remover(char *str, int pos);
 int		check_dollar(char *str);
 char	*no_env(int start, int end, char *str);
+char	*dollar_exit(char *str, t_info *info); //questa funzione si occupa di gestire il caso di "$?"
 void	pwd_handler(t_info *info); //funzione che imita il funzionamento di pwd
 void	echo_handler(t_info *info); //funzione che imita il funzionamente di echo (con flag -n)
 void	cd_handler(t_info *info); //funzione che imita il comportamento di cd
