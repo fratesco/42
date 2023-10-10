@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/10 03:01:39 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/10 03:15:56 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ void	executing(t_info *info)
 	if (info->instr_pid != 0)
 	{
 		wait(&(status));
-		//printf("%i\n", status);
-		//if (WIFEXITED(status))
-		//{
+		if (WIFEXITED(status))
 			info->exit_status = WEXITSTATUS(status);
-		//}
 		signal_rewire();
 		if (g_signal == SIGINT)
+		{
 			printf("\n");
+			info->exit_status = 130;
+		}
 	}
 	g_signal = 0;
 }

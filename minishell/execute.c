@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:29:57 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/08 00:27:50 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/10 03:19:04 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int	found(t_info *info, char *path)
 		{
 			closedir(fd);
 			printf("%s : Is a directory\n", path);
-			return (0);	
+			exit(126);	
 		}
 	}
 	else
 		printf("Permission denied\n");
-	return (1);
+	exit(126);
 }
 
 void	try_find_do(t_info *info, char *name)
@@ -62,6 +62,7 @@ void	try_find_do(t_info *info, char *name)
 			free(tmp);
 			i++;
 		}
-		printf("%s: no such file or director\n", name);
+		printf("%s: no such file or directory\n", name);
+		exit(127);
 	}
 }

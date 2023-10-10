@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/10 02:35:12 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/10 03:07:22 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,20 @@ void	free_matrix(char **matrix); //funzione che libera la memoria di una matrice
 void	free_stuff(t_info *info, int flag); //funzione che libera tutta la memoria occupata dalla struttura globale
 void	signal_rewire(void); //funzione che modifica la risposta ai segnali ctrl-d e ctrl-c
 void	signal_fork(void); //funzione che reimposta gli handler standard; viene chiamata nel processo figlio perchè eredita gli handler modificati dal genitore
-void	signal_avoid(void);
-void	int_child_alive(int signum);
+void	signal_avoid(void); //funzione che imposta int_child_alive come handler di SIG_INT
+void	int_child_alive(int signum); //handler per ctrl-c per il processo genitore quando viene generato un processo figlio
 void	interrupt(int signum); //nuovo handler del segnale ctrl-c
 void	quitter(int signum); //nuovo handler del segnale ctrl-d
 void	analizer(t_info *info); //funzione che capisce se la nuova riga presenta un comando valido e lo fa partire
 void	dollar_handler(t_info *info); //funzione che si occupa di sostituire i $ con le rispettive variabili globali qualore esistano
-char	*dollar_remover(char *str, int pos);
-int		check_dollar(char *str);
-char	*no_env(int start, int end, char *str);
+char	*dollar_remover(char *str, int pos); //controlla che esista la variabile globale con nome uguale ai caratteri dopo il $
+int		check_dollar(char *str); //controlla che esista un $ valido e che debba essere sostituito
+char	*no_env(int start, int end, char *str); //caso in cui non esiste la variabile globale e quindi sostituisce il nulla
 char	*dollar_exit(char *str, t_info *info); //questa funzione si occupa di gestire il caso di "$?"
 void	pwd_handler(t_info *info); //funzione che imita il funzionamento di pwd
 void	echo_handler(t_info *info); //funzione che imita il funzionamente di echo (con flag -n)
 void	cd_handler(t_info *info); //funzione che imita il comportamento di cd
-int		cd_loop(t_info *info);
+int		cd_loop(t_info *info); //funzione continuo di cd || fatta per entrare nelle 25 righe
 void	env_handler(t_info *info); //funzione che imita il comportamento di env senza flag
 void	unset_handler(t_info *info); //funzione che imita il comportamento di unset senza flag
 void	export_handler(t_info *info); //funzione che imita il comportamento di export senza flag
