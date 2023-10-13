@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:29:57 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/10 03:19:04 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/10 10:55:52 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	found(t_info *info, char *path)
 		{
 			closedir(fd);
 			printf("%s : Is a directory\n", path);
-			exit(126);	
+			exit(126);
 		}
 	}
 	else
