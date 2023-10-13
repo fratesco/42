@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/13 11:35:37 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/13 13:46:36 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef struct s_info
 	int		instr_start; //inizio della current instruction
 	int		current_arg; //l'attuale arg che stiamo guardando
 	int		num_arg; //numero di arg che abbiamo nella current instruction
-	int		instr_len; //numero di elementi nella matrice instr_token | è lo stesso valore di num_arg quando avremo split corretto
 	int		instr_pid; //è il pid del processo figlio che sta esenguendo un comando, serve per poter aspettare che finisca e poter terminarlo in caso di int-sig
 	int		exit_status; //l'exit status dell'ultimo processo figlio terminato
 	int		received_signal; //valore scritto da wait();
@@ -72,8 +71,9 @@ void	echo_handler(t_info *info); //funzione che imita il funzionamente di echo (
 void	cd_handler(t_info *info); //funzione che imita il comportamento di cd
 int		cd_loop(t_info *info); //funzione continuo di cd || fatta per entrare nelle 25 righe
 void	env_handler(t_info *info); //funzione che imita il comportamento di env senza flag
-void	unset_handler(t_info *info); //funzione che imita il comportamento di unset senza flag
+void	unset_handler(t_info *info, int arg); //funzione che imita il comportamento di unset senza flag
 void	export_handler(t_info *info); //funzione che imita il comportamento di export senza flag
+void	exit_handler(t_info *info); //funzione che imita il comportamento di exit 
 void	try_find_do(t_info *info, char *name); //funzione che si occupa di controlla se esiste il comando scritto esiste ed è eseguibile, lo esegue qualore possibile
 int		redirector(t_info *info); //funzione che modifica momentaneamente il stdout
 void	get_environment(t_info *info, char **environment); //funzione che salva le variabili globali che ci servono e inizializza le variabili della struttura

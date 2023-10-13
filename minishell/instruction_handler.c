@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/10 02:03:10 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/13 13:49:05 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ void	analizer(t_info *info)
 			"export", ft_strlen("export")) == 0)
 		export_handler(info);
 	else if (ft_strncmp(info->instr_token[0], "unset", ft_strlen("unset")) == 0)
-		unset_handler(info);
+		unset_handler(info, 1);
+	else if (ft_strncmp(info->instr_token[0], "exit", 4) == 0)
+		exit_handler(info);
 	else
 	{
 		info->instr_pid = fork();

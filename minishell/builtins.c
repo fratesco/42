@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:20:45 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/10 02:58:02 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/13 11:43:53 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ extern int	g_signal;
 
 void	pwd_handler(t_info *info)
 {
-	if (redirector(info) == -1)
-		return ;
 	printf("%s\n", info->current_path);
 	info->exit_status = 0;
 }

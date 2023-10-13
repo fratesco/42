@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/10 03:15:56 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/13 12:54:25 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	get_environment(t_info *g_info, char **environment)
 	g_info->current_path = ft_strdup(getenv("HOME"));
 	g_info->temp_stdout = 0;
 	chdir(g_info->current_path);
-	g_info->instr_len = 0;
 	g_info->instr_token = NULL;
 	g_info->current_arg = 0;
 	g_info->num_arg = 0;

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:38:35 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/10 02:14:22 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/13 12:54:19 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	free_stuff(t_info *info, int flag)
 	{
 		free(info->instruction);
 		free_matrix(info->instr_token);
-		info->instr_len = 0;
 		info->num_arg = 0;
 		info->instr_token = NULL;
 	}
@@ -63,9 +62,9 @@ int	redirector(t_info *info)
 	{
 		if (ft_strncmp(">", info->instr_token[i], 1) == 0)
 		{
-			if (i + 1 == info->instr_len)
+			if (i + 1 == info->num_arg)
 			{
-				printf("Syntax error\n");
+				printf("syntax error near unexpected token `newline'\n");
 				return (-1);
 			}
 		}
