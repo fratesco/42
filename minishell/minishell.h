@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/10 03:07:22 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/13 11:35:37 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ int		remove_more(char *str, int start, char needle); //serve a keep_removing
 char	*triple_join(char *start, char *middle, char *end); //serve a unire 3 stringhe
 char	**splitter(char *av, char sep, int stop, int *ac); //split migliorato che tiene conto delle virgolette e le salta
 void	pip_index(t_info *info); //funzione che trova la posizione della prima pipe e la scrive in info.pos_pipe; viene utilizzato come stop di splitter;
-char	**matrix_crusher(char **matrix, char *str);
+char	**matrix_crusher(char **matrix, char *str); // creaa una copia di matrix a cui viene aggiunta str alla fine 
+char	**matrix_remover(char **matrix, int ind); // rimuove la stringha con indice ind dalla matriche matrix (in realtà ne fa una copia senza quella stringa)
 
 //void	quote_splitter(char **tokens);
 
