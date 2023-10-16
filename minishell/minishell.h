@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/16 12:28:38 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/16 15:49:30 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,13 @@ void	cd_handler(t_info *info); //funzione che imita il comportamento di cd
 int		cd_loop(t_info *info); //funzione continuo di cd || fatta per entrare nelle 25 righe
 void	env_handler(t_info *info); //funzione che imita il comportamento di env senza flag
 void	unset_handler(t_info *info, int arg); //funzione che imita il comportamento di unset senza flag
-void	export_handler(t_info *info); //funzione che imita il comportamento di export senza flag
+void	export_handler(t_info *info, int arg); //funzione che imita il comportamento di export senza flag
+int 	token_checker(t_info *info, int arg);
 void	exit_handler(t_info *info); //funzione che imita il comportamento di exit 
 void	try_find_do(t_info *info, char *name); //funzione che si occupa di controlla se esiste il comando scritto esiste ed è eseguibile, lo esegue qualore possibile
-int		redirector(t_info *info); //funzione che modifica momentaneamente il stdout
+int		redirector(t_info *info); //funzione che cerca le redirections nei tokens
+void	output_router(t_info *info, int row, int col);
+void	input_router(t_info *info, int row, int col);
 void	get_environment(t_info *info, char **environment); //funzione che salva le variabili globali che ci servono e inizializza le variabili della struttura
 void	executing(t_info *info); //funzione creata per acorciare il main, tutto quello che è scritto qui era scritto nel loop del main
 int		check_string(char *str); //funzione che controlla se le quote della stringa siano correttamente chiuse

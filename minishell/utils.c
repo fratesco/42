@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:38:35 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/16 12:40:36 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/16 13:07:26 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,26 +51,6 @@ void	free_stuff(t_info *info, int flag)
 		free_matrix(info->environment);
 		rl_clear_history();
 	}
-}
-
-int	redirector(t_info *info)
-{
-	int	i;
-
-	i = 0;
-	while (info->instr_token[i] && info->temp_stdout == 0)
-	{
-		if (ft_strncmp(">", info->instr_token[i], 1) == 0)
-		{
-			if (i + 1 == info->num_arg)
-			{
-				printf("syntax error near unexpected token `newline'\n");
-				return (-1);
-			}
-		}
-		i++;
-	}	
-	return (0);
 }
 
 char	*triple_join(char *start, char *middle, char *end)

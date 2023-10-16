@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/13 13:49:05 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/16 16:56:06 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,6 @@ void	start(t_info *info)
 		return ;
 	pip_index(info);
 	tokens = splitter(info->instruction, ' ', info->pos_pipe, &len);
-	//while (tokens[len])
-	//{
-	//	printf("%s\n", tokens[len]);
-	//	len++;
-	//}
 	if (!tokens)
 		return (free_matrix(tokens));
 	info->instr_token = tokens;
@@ -55,7 +50,7 @@ void	analizer(t_info *info)
 		env_handler(info);
 	else if (ft_strncmp(info->instr_token[0],
 			"export", ft_strlen("export")) == 0)
-		export_handler(info);
+		export_handler(info, 1);
 	else if (ft_strncmp(info->instr_token[0], "unset", ft_strlen("unset")) == 0)
 		unset_handler(info, 1);
 	else if (ft_strncmp(info->instr_token[0], "exit", 4) == 0)

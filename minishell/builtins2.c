@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 19:49:24 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/16 12:49:23 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/16 16:54:11 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	unset_handler(t_info *info, int arg)
 	while (info->environment[++i])
 	{
 		j = 0;
-		while (!info->environment[i][j] && info->environment[i][j] != '=')
+		while (info->environment[i][j] != 0 && info->environment[i][j] != '=')
 			j++;
 		if (ft_strncmp(info->environment[i], info->instr_token[arg], j) == 0)
 		{
@@ -34,6 +34,7 @@ void	unset_handler(t_info *info, int arg)
 	}
 	free_matrix(info->environment);
 	info->environment = tmp;
+	i = 0;
 	if ((arg) < info->num_arg - 1)
 		unset_handler(info, (arg + 1));
 	info->exit_status = 0;
@@ -90,4 +91,27 @@ void	exit_handler(t_info *info)
 	free_stuff(info, 0);
 	printf("exit\n");
 	exit(i);
+}
+
+int	token_checker(t_info *info, int arg)
+{
+	int	i;
+
+	i = 1;
+	if ((info->instr_token[arg][0] <= 'A' || info->instr_token[arg][0] >= 'Z')
+			&& (info->instr_token[arg][0] <= 'a' ||
+			info->instr_token[arg][0] >= 'z'))
+		return (1);
+	while (info->instr_token[arg][i] && info->instr_token[arg][i] != '=')
+	{
+		if (!(info->instr_token[arg][i] >= 'A'
+			&& info->instr_token[arg][i] <= 'Z') &&
+			!(info->instr_token[arg][i] >= 'a' &&
+			info->instr_token[arg][i] <= 'z') &&
+			!(info->instr_token[arg][i] >= 48 &&
+			info->instr_token[arg][i] <= 57))
+			return (1);
+		i++;
+	}
+	return (0);
 }
