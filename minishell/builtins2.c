@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 19:49:24 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/13 13:51:18 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/16 12:49:23 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	unset_handler(t_info *info, int arg)
 	while (info->environment[++i])
 	{
 		j = 0;
-		while (info->environment[i][j] != '=')
+		while (!info->environment[i][j] && info->environment[i][j] != '=')
 			j++;
 		if (ft_strncmp(info->environment[i], info->instr_token[arg], j) == 0)
 		{
@@ -88,5 +88,6 @@ void	exit_handler(t_info *info)
 	i = ft_atoi(info->instr_token[1]);
 	free_stuff(info, 1);
 	free_stuff(info, 0);
+	printf("exit\n");
 	exit(i);
 }

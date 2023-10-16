@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/13 13:46:36 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/16 12:28:38 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,10 @@ void	interrupt(int signum); //nuovo handler del segnale ctrl-c
 void	quitter(int signum); //nuovo handler del segnale ctrl-d
 void	analizer(t_info *info); //funzione che capisce se la nuova riga presenta un comando valido e lo fa partire
 void	dollar_handler(t_info *info); //funzione che si occupa di sostituire i $ con le rispettive variabili globali qualore esistano
-char	*dollar_remover(char *str, int pos); //controlla che esista la variabile globale con nome uguale ai caratteri dopo il $
+char	*dollar_remover(t_info *info, char *str, int pos); //controlla che esista la variabile globale con nome uguale ai caratteri dopo il $
 int		check_dollar(char *str); //controlla che esista un $ valido e che debba essere sostituito
-char	*no_env(int start, int end, char *str); //caso in cui non esiste la variabile globale e quindi sostituisce il nulla
+char	*no_env(t_info *info, int start, int end, char *str); //caso in cui non esiste la variabile globale e quindi sostituisce il nulla
+char	*get_global(char **matrix, char *str);
 char	*dollar_exit(char *str, t_info *info); //questa funzione si occupa di gestire il caso di "$?"
 void	pwd_handler(t_info *info); //funzione che imita il funzionamento di pwd
 void	echo_handler(t_info *info); //funzione che imita il funzionamente di echo (con flag -n)

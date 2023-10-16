@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:20:45 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/13 11:43:53 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/16 12:53:04 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,25 @@ void	export_handler(t_info *info)
 void	env_handler(t_info *info)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	// potrei dover aggiungere un check per vedere se ci sono argomenti (che non vanno gestiti) e in caso scrivere un errore
 	while (info->environment[i])
 	{
 		// sembra essere così semplice
-		printf("%s\n", info->environment[i]);
+		j = 0;
+		while (info->environment[i][j])
+		{
+			if (info->environment[i][j] == '=')
+			{
+				printf("%s\n", info->environment[i]);
+				info->exit_status = 0;
+				break ;
+			}
+			j++;
+		}
 		i++;
 	}
 	info->exit_status = 0;

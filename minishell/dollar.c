@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:55:47 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/10 03:15:50 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/16 12:37:47 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	check_dollar(char *str)
 	return (-1);
 }
 
-char	*no_env(int start, int end, char *str)
+char	*no_env(t_info *info, int start, int end, char *str)
 {
 	char	*tmp;
 
@@ -47,11 +47,11 @@ char	*no_env(int start, int end, char *str)
 	ft_strlcpy(&tmp[start], &str[end], (ft_strlen(str) - (start - end)));
 	free(str);
 	if (check_dollar(tmp) >= 0)
-		tmp = dollar_remover(tmp, check_dollar(tmp));
+		tmp = dollar_remover(info, tmp, check_dollar(tmp));
 	return (tmp);
 }
 
-char	*dollar_remover(char *str, int pos)
+char	*dollar_remover(t_info *info, char *str, int pos)
 {
 	int		i;
 	char	*tmp;
@@ -62,20 +62,21 @@ char	*dollar_remover(char *str, int pos)
 		i++;
 	tmp = (char *)malloc((1 + i + 1 - pos) * sizeof(char));
 	ft_strlcpy(tmp, &str[pos + 1], (i - pos));
-	env = getenv(tmp);
+	env = get_global(info->environment, tmp);
 	free(tmp);
 	if (!env)
-		return (no_env(pos, i, str));
+		return (no_env(info, pos, i, str));
 	tmp = (char *)malloc((ft_strlen(str) + i - pos + ft_strlen(env) + 3)
 			* sizeof(char));
 	ft_strlcpy(tmp, str, (pos + 1));
-	ft_strlcpy(&tmp[pos], env, ft_strlen(env - 1));
+	ft_strlcpy(&tmp[pos], env, ft_strlen(env) + 1);
 	if (str[i])
 		ft_strlcpy(&tmp[ft_strlen(tmp)], &str[i], 
 			(ft_strlen(str) - 1 + ft_strlen(tmp)));
+	free(env);
 	free(str);
 	if (check_dollar(tmp) >= 0)
-		tmp = dollar_remover(tmp, check_dollar(tmp));
+		tmp = dollar_remover(info, tmp, check_dollar(tmp));
 	return (tmp);
 }
 
@@ -97,6 +98,8 @@ char	*dollar_exit(char *str, t_info *info)
 			(ft_strlen(&str[pos + 2]) + ft_strlen(tmp) + 1));
 	free(num);
 	free(str);
+	if (check_dollar(tmp) >= 0)
+	tmp = dollar_remover(info, tmp, check_dollar(tmp));
 	return (tmp);
 }
 
@@ -114,7 +117,8 @@ void	dollar_handler(t_info *info)
 		if (pos == 42)
 			info->instr_token[i] = dollar_exit(info->instr_token[i], info);
 		else if (pos >= 0)
-			info->instr_token[i] = dollar_remover(info->instr_token[i], pos);
+			info->instr_token[i] = dollar_remover(info,
+					info->instr_token[i], pos);
 		i++;
 	}
 }

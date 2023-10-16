@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:38:35 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/13 12:54:19 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/16 12:40:36 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,25 @@ char	*triple_join(char *start, char *middle, char *end)
 	tmp2 = ft_strjoin(tmp, end);
 	free(tmp);
 	return (tmp2);
+}
+
+char	*get_global(char **matrix, char *str)
+{
+	int		i;
+	int		j;
+	char	*tmp;
+
+	i = -1;
+	while (matrix[++i])
+	{
+		j = 0;
+		while (matrix[i][j] != '=')
+			j++;
+		if (ft_strncmp(matrix[i], str, j) == 0)
+		{
+			tmp = ft_strdup(&matrix[i][j + 1]);
+			return (tmp);
+		}
+	}
+	return (NULL);
 }
