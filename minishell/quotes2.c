@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 15:05:17 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/01 16:10:14 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/19 11:21:44 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 extern int	g_signal;
 
-int	keep_removing(char *str, int start)
+int	keep_removing(char *str, int start, int stop)
 {
 	int		i;
 	char	*tmp;
 
 	i = start;
 	tmp = 0;
-	while (str && str[i])
+	while (str && str[i] && i < stop)
 	{
 		if (str[i] == '"')
 			i = remove_more(str, i, '"');

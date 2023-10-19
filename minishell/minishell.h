@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/16 15:49:30 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/19 11:29:29 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_info
 	int		num_arg; //numero di arg che abbiamo nella current instruction
 	int		instr_pid; //è il pid del processo figlio che sta esenguendo un comando, serve per poter aspettare che finisca e poter terminarlo in caso di int-sig
 	int		exit_status; //l'exit status dell'ultimo processo figlio terminato
+	int		is_error; //variabile che viene usata per comprendere se qualcosa non è andato in qualche funzione precedente|| tutto quello che fa è evitare casini con codice lungo
 	int		received_signal; //valore scritto da wait();
 	char	*user; //la variabile che contiene il valore della variabile globale USER
 	char	*current_path; //l'attuale folder in cui sta lavorando il processo
@@ -78,8 +79,9 @@ int 	token_checker(t_info *info, int arg);
 void	exit_handler(t_info *info); //funzione che imita il comportamento di exit 
 void	try_find_do(t_info *info, char *name); //funzione che si occupa di controlla se esiste il comando scritto esiste ed è eseguibile, lo esegue qualore possibile
 int		redirector(t_info *info); //funzione che cerca le redirections nei tokens
-void	output_router(t_info *info, int row, int col);
-void	input_router(t_info *info, int row, int col);
+void	output_router(t_info *info, char *str, int col);
+void	input_router(t_info *info, char *str, int col);
+void	fd_input(t_info *info, char *str);
 void	get_environment(t_info *info, char **environment); //funzione che salva le variabili globali che ci servono e inizializza le variabili della struttura
 void	executing(t_info *info); //funzione creata per acorciare il main, tutto quello che è scritto qui era scritto nel loop del main
 int		check_string(char *str); //funzione che controlla se le quote della stringa siano correttamente chiuse
@@ -87,7 +89,7 @@ void	polish_tokens(t_info *info); //funzione che controlla la presenza di quotes
 void	single_quotes(char *str, int *num_single, int *i); //serve a check_string
 void	double_quotes(char *str, int *num_single, int *i); //serve a check_string
 int		quote_remover(char *str, char sep, size_t len); //funzione che rimuove le quotes dalle stringhe
-int		keep_removing(char *str, int start); //serve a quote_remover
+int		keep_removing(char *str, int start, int stop); //serve a quote_remover
 int		remove_more(char *str, int start, char needle); //serve a keep_removing
 char	*triple_join(char *start, char *middle, char *end); //serve a unire 3 stringhe
 char	**splitter(char *av, char sep, int stop, int *ac); //split migliorato che tiene conto delle virgolette e le salta

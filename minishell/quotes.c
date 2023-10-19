@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 13:02:58 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/02 15:57:37 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/19 11:21:51 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ int	quote_remover(char *str, char sep, size_t len)
 	ft_strlcpy(&(str[first]), &(str[first + 1]), (last));
 	ft_strlcpy(&(str[last - 1]), tmp, len);
 	free(tmp);
-	keep_removing(str, last - 1);
+	if (last < len - 1)
+		keep_removing(str, last - 1, len);
 	return (last);
 }
