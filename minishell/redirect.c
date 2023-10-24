@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:06:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/19 11:35:12 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/24 10:41:48 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,17 +84,17 @@ void	input_router(t_info *info, char *str, int col)
 				while (str[i] != c)
 					i++;
 			}
-			if (str[i] == ">" || str[i] == "<")
+			if (str[i] == '>' || str[i] == '<')
 				break ;
 			i++;
 		}
-		if (c == '"' || c == '\'')
-			quote_remover(str, c, i - 2);
+		//if (c == '"' || c == '\'')
+		//	quote_remover(str, c, i - 2);
 		fd_input(info, str);
 	}
 }
 
-void fd_input(t_info *info, char *str)
+void	fd_input(t_info *info, char *str)
 {
 	// devi prendere tutto ciò che sta dopo il ">" fare una stringa e usarla come path per il file dove dobbiamo scrivere
 	return ;

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/19 11:29:29 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/24 10:41:18 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct s_info
 	int		temp_fd; //il file descpitor del file che attualemente sostituisce stdout
 	int		num_pipe; //il numero totale di pipe
 	int		pos_pipe; //la posizione della pipe che adesso stiamo considerando (potrebbe essere ridondante vista la presenza di instr_end)
+	int		num_redirect; //numero totale di redirect
+	int		*use_redirect; //attribuisce 1 o 0 alle redirect nell'ordine che vengono lette in modo da capire se vanno ignorate (dentro virgolette) oppure no
 }	t_info;
 
 void	start(t_info *info); //funzione che splitta l'intera riga letta da readline e la prepara all'analisi
@@ -94,6 +96,8 @@ int		remove_more(char *str, int start, char needle); //serve a keep_removing
 char	*triple_join(char *start, char *middle, char *end); //serve a unire 3 stringhe
 char	**splitter(char *av, char sep, int stop, int *ac); //split migliorato che tiene conto delle virgolette e le salta
 void	pip_index(t_info *info); //funzione che trova la posizione della prima pipe e la scrive in info.pos_pipe; viene utilizzato come stop di splitter;
+void	count_redirect(t_info *info, int i, int j, int count); //
+void	count_allocate(t_info *info);
 char	**matrix_crusher(char **matrix, char *str); // creaa una copia di matrix a cui viene aggiunta str alla fine 
 char	**matrix_remover(char **matrix, int ind); // rimuove la stringha con indice ind dalla matriche matrix (in realtà ne fa una copia senza quella stringa)
 

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:38:35 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/16 13:07:26 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/24 10:32:56 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,32 @@ char	*get_global(char **matrix, char *str)
 		}
 	}
 	return (NULL);
+}
+
+void	count_redirect(t_info *info, int i, int j, int count)
+{
+	int	flag;
+
+	count_allocate(info);
+	flag = 1;
+	while (info->instr_token && info->instr_token[i])
+	{
+		j = 0;
+		while (info->instr_token[i][j])
+		{
+			if (info->instr_token[i][j] == '"' ||
+				info->instr_token[i][j] == '\'')
+				flag *= -1;
+			if (info->instr_token[i][j] == '>' ||
+				info->instr_token[i][j] == '<')
+			{
+				if (flag == -1)
+					info->use_redirect[count++] = 0;
+				else
+					info->use_redirect[count++] = 1;
+			}
+			j++;
+		}
+		i++;
+	}
 }

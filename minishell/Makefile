@@ -6,11 +6,12 @@
 #    By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:56:46 by fgolino           #+#    #+#              #
-#    Updated: 2023/10/16 13:07:41 by fgolino          ###   ########.fr        #
+#    Updated: 2023/10/24 10:42:51 by fgolino          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC := minishell.c instruction_handler.c utils.c signal.c builtins.c quotes.c quotes2.c splitste.c builtins2.c execute.c pipes.c signal2.c dollar.c matrix.c redirect.c
+SRC := minishell.c instruction_handler.c utils.c signal.c builtins.c quotes.c quotes2.c splitste.c builtins2.c execute.c pipes.c signal2.c dollar.c matrix.c redirect.c\
+	   redirect2.c
 
 OBJ := $(SRC:.c=.o)
 
