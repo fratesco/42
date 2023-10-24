@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:29:57 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/13 10:49:39 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/24 15:59:59 by srapuano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	try_find_do(t_info *info, char *name)
 			free(tmp);
 			i++;
 		}
-		printf("%s: no such file or directory\n", name);
+		printf("%s: coomand cagato nel puzzo\n", name);
 		exit(127);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instruction_handler.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/16 16:56:06 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/24 15:59:00 by srapuano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,21 @@ void	analizer(t_info *info)
 	i = 0;
 	dollar_handler(info);
 	polish_tokens(info);
-	if (ft_strncmp(info->instr_token[0], "pwd", ft_strlen("pwd")) == 0)
+	i = ft_strlen(info->instr_token[0]);
+	if (ft_strncmp(info->instr_token[0], "pwd", i) == 0)
 		pwd_handler(info);
-	else if (ft_strncmp(info->instr_token[0], "echo", ft_strlen("echo")) == 0)
+	else if (ft_strncmp(info->instr_token[0], "echo", i) == 0)
 		echo_handler(info);
-	else if (ft_strncmp(info->instr_token[0], "cd", ft_strlen("cd")) == 0)
+	else if (ft_strncmp(info->instr_token[0], "cd", i) == 0)
 		cd_handler(info);
-	else if (ft_strncmp(info->instr_token[0], "env", ft_strlen("env")) == 0)
+	else if (ft_strncmp(info->instr_token[0], "env", i) == 0)
 		env_handler(info);
 	else if (ft_strncmp(info->instr_token[0],
-			"export", ft_strlen("export")) == 0)
+			"export", i) == 0)
 		export_handler(info, 1);
-	else if (ft_strncmp(info->instr_token[0], "unset", ft_strlen("unset")) == 0)
+	else if (ft_strncmp(info->instr_token[0], "unset", i) == 0)
 		unset_handler(info, 1);
-	else if (ft_strncmp(info->instr_token[0], "exit", 4) == 0)
+	else if (ft_strncmp(info->instr_token[0], "exit", i) == 0)
 		exit_handler(info);
 	else
 	{
@@ -72,3 +73,4 @@ void	analizer(t_info *info)
 	//ora funzioni come printf non scriveranno più sul terminale ma sul file che ha fd
 	//dup2(fd_out, 1) dovrebbe reimpostare a 1 il file descriptor di stdout quindi il terminale e printf dovrebbe funzionare normalmente
 }
+

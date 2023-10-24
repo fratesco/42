@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:06:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/24 10:41:48 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/24 16:09:57 by srapuano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,23 @@ extern int	g_signal;
 int	check_redirection(char *str, t_info *info)
 {
 	int		i;
-	char	c;
+	int	c;
 
 	i = 0;
+	c = 0;
 	while (str[i])
 	{
-		if (str[i] == '"' || str[i] == '\'')
-		{
-			c = str[i];
-			while (str[i] != c)
-				i++;
-		}
+		// if (str[i] == '"' || str[i] == '\'')
+		// {
+		// 	c = str[i];
+		// 	while (str[i] != c)
+		// 		i++;
+		// }
 		if (str[i] == '>')
+		{
+			if (info)
 			output_router(info, str, i);
+		}
 		else if (str[i] == '<')
 			input_router(info, str, i);
 		if (info->is_error == 1)
@@ -78,18 +82,16 @@ void	input_router(t_info *info, char *str, int col)
 	{
 		while (str[i])
 		{
-			if (str[i] == '"' || str[i] == '\'')
-			{
-				c = str[i];
-				while (str[i] != c)
-					i++;
-			}
+			//if (str[i] == '"' || str[i] == '\'')
+			//{
+			//	c = str[i];
+			//	while (str[i] != c)
+			//		i++;
+			//}
 			if (str[i] == '>' || str[i] == '<')
 				break ;
 			i++;
 		}
-		//if (c == '"' || c == '\'')
-		//	quote_remover(str, c, i - 2);
 		fd_input(info, str);
 	}
 }
