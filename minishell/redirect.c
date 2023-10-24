@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:06:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/24 16:09:57 by srapuano         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:37:48 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ extern int	g_signal;
 int	check_redirection(char *str, t_info *info)
 {
 	int		i;
-	int	c;
+	int		c;
 
 	i = 0;
-	c = 0;
+	info->num_redirect = 0;
 	while (str[i])
 	{
 		// if (str[i] == '"' || str[i] == '\'')
@@ -31,11 +31,14 @@ int	check_redirection(char *str, t_info *info)
 		// }
 		if (str[i] == '>')
 		{
-			if (info)
-			output_router(info, str, i);
+			if (info->use_redirect[info->num_redirect++] == 1)
+				output_router(info, str, i);
 		}
 		else if (str[i] == '<')
-			input_router(info, str, i);
+		{
+			if (info->use_redirect[info->num_redirect++] == 1)
+				input_router(info, str, i);
+		}
 		if (info->is_error == 1)
 			return (1);
 		i++;
@@ -77,7 +80,10 @@ void	input_router(t_info *info, char *str, int col)
 	i = col + 1;
 	c = 0;
 	if (str[i] == '<')
-		return ; // input_delim()
+	{
+		if (info->use_redirect[info->num_redirect++] == 1)
+			return ; // input_delim()
+	}
 	if (str[i] != 0)
 	{
 		while (str[i])

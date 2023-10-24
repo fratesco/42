@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:29:57 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/24 15:59:59 by srapuano         ###   ########.fr       */
+/*   Updated: 2023/10/24 16:25:03 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	try_find_do(t_info *info, char *name)
 			free(tmp);
 			i++;
 		}
-		printf("%s: coomand cagato nel puzzo\n", name);
+		printf("%s: command not found\n", name);
 		exit(127);
 	}
 }
