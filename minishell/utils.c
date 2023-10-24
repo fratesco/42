@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:38:35 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/24 10:32:56 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/24 16:50:44 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	free_stuff(t_info *info, int flag)
 		free_matrix(info->instr_token);
 		info->num_arg = 0;
 		info->instr_token = NULL;
+		free(info->use_redirect);
 	}
 	else
 	{
