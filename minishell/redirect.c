@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:06:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/25 12:50:16 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/25 12:53:52 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,20 @@ void	output_router(t_info *info, char *str, int col)
 void	input_router(t_info *info, char *str, int col)
 {
 	int		i;
-	char	c;
 
 	i = col + 1;
-	c = 0;
 	if (str[i] == '<')
 	{
 		if (info->use_redirect[info->num_redirect++] == 1)
 			return ; // input_delim()
 	}
 	if (str[i] == 0)
-		return (fd_input(info, (str + 1)));
+	{
+		if ((str + 1))
+			return (fd_input(info, (str + 1))); //gli inviamo la stringa dopo se esiste(bisogna fare il check di questo)
+		//else
+			//errore
+	}
 	if (str[i] != 0)
 	{
 		while (str[i])
@@ -107,7 +110,7 @@ void	fd_input(t_info *info, char *str)
 
 	// devi prendere tutto ciò che sta dopo il ">" fare una stringa e usarla come path per il file dove dobbiamo scrivere
 	i = 0;
-	while (str[i] && str[i] != '>' && str[i] != '<')
+	while (str[i] && str[i] != '>' && str[i] != '<') //prendiamo la stringa fino a che non finisce o finché non troviamo un altro redirect
 		i++;
 	tmp = (char *)malloc(sizeof(char) * (i + 1));
 	ft_strlcpy(tmp, str, i + 1);
