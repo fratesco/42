@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/25 12:42:40 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/25 17:08:02 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ typedef struct s_info
 	int		pos_pipe; //la posizione della pipe che adesso stiamo considerando (potrebbe essere ridondante vista la presenza di instr_end)
 	int		num_redirect; //numero totale di redirect
 	int		*use_redirect; //attribuisce 1 o 0 alle redirect nell'ordine che vengono lette in modo da capire se vanno ignorate (dentro virgolette) oppure no
+	char	*save_tmp; //utilizzato per salvare momentaneamente le parole che precedono il primo > o <
+	int		save_index; // sempre per la cosa qui sopra serve a entrare nel numero massimo di righe
 }	t_info;
 
 void	start(t_info *info); //funzione che splitta l'intera riga letta da readline e la prepara all'analisi
@@ -85,7 +87,7 @@ void	try_find_do(t_info *info, char *name); //funzione che si occupa di controll
 int		redirector(t_info *info); //funzione che cerca le redirections nei tokens
 void	output_router(t_info *info, char *str, int col);
 void	input_router(t_info *info, char *str, int col);
-void	fd_input(t_info *info, char *str);
+void	fd_input(t_info *info, char *str, int start);
 void	get_environment(t_info *info, char **environment); //funzione che salva le variabili globali che ci servono e inizializza le variabili della struttura
 void	executing(t_info *info); //funzione creata per acorciare il main, tutto quello che è scritto qui era scritto nel loop del main
 int		check_string(char *str); //funzione che controlla se le quote della stringa siano correttamente chiuse

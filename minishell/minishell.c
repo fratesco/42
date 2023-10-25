@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/25 12:43:05 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/25 16:56:38 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	get_environment(t_info *g_info, char **environment)
 	g_info->current_path = get_global(g_info->environment, "HOME");
 	g_info->temp_stdout = 0;
 	g_info->temp_stdin = 0;
+	g_info->use_redirect = 0;
 	chdir(g_info->current_path);
 	g_info->instr_token = NULL;
 	g_info->current_arg = 0;
@@ -37,6 +38,7 @@ void	get_environment(t_info *g_info, char **environment)
 	g_info->received_signal = 0;
 	g_info->exit_status = 0;
 	g_info->is_error = 0;
+	g_info->save_index = 0;
 }
 
 void	executing(t_info *info)

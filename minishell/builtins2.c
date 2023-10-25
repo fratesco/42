@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 19:49:24 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/16 16:54:11 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/25 16:04:17 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	cd_loop(t_info *info)
 	i = -1;
 	while (info->global_path[++i])
 	{
-		tmp = triple_join(info->global_path[i], "/", info->instr_token[1]);
+		tmp = triple_join(info->global_path[i], "/", info->instr_token[info->current_arg]);
 		if (!chdir(tmp))
 		{
 			free(tmp);
@@ -59,7 +59,7 @@ int	cd_loop(t_info *info)
 			if (errno == EACCES)
 				printf("cd : %s : Permission denied\n", tmp);
 			else if (errno == ENOTDIR)
-				printf ("cd : %s : Not a directory\n", info->instr_token[1]);
+				printf ("cd : %s : Not a directory\n", info->instr_token[info->current_arg]);
 			free(tmp);
 			return (0);
 		}
@@ -73,9 +73,9 @@ void	exit_handler(t_info *info)
 	int	i;
 
 	i = 0;
-	while (info->instr_token[1][i])
+	while (info->instr_token[info->current_arg][i])
 	{
-		if (info->instr_token[1][i] < 48 || info->instr_token[1][i] > 57)
+		if (info->instr_token[info->current_arg][i] < 48 || info->instr_token[info->current_arg][i] > 57)
 		{
 			printf("exit\n");
 			printf("exit: %s: numeric argument required\n",
@@ -86,7 +86,7 @@ void	exit_handler(t_info *info)
 		}
 		i++;
 	}
-	i = ft_atoi(info->instr_token[1]);
+	i = ft_atoi(info->instr_token[info->current_arg]);
 	free_stuff(info, 1);
 	free_stuff(info, 0);
 	printf("exit\n");

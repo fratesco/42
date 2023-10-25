@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/25 12:49:36 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/25 16:02:32 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	start(t_info *info)
 		return (free_matrix(tokens));
 	info->instr_token = tokens;
 	info->num_arg = len;
+	count_redirect(info, 0, 0, 0);
 }
 
 void	analizer(t_info *info)
@@ -40,6 +41,7 @@ void	analizer(t_info *info)
 	i = 0;
 	dollar_handler(info);
 	polish_tokens(info);
+	redirector(info);
 	i = ft_strlen(info->instr_token[0]);
 	if (ft_strncmp(info->instr_token[0], "pwd", i) == 0)
 		pwd_handler(info);
@@ -51,9 +53,9 @@ void	analizer(t_info *info)
 		env_handler(info);
 	else if (ft_strncmp(info->instr_token[0],
 			"export", i) == 0)
-		export_handler(info, 1);
+		export_handler(info, info->current_arg);
 	else if (ft_strncmp(info->instr_token[0], "unset", i) == 0)
-		unset_handler(info, 1);
+		unset_handler(info, info->current_arg);
 	else if (ft_strncmp(info->instr_token[0], "exit", i) == 0)
 		exit_handler(info);
 	else

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:20:45 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/16 16:18:16 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/25 16:01:23 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ void	cd_handler(t_info *info)
 	{
 		info->exit_status = 1;
 		if (errno == EACCES)
-			printf ("cd : %s : Permission denied\n", info->instr_token[1]);
+			printf ("cd : %s : Permission denied\n", info->instr_token[info->current_arg]);
 		else if (errno == ENOTDIR)
-			printf ("cd : %s : Not a directory\n", info->instr_token[1]);
+			printf ("cd : %s : Not a directory\n", info->instr_token[info->current_arg]);
 		else if (cd_loop(info))
-			printf("cd : %s : %s\n", info->instr_token[1], strerror(errno));
+			printf("cd : %s : %s\n", info->instr_token[info->current_arg], strerror(errno));
 		else
 			info->exit_status = 0;
 	}
