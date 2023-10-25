@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instruction_handler.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/24 15:59:00 by srapuano         ###   ########.fr       */
+/*   Updated: 2023/10/25 12:49:36 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@ void	analizer(t_info *info)
 			exit (0);
 		}
 		signal_avoid();
+		//if (info->temp_stdout)
+		//	stdout_reset(info);
+		//if (info->temp_stdin)
+		//	stdin_reset(info);
 	}
 	//testare se
 	//int fd_out = dup(STDOUT_FILENO) creo un altro file descriptor per stdout

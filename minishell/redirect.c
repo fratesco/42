@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:06:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/24 16:37:48 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/25 12:50:16 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ int	check_redirection(char *str, t_info *info)
 	info->num_redirect = 0;
 	while (str[i])
 	{
-		// if (str[i] == '"' || str[i] == '\'')
-		// {
-		// 	c = str[i];
-		// 	while (str[i] != c)
-		// 		i++;
-		// }
 		if (str[i] == '>')
 		{
 			if (info->use_redirect[info->num_redirect++] == 1)
@@ -67,10 +61,18 @@ int	redirector(t_info *info)
 
 void	output_router(t_info *info, char *str, int col)
 {
-	//if (info->instr_token[row][col + 1] == '>')
-	// qui fai open in append mode
-	
-}	
+	int		i;
+	char	c;
+
+	i = col + 1;
+	c = 0;
+	if (str[i] == '>')
+	{
+		if (info->use_redirect[info->num_redirect++] == 1)
+			return ; // qui fai open in append mode
+	}
+
+}
 
 void	input_router(t_info *info, char *str, int col)
 {
@@ -84,16 +86,12 @@ void	input_router(t_info *info, char *str, int col)
 		if (info->use_redirect[info->num_redirect++] == 1)
 			return ; // input_delim()
 	}
+	if (str[i] == 0)
+		return (fd_input(info, (str + 1)));
 	if (str[i] != 0)
 	{
 		while (str[i])
 		{
-			//if (str[i] == '"' || str[i] == '\'')
-			//{
-			//	c = str[i];
-			//	while (str[i] != c)
-			//		i++;
-			//}
 			if (str[i] == '>' || str[i] == '<')
 				break ;
 			i++;
@@ -104,6 +102,18 @@ void	input_router(t_info *info, char *str, int col)
 
 void	fd_input(t_info *info, char *str)
 {
+	int		i;
+	char	*tmp;
+
 	// devi prendere tutto ciò che sta dopo il ">" fare una stringa e usarla come path per il file dove dobbiamo scrivere
+	i = 0;
+	while (str[i] && str[i] != '>' && str[i] != '<')
+		i++;
+	tmp = (char *)malloc(sizeof(char) * (i + 1));
+	ft_strlcpy(tmp, str, i + 1);
+	info->temp_in_fd = open(tmp, 0, O_RDONLY);
+	free(tmp);
+	info->temp_stdin = dup(STDIN_FILENO);
+	dup2(info->temp_in_fd, 0);
 	return ;
 }

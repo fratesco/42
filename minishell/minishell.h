@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/24 16:33:11 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/25 12:42:40 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ typedef struct s_info
 	char	*user; //la variabile che contiene il valore della variabile globale USER
 	char	*current_path; //l'attuale folder in cui sta lavorando il processo
 	int		temp_stdout; //il salvataggio di stdout che serve per poterlo recuperare
-	int		temp_fd; //il file descpitor del file che attualemente sostituisce stdout
+	int		temp_stdin; //il salvataggio di stdin che servec per poterlo recuperare
+	int		temp_out_fd; //il file descpitor del file che attualmente sostituisce stdout
+	int		temp_in_fd; //il file descriptor del file che attualmente sostituisce stdin
 	int		num_pipe; //il numero totale di pipe
 	int		pos_pipe; //la posizione della pipe che adesso stiamo considerando (potrebbe essere ridondante vista la presenza di instr_end)
 	int		num_redirect; //numero totale di redirect
