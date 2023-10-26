@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/25 16:56:38 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/26 10:47:46 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	get_environment(t_info *g_info, char **environment)
 	g_info->use_redirect = 0;
 	chdir(g_info->current_path);
 	g_info->instr_token = NULL;
-	g_info->current_arg = 0;
+	g_info->current_arg = 1;
 	g_info->num_arg = 0;
 	g_info->received_signal = 0;
 	g_info->exit_status = 0;

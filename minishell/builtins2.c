@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 19:49:24 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/25 16:04:17 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/26 10:54:09 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 extern int	g_signal;
 
-void	unset_handler(t_info *info, int arg)
+void	unset_handler(t_info *info, int arg, int i)
 {
-	int		i;
 	int		j;
 	char	**tmp;
 
-	i = -1;
+	tmp = 0;
 	while (info->environment[++i])
 	{
 		j = 0;
@@ -32,11 +31,14 @@ void	unset_handler(t_info *info, int arg)
 			break ;
 		}
 	}
-	free_matrix(info->environment);
-	info->environment = tmp;
+	if (tmp)
+	{
+		free_matrix(info->environment);
+		info->environment = tmp;
+	}
 	i = 0;
 	if ((arg) < info->num_arg - 1)
-		unset_handler(info, (arg + 1));
+		unset_handler(info, (arg + 1), -1);
 	info->exit_status = 0;
 }
 
