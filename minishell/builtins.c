@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:20:45 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/25 16:01:23 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/25 20:16:41 by srapuano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	export_handler(t_info *info, int arg)
 		info->exit_status = 1;
 		return ;
 	}
+	export_checker(info, info->instr_token[arg]);
 	tmp = matrix_crusher(info->environment, info->instr_token[arg]);
 	free_matrix(info->environment);
 	info->environment = tmp;
