@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:06:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/26 10:34:05 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/26 17:52:50 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,22 @@ void	output_router(t_info *info, char *str, int col)
 	c = 0;
 	if (str[i] == '>')
 	{
-		if (info->use_redirect[info->num_redirect++] == 1)
-			return ; // qui fai open in append mode
+		if (info->use_redirect[info->num_redirect] == 1 && str[i + 1])
+			return (fd_output(info, &(str[i + 1]), 0, 1));
+		else if (info->use_redirect[info->num_redirect] == 1 && !str[i + 1])
+		{
+			if (str + 1)
+				return (fd_output(info, (str + 1), 0, 1));
+			info->is_error = 1;
+		}
 	}
+	if (str[i] == 0)
+	{
+		if ((str + 1))
+			return (fd_output(info, (str + 1), 0, 0));
+	}
+	if (str[i] != 0)
+		fd_output(info, str, 1, 0);
 
 }
 
@@ -92,8 +105,7 @@ void	input_router(t_info *info, char *str, int col)
 	{
 		if ((str + 1))
 			return (fd_input(info, (str + 1), 0)); //gli inviamo la stringa dopo se esiste(bisogna fare il check di questo)
-		//else
-			//errore
+		info->is_error = 1;
 	}
 	if (str[i] != 0)
 		fd_input(info, str, 1);
@@ -110,7 +122,7 @@ void	fd_input(t_info *info, char *str, int start)
 		i++;
 	tmp = (char *)malloc(sizeof(char) * (i + 1));
 	ft_strlcpy(tmp, &str[start], i + 1);
-	info->temp_in_fd = open(tmp, 0, O_RDONLY);
+	info->temp_in_fd = open(tmp, O_RDONLY);
 	free(tmp);
 	if (info->temp_in_fd == 0)
 	{

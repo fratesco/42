@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/26 10:53:07 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/26 18:09:16 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,20 @@ void	analizer(t_info *info)
 			exit (0);
 		}
 		signal_avoid();
-		//if (info->temp_stdout)
-		//	stdout_reset(info);
-		//if (info->temp_stdin)
-		//	stdin_reset(info);
+	}
+	if (info->temp_stdout)
+	{
+		close(info->temp_out_fd);
+		dup2(info->temp_stdout, STDOUT_FILENO);
+		info->temp_stdout = 0;
+		//stdout_reset(info);
+	}
+	if (info->temp_stdin)
+	{
+		close(info->temp_in_fd);
+		dup2(info->temp_stdin, STDIN_FILENO);
+		info->temp_stdin = 0;
+		//stdin_reset(info);
 	}
 	//testare se
 	//int fd_out = dup(STDOUT_FILENO) creo un altro file descriptor per stdout

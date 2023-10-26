@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_checker.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:23:17 by srapuano          #+#    #+#             */
-/*   Updated: 2023/10/26 12:47:23 by srapuano         ###   ########.fr       */
+/*   Updated: 2023/10/26 17:49:32 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,20 @@ int	export_checker(t_info *info, char *str)
 	return (0);
 }
 
-void export_no_arg(t_info *info, int i, int j)
+void	export_no_arg(t_info *info, int i, int j)
 {
-	int t;
-	char **tmp;
-	char *str;
-	
+	int		t;
+	char	**tmp;
+	char	*str;
+
 	tmp = matrix_crusher(info->environment, NULL);
-	while(tmp[++i])
+	while (tmp[++i])
 	{
-		if (tmp[i + 1] == NULL)
-			break ;
 		t = i + 1;
 		j = 0;
-		while(tmp[i][j] && tmp[i][j] != '=')
+		while (tmp[i][j] && tmp[i][j] != '=' && tmp[t])
 			j++;
-		while(tmp[t])
+		while (tmp[t])
 		{
 			if (ft_strncmp(tmp[i], tmp[t], j) >= 0)
 			{
@@ -65,6 +63,7 @@ void export_no_arg(t_info *info, int i, int j)
 		}
 	}
 	p_export_no_arg(tmp);
+	free(tmp);
 }
 
 void p_export_no_arg(char **tmp)

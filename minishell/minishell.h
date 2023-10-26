@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/26 12:44:27 by srapuano         ###   ########.fr       */
+/*   Updated: 2023/10/26 17:20:55 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int		redirector(t_info *info); //funzione che cerca le redirections nei tokens
 void	output_router(t_info *info, char *str, int col);
 void	input_router(t_info *info, char *str, int col);
 void	fd_input(t_info *info, char *str, int start);
+void	fd_output(t_info *info, char *str, int start, int flag);
 void	get_environment(t_info *info, char **environment); //funzione che salva le variabili globali che ci servono e inizializza le variabili della struttura
 void	executing(t_info *info); //funzione creata per acorciare il main, tutto quello che è scritto qui era scritto nel loop del main
 int		check_string(char *str); //funzione che controlla se le quote della stringa siano correttamente chiuse
