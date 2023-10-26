@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/26 11:04:28 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/26 12:44:27 by srapuano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ typedef struct s_info
 	int		save_index; // sempre per la cosa qui sopra serve a entrare nel numero massimo di righe
 }	t_info;
 
+void 	export_no_arg(t_info *info, int i, int j);
+void 	p_export_no_arg(char **tmp);
 int 	export_checker(t_info *info, char *str);
 void	start(t_info *info); //funzione che splitta l'intera riga letta da readline e la prepara all'analisi
 void	free_matrix(char **matrix); //funzione che libera la memoria di una matrice

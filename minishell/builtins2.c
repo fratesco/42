@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 19:49:24 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/26 10:54:09 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/26 12:41:25 by srapuano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ int	token_checker(t_info *info, int arg)
 	int	i;
 
 	i = 1;
-	if ((info->instr_token[arg][0] <= 'A' || info->instr_token[arg][0] >= 'Z')
-			&& (info->instr_token[arg][0] <= 'a' ||
-			info->instr_token[arg][0] >= 'z'))
+	if ((info->instr_token[arg][0] < 'A' || info->instr_token[arg][0] > 'Z')
+			&& (info->instr_token[arg][0] < 'a' ||
+			info->instr_token[arg][0] > 'z'))
 		return (1);
 	while (info->instr_token[arg][i] && info->instr_token[arg][i] != '=')
 	{

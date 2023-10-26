@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:20:45 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/26 11:06:10 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/26 12:58:20 by srapuano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,12 @@ void	export_handler(t_info *info, int arg)
 
 	if (info->num_arg == 1)
 	{
+		export_no_arg(info, -1, 0);
 		info->exit_status = 0;
 		return ;
 	}
+	if (export_checker(info, info->instr_token[arg]))
+		return ;
 	if (token_checker(info, arg))
 	{
 		printf("export: '%s' : not a valid identifier\n",
@@ -81,8 +84,6 @@ void	export_handler(t_info *info, int arg)
 		info->exit_status = 1;
 		return ;
 	}
-	if (export_checker(info, info->instr_token[arg]))
-		return ;
 	tmp = matrix_crusher(info->environment, info->instr_token[arg]);
 	free_matrix(info->environment);
 	info->environment = tmp;
