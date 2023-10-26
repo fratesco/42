@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:06:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/25 17:03:33 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/26 10:34:05 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,10 @@ void	fd_input(t_info *info, char *str, int start)
 	info->temp_in_fd = open(tmp, 0, O_RDONLY);
 	free(tmp);
 	if (info->temp_in_fd == 0)
-		return (info->is_error = 1);
+	{
+		info->is_error = 1;
+		return ;
+	}
 	info->temp_stdin = dup(STDIN_FILENO);
 	dup2(info->temp_in_fd, 0);
 	return ;

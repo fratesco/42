@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/25 17:08:02 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/26 10:53:19 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	echo_handler(t_info *info); //funzione che imita il funzionamente di echo (
 void	cd_handler(t_info *info); //funzione che imita il comportamento di cd
 int		cd_loop(t_info *info); //funzione continuo di cd || fatta per entrare nelle 25 righe
 void	env_handler(t_info *info); //funzione che imita il comportamento di env senza flag
-void	unset_handler(t_info *info, int arg); //funzione che imita il comportamento di unset senza flag
+void	unset_handler(t_info *info, int arg, int i); //funzione che imita il comportamento di unset senza flag
 void	export_handler(t_info *info, int arg); //funzione che imita il comportamento di export senza flag
 int 	token_checker(t_info *info, int arg);
 void	exit_handler(t_info *info); //funzione che imita il comportamento di exit 
