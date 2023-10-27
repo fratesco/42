@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/26 17:20:55 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/10/27 15:27:03 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,9 @@ int 	token_checker(t_info *info, int arg);
 void	exit_handler(t_info *info); //funzione che imita il comportamento di exit 
 void	try_find_do(t_info *info, char *name); //funzione che si occupa di controlla se esiste il comando scritto esiste ed è eseguibile, lo esegue qualore possibile
 int		redirector(t_info *info); //funzione che cerca le redirections nei tokens
-void	output_router(t_info *info, char *str, int col);
-void	input_router(t_info *info, char *str, int col);
+int		check_redirection(char *str, t_info *info, int row);
+void	output_router(t_info *info, char *str, int col, int row);
+void	input_router(t_info *info, char *str, int col, int row);
 void	fd_input(t_info *info, char *str, int start);
 void	fd_output(t_info *info, char *str, int start, int flag);
 void	get_environment(t_info *info, char **environment); //funzione che salva le variabili globali che ci servono e inizializza le variabili della struttura
