@@ -6,7 +6,7 @@
 /*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:20:45 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/26 12:58:20 by srapuano         ###   ########.fr       */
+/*   Updated: 2023/10/27 18:15:10 by srapuano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,10 @@ void	cd_handler(t_info *info)
 	info->current_path = getcwd(NULL, 0);
 }
 
-void	export_handler(t_info *info, int arg)
+void	export_handler(t_info *info, int arg, int f, int ff)
 {
-	int		i;
-	char	**tmp;
-
+	char **tmp;
+	
 	if (info->num_arg == 1)
 	{
 		export_no_arg(info, -1, 0);
@@ -76,19 +75,22 @@ void	export_handler(t_info *info, int arg)
 		return ;
 	}
 	if (export_checker(info, info->instr_token[arg]))
-		return ;
+		f = 1;
 	if (token_checker(info, arg))
 	{
 		printf("export: '%s' : not a valid identifier\n",
 			info->instr_token[arg]);
 		info->exit_status = 1;
-		return ;
+		ff = 1;
 	}
-	tmp = matrix_crusher(info->environment, info->instr_token[arg]);
-	free_matrix(info->environment);
-	info->environment = tmp;
+	if (ff != 1 && f != 1)
+	{
+		tmp = matrix_crusher(info->environment, info->instr_token[arg]);
+		free_matrix(info->environment);
+		info->environment = tmp;
+	}
 	if ((arg) < info->num_arg - 1)
-		export_handler(info, (arg + 1));
+		export_handler(info, (arg + 1), 0, 0);
 	info->exit_status = 0;
 }
 
