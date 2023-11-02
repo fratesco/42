@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:34:18 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/27 16:04:02 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/02 16:56:40 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,17 @@ void	fd_output(t_info *info, char *str, int start, int flag)
 	if (flag == 1 && info->num_redirect++)
 		info->temp_out_fd = open(tmp, O_CREAT | O_WRONLY | O_APPEND, 0666);
 	free(tmp);
-	while (flag != -1)
-		flag--;
-	str[start + flag] = 0; //purtroppo non funziona in tutti i casi, andrebbe fatto dopo che abbiamo valutato tutti i opossibili redirect
+	if (start == 0)
+		ft_strlcpy(str, &str[i], ft_strlen(str));
+	else if (start != 0 && info->end_save == -1)
+		info->end_save = start - 1;
 	if (info->temp_out_fd == -1)
 	{
 		printf("error\n");
 		info->is_error = 1;
 		return ;
 	}
-	info->temp_stdout = dup(STDOUT_FILENO);
+	if (!info->temp_stdout)
+		info->temp_stdout = dup(STDOUT_FILENO);
 	dup2(info->temp_out_fd, 1);
-	return ;
 }

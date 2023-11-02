@@ -6,13 +6,17 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/27 15:27:03 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/02 15:26:32 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 # define _XOPEN_SOURCE 700
+# define REMOVE_STR -1
+# define REWRITTEN_STR 0
+# define UNEXPECTED 1
+# define PERMISSION 2
 # include "libft/libft.h"
 # include <stdio.h>
 # include <stdlib.h>
@@ -27,6 +31,7 @@
 # include <sys/types.h>
 # include <dirent.h>
 # include <errno.h>
+
 
 typedef struct s_info
 {
@@ -54,6 +59,7 @@ typedef struct s_info
 	int		pos_pipe; //la posizione della pipe che adesso stiamo considerando (potrebbe essere ridondante vista la presenza di instr_end)
 	int		num_redirect; //numero totale di redirect
 	int		*use_redirect; //attribuisce 1 o 0 alle redirect nell'ordine che vengono lette in modo da capire se vanno ignorate (dentro virgolette) oppure no
+	int		end_save; //indice di dove finisce quello che deve essere salvato prima di un redirect
 	char	*save_tmp; //utilizzato per salvare momentaneamente le parole che precedono il primo > o <
 	int		save_index; // sempre per la cosa qui sopra serve a entrare nel numero massimo di righe
 }	t_info;

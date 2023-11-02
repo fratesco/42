@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:06:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/27 15:56:00 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/02 17:01:02 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_redirection(char *str, t_info *info, int row)
 
 	i = 0;
 	info->num_redirect = 0;
-	while (str[i])
+	while (str && str[i])
 	{
 		if (str[i] == '>')
 		{
@@ -32,10 +32,15 @@ int	check_redirection(char *str, t_info *info, int row)
 			if (info->use_redirect[info->num_redirect++] == 1)
 				input_router(info, str, i, row);
 		}
-		if (info->is_error == 1)
-			return (1);
+		if (info->is_error == REMOVE_STR)
+		{
+			info->instr_token = matrix_remover(info->instr_token, row);
+			break ;
+		}
 		i++;
 	}
+	if (info->is_error != REMOVE_STR && info->is_error != UNEXPECTED && info->end_save != -1)
+		str[info->end_save] = 0;
 	return (0);
 }
 
@@ -48,12 +53,17 @@ int	redirector(t_info *info)
 	i = 0;
 	while (info->instr_token[i])
 	{
+		info->end_save = -1;
+		info->is_error = 0;
+		//printf("sucate\n");
 		if (check_redirection(info->instr_token[i], info, i))
 		{
 			info->exit_status = 2;
 			// qui aggiungi i vari tipi di exit_status a seconda del tipo di errore || 1 per permission deniend ecc...
 			return (1);
 		}
+		if (info->is_error == REMOVE_STR)
+			continue ;
 		i++;
 	}	
 	return (0);
@@ -67,23 +77,21 @@ void	output_router(t_info *info, char *str, int col, int row)
 	if (str[i] == '>')
 	{
 		if (info->use_redirect[info->num_redirect] == 1 && str[i + 1])
-			return (fd_output(info, str, 1 + i, 1));
+			fd_output(info, str, 1 + i, 1);
 		else if (info->use_redirect[info->num_redirect] == 1 && !str[i + 1])
 		{
 			if (info->instr_token[row + 1])
-			{
 				fd_output(info, info->instr_token[row + 1], 0, 1);
-				info->instr_token = matrix_remover(info->instr_token, row);
-			}
+			if (info->instr_token[row + 1] && info->is_error != 1 && i == 1)
+				info->is_error = REMOVE_STR;
 		}
 	}
 	else if (str[i] == 0)
 	{
 		if (info->instr_token[row + 1])
-		{
 			fd_output(info, info->instr_token[row + 1], 0, 0);
-			info->instr_token = matrix_remover(info->instr_token, row);
-		}
+		if (info->instr_token[row + 1] && info->is_error != 1 && i == 1)
+				info->is_error = REMOVE_STR;
 	}
 	else if (str[i] != 0)
 		fd_output(info, str, i, 0);
