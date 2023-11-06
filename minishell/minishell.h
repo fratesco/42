@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/02 15:26:32 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/06 15:32:36 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	cd_handler(t_info *info); //funzione che imita il comportamento di cd
 int		cd_loop(t_info *info); //funzione continuo di cd || fatta per entrare nelle 25 righe
 void	env_handler(t_info *info); //funzione che imita il comportamento di env senza flag
 void	unset_handler(t_info *info, int arg, int i); //funzione che imita il comportamento di unset senza flag
-void	export_handler(t_info *info, int arg); //funzione che imita il comportamento di export senza flag
+void	export_handler(t_info *info, int arg, int f, int ff); //funzione che imita il comportamento di export senza flag
 int 	token_checker(t_info *info, int arg);
 void	exit_handler(t_info *info); //funzione che imita il comportamento di exit 
 void	try_find_do(t_info *info, char *name); //funzione che si occupa di controlla se esiste il comando scritto esiste ed è eseguibile, lo esegue qualore possibile
