@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/06 15:32:36 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/06 17:33:31 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int		check_redirection(char *str, t_info *info, int row);
 void	output_router(t_info *info, char *str, int col, int row);
 void	input_router(t_info *info, char *str, int col, int row);
 void	fd_input(t_info *info, char *str, int start);
+void	input_delim(t_info *info, char *str, int start, int flag);
 void	fd_output(t_info *info, char *str, int start, int flag);
 void	get_environment(t_info *info, char **environment); //funzione che salva le variabili globali che ci servono e inizializza le variabili della struttura
 void	executing(t_info *info); //funzione creata per acorciare il main, tutto quello che è scritto qui era scritto nel loop del main

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:34:18 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/06 15:39:31 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/06 17:40:05 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,41 @@ void	fd_output(t_info *info, char *str, int start, int flag)
 		info->end_save = start - 1;
 	if (info->temp_out_fd == -1)
 	{
-		printf("error\n");
 		info->is_error = 1;
 		return ;
 	}
 	if (!info->temp_stdout)
 		info->temp_stdout = dup(STDOUT_FILENO);
 	dup2(info->temp_out_fd, 1);
+}
+
+void	input_delim(t_info *info, char *str, int start, int flag)
+{
+	int		i;
+	char	*tmp;
+	char	*get;
+	char	boh[100];
+
+	i = 0;
+	while (str[start + i] && str[start + i] != '>' && str[start + i] != '<')
+		i++;
+	tmp = (char *)malloc(sizeof(char) * (i + 1));
+	ft_strlcpy(tmp, &str[start], i + 1);
+	if (!info->temp_stdin)
+		info->temp_stdin = dup(STDIN_FILENO);
+	read(STDIN_FILENO, &boh, 1);
+	dup2(STDOUT_FILENO, 0); // cosí scriviamo su stdin;
+	while (1)
+	{
+		// il piano é leggere char per char fino a che non troviamo un \n
+		// \n indica la fine di una parola, a quel punto confrontiamo prima la lunghezza delle due parole
+		// se sono lunghe uguali allora confrontiamo le due "strighe" (ricorda che buffer non ha \0)
+		// se le due stringhe sono uguali allora rompiamo il loop
+		// altrimenti il loop si ripete e copiamo la parola con \n in una matrice dove salviamo tutte le stringhe
+		// alla fine scriveremo le stringhe una per una su std_in
+		// per tenere conto di lunghezza e stringhe usiamo due contatori i e j
+		// forse j non serve perché non serve tenero conto della stringa nella matrice
+		break ;
+	}
+	free(tmp);
 }
