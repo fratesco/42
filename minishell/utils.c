@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:38:35 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/26 10:47:43 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/06 11:29:40 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,4 +113,5 @@ void	count_redirect(t_info *info, int i, int j, int count)
 		}
 		i++;
 	}
+	info->use_redirect[count] = 10;
 }

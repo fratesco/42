@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:06:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/02 17:01:02 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/06 11:30:20 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_redirection(char *str, t_info *info, int row)
 
 	i = 0;
 	info->num_redirect = 0;
-	while (str && str[i])
+	while (str && str[i] && info->use_redirect[info->num_redirect] != 10)
 	{
 		if (str[i] == '>')
 		{
@@ -34,7 +34,10 @@ int	check_redirection(char *str, t_info *info, int row)
 		}
 		if (info->is_error == REMOVE_STR)
 		{
+			str = info->instr_token;
 			info->instr_token = matrix_remover(info->instr_token, row);
+			free(str);
+			str = info->instr_token[row];
 			break ;
 		}
 		i++;
@@ -55,7 +58,6 @@ int	redirector(t_info *info)
 	{
 		info->end_save = -1;
 		info->is_error = 0;
-		//printf("sucate\n");
 		if (check_redirection(info->instr_token[i], info, i))
 		{
 			info->exit_status = 2;
@@ -65,7 +67,7 @@ int	redirector(t_info *info)
 		if (info->is_error == REMOVE_STR)
 			continue ;
 		i++;
-	}	
+	}
 	return (0);
 }
 
@@ -82,16 +84,16 @@ void	output_router(t_info *info, char *str, int col, int row)
 		{
 			if (info->instr_token[row + 1])
 				fd_output(info, info->instr_token[row + 1], 0, 1);
-			if (info->instr_token[row + 1] && info->is_error != 1 && i == 1)
-				info->is_error = REMOVE_STR;
+			if (info->instr_token[row + 1] && info->is_error != 1)
+				str[i - 1] = 0;
 		}
 	}
 	else if (str[i] == 0)
 	{
 		if (info->instr_token[row + 1])
 			fd_output(info, info->instr_token[row + 1], 0, 0);
-		if (info->instr_token[row + 1] && info->is_error != 1 && i == 1)
-				info->is_error = REMOVE_STR;
+		if (info->instr_token[row + 1] && info->is_error != 1)
+			str[i - 1] = 0;
 	}
 	else if (str[i] != 0)
 		fd_output(info, str, i, 0);
@@ -113,7 +115,7 @@ void	input_router(t_info *info, char *str, int col, int row)
 		{
 			fd_input(info, (str + 1), 0);
 			matrix_remover(info->instr_token, row);
-			return;
+			return ;
 		}
 		info->is_error = 1;
 	}

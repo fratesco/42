@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:34:18 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/02 16:56:40 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/06 11:30:55 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	count_allocate(t_info *info)
 		}
 		i++;
 	}
-	info->use_redirect = (int *)malloc(sizeof(int) * count);
+	info->use_redirect = (int *)malloc((sizeof(int) * (1 + count)));
 }
 
 void	fd_output(t_info *info, char *str, int start, int flag)
