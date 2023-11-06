@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/26 18:09:16 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/06 15:44:14 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	analizer(t_info *info)
 		env_handler(info);
 	else if (ft_strncmp(info->instr_token[0],
 			"export", i) == 0)
-		export_handler(info, info->current_arg);
+		export_handler(info, info->current_arg, 0, 0);
 	else if (ft_strncmp(info->instr_token[0], "unset", i) == 0)
 		unset_handler(info, info->current_arg, -1);
 	else if (ft_strncmp(info->instr_token[0], "exit", i) == 0)

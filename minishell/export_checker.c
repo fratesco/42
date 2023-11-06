@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:23:17 by srapuano          #+#    #+#             */
-/*   Updated: 2023/10/26 17:49:32 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/06 16:23:12 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,28 @@ int	export_checker(t_info *info, char *str)
 {
 	int	i;
 	int	j;
+	int	index;
 
 	i = -1;
+	index = (int)(ft_strchr(str, '=') - str);
 	while (info->environment[++i])
 	{
 		j = 0;
 		while (info->environment[i][j] && info->environment[i][j] != '=')
 			j++;
-		if (ft_strncmp(info->environment[i], str, j) == 0)
+		if (index == j)
 		{
-			if (str[j] != '=')
+			if (ft_strncmp(info->environment[i], str, j) == 0)
+			{
+				if (str[j] != '=')
+					return (1);
+				free(info->environment[i]);
+				info->environment[i] = ft_strdup(str);
 				return (1);
-			free(info->environment[i]);
-			info->environment[i] = ft_strdup(str);
-			return (1);
+			}
 		}
 	}
+
 	return (0);
 }
 
@@ -66,23 +72,20 @@ void	export_no_arg(t_info *info, int i, int j)
 	free(tmp);
 }
 
-void p_export_no_arg(char **tmp)
+void	p_export_no_arg(char **tmp)
 {
-	int i;
-	int j;
-	
+	int	i;
+	int	j;
+
 	i = -1;
 	while (tmp[++i])
 	{
 		j = 0;
-		while(tmp[i][j] && tmp[i][j] != '=')
+		while (tmp[i][j] && tmp[i][j] != '=')
 			j++;
 		if (tmp[i][j] == 0)
 			printf("declare -x %s\n", tmp[i]);
 		else
-		{
-			j += 1;
-			printf("declare -x %.*s\"%s\"\n", j, tmp[i], &tmp[i][j + 1]);
-		}
+			printf("declare -x %.*s=\"%s\"\n", j, tmp[i], &tmp[i][j + 1]);
 	}
 }
