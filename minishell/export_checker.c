@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_checker.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:23:17 by srapuano          #+#    #+#             */
-/*   Updated: 2023/11/07 15:09:45 by srapuano         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:30:28 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	p_export_no_arg(char **tmp)
 	}
 }
 
-void	export_exec(info, char **tmp, int arg)
+void	export_exec(t_info *info, char **tmp, int arg)
 {
 		tmp = matrix_crusher(info->environment, info->instr_token[arg]);
 		free_matrix(info->environment);

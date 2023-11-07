@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:34:18 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/06 17:40:05 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/07 15:44:36 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,18 @@ void	input_delim(t_info *info, char *str, int start, int flag)
 	int		i;
 	char	*tmp;
 	char	*get;
-	char	boh[100];
+	char	buff[10000];
+	char	**matrix;
 
 	i = 0;
+	matrix = 0;
 	while (str[start + i] && str[start + i] != '>' && str[start + i] != '<')
 		i++;
 	tmp = (char *)malloc(sizeof(char) * (i + 1));
 	ft_strlcpy(tmp, &str[start], i + 1);
 	if (!info->temp_stdin)
 		info->temp_stdin = dup(STDIN_FILENO);
-	read(STDIN_FILENO, &boh, 1);
-	dup2(STDOUT_FILENO, 0); // cosí scriviamo su stdin;
+	i = 0;
 	while (1)
 	{
 		// il piano é leggere char per char fino a che non troviamo un \n
@@ -92,7 +93,32 @@ void	input_delim(t_info *info, char *str, int start, int flag)
 		// alla fine scriveremo le stringhe una per una su std_in
 		// per tenere conto di lunghezza e stringhe usiamo due contatori i e j
 		// forse j non serve perché non serve tenero conto della stringa nella matrice
-		break ;
+		read(STDIN_FILENO, &buff[i], 1);
+		printf("%s\n", buff);
+		i++;
+		if (buff[i] == '\n')
+		{
+			buff[i + 1] = 0;
+			printf("sucate\n");
+			if (ft_strlen(buff) == ft_strlen(tmp))
+			{
+				if (ft_strncmp(buff, tmp, ft_strlen(buff)))
+				{
+					printf("pefforza\n");
+					dup2(STDOUT_FILENO, 0); // cosí scriviamo su stdin;
+					i = 0;
+					while (i < flag)
+					{
+						printf("%s", matrix[flag++]);
+						i++;
+					}
+				}
+				break ;
+			}
+			matrix = matrix_crusher(matrix, buff);
+			flag++;
+			i = 0;
+		}
 	}
 	free(tmp);
 }

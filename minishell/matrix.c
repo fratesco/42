@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:56:14 by srapuano          #+#    #+#             */
-/*   Updated: 2023/10/16 16:55:46 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/07 15:25:19 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	**matrix_crusher(char **matrix, char *str)
 	int		i;
 
 	i = 0;
-	while (matrix[i])
+	while (matrix && matrix[i])
 		i++;
 	nmatrix = (char **)malloc(sizeof(char *) * (i + 2));
 	if (!nmatrix)
@@ -29,10 +29,12 @@ char	**matrix_crusher(char **matrix, char *str)
 		return (NULL);
 	}
 	i = -1;
-	while (matrix[++i])
+	while (matrix && matrix[++i])
 		nmatrix[i] = ft_strdup(matrix[i]);
 	if (str)
 	{
+		if (i < 0)
+			i = 0;
 		nmatrix[i] = ft_strdup(str);
 		nmatrix[i + 1] = NULL;
 	}

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:38:35 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/06 11:29:40 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/07 15:17:48 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	free_stuff(t_info *info, int flag)
 		info->instr_token = NULL;
 		info->current_arg = 1;
 		free(info->use_redirect);
+		// aggiungi il reset della flag per export
 	}
 	else
 	{
