@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/06 17:33:31 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/07 15:17:40 by srapuano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,10 @@ typedef struct s_info
 	int		end_save; //indice di dove finisce quello che deve essere salvato prima di un redirect
 	char	*save_tmp; //utilizzato per salvare momentaneamente le parole che precedono il primo > o <
 	int		save_index; // sempre per la cosa qui sopra serve a entrare nel numero massimo di righe
+	int		status_export_flag;
 }	t_info;
 
+void	export_exec(info, char **tmp, int arg);
 void 	export_no_arg(t_info *info, int i, int j);
 void 	p_export_no_arg(char **tmp);
 int 	export_checker(t_info *info, char *str);
