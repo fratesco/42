@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:56:14 by srapuano          #+#    #+#             */
-/*   Updated: 2023/11/07 15:25:19 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/07 17:48:28 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	**matrix_crusher(char **matrix, char *str)
 		nmatrix[i] = ft_strdup(matrix[i]);
 	if (str)
 	{
-		if (i < 0)
+		if (!matrix)
 			i = 0;
 		nmatrix[i] = ft_strdup(str);
 		nmatrix[i + 1] = NULL;

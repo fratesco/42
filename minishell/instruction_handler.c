@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/06 15:44:14 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/07 17:53:06 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ void	analizer(t_info *info)
 	dollar_handler(info);
 	polish_tokens(info);
 	redirector(info);
+	// crea una funzione che prende instr_token e rimuove tutte le strighe che hanno \0 in posizione 0
+	// cosí eviti che funzioni tipo cat ti dicano che non esiste una stringa vuota perché é dove si
+	// trovava prima un redirect
 	i = ft_strlen(info->instr_token[0]);
 	if (ft_strncmp(info->instr_token[0], "pwd", i) == 0)
 		pwd_handler(info);

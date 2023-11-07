@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:34:18 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/07 15:44:36 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/07 17:51:24 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,38 +80,28 @@ void	input_delim(t_info *info, char *str, int start, int flag)
 		i++;
 	tmp = (char *)malloc(sizeof(char) * (i + 1));
 	ft_strlcpy(tmp, &str[start], i + 1);
+	if (start == 0)
+		ft_strlcpy(str, &str[i], ft_strlen(str));
+	else if (start != 0 && info->end_save == -1)
+		info->end_save = start - 1;
 	if (!info->temp_stdin)
 		info->temp_stdin = dup(STDIN_FILENO);
 	i = 0;
 	while (1)
 	{
-		// il piano é leggere char per char fino a che non troviamo un \n
-		// \n indica la fine di una parola, a quel punto confrontiamo prima la lunghezza delle due parole
-		// se sono lunghe uguali allora confrontiamo le due "strighe" (ricorda che buffer non ha \0)
-		// se le due stringhe sono uguali allora rompiamo il loop
-		// altrimenti il loop si ripete e copiamo la parola con \n in una matrice dove salviamo tutte le stringhe
-		// alla fine scriveremo le stringhe una per una su std_in
-		// per tenere conto di lunghezza e stringhe usiamo due contatori i e j
-		// forse j non serve perché non serve tenero conto della stringa nella matrice
 		read(STDIN_FILENO, &buff[i], 1);
-		printf("%s\n", buff);
 		i++;
-		if (buff[i] == '\n')
+		if (buff[i - 1] == '\n')
 		{
-			buff[i + 1] = 0;
-			printf("sucate\n");
-			if (ft_strlen(buff) == ft_strlen(tmp))
+			buff[i] = 0;
+			if (ft_strlen(buff) == ft_strlen(tmp) + 1)
 			{
 				if (ft_strncmp(buff, tmp, ft_strlen(buff)))
 				{
-					printf("pefforza\n");
-					dup2(STDOUT_FILENO, 0); // cosí scriviamo su stdin;
+					dup2(STDOUT_FILENO, 0);
 					i = 0;
 					while (i < flag)
-					{
-						printf("%s", matrix[flag++]);
-						i++;
-					}
+						printf("%s", matrix[i++]);
 				}
 				break ;
 			}
