@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/07 17:53:06 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/08 11:48:48 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,20 @@ void	analizer(t_info *info)
 	}
 	if (info->temp_stdout)
 	{
-		close(info->temp_out_fd);
+		if (info->temp_out_fd)
+			close(info->temp_out_fd);
 		dup2(info->temp_stdout, STDOUT_FILENO);
 		info->temp_stdout = 0;
+		info->temp_out_fd = 0;
 		//stdout_reset(info);
 	}
 	if (info->temp_stdin)
 	{
-		close(info->temp_in_fd);
+		if (info->temp_in_fd)
+			close(info->temp_in_fd);
 		dup2(info->temp_stdin, STDIN_FILENO);
 		info->temp_stdin = 0;
+		info->temp_in_fd = 0;
 		//stdin_reset(info);
 	}
 	//testare se

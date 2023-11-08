@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/07 15:30:02 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/08 12:08:03 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int 	token_checker(t_info *info, int arg);
 void	exit_handler(t_info *info); //funzione che imita il comportamento di exit 
 void	try_find_do(t_info *info, char *name); //funzione che si occupa di controlla se esiste il comando scritto esiste ed è eseguibile, lo esegue qualore possibile
 int		redirector(t_info *info); //funzione che cerca le redirections nei tokens
-int		check_redirection(char *str, t_info *info, int row);
+int		check_redirection(char *str, t_info *info, int row, int i);
 void	output_router(t_info *info, char *str, int col, int row);
 void	input_router(t_info *info, char *str, int col, int row);
 void	fd_input(t_info *info, char *str, int start);

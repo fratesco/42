@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:34:18 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/07 17:51:24 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/08 12:21:45 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,14 @@ void	input_delim(t_info *info, char *str, int start, int flag)
 		ft_strlcpy(str, &str[i], ft_strlen(str));
 	else if (start != 0 && info->end_save == -1)
 		info->end_save = start - 1;
+	printf("%i\n", info->end_save);
 	if (!info->temp_stdin)
 		info->temp_stdin = dup(STDIN_FILENO);
 	i = 0;
 	while (1)
 	{
+		if (i == 0)
+			write(2, "> ", 2);
 		read(STDIN_FILENO, &buff[i], 1);
 		i++;
 		if (buff[i - 1] == '\n')
@@ -100,6 +103,7 @@ void	input_delim(t_info *info, char *str, int start, int flag)
 				{
 					dup2(STDOUT_FILENO, 0);
 					i = 0;
+					
 					while (i < flag)
 						printf("%s", matrix[i++]);
 				}
@@ -110,5 +114,6 @@ void	input_delim(t_info *info, char *str, int start, int flag)
 			i = 0;
 		}
 	}
+	free_matrix(matrix);
 	free(tmp);
 }
