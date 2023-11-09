@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:34:18 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/08 12:21:45 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/09 11:03:05 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ void	input_delim(t_info *info, char *str, int start, int flag)
 				{
 					dup2(STDOUT_FILENO, 0);
 					i = 0;
-					
 					while (i < flag)
 						printf("%s", matrix[i++]);
 				}

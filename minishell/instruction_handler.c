@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/08 11:48:48 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/09 10:52:51 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	analizer(t_info *info)
 	dollar_handler(info);
 	polish_tokens(info);
 	redirector(info);
+	matrix_cleaner(&(info->instr_token), info->num_arg);
 	// crea una funzione che prende instr_token e rimuove tutte le strighe che hanno \0 in posizione 0
 	// cosí eviti che funzioni tipo cat ti dicano che non esiste una stringa vuota perché é dove si
 	// trovava prima un redirect

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:46:52 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/16 12:14:26 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/09 11:20:17 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	interrupt(int signum)
 
 void	quitter(int signum)
 {
-	printf("qui");
 	exit(0);
 }
 

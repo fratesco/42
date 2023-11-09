@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/08 17:10:11 by srapuano         ###   ########.fr       */
+/*   Updated: 2023/11/09 10:46:44 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_info
 	int		status_export_flag;
 }	t_info;
 
-void	matrix_cleaner(char **m, int i);
+void	matrix_cleaner(char ***m, int i);
 void	export_exec(t_info *info, char **tmp, int arg);
 void 	export_no_arg(t_info *info, int i, int j);
 void 	p_export_no_arg(char **tmp);

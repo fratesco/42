@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:56:14 by srapuano          #+#    #+#             */
-/*   Updated: 2023/11/08 17:12:03 by srapuano         ###   ########.fr       */
+/*   Updated: 2023/11/09 10:52:56 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,22 +71,20 @@ char	**matrix_remover(char **matrix, int ind)
 	return (nmatrix);
 }
 
-void	matrix_cleaner(char **m, int i)
+void	matrix_cleaner(char ***m, int i)
 {
-    int j;
-    int k;
-	char **tmp;
+	int		j;
+	char	**tmp;
 
-    j = -1;
-    while (++j < i)
-    {
-        if (m[j] == NULL || ((m[j][0] == '<'
-			|| m[j][0] == '>') && m[j][1] == '\0'))
+	j = -1;
+	while (++j < i)
+	{
+		if ((*m)[j][0] == 0 || (((*m)[j][0] == '<'
+				|| (*m)[j][0] == '>') && (*m)[j][1] == '\0'))
 		{
-            tmp = matrix_remover(m, j);
-			free(m);
-			&m = tmp;
-			free(tmp);
+			tmp = matrix_remover(*m, j);
+			free_matrix(*m);
+			*m = tmp;
 		}
-    }
+	}
 }
