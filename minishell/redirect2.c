@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:34:18 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/09 11:03:05 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/09 11:27:23 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,9 @@ void	input_delim(t_info *info, char *str, int start, int flag)
 					i = 0;
 					while (i < flag)
 						printf("%s", matrix[i++]);
+						// unica soluzione possibile é quella con un file tmp che
+						// funge da momentaneo stdin
+						// perché con le pipe non riusciremmo a gestire EOF
 				}
 				break ;
 			}
