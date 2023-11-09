@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:56:14 by srapuano          #+#    #+#             */
-/*   Updated: 2023/11/07 17:48:28 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/08 17:12:03 by srapuano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,24 @@ char	**matrix_remover(char **matrix, int ind)
 		j--;
 	}
 	return (nmatrix);
+}
+
+void	matrix_cleaner(char **m, int i)
+{
+    int j;
+    int k;
+	char **tmp;
+
+    j = -1;
+    while (++j < i)
+    {
+        if (m[j] == NULL || ((m[j][0] == '<'
+			|| m[j][0] == '>') && m[j][1] == '\0'))
+		{
+            tmp = matrix_remover(m, j);
+			free(m);
+			&m = tmp;
+			free(tmp);
+		}
+    }
 }
