@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/09 10:52:51 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/10 12:19:29 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,12 @@ void	analizer(t_info *info)
 			exit (0);
 		}
 		signal_avoid();
+	}
+	if (info->tmp_fd)
+	{
+		tmp_file_creator(info, 3);
+		dup2(info->temp_stdin, STDIN_FILENO);
+		info->temp_stdin = 0;
 	}
 	if (info->temp_stdout)
 	{

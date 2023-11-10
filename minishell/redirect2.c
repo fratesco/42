@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:34:18 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/09 11:27:23 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/10 12:04:00 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	input_delim(t_info *info, char *str, int start, int flag)
 		ft_strlcpy(str, &str[i], ft_strlen(str));
 	else if (start != 0 && info->end_save == -1)
 		info->end_save = start - 1;
-	printf("%i\n", info->end_save);
 	if (!info->temp_stdin)
 		info->temp_stdin = dup(STDIN_FILENO);
 	i = 0;
@@ -101,13 +100,17 @@ void	input_delim(t_info *info, char *str, int start, int flag)
 			{
 				if (ft_strncmp(buff, tmp, ft_strlen(buff)))
 				{
-					dup2(STDOUT_FILENO, 0);
+					tmp_file_creator(info, 0);
+					if (!info->temp_stdout)
+						info->temp_stdout = dup(STDOUT_FILENO);
+					dup2(info->tmp_fd, STDOUT_FILENO);
 					i = 0;
 					while (i < flag)
 						printf("%s", matrix[i++]);
-						// unica soluzione possibile é quella con un file tmp che
-						// funge da momentaneo stdin
-						// perché con le pipe non riusciremmo a gestire EOF
+					tmp_file_creator(info, 2);
+					tmp_file_creator(info, 1);
+					dup2(info->temp_stdout, STDOUT_FILENO);
+					dup2(info->tmp_fd, 0);
 				}
 				break ;
 			}

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/09 10:46:44 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/10 11:43:27 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_info
 	char	*save_tmp; //utilizzato per salvare momentaneamente le parole che precedono il primo > o <
 	int		save_index; // sempre per la cosa qui sopra serve a entrare nel numero massimo di righe
 	int		status_export_flag;
+	int		tmp_fd; //serve a salvare fd del file che usiamo come stdin per le pipe e input_delim
 }	t_info;
 
 void	matrix_cleaner(char ***m, int i);
@@ -115,6 +116,7 @@ int		remove_more(char *str, int start, char needle); //serve a keep_removing
 char	*triple_join(char *start, char *middle, char *end); //serve a unire 3 stringhe
 char	**splitter(char *av, char sep, int stop, int *ac); //split migliorato che tiene conto delle virgolette e le salta
 void	pip_index(t_info *info); //funzione che trova la posizione della prima pipe e la scrive in info.pos_pipe; viene utilizzato come stop di splitter;
+void	tmp_file_creator(t_info *info, int action); //funzione che creare un file temporaneo in cui scriviamo e poi sostituiamo a stdin
 void	count_redirect(t_info *info, int i, int j, int count); //
 void	count_allocate(t_info *info);
 char	**matrix_crusher(char **matrix, char *str); // creaa una copia di matrix a cui viene aggiunta str alla fine 
