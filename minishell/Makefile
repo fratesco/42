@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+         #
+#    By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:56:46 by fgolino           #+#    #+#              #
-#    Updated: 2023/10/25 20:14:34 by srapuano         ###   ########.fr        #
+#    Updated: 2023/11/13 12:04:41 by fgolino          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC := minishell.c instruction_handler.c utils.c signal.c builtins.c quotes.c quotes2.c splitste.c builtins2.c execute.c pipes.c signal2.c dollar.c matrix.c redirect.c\
-	   redirect2.c export_checker.c
+	   redirect2.c export_checker.c standard.c
 
 OBJ := $(SRC:.c=.o)
 

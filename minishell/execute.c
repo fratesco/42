@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:29:57 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/25 17:13:54 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/13 11:38:23 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	found(t_info *info, char *path)
 		fd = opendir(path);
 		if (fd == NULL && errno == ENOTDIR)
 		{
-			execve(path, info->instr_token, info->environment); //prova a farlo partire da quello subito prima dell'ultimo redirect controllanod che ci siano effettivamente
+			execve(path, info->instr_token, info->environment);
 			exit(0);
 		}
 		else if (fd != NULL)

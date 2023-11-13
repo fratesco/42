@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/10 12:19:29 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/13 12:26:13 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@ void	analizer(t_info *info)
 	polish_tokens(info);
 	redirector(info);
 	matrix_cleaner(&(info->instr_token), info->num_arg);
-	// crea una funzione che prende instr_token e rimuove tutte le strighe che hanno \0 in posizione 0
-	// cosí eviti che funzioni tipo cat ti dicano che non esiste una stringa vuota perché é dove si
-	// trovava prima un redirect
 	i = ft_strlen(info->instr_token[0]);
 	if (ft_strncmp(info->instr_token[0], "pwd", i) == 0)
 		pwd_handler(info);
@@ -73,34 +70,4 @@ void	analizer(t_info *info)
 		}
 		signal_avoid();
 	}
-	if (info->tmp_fd)
-	{
-		tmp_file_creator(info, 3);
-		dup2(info->temp_stdin, STDIN_FILENO);
-		info->temp_stdin = 0;
-	}
-	if (info->temp_stdout)
-	{
-		if (info->temp_out_fd)
-			close(info->temp_out_fd);
-		dup2(info->temp_stdout, STDOUT_FILENO);
-		info->temp_stdout = 0;
-		info->temp_out_fd = 0;
-		//stdout_reset(info);
-	}
-	if (info->temp_stdin)
-	{
-		if (info->temp_in_fd)
-			close(info->temp_in_fd);
-		dup2(info->temp_stdin, STDIN_FILENO);
-		info->temp_stdin = 0;
-		info->temp_in_fd = 0;
-		//stdin_reset(info);
-	}
-	//testare se
-	//int fd_out = dup(STDOUT_FILENO) creo un altro file descriptor per stdout
-	//dup2(fd,1) imposta 1 come nuovo descriptor di fd e chiuderebbe stdout qualora non avesse un altro file descriptor
-	//ora funzioni come printf non scriveranno più sul terminale ma sul file che ha fd
-	//dup2(fd_out, 1) dovrebbe reimpostare a 1 il file descriptor di stdout quindi il terminale e printf dovrebbe funzionare normalmente
 }
-

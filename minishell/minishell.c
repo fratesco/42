@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/08 11:40:11 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/13 12:28:50 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ void	get_environment(t_info *g_info, char **environment)
 	tmp = get_global(g_info->environment, "PATH");
 	g_info->global_path = ft_split(tmp, ':');
 	free(tmp);
-	g_info->user = get_global(g_info->environment, "USER");
-	tmp = ft_strjoin(g_info->user, (":~"));
-	free(g_info->user);
-	g_info->user = tmp;
+	tmp = get_global(g_info->environment, "USER");
+	g_info->user = ft_strjoin(tmp, (":~"));
+	free(tmp);
 	signal_rewire();
 	g_info->current_path = get_global(g_info->environment, "HOME");
 	g_info->temp_stdout = 0;
 	g_info->temp_stdin = 0;
 	g_info->temp_in_fd = 0;
 	g_info->temp_out_fd = 0;
+	g_info->tmp_fd = 0;
 	g_info->use_redirect = 0;
 	chdir(g_info->current_path);
 	g_info->instr_token = NULL;
@@ -63,6 +63,8 @@ void	executing(t_info *info)
 			info->exit_status = 130;
 		}
 	}
+	reset_stdin(info);
+	reset_stdout(info);
 	g_signal = 0;
 }
 

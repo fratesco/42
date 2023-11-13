@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 11:27:13 by srapuano          #+#    #+#             */
-/*   Updated: 2023/11/10 12:35:31 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/13 12:08:20 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	tmp_file_creator(t_info *info, int action)
 	char		**matr;
 
 	if (directory == 0)
-		directory = ft_strjoin(info->current_path, "/ZZZ");
+		directory = ft_strjoin(info->current_path, "/.tmp");
 	if (action == 0)
 		info->tmp_fd = open(directory, O_CREAT | O_WRONLY, 0666);
 	else if (action == 1)
@@ -63,9 +63,9 @@ void	tmp_file_creator(t_info *info, int action)
 		matr[0] = ft_strdup("/usr/bin/rm");
 		matr[1] = directory;
 		matr[2] = 0;
-		if (!fork)
-			execve(matr[0], matr, info->environment); //puoi provare a usare lo stesso minishell per fare questa cosa aggiungendo manualmente un "rm ZZZ"
-													  //dopo e farlo partire come se fosse dopo una pipe
+		if (!fork())
+			execve(matr[0], matr, info->environment);
+		wait(NULL);
 		free_matrix(matr);
 		directory = 0;
 	}
