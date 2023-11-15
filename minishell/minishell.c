@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/13 12:28:50 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/15 18:02:00 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	get_environment(t_info *g_info, char **environment)
 	chdir(g_info->current_path);
 	g_info->instr_token = NULL;
 	g_info->current_arg = 1;
-	g_info->num_arg = 0;
+	g_info->instr_pid = 0;
 	g_info->received_signal = 0;
 	g_info->exit_status = 0;
 	g_info->is_error = 0;
@@ -48,6 +48,8 @@ void	executing(t_info *info)
 	int	status;
 
 	status = 0;
+	info->instr_pid = 0;
+	info->num_arg = 0;
 	start(info);
 	if (info->num_arg != 0)
 		analizer(info);
@@ -63,8 +65,7 @@ void	executing(t_info *info)
 			info->exit_status = 130;
 		}
 	}
-	reset_stdin(info);
-	reset_stdout(info);
+	info->instr_pid = 0;
 	g_signal = 0;
 }
 
@@ -80,13 +81,18 @@ int	main(int argc, char	**argv, char **envp)
 	get_environment(&info, envp);
 	while (1)
 	{
+		info.instr_start = 0;
 		info.instruction = readline(info.user);
-		info.instr_pid = 0;
-		g_signal = 0;
 		if (info.instruction == NULL && info.instr_pid == 0)
 			break ;
-		executing(&info);
-		free_stuff(&info, 1);
+		while (info.instr_start < ft_strlen(info.instruction))
+		{
+			executing(&info);
+			reset_stdin(&info);
+			reset_stdout(&info);
+			free_stuff(&info, 1);
+		}
+		free(info.instruction);
 	}
 	free_stuff(&info, 0);
 	return (0);

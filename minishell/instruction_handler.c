@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/13 12:26:13 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/15 17:47:39 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ void	start(t_info *info)
 	if (check_string(info->instruction))
 		return ;
 	pip_index(info);
-	tokens = splitter(info->instruction, ' ', info->pos_pipe, &len);
+	tokens = splitter(&info->instruction[info->instr_start], ' ', info->pos_pipe - info->instr_start, &len);
+	info->instr_start = info->pos_pipe + 1;
+	//printf("len : %i\n", (int)ft_strlen(info->instruction));
+	//printf("start : %i\n", info->instr_start);
 	if (!tokens)
 		return (free_matrix(tokens));
 	info->instr_token = tokens;

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 11:27:13 by srapuano          #+#    #+#             */
-/*   Updated: 2023/11/13 12:08:20 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/15 17:18:53 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	pip_index(t_info *info)
 	int		i;
 	char	t;
 
-	i = 0;
+	i = info->instr_start;
 	info->num_pipe = 0;
 	while (info->instruction[i++])
 	{

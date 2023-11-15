@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/13 12:03:13 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/15 14:51:46 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,11 @@
 # include <dirent.h>
 # include <errno.h>
 
-
 typedef struct s_info
 {
 	char	**global_path; //la variabile globale PATH
 	char	**environment; //contiene tutte le variabili globali e locali
 	char	*instruction; //l'intera stringa passata a minishell sul terminale.
-	// cambio di programma, adesso instrcution sarà l'interea stringa passata, mentre instr_token sarà composto da un solo comando e i relativi argomenti e flags.
-	// il check sulle pipe e redirect verrà fatto prima e verrano gestiti di conseguenza
 	char	**instr_token; //matrice che contiene tutte le parole che compongono la current instruction
 	int		instr_end; //posizione della pipe che termina la nostra current instruction
 	int		instr_start; //inizio della current instruction

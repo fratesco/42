@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:38:35 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/07 15:17:48 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/15 15:03:03 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void	free_stuff(t_info *info, int flag)
 {
 	if (flag == 1)
 	{
-		free(info->instruction);
+		//free(info->instruction);
 		free_matrix(info->instr_token);
 		info->num_arg = 0;
 		info->instr_token = NULL;
 		info->current_arg = 1;
 		free(info->use_redirect);
-		// aggiungi il reset della flag per export
+		info->status_export_flag = 0;
 	}
 	else
 	{
