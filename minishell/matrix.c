@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:56:14 by srapuano          #+#    #+#             */
-/*   Updated: 2023/11/15 18:10:48 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/18 16:50:34 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,14 @@ void	matrix_cleaner(char ***m, int i)
 	j = -1;
 	while (++j < i)
 	{
-		// qui bisogna risolvere qualcosa ma solo nel caso di redirection da sola
 		if ((*m)[j] && ((*m)[j][0] == 0 || (((*m)[j][0] == '<'
-				|| (*m)[j][0] == '>') && (*m)[j][1] == '\0')))
+			|| (*m)[j][0] == '>') && (*m)[j][1] == '\0')))
 		{
 			tmp = matrix_remover(*m, j);
 			free_matrix(*m);
 			*m = tmp;
+			j--;
+			i--;
 		}
 	}
 }
