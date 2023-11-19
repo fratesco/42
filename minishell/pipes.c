@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 11:27:13 by srapuano          #+#    #+#             */
-/*   Updated: 2023/11/15 17:18:53 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/19 17:52:10 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,9 @@ void	pip_index(t_info *info)
 	info->pos_pipe = i;
 }
 
-void	tmp_file_creator(t_info *info, int action)
+void	tmp_file_creator(t_info *info, int action, char **matr)
 {
 	static char	*directory;
-	char		**matr;
 
 	if (directory == 0)
 		directory = ft_strjoin(info->current_path, "/.tmp");

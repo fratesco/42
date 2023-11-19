@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:46:52 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/09 11:20:17 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/19 17:45:59 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,8 @@ void	interrupt(int signum)
 
 void	quitter(int signum)
 {
+	//bisogna trovare un modo per non far partire questo comando quando la stringa di readline è vuota
 	exit(0);
-}
-
-void	abort_handler(int signum)
-{
-	//non ho capito cosa devo far fare al programma quado invii 'ctrl-backslash', perchè il mio terminale non fa nulla- non riesco a mandare l'input
 }
 
 void	signal_rewire(void)

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:34:18 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/15 17:39:28 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/19 17:57:11 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,13 @@ void	input_delim(t_info *info, char *str, int start, int flag)
 				info->temp_stdout = dup(STDOUT_FILENO);
 			dup2(2, STDOUT_FILENO);
 			printf("\nwarning: here-document at line %i delimited by end-of-file (wanted `%s')\n", i + 1, tmp);
-			tmp_file_creator(info, 0);
+			tmp_file_creator(info, 0, 0);
 			dup2(info->tmp_fd, STDOUT_FILENO);
 			i == 0;
 			while (i < flag)
 				printf("%s", matrix[i++]);
-			tmp_file_creator(info, 2);
-			tmp_file_creator(info, 1);
+			tmp_file_creator(info, 2, 0);
+			tmp_file_creator(info, 1, 0);
 			dup2(info->temp_stdout, STDOUT_FILENO);
 			dup2(info->tmp_fd, 0);
 			break;
@@ -117,17 +117,17 @@ void	input_delim(t_info *info, char *str, int start, int flag)
 			{
 				if (ft_strncmp(buff, tmp, ft_strlen(buff)))
 				{
-					tmp_file_creator(info, 0);
+					tmp_file_creator(info, 0, 0);
 					if (!info->temp_stdout)
 						info->temp_stdout = dup(STDOUT_FILENO);
 					dup2(info->tmp_fd, STDOUT_FILENO);
 					i = 0;
-					if (flag == 0)
-						printf("\n");
+					//if (flag == 0)
+					//	printf("\n");
 					while (i < flag)
 						printf("%s", matrix[i++]);
-					tmp_file_creator(info, 2);
-					tmp_file_creator(info, 1);
+					tmp_file_creator(info, 2, 0);
+					tmp_file_creator(info, 1, 0);
 					dup2(info->temp_stdout, STDOUT_FILENO);
 					dup2(info->tmp_fd, 0);
 				}

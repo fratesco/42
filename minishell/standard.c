@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 11:58:20 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/15 17:08:19 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/19 17:53:16 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	reset_stdin(t_info *info)
 {
 	if (info->tmp_fd)
 	{
-		tmp_file_creator(info, 2);
+		tmp_file_creator(info, 2, 0);
 		dup2(info->temp_stdin, STDIN_FILENO);
-		tmp_file_creator(info, 3);
+		tmp_file_creator(info, 3, 0);
 	}
 	if (info->temp_stdin)
 	{
