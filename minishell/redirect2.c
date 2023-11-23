@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:34:18 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/19 17:57:11 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/23 15:11:56 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ void	input_delim(t_info *info, char *str, int start, int flag)
 	if (!info->temp_stdin)
 		info->temp_stdin = dup(STDIN_FILENO);
 	i = 0;
+	if (info->tmp_fd)
+		reset_stdin(info);
 	while (1)
 	{
 		if (i == 0)
