@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/30 13:22:44 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/30 13:33:02 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	start(t_info *info)
 		dup2(info->pipe_fd1[1], STDOUT_FILENO);
 	}
 	else if (info->pipe_fd1[1] == 0 && info->num_pipe == 1)
-	{
+	{ 
 		//printf("quiiii\n");
 		pipe(info->pipe_fd2);
 		if (!info->temp_stdout)
