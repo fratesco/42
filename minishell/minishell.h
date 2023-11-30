@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/19 17:53:27 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/30 12:40:27 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct s_info
 	int		save_index; // sempre per la cosa qui sopra serve a entrare nel numero massimo di righe
 	int		status_export_flag;
 	int		tmp_fd; //serve a salvare fd del file che usiamo come stdin per le pipe e input_delim
+	int		pipe_fd1[2]; //fd di una pipe
+	int		pipe_fd2[2]; //fd di una pipe
 }	t_info;
 
 void	matrix_cleaner(char ***m, int i);
@@ -103,6 +105,7 @@ void	input_delim(t_info *info, char *str, int start, int flag);
 void	fd_output(t_info *info, char *str, int start, int flag);
 void	reset_stdin(t_info *info);
 void	reset_stdout(t_info *info);
+void	reset_all(t_info *info);
 void	get_environment(t_info *info, char **environment); //funzione che salva le variabili globali che ci servono e inizializza le variabili della struttura
 void	executing(t_info *info); //funzione creata per acorciare il main, tutto quello che è scritto qui era scritto nel loop del main
 int		check_string(char *str); //funzione che controlla se le quote della stringa siano correttamente chiuse

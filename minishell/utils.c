@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:38:35 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/15 15:03:03 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/30 13:00:41 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ void	free_stuff(t_info *info, int flag)
 		info->num_arg = 0;
 		info->instr_token = NULL;
 		info->current_arg = 1;
-		free(info->use_redirect);
+		if (info->use_redirect)
+		{
+			free(info->use_redirect);
+			info->use_redirect = 0;
+		}
 		info->status_export_flag = 0;
 	}
 	else

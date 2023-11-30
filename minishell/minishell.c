@@ -6,13 +6,34 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/15 18:02:00 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/11/30 12:51:05 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 int	g_signal;
+
+void	initializer(t_info *info)
+{
+	info->temp_stdout = 0;
+	info->temp_stdin = 0;
+	info->temp_in_fd = 0;
+	info->temp_out_fd = 0;
+	info->tmp_fd = 0;
+	info->use_redirect = 0;
+	info->instr_token = NULL;
+	info->current_arg = 1;
+	info->instr_pid = 0;
+	info->received_signal = 0;
+	info->exit_status = 0;
+	info->is_error = 0;
+	info->save_index = 0;
+	info->pipe_fd1[0] = 0;
+	info->pipe_fd1[1] = 0;
+	info->pipe_fd2[0] = 0;
+	info->pipe_fd2[1] = 0;
+}
 
 void	get_environment(t_info *g_info, char **environment)
 {
@@ -27,20 +48,8 @@ void	get_environment(t_info *g_info, char **environment)
 	free(tmp);
 	signal_rewire();
 	g_info->current_path = get_global(g_info->environment, "HOME");
-	g_info->temp_stdout = 0;
-	g_info->temp_stdin = 0;
-	g_info->temp_in_fd = 0;
-	g_info->temp_out_fd = 0;
-	g_info->tmp_fd = 0;
-	g_info->use_redirect = 0;
 	chdir(g_info->current_path);
-	g_info->instr_token = NULL;
-	g_info->current_arg = 1;
-	g_info->instr_pid = 0;
-	g_info->received_signal = 0;
-	g_info->exit_status = 0;
-	g_info->is_error = 0;
-	g_info->save_index = 0;
+	initializer(g_info);
 }
 
 void	executing(t_info *info)
@@ -82,14 +91,17 @@ int	main(int argc, char	**argv, char **envp)
 	while (1)
 	{
 		info.instr_start = 0;
+		info.num_pipe = 1;
 		info.instruction = readline(info.user);
 		if (info.instruction == NULL && info.instr_pid == 0)
 			break ;
-		while (info.instr_start < ft_strlen(info.instruction))
+		//while (info.instr_start < ft_strlen(info.instruction)) //qui si poteva fare un check su info.num_pipe ma mi ero dimenticato di questa variabile
+		while (info.num_pipe == 1)
 		{
+			info.num_pipe = 0;
+			//printf("sono entrtao\n");
 			executing(&info);
-			reset_stdin(&info);
-			reset_stdout(&info);
+			reset_all(&info);
 			free_stuff(&info, 1);
 		}
 		free(info.instruction);
