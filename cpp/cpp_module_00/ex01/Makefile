@@ -1,6 +1,6 @@
-SRC := phonebook.cpp
+SRC := PhoneBook.cpp Contact.cpp main.cpp
 
-OBJ := $(SRC:.c=.o)
+OBJ := $(SRC:.cpp=.o)
 
 CC := c++
 
@@ -18,6 +18,7 @@ $(NAME) : $(OBJ)
 
 std : $(OBJ)
 		$(CC) $(FLAGS) $(STD) -g $(OBJ) -o $(NAME)
+		echo compiled with -std=c++98 flag!
 
 clean : 
 		@rm -f $(OBJ)
@@ -28,6 +29,8 @@ fclean : clean
 		@echo $(NAME) cleaned
 
 re : fclean all
+
+.SILENT: $(NAME) $(OBJ) std
 
 .PHONY :
 		all clean fclean re
