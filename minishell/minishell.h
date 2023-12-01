@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/30 12:40:27 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/01 15:10:37 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_info
 	int		pipe_fd2[2]; //fd di una pipe
 }	t_info;
 
-void	matrix_cleaner(char ***m, int i);
+void	matrix_cleaner(char ***m, int *i);
 void	export_exec(t_info *info, char **tmp, int arg);
 void 	export_no_arg(t_info *info, int i, int j);
 void 	p_export_no_arg(char **tmp);
@@ -117,8 +117,9 @@ int		keep_removing(char *str, int start, int stop); //serve a quote_remover
 int		remove_more(char *str, int start, char needle); //serve a keep_removing
 char	*triple_join(char *start, char *middle, char *end); //serve a unire 3 stringhe
 char	**splitter(char *av, char sep, int stop, int *ac); //split migliorato che tiene conto delle virgolette e le salta
-void	pip_index(t_info *info); //funzione che trova la posizione della prima pipe e la scrive in info.pos_pipe; viene utilizzato come stop di splitter;
+void	pip_index(t_info *info, int i, char t); //funzione che trova la posizione della prima pipe e la scrive in info.pos_pipe; viene utilizzato come stop di splitter;
 void	tmp_file_creator(t_info *info, int action, char **matr); //funzione che creare un file temporaneo in cui scriviamo e poi sostituiamo a stdin
+void	pipe_manager(t_info *info); // funzione che crea le pipe
 void	count_redirect(t_info *info, int i, int j, int count); //
 void	count_allocate(t_info *info);
 char	**matrix_crusher(char **matrix, char *str); // creaa una copia di matrix a cui viene aggiunta str alla fine 

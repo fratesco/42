@@ -6,20 +6,16 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 11:27:13 by srapuano          #+#    #+#             */
-/*   Updated: 2023/11/19 17:52:10 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/01 15:10:02 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	pip_index(t_info *info)
+void	pip_index(t_info *info, int i, char t)
 {
-	int		i;
-	char	t;
-
-	i = info->instr_start;
 	info->num_pipe = 0;
-	while (info->instruction[i++])
+	while (info->instruction && info->instruction[i])
 	{
 		while (info->instruction[i] != '|' && info->instruction[i] != '\0')
 		{
@@ -30,13 +26,16 @@ void	pip_index(t_info *info)
 					&& info->instruction[i] != t)
 					i++;
 			}
-			i++;
+			if (info->instruction[i])
+				i++;
 		}
 		if (info->instruction[i] == '|')
 		{
 			info->num_pipe = 1;
 			break ;
 		}
+		if (info->instruction[i])
+			i++;
 	}
 	info->pos_pipe = i;
 }
@@ -67,5 +66,23 @@ void	tmp_file_creator(t_info *info, int action, char **matr)
 		wait(NULL);
 		free_matrix(matr);
 		directory = 0;
+	}
+}
+
+void	pipe_manager(t_info *info)
+{
+	if (info->pipe_fd1[0] == 0 && info->num_pipe == 1)
+	{
+		pipe(info->pipe_fd1);
+		if (!info->temp_stdout)
+			info->temp_stdout = dup(STDOUT_FILENO);
+		dup2(info->pipe_fd1[1], STDOUT_FILENO);
+	}
+	else if (info->pipe_fd1[1] == 0 && info->num_pipe == 1)
+	{
+		pipe(info->pipe_fd2);
+		if (!info->temp_stdout)
+			info->temp_stdout = dup(STDOUT_FILENO);
+		dup2(info->pipe_fd2[1], STDOUT_FILENO);
 	}
 }

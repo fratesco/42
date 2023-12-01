@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:56:14 by srapuano          #+#    #+#             */
-/*   Updated: 2023/11/18 16:50:34 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/01 15:09:16 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,24 +60,25 @@ char	**matrix_remover(char **matrix, int ind)
 	}
 	j = i - 1;
 	nmatrix[j + 1] = NULL;
+	if (ind == 0 && i == 0)
+		return (nmatrix);
 	while (i >= 0)
 	{
 		if (i == ind)
 			i--;
-		nmatrix[j] = ft_strdup(matrix[i]);
-		i--;
+		nmatrix[j] = ft_strdup(matrix[i--]);
 		j--;
 	}
 	return (nmatrix);
 }
 
-void	matrix_cleaner(char ***m, int i)
+void	matrix_cleaner(char ***m, int *i)
 {
 	int		j;
 	char	**tmp;
 
 	j = -1;
-	while (++j < i)
+	while (++j < *i)
 	{
 		if ((*m)[j] && ((*m)[j][0] == 0 || (((*m)[j][0] == '<'
 			|| (*m)[j][0] == '>') && (*m)[j][1] == '\0')))
@@ -86,7 +87,7 @@ void	matrix_cleaner(char ***m, int i)
 			free_matrix(*m);
 			*m = tmp;
 			j--;
-			i--;
+			(*i)--;
 		}
 	}
 }

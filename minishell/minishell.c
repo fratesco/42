@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/30 12:51:05 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/01 14:11:18 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	executing(t_info *info)
 	int	status;
 
 	status = 0;
+	info->num_pipe = 0;
 	info->instr_pid = 0;
 	info->num_arg = 0;
 	start(info);
@@ -95,11 +96,8 @@ int	main(int argc, char	**argv, char **envp)
 		info.instruction = readline(info.user);
 		if (info.instruction == NULL && info.instr_pid == 0)
 			break ;
-		//while (info.instr_start < ft_strlen(info.instruction)) //qui si poteva fare un check su info.num_pipe ma mi ero dimenticato di questa variabile
 		while (info.num_pipe == 1)
 		{
-			info.num_pipe = 0;
-			//printf("sono entrtao\n");
 			executing(&info);
 			reset_all(&info);
 			free_stuff(&info, 1);

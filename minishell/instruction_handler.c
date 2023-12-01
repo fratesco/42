@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/30 13:33:02 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/01 15:12:50 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	start(t_info *info)
 	add_history(info->instruction);
 	if (check_string(info->instruction))
 		return ;
-	pip_index(info);
+	pip_index(info, info->instr_start, 0);
 	tokens = splitter(&info->instruction[info->instr_start], ' ',
 			info->pos_pipe - info->instr_start, &len);
 	info->instr_start = info->pos_pipe + 1;
@@ -33,21 +33,7 @@ void	start(t_info *info)
 	info->instr_token = tokens;
 	info->num_arg = len;
 	count_redirect(info, 0, 0, 0);
-	if (info->pipe_fd1[0] == 0 && info->num_pipe == 1)
-	{
-		pipe(info->pipe_fd1);
-		if (!info->temp_stdout)
-			info->temp_stdout = dup(STDOUT_FILENO);
-		dup2(info->pipe_fd1[1], STDOUT_FILENO);
-	}
-	else if (info->pipe_fd1[1] == 0 && info->num_pipe == 1)
-	{ 
-		//printf("quiiii\n");
-		pipe(info->pipe_fd2);
-		if (!info->temp_stdout)
-			info->temp_stdout = dup(STDOUT_FILENO);
-		dup2(info->pipe_fd2[1], STDOUT_FILENO);
-	}
+	pipe_manager(info);
 }
 
 void	analizer(t_info *info)
@@ -59,7 +45,9 @@ void	analizer(t_info *info)
 	dollar_handler(info);
 	polish_tokens(info);
 	redirector(info);
-	matrix_cleaner(&(info->instr_token), info->num_arg);
+	matrix_cleaner(&(info->instr_token), &info->num_arg);
+	if (!info->instr_token || !info->instr_token[0])
+		return ;
 	i = ft_strlen(info->instr_token[0]);
 	if (ft_strncmp(info->instr_token[0], "pwd", i) == 0)
 		pwd_handler(info);

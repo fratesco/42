@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:20:45 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/07 15:15:27 by srapuano         ###   ########.fr       */
+/*   Updated: 2023/12/01 14:21:43 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,26 @@ void	echo_handler(t_info *info)
 
 void	cd_handler(t_info *info)
 {
+	info->exit_status = 1;
 	if (info->num_arg < 2)
-		chdir(getenv("HOME"));
+		chdir(get_global(info->environment, "HOME"));
 	if (info->num_arg > 2)
-	{
-		info->exit_status = 1;
 		printf("cd: too many arguments\n");
-	}
 	if (info->num_arg == 2 && chdir(info->instr_token[1]) != 0)
 	{
-		info->exit_status = 1;
 		if (errno == EACCES)
-			printf ("cd : %s : Permission denied\n", info->instr_token[info->current_arg]);
+			printf ("cd : %s : Permission denied\n",
+				info->instr_token[info->current_arg]);
 		else if (errno == ENOTDIR)
-			printf ("cd : %s : Not a directory\n", info->instr_token[info->current_arg]);
+			printf ("cd : %s : Not a directory\n",
+				info->instr_token[info->current_arg]);
 		else if (cd_loop(info))
-			printf("cd : %s : %s\n", info->instr_token[info->current_arg], strerror(errno));
+			printf("cd : %s : %s\n",
+				info->instr_token[info->current_arg], strerror(errno));
 		else
 			info->exit_status = 0;
 	}
-	else if (info->num_arg == 2)
+	else if (info->num_arg <= 2)
 		info->exit_status = 0;
 	free(info->current_path);
 	info->current_path = getcwd(NULL, 0);
