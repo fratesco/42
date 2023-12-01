@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 11:58:20 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/30 13:03:59 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/01 16:43:51 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	reset_stdin(t_info *info)
 {
 	if (info->pipe_fd1[0] && !info->pipe_fd1[1])
 	{
-		//printf("qui1\n");
 		close(info->pipe_fd1[0]);
 		dup2(info->temp_stdin, STDIN_FILENO);
 		info->pipe_fd1[0] = 0;
@@ -24,7 +23,6 @@ void	reset_stdin(t_info *info)
 	}
 	else if (info->pipe_fd2[0] && !info->pipe_fd2[1])
 	{
-		//printf("qui2\n");
 		close(info->pipe_fd2[0]);
 		dup2(info->temp_stdin, STDIN_FILENO);
 		info->pipe_fd2[0] = 0;
@@ -42,8 +40,8 @@ void	reset_stdin(t_info *info)
 
 void	reset_stdout(t_info *info)
 {
-	info->pos_pipe = 0; //non so perchè lo resettato qui ma va bene
-	if (info->tmp_fd)  //infatti non andava bene
+	info->pos_pipe = 0;
+	if (info->tmp_fd)
 	{
 		tmp_file_creator(info, 2, 0);
 		tmp_file_creator(info, 3, 0);
@@ -63,7 +61,6 @@ void	reset_all(t_info *info)
 	reset_stdin(info);
 	if (info->pipe_fd1[1])
 	{
-		//printf("qui3\n");
 		close(info->pipe_fd1[1]);
 		dup2(info->temp_stdout, STDOUT_FILENO);
 		info->pipe_fd1[1] = 0;
@@ -74,7 +71,6 @@ void	reset_all(t_info *info)
 	}
 	else if (info->pipe_fd2[1])
 	{
-		//printf("qui4\n");
 		close(info->pipe_fd2[1]);
 		dup2(info->temp_stdout, STDOUT_FILENO);
 		info->pipe_fd2[1] = 0;

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:55:47 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/01 15:30:06 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/01 16:42:51 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	*dollar_remover(t_info *info, char *str, int pos)
 	ft_strlcpy(tmp, str, (pos + 1));
 	ft_strlcpy(&tmp[pos], env, ft_strlen(env) + 1);
 	if (str[i])
-		ft_strlcpy(&tmp[ft_strlen(tmp)], &str[i], 
+		ft_strlcpy(&tmp[ft_strlen(tmp)], &str[i],
 			(ft_strlen(str) - 1 + ft_strlen(tmp)));
 	free(env);
 	free(str);
@@ -95,7 +95,7 @@ char	*dollar_exit(char *str, t_info *info)
 	ft_strlcpy(tmp, str, (pos + 1));
 	ft_strlcpy(tmp, num, (ft_strlen(num) + ft_strlen(tmp) + 1));
 	if (str[pos + 2])
-		ft_strlcpy(&tmp[ft_strlen(tmp)], &str[pos + 2], 
+		ft_strlcpy(&tmp[ft_strlen(tmp)], &str[pos + 2],
 			(ft_strlen(&str[pos + 2]) + ft_strlen(tmp) + 1));
 	free(num);
 	free(str);

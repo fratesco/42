@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/01 16:22:09 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/01 16:36:42 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	g_signal;
 
 void	initializer(t_info *info)
 {
+	info->total_instructions = 0;
 	info->temp_stdout = 0;
 	info->temp_stdin = 0;
 	info->temp_in_fd = 0;

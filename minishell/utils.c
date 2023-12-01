@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:38:35 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/01 16:22:37 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/01 16:45:21 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	free_stuff(t_info *info, int flag)
 {
 	if (flag == 1)
 	{
-		//free(info->instruction);
 		free_matrix(info->instr_token);
 		info->num_arg = 0;
 		info->instr_token = NULL;

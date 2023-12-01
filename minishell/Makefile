@@ -6,12 +6,12 @@
 #    By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/17 16:56:46 by fgolino           #+#    #+#              #
-#    Updated: 2023/12/01 13:59:55 by fgolino          ###   ########.fr        #
+#    Updated: 2023/12/01 16:41:09 by fgolino          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC := minishell.c instruction_handler.c utils.c signal.c builtins.c quotes.c quotes2.c splitste.c builtins2.c execute.c pipes.c signal2.c dollar.c matrix.c redirect.c\
-	   redirect2.c export_checker.c standard.c ft_perror.c
+	   redirect2.c export_checker.c standard.c
 
 OBJ := $(SRC:.c=.o)
 

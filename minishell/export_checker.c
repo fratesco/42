@@ -6,10 +6,9 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:23:17 by srapuano          #+#    #+#             */
-/*   Updated: 2023/11/08 11:58:34 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/01 16:44:35 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minishell.h"
 
@@ -40,7 +39,6 @@ int	export_checker(t_info *info, char *str)
 			}
 		}
 	}
-
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/01 16:21:55 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/01 16:34:08 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_info
 	char	**global_path; //la variabile globale PATH
 	char	**environment; //contiene tutte le variabili globali e locali
 	char	*instruction; //l'intera stringa passata a minishell sul terminale.
+	int		total_instructions; // per essere precisi in input delim (ctrl-d)
 	char	**instr_token; //matrice che contiene tutte le parole che compongono la current instruction
 	int		instr_end; //posizione della pipe che termina la nostra current instruction
 	int		instr_start; //inizio della current instruction
@@ -45,7 +46,7 @@ typedef struct s_info
 	int		instr_pid; //è il pid del processo figlio che sta esenguendo un comando, serve per poter aspettare che finisca e poter terminarlo in caso di int-sig
 	int		exit_status; //l'exit status dell'ultimo processo figlio terminato
 	int		is_error; //variabile che viene usata per comprendere se qualcosa non è andato in qualche funzione precedente|| tutto quello che fa è evitare casini con codice lungo
-	char	*str_error;
+	char	*str_error; //variabile che salvata in nome che ha causato errore in una redirection (il primo)
 	int		received_signal; //valore scritto da wait();
 	char	*user; //la variabile che contiene il valore della variabile globale USER
 	char	*current_path; //l'attuale folder in cui sta lavorando il processo

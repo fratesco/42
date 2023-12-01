@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:34:18 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/30 12:56:04 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/01 16:30:49 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,19 @@ void	fd_output(t_info *info, char *str, int start, int flag)
 		info->temp_out_fd = open(tmp, O_CREAT | O_WRONLY, 0666);
 	if (flag == 1 && info->num_redirect++)
 		info->temp_out_fd = open(tmp, O_CREAT | O_WRONLY | O_APPEND, 0666);
-	free(tmp);
 	if (start == 0)
 		ft_strlcpy(str, &str[i], ft_strlen(str));
 	else if (start != 0 && info->end_save == -1)
 		info->end_save = start - 1;
 	if (info->temp_out_fd == -1)
 	{
-		info->is_error = 1;
+		if (info->is_error == 0)
+			info->is_error = errno;
+		if (!info->str_error)
+			info->str_error = strdup(tmp);
 		return ;
 	}
+	free(tmp);
 	if (!info->temp_stdout)
 		info->temp_stdout = dup(STDOUT_FILENO);
 	dup2(info->temp_out_fd, 1);
@@ -109,7 +112,7 @@ void	input_delim(t_info *info, char *str, int start, int flag)
 			tmp_file_creator(info, 1, 0);
 			dup2(info->temp_stdout, STDOUT_FILENO);
 			dup2(info->tmp_fd, 0);
-			break;
+			break ;
 		}
 		i++;
 		if (buff[i - 1] == '\n')
@@ -124,8 +127,6 @@ void	input_delim(t_info *info, char *str, int start, int flag)
 						info->temp_stdout = dup(STDOUT_FILENO);
 					dup2(info->tmp_fd, STDOUT_FILENO);
 					i = 0;
-					//if (flag == 0)
-					//	printf("\n");
 					while (i < flag)
 						printf("%s", matrix[i++]);
 					tmp_file_creator(info, 2, 0);
