@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:06:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/18 16:14:49 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/01 16:26:10 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	check_redirection(char *str, t_info *info, int row, int i)
 		}
 		i++;
 	}
-	if (info->is_error != UNEXPECTED && info->end_save != -1)
+	if (info->end_save != -1)
 		str[info->end_save] = 0;
 	return (0);
 }
@@ -55,11 +55,15 @@ int	redirector(t_info *info)
 	{
 		info->end_save = -1;
 		info->is_error = 0;
-		if (check_redirection(info->instr_token[i], info, i, 0))
+		check_redirection(info->instr_token[i], info, i, 0);
+		if (info->is_error)
 		{
-			info->exit_status = 2;
-			// qui aggiungi i vari tipi di exit_status a seconda del tipo di errore || 1 per permission deniend ecc...
-			return (1);
+			info->exit_status = 1;
+			printf("minishell: %s: %s\n", info->str_error,
+				strerror(info->is_error));
+			free(info->str_error);
+			info->str_error = 0;
+			break ;
 		}
 		i++;
 	}
@@ -133,16 +137,19 @@ void	fd_input(t_info *info, char *str, int start)
 	tmp = (char *)malloc(sizeof(char) * (i + 1));
 	ft_strlcpy(tmp, &str[start], i + 1);
 	info->temp_in_fd = open(tmp, O_RDONLY);
-	free(tmp);
 	if (start == 0)
 		ft_strlcpy(str, &str[i], ft_strlen(str));
 	else if (start != 0 && info->end_save == -1)
 		info->end_save = start - 1;
 	if (info->temp_in_fd == -1)
 	{
-		info->is_error = 1;
+		if (info->is_error == 0)
+			info->is_error = errno;
+		if (!info->str_error)
+			info->str_error = strdup(tmp);
 		return ;
 	}
+	free(tmp);
 	if (!info->temp_stdin)
 		info->temp_stdin = dup(STDIN_FILENO);
 	dup2(info->temp_in_fd, 0);

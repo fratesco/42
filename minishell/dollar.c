@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:55:47 by fgolino           #+#    #+#             */
-/*   Updated: 2023/10/16 13:01:49 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/01 15:30:06 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	check_dollar(char *str)
 				return (42);
 			return (i);
 		}
-		i++;
+		if (str[i])
+			i++;
 	}
 	return (-1);
 }
@@ -111,7 +112,7 @@ void	dollar_handler(t_info *info)
 
 	i = 0;
 	pos = -1;
-	while (info->instr_token[i])
+	while (info->instr_token && info->instr_token[i])
 	{
 		pos = check_dollar(info->instr_token[i]);
 		if (pos == 42)

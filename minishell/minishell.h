@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/01 15:10:37 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/01 16:21:55 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_info
 	int		instr_pid; //è il pid del processo figlio che sta esenguendo un comando, serve per poter aspettare che finisca e poter terminarlo in caso di int-sig
 	int		exit_status; //l'exit status dell'ultimo processo figlio terminato
 	int		is_error; //variabile che viene usata per comprendere se qualcosa non è andato in qualche funzione precedente|| tutto quello che fa è evitare casini con codice lungo
+	char	*str_error;
 	int		received_signal; //valore scritto da wait();
 	char	*user; //la variabile che contiene il valore della variabile globale USER
 	char	*current_path; //l'attuale folder in cui sta lavorando il processo
@@ -79,7 +80,8 @@ void	signal_avoid(void); //funzione che imposta int_child_alive come handler di 
 void	int_child_alive(int signum); //handler per ctrl-c per il processo genitore quando viene generato un processo figlio
 void	interrupt(int signum); //nuovo handler del segnale ctrl-c
 void	quitter(int signum); //nuovo handler del segnale ctrl-d
-void	analizer(t_info *info); //funzione che capisce se la nuova riga presenta un comando valido e lo fa partire
+void	analizer(t_info *info, int i, int j); //funzione che capisce se la nuova riga presenta un comando valido e lo fa partire
+void	clean_tokens(t_info *info);
 void	dollar_handler(t_info *info); //funzione che si occupa di sostituire i $ con le rispettive variabili globali qualore esistano
 char	*dollar_remover(t_info *info, char *str, int pos); //controlla che esista la variabile globale con nome uguale ai caratteri dopo il $
 int		check_dollar(char *str); //controlla che esista un $ valido e che debba essere sostituito
@@ -89,7 +91,7 @@ char	*dollar_exit(char *str, t_info *info); //questa funzione si occupa di gesti
 void	pwd_handler(t_info *info); //funzione che imita il funzionamento di pwd
 void	echo_handler(t_info *info); //funzione che imita il funzionamente di echo (con flag -n)
 void	cd_handler(t_info *info); //funzione che imita il comportamento di cd
-int		cd_loop(t_info *info); //funzione continuo di cd || fatta per entrare nelle 25 righe
+int		cd_loop(t_info *info, int i); //funzione continuo di cd || fatta per entrare nelle 25 righe
 void	env_handler(t_info *info); //funzione che imita il comportamento di env senza flag
 void	unset_handler(t_info *info, int arg, int i); //funzione che imita il comportamento di unset senza flag
 void	export_handler(t_info *info, int arg, int f, int ff); //funzione che imita il comportamento di export senza flag

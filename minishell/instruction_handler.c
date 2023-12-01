@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/01 15:12:50 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/01 15:18:30 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,20 @@ void	start(t_info *info)
 	info->num_arg = len;
 	count_redirect(info, 0, 0, 0);
 	pipe_manager(info);
+	if (!info->instr_token || !info->instr_token[0])
+		return ;
 }
 
-void	analizer(t_info *info)
+void	clean_tokens(t_info *info)
 {
-	int	i;
-	int	j;
-
-	i = 0;
 	dollar_handler(info);
 	polish_tokens(info);
 	redirector(info);
 	matrix_cleaner(&(info->instr_token), &info->num_arg);
-	if (!info->instr_token || !info->instr_token[0])
-		return ;
-	i = ft_strlen(info->instr_token[0]);
+}
+
+void	analizer(t_info *info, int i, int j)
+{
 	if (ft_strncmp(info->instr_token[0], "pwd", i) == 0)
 		pwd_handler(info);
 	else if (ft_strncmp(info->instr_token[0], "echo", i) == 0)

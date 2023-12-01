@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 19:49:24 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/15 15:01:39 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/01 16:02:30 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,18 @@ void	unset_handler(t_info *info, int arg, int i)
 	info->exit_status = 0;
 }
 
-int	cd_loop(t_info *info)
+int	cd_loop(t_info *info, int i)
 {
-	int		i;
 	char	*tmp;
 
-	i = -1;
 	while (info->global_path[++i])
 	{
-		tmp = triple_join(info->global_path[i], "/", info->instr_token[info->current_arg]);
+		tmp = triple_join(info->global_path[i], "/",
+				info->instr_token[info->current_arg]);
 		if (!chdir(tmp))
 		{
 			free(tmp);
+			info->exit_status = 0;
 			return (0);
 		}
 		else if (errno == EACCES || errno == ENOTDIR)
@@ -61,7 +61,8 @@ int	cd_loop(t_info *info)
 			if (errno == EACCES)
 				printf("cd : %s : Permission denied\n", tmp);
 			else if (errno == ENOTDIR)
-				printf ("cd : %s : Not a directory\n", info->instr_token[info->current_arg]);
+				printf ("cd : %s : Not a directory\n",
+					info->instr_token[info->current_arg]);
 			free(tmp);
 			return (0);
 		}

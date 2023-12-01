@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/01 14:11:18 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/01 16:22:09 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	initializer(t_info *info)
 	info->exit_status = 0;
 	info->is_error = 0;
 	info->save_index = 0;
+	info->str_error = 0;
 	info->pipe_fd1[0] = 0;
 	info->pipe_fd1[1] = 0;
 	info->pipe_fd2[0] = 0;
@@ -62,7 +63,9 @@ void	executing(t_info *info)
 	info->num_arg = 0;
 	start(info);
 	if (info->num_arg != 0)
-		analizer(info);
+		clean_tokens(info);
+	if (info->num_arg != 0 && info->is_error == 0)
+		analizer(info, (int)ft_strlen(info->instr_token[0]), 0);
 	if (info->instr_pid != 0)
 	{
 		wait(&(status));

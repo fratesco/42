@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:20:45 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/01 14:21:43 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/01 16:01:17 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,17 @@ void	cd_handler(t_info *info)
 		chdir(get_global(info->environment, "HOME"));
 	if (info->num_arg > 2)
 		printf("cd: too many arguments\n");
-	if (info->num_arg == 2 && chdir(info->instr_token[1]) != 0)
+	if (info->num_arg == 2 && (chdir(info->instr_token[1]) != 0))
 	{
 		if (errno == EACCES)
-			printf ("cd : %s : Permission denied\n",
+			printf ("cd : %s : Permission denied1\n",
 				info->instr_token[info->current_arg]);
 		else if (errno == ENOTDIR)
 			printf ("cd : %s : Not a directory\n",
 				info->instr_token[info->current_arg]);
-		else if (cd_loop(info))
+		else if (cd_loop(info, -1)) //forse questo non va fatto non deve controllare dentro tutto il PATH si fa solo per i comandi
 			printf("cd : %s : %s\n",
 				info->instr_token[info->current_arg], strerror(errno));
-		else
-			info->exit_status = 0;
 	}
 	else if (info->num_arg <= 2)
 		info->exit_status = 0;
