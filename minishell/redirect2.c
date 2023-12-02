@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:34:18 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/01 16:30:49 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/02 12:22:08 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,10 @@ void	input_delim(t_info *info, char *str, int start, int flag)
 {
 	int		i;
 	char	*tmp;
-	char	*get;
 	char	buff[10000];
-	char	**matrix;
 
 	i = 0;
-	matrix = 0;
+	info->tmp_matrix = 0;
 	while (str[start + i] && str[start + i] != '>' && str[start + i] != '<')
 		i++;
 	tmp = (char *)malloc(sizeof(char) * (i + 1));
@@ -92,55 +90,80 @@ void	input_delim(t_info *info, char *str, int start, int flag)
 	i = 0;
 	if (info->tmp_fd)
 		reset_stdin(info);
+	no_end(info, flag, tmp, buff);
+	free_matrix(info->tmp_matrix);
+	free(tmp);
+}
+
+void	no_end(t_info *info, int flag, char *tmp, char *buff)
+{
+	int		i;
+
+	i = 0;
 	while (1)
 	{
 		if (i == 0)
 			write(2, "> ", 2);
 		if (!read(STDIN_FILENO, &buff[i], 1))
 		{
-			buff[i] = '\n';
-			if (!info->temp_stdout)
-				info->temp_stdout = dup(STDOUT_FILENO);
-			dup2(2, STDOUT_FILENO);
-			printf("\nwarning: here-document at line %i delimited by end-of-file (wanted `%s')\n", i + 1, tmp);
-			tmp_file_creator(info, 0, 0);
-			dup2(info->tmp_fd, STDOUT_FILENO);
-			i == 0;
-			while (i < flag)
-				printf("%s", matrix[i++]);
-			tmp_file_creator(info, 2, 0);
-			tmp_file_creator(info, 1, 0);
-			dup2(info->temp_stdout, STDOUT_FILENO);
-			dup2(info->tmp_fd, 0);
+			tmp_function2(info, info->tmp_matrix, i, flag);
+			printf("\nwarning: here-document at line %i ", i + 1);
+			printf("delimited by end-of-file (wanted `%s')\n", tmp);
 			break ;
 		}
 		i++;
 		if (buff[i - 1] == '\n')
 		{
 			buff[i] = 0;
-			if (ft_strlen(buff) == ft_strlen(tmp) + 1)
-			{
-				if (ft_strncmp(buff, tmp, ft_strlen(buff)))
-				{
-					tmp_file_creator(info, 0, 0);
-					if (!info->temp_stdout)
-						info->temp_stdout = dup(STDOUT_FILENO);
-					dup2(info->tmp_fd, STDOUT_FILENO);
-					i = 0;
-					while (i < flag)
-						printf("%s", matrix[i++]);
-					tmp_file_creator(info, 2, 0);
-					tmp_file_creator(info, 1, 0);
-					dup2(info->temp_stdout, STDOUT_FILENO);
-					dup2(info->tmp_fd, 0);
-				}
+			if (tmp_function(info, buff, tmp, flag))
 				break ;
-			}
-			matrix = matrix_crusher(matrix, buff);
 			flag++;
 			i = 0;
 		}
 	}
-	free_matrix(matrix);
-	free(tmp);
+}
+
+int	tmp_function(t_info *info, char *buff, char *tmp, int flag)
+{
+	int		i;
+	char	**boh;
+
+	if (ft_strlen(buff) == ft_strlen(tmp) + 1)
+	{
+		if (!ft_strncmp(buff, tmp, ft_strlen(tmp)))
+		{
+			tmp_file_creator(info, 0, 0);
+			if (!info->temp_stdout)
+				info->temp_stdout = dup(STDOUT_FILENO);
+			dup2(info->tmp_fd, STDOUT_FILENO);
+			i = 0;
+			while (i < flag)
+				printf("%s", info->tmp_matrix[i++]);
+			tmp_file_creator(info, 2, 0);
+			tmp_file_creator(info, 1, 0);
+			dup2(info->temp_stdout, STDOUT_FILENO);
+			dup2(info->tmp_fd, 0);
+			return (1);
+		}
+	}
+	boh = info->tmp_matrix;
+	info->tmp_matrix = matrix_crusher(info->tmp_matrix, buff);
+	free_matrix(boh);
+	return (0);
+}
+
+void	tmp_function2(t_info *info, char **matrix, int i, int flag)
+{
+	if (!info->temp_stdout)
+	info->temp_stdout = dup(STDOUT_FILENO);
+	dup2(2, STDOUT_FILENO);
+	tmp_file_creator(info, 0, 0);
+	dup2(info->tmp_fd, STDOUT_FILENO);
+	i == 0;
+	while (i < flag)
+		printf("%s", matrix[i++]);
+	tmp_file_creator(info, 2, 0);
+	tmp_file_creator(info, 1, 0);
+	dup2(info->temp_stdout, STDOUT_FILENO);	
+	dup2(info->tmp_fd, 0);
 }

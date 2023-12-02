@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/01 16:34:08 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/02 12:13:33 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,17 @@ typedef struct s_info
 	int		tmp_fd; //serve a salvare fd del file che usiamo come stdin per le pipe e input_delim
 	int		pipe_fd1[2]; //fd di una pipe
 	int		pipe_fd2[2]; //fd di una pipe
+	char	**tmp_matrix; //serve per accorciare input_delim
 }	t_info;
 
+void	no_end(t_info *info, int flag, char *tmp, char *buff);
+int		tmp_function(t_info *info, char *buff, char *tmp, int flag);
+void	tmp_function2(t_info *info, char **matrix, int i, int flag);
 void	matrix_cleaner(char ***m, int *i);
 void	export_exec(t_info *info, char **tmp, int arg);
-void 	export_no_arg(t_info *info, int i, int j);
-void 	p_export_no_arg(char **tmp);
-int 	export_checker(t_info *info, char *str);
+void	export_no_arg(t_info *info, int i, int j);
+void	p_export_no_arg(char **tmp);
+int		export_checker(t_info *info, char *str);
 void	start(t_info *info); //funzione che splitta l'intera riga letta da readline e la prepara all'analisi
 void	free_matrix(char **matrix); //funzione che libera la memoria di una matrice
 void	free_stuff(t_info *info, int flag); //funzione che libera tutta la memoria occupata dalla struttura globale
