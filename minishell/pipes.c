@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 11:27:13 by srapuano          #+#    #+#             */
-/*   Updated: 2023/12/01 15:10:02 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/02 12:23:40 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,20 @@ void	pipe_manager(t_info *info)
 			info->temp_stdout = dup(STDOUT_FILENO);
 		dup2(info->pipe_fd2[1], STDOUT_FILENO);
 	}
+}
+
+void	tmp_function2(t_info *info, char **matrix, int i, int flag)
+{
+	if (!info->temp_stdout)
+	info->temp_stdout = dup(STDOUT_FILENO);
+	dup2(2, STDOUT_FILENO);
+	tmp_file_creator(info, 0, 0);
+	dup2(info->tmp_fd, STDOUT_FILENO);
+	i == 0;
+	while (i < flag)
+		printf("%s", matrix[i++]);
+	tmp_file_creator(info, 2, 0);
+	tmp_file_creator(info, 1, 0);
+	dup2(info->temp_stdout, STDOUT_FILENO);
+	dup2(info->tmp_fd, 0);
 }
