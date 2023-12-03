@@ -1,6 +1,6 @@
 SRC := tests.cpp Account.cpp
 
-OBJ := $(SRC:.c=.o)
+OBJ := $(SRC:.cpp=.o)
 
 CC := c++
 
