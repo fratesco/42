@@ -30,7 +30,7 @@ fclean : clean
 
 re : fclean all
 
-.SILENT: $(NAME) $(OBJ) std
+.SILENT: $(NAME) $(OBJ)
 
 .PHONY :
 		all clean fclean re

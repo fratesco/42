@@ -33,8 +33,8 @@ public:
 	~Account( void );
 
 	void	makeDeposit( int deposit );
-	bool	makeWithdrawal( int withdrawal );
-	int		checkAmount( void ) const;
+	bool	makeWithdrawal( int withdrawal ); //forse bisogna returnare true o false a seconda se l'operazione è riuscita o meno; da test.cpp sembrerebbe di no
+	int		checkAmount( void ) const; //cerca perchè è const
 	void	displayStatus( void ) const;
 
 
