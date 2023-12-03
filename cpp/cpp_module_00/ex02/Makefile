@@ -1,4 +1,4 @@
-SRC := test.cpp Account.cpp
+SRC := tests.cpp Account.cpp
 
 OBJ := $(SRC:.c=.o)
 
