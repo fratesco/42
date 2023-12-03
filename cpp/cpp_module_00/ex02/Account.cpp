@@ -1,5 +1,6 @@
 #include "Account.hpp"
 #include <iostream>
+#include <ctime>
 
 int	Account::_nbAccounts;
 int	Account::_totalAmount;
@@ -91,5 +92,11 @@ void	Account::displayStatus() const
 
 void	Account::_displayTimestamp()
 {
-	std::cout<<"["<<"placeholder"<<"] ";
+	std::tm *time;
+	std::time_t	t;
+	char	buff[30];
+
+	std::time(&t);
+	std::strftime(buff, 30, "%Y%m%d_%H%M%S", std::localtime(&t));
+	std::cout<<"["<<buff<<"] ";
 }
