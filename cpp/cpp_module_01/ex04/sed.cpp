@@ -53,7 +53,7 @@ int	main(int argc, char** argv)
 	}
 	for (int i, j = 0; tmp; j++)
 	{
-		if ()
+		if () //scorri tutto il file salvato in file_tmp e capisci come comparare
 	}
 
 	return (0);
