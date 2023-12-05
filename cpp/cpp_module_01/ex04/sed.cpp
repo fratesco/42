@@ -49,12 +49,23 @@ int	main(int argc, char** argv)
 	{
 		std::cout<<"Unable to create "<<file_save<<std::endl;
 		file_old.close();
-		return (1)
+		return (1);
 	}
-	for (int i, j = 0; tmp; j++)
+	int	j = 0;
+	for (int i = 0; i < file_tmp.length(); i++)
 	{
-		if () //scorri tutto il file salvato in file_tmp e capisci come comparare
-	}
+		for(j = 0; (argv[2][j]) && argv[2][j] == (file_tmp.begin())[i + j]; j++);
 
+		if (j == strlen(argv[2]))
+		{
+			tmp.append(argv[3]);
+			i += strlen(argv[2]) - 1;
+		}	
+		else
+			tmp.push_back((file_tmp.begin())[i]);
+	}
+	file_new.write(tmp.c_str(), tmp.size());
+	file_old.close();
+	file_new.close();
 	return (0);
 }
