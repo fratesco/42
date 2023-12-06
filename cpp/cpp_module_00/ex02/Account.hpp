@@ -33,8 +33,8 @@ public:
 	~Account( void );
 
 	void	makeDeposit( int deposit );
-	bool	makeWithdrawal( int withdrawal ); //forse 
-	int		checkAmount( void ) const; //const = read-only
+	bool	makeWithdrawal( int withdrawal ); 
+	int		checkAmount( void ) const;
 	void	displayStatus( void ) const;
 
 
