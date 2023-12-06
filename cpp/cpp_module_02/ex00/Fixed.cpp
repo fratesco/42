@@ -23,7 +23,7 @@ Fixed::~Fixed()
 	std::cout<<"Destructor called\n";
 }
 
-int	Fixed::getRawBits()
+int	Fixed::getRawBits() const
 {
 	std::cout<<"getRawBits member function called\n";
 	return (fixed_point);
