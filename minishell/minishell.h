@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/02 12:13:33 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/08 16:00:11 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <fcntl.h>
+# include <sys/ioctl.h>
 # include <unistd.h>
 # include <stdbool.h>
 # include <readline/history.h>

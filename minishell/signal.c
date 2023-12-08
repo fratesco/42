@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:46:52 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/19 17:45:59 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/08 15:59:48 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,13 @@ void	interrupt(int signum)
 
 void	quitter(int signum)
 {
-	//bisogna trovare un modo per non far partire questo comando quando la stringa di readline è vuota
-	exit(0);
+	int	tmp;
+
+	ioctl(STDIN_FILENO, FIONREAD, &tmp);
+	if (tmp > 0)
+		exit(0);
+	else
+		return ;
 }
 
 void	signal_rewire(void)
