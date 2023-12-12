@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 13:06:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/01 16:26:10 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/12 12:58:53 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,9 @@ void	input_router(t_info *info, char *str, int col, int row)
 	i = col + 1;
 	if (str[i] == '<')
 	{
-		if (info->use_redirect[info->num_redirect++] == 1 && str[i + 1])
+		if (info->use_redirect[info->num_redirect] == 1 && str[i + 1])
 			return (input_delim(info, str, i + 1, 0));
-		else if (info->use_redirect[info->num_redirect++] == 1 && !str[i + 1])
+		else if (info->use_redirect[info->num_redirect] == 1 && !str[i + 1])
 		{
 			if (info->instr_token[row + 1])
 				input_delim(info, info->instr_token[row + 1], 0, 0);

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:34:18 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/02 12:23:15 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/12 12:58:35 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	fd_output(t_info *info, char *str, int start, int flag)
 	tmp = (char *)malloc(sizeof(char) * (i + 1));
 	ft_strlcpy(tmp, &str[start], i + 1);
 	if (flag == 0)
-		info->temp_out_fd = open(tmp, O_CREAT | O_WRONLY, 0666);
+		info->temp_out_fd = open(tmp, O_CREAT | O_TRUNC | O_WRONLY, 0666);
 	if (flag == 1 && info->num_redirect++)
 		info->temp_out_fd = open(tmp, O_CREAT | O_WRONLY | O_APPEND, 0666);
 	if (start == 0)
@@ -76,6 +76,7 @@ void	input_delim(t_info *info, char *str, int start, int flag)
 	char	buff[10000];
 
 	i = 0;
+	info->use_redirect[info->num_redirect++];
 	info->tmp_matrix = 0;
 	while (str[start + i] && str[start + i] != '>' && str[start + i] != '<')
 		i++;

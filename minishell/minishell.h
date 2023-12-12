@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/08 16:00:11 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/12 12:04:09 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,11 +128,9 @@ char	**splitter(char *av, char sep, int stop, int *ac); //split migliorato che t
 void	pip_index(t_info *info, int i, char t); //funzione che trova la posizione della prima pipe e la scrive in info.pos_pipe; viene utilizzato come stop di splitter;
 void	tmp_file_creator(t_info *info, int action, char **matr); //funzione che creare un file temporaneo in cui scriviamo e poi sostituiamo a stdin
 void	pipe_manager(t_info *info); // funzione che crea le pipe
-void	count_redirect(t_info *info, int i, int j, int count); //
+void	count_redirect(t_info *info, int i, int j, int count);
 void	count_allocate(t_info *info);
 char	**matrix_crusher(char **matrix, char *str); // creaa una copia di matrix a cui viene aggiunta str alla fine 
 char	**matrix_remover(char **matrix, int ind); // rimuove la stringha con indice ind dalla matriche matrix (in realtà ne fa una copia senza quella stringa)
-
-//void	quote_splitter(char **tokens);
 
 #endif

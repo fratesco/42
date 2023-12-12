@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:20:45 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/01 16:01:17 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/12 12:28:41 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void	pwd_handler(t_info *info)
 void	echo_handler(t_info *info)
 {
 	info->current_arg = 1;
+	if (info->instr_token[1]
+		&& ft_strncmp(info->instr_token[1], "-n", 2) == 0)
+			info->current_arg = 2;
 	while (info->instr_token[info->current_arg])
 	{
 		printf("%s", info->instr_token[info->current_arg]);
@@ -52,7 +55,7 @@ void	cd_handler(t_info *info)
 		else if (errno == ENOTDIR)
 			printf ("cd : %s : Not a directory\n",
 				info->instr_token[info->current_arg]);
-		else if (cd_loop(info, -1)) //forse questo non va fatto non deve controllare dentro tutto il PATH si fa solo per i comandi
+		else if (cd_loop(info, -1))
 			printf("cd : %s : %s\n",
 				info->instr_token[info->current_arg], strerror(errno));
 	}
