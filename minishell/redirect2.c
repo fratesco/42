@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 10:34:18 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/12 12:58:35 by fgolino          ###   ########.fr       */
+/*   Updated: 2023/12/15 15:13:05 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,7 @@ void	fd_output(t_info *info, char *str, int start, int flag)
 		info->end_save = start - 1;
 	if (info->temp_out_fd == -1)
 	{
-		if (info->is_error == 0)
-			info->is_error = errno;
-		if (!info->str_error)
-			info->str_error = strdup(tmp);
+		tmp_error(info, tmp);
 		return ;
 	}
 	free(tmp);
