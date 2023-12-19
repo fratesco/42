@@ -30,6 +30,98 @@ void Fixed::operator=(Fixed const &src)
 	this->fixed_point = src.fixed_point;
 }
 
+int	Fixed::operator!=(Fixed const &src) const
+{
+	if (this->fixed_point != src.fixed_point)
+		return (true);
+	return (false);
+}
+
+int	Fixed::operator==(Fixed const &src) const
+{
+	if (this->fixed_point == src.fixed_point)
+		return (true);
+	return (false);
+}
+
+int	Fixed::operator>(Fixed const &src) const
+{
+	if (this->fixed_point > src.fixed_point)
+		return (true);
+	return (false);
+}
+
+int	Fixed::operator<(Fixed const &src) const
+{
+	if (this->fixed_point < src.fixed_point)
+		return (true);
+	return (false);
+}
+
+int	Fixed::operator>=(Fixed const &src) const
+{
+	if (this->fixed_point >= src.fixed_point)
+		return (true);
+	return (false);
+}
+
+int	Fixed::operator<=(Fixed const &src) const
+{
+	if (this->fixed_point <= src.fixed_point)
+		return (true);
+	return (false);
+}
+
+Fixed	Fixed::operator+(Fixed	const &src)
+{
+	this->fixed_point += src.fixed_point;
+	return (*this);
+}
+
+Fixed	Fixed::operator-(Fixed	const &src)
+{
+	this->fixed_point -= src.fixed_point;
+	return (*this);
+}
+
+Fixed	Fixed::operator*(Fixed	const &src)
+{
+	this->fixed_point = (this->toFloat() * src.toFloat()) * (1 << this->fractional_bits);
+	return (*this);
+}
+
+Fixed	Fixed::operator/(Fixed	const &src)
+{
+	this->fixed_point = (this->toFloat() / src.toFloat()) * (1 << this->fractional_bits);
+	return (*this);
+}
+
+Fixed	Fixed::operator++(int)
+{
+	Fixed	tmp(*this);
+	this->fixed_point++;
+	return (tmp);
+}
+
+Fixed	Fixed::operator++()
+{
+	this->fixed_point++;
+	return (*this);
+}
+
+Fixed	Fixed::operator--(int)
+{
+	Fixed	tmp(*this);
+	this->fixed_point--;
+	return (tmp);
+}
+
+Fixed	Fixed::operator--()
+{
+	this->fixed_point--;
+	return (*this);
+}
+
 std::ostream	&operator<<(std::ostream &os, Fixed const &fixed)
 {
 	os<<fixed.toFloat();
@@ -39,6 +131,34 @@ std::ostream	&operator<<(std::ostream &os, Fixed const &fixed)
 Fixed::~Fixed()
 {
 	std::cout<<"Destructor called\n";
+}
+
+Fixed	&Fixed::min(Fixed &f, Fixed &s)
+{
+	if (f > s)
+		return (s);
+	return (f);
+}
+
+Fixed	&Fixed::max(Fixed &f, Fixed &s)
+{
+	if (f > s)
+		return (f);
+	return (s);
+}
+
+Fixed const	&Fixed::min(Fixed const &f, Fixed const &s)
+{
+	if (f > s)
+		return (s);
+	return (f);
+}
+
+Fixed const	&Fixed::max(Fixed const &f, Fixed const &s)
+{
+	if (f > s)
+		return (f);
+	return (s);
 }
 
 int	Fixed::getRawBits() const
