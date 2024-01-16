@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 19:49:24 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/01 16:02:30 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/01/16 18:01:24 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,10 @@ int	cd_loop(t_info *info, int i)
 	return (1);
 }
 
-void	exit_handler(t_info *info)
+void	exit_handler(t_info *info, int i)
 {
-	int	i;
-
-	i = 0;
-	while (info->instr_token[info->current_arg][i])
+	while (info->instr_token[info->current_arg]
+		&& info->instr_token[info->current_arg][i])
 	{
 		if (info->instr_token[info->current_arg][i] < 48 ||
 			info->instr_token[info->current_arg][i] > 57)
@@ -91,7 +89,8 @@ void	exit_handler(t_info *info)
 		}
 		i++;
 	}
-	i = ft_atoi(info->instr_token[info->current_arg]);
+	if (info->instr_token[info->current_arg])
+		i = ft_atoi(info->instr_token[info->current_arg]);
 	free_stuff(info, 1);
 	free(info->instruction);
 	free_stuff(info, 0);

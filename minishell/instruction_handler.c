@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/01 15:18:30 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/01/16 18:01:52 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	analizer(t_info *info, int i, int j)
 	else if (ft_strncmp(info->instr_token[0], "unset", i) == 0)
 		unset_handler(info, info->current_arg, -1);
 	else if (ft_strncmp(info->instr_token[0], "exit", i) == 0)
-		exit_handler(info);
+		exit_handler(info, 0);
 	else
 	{
 		info->instr_pid = fork();

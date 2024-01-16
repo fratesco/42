@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 17:11:09 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/15 15:15:40 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/01/16 18:01:38 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	env_handler(t_info *info);
 void	unset_handler(t_info *info, int arg, int i);
 void	export_handler(t_info *info, int arg, int f, int ff);
 int		token_checker(t_info *info, int arg);
-void	exit_handler(t_info *info);
+void	exit_handler(t_info *info, int i);
 void	try_find_do(t_info *info, char *name);
 int		redirector(t_info *info);
 int		check_redirection(char *str, t_info *info, int row, int i);
