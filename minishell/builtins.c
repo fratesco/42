@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:20:45 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/12 12:28:41 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/01/16 18:08:05 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	echo_handler(t_info *info)
 	info->current_arg = 1;
 	if (info->instr_token[1]
 		&& ft_strncmp(info->instr_token[1], "-n", 2) == 0)
-			info->current_arg = 2;
+		info->current_arg = 2;
 	while (info->instr_token[info->current_arg])
 	{
 		printf("%s", info->instr_token[info->current_arg]);

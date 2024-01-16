@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 11:27:13 by srapuano          #+#    #+#             */
-/*   Updated: 2023/12/02 12:23:40 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/01/16 18:04:31 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	pipe_manager(t_info *info)
 void	tmp_function2(t_info *info, char **matrix, int i, int flag)
 {
 	if (!info->temp_stdout)
-	info->temp_stdout = dup(STDOUT_FILENO);
+		info->temp_stdout = dup(STDOUT_FILENO);
 	dup2(2, STDOUT_FILENO);
 	tmp_file_creator(info, 0, 0);
 	dup2(info->tmp_fd, STDOUT_FILENO);

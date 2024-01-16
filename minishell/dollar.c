@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:55:47 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/01 16:42:51 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/01/16 18:07:36 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char	*dollar_exit(char *str, t_info *info)
 	free(num);
 	free(str);
 	if (check_dollar(tmp) >= 0)
-	tmp = dollar_remover(info, tmp, check_dollar(tmp));
+		tmp = dollar_remover(info, tmp, check_dollar(tmp));
 	return (tmp);
 }
 
