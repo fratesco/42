@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 19:49:24 by fgolino           #+#    #+#             */
-/*   Updated: 2024/01/16 18:01:24 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/01/22 15:03:39 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	cd_loop(t_info *info, int i)
 {
 	char	*tmp;
 
-	while (info->global_path[++i])
+	while (info->global_path && info->global_path[++i])
 	{
 		tmp = triple_join(info->global_path[i], "/",
 				info->instr_token[info->current_arg]);

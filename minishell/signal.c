@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 16:46:52 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/15 15:16:45 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/01/22 15:06:52 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	signal_rewire(void)
 	sigemptyset(&new_action.sa_mask);
 	new_action.sa_flags = 0;
 	sigaction(SIGINT, &new_action, NULL);
-	new_action.sa_handler = quitter;
+	new_action.sa_handler = SIG_IGN;
 	sigemptyset(&new_action.sa_mask);
 	sigaction(SIGQUIT, &new_action, NULL);
 }

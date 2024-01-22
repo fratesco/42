@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 14:55:47 by fgolino           #+#    #+#             */
-/*   Updated: 2024/01/16 18:07:36 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/01/22 15:24:09 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_dollar(char *str)
 			while (str && (str[i] != '\'') && str[i])
 				i++;
 		}
-		else if (str[i] == '$' && str[i + 1] != ' ')
+		else if (str[i] == '$' && str[i + 1] && str[i + 1] != ' ' )
 		{
 			if (str[i + 1] == '?')
 				return (42);

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 15:29:57 by fgolino           #+#    #+#             */
-/*   Updated: 2023/11/13 11:38:23 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/01/22 15:00:41 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,22 @@ int	found(t_info *info, char *path)
 	exit(126);
 }
 
-void	try_find_do(t_info *info, char *name)
+void	try_find_do(t_info *info, char *name, int i, int j)
 {
-	int		i;
-	int		j;
 	char	*tmp;
 
-	i = 0;
-	j = 0;
 	if (!access(name, F_OK))
 		found(info, name);
 	else
 	{
-		while (info->global_path[i])
+		tmp = get_global(info->environment, "PATH");
+		free_matrix(info->global_path);
+		info->global_path = 0;
+		if (tmp)
+			info->global_path = ft_split(tmp, ':');
+		while (info->global_path && info->global_path[i])
 		{
-			tmp = triple_join(info->global_path[i], "/", name);
+			tmp = triple_join(info->global_path[i++], "/", name);
 			if (!access(tmp, F_OK))
 			{
 				found(info, tmp);
@@ -60,7 +61,6 @@ void	try_find_do(t_info *info, char *name)
 				break ;
 			}
 			free(tmp);
-			i++;
 		}
 		printf("%s: command not found\n", name);
 		exit(127);

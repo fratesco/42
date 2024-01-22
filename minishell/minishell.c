@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/01 16:36:42 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/01/22 15:04:43 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,13 @@ void	get_environment(t_info *g_info, char **environment)
 {
 	char	*tmp;
 
+	tmp = 0;
 	g_info->environment = matrix_crusher(environment, NULL);
 	tmp = get_global(g_info->environment, "PATH");
-	g_info->global_path = ft_split(tmp, ':');
-	free(tmp);
+	if (tmp)
+		g_info->global_path = ft_split(tmp, ':');
+	if (tmp)
+		free(tmp);
 	tmp = get_global(g_info->environment, "USER");
 	g_info->user = ft_strjoin(tmp, (":~"));
 	free(tmp);

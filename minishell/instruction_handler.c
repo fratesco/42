@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 15:29:02 by fgolino           #+#    #+#             */
-/*   Updated: 2024/01/16 18:01:52 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/01/22 15:01:14 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	analizer(t_info *info, int i, int j)
 		if (!info->instr_pid)
 		{
 			signal_fork();
-			try_find_do(info, info->instr_token[0]);
+			try_find_do(info, info->instr_token[0], 0, 0);
 		}
 		signal_avoid();
 	}
