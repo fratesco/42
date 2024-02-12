@@ -2,7 +2,7 @@
 
 ClapTrap::ClapTrap()
 {
-	std::cout<<"Unnamed Claptrap created by default constructor\n";
+	std::cout<<"Unnamed ClapTrap created by default constructor\n";
 }
 
 ClapTrap::ClapTrap(std::string name)
@@ -12,7 +12,7 @@ ClapTrap::ClapTrap(std::string name)
 	this->energy = 10;
 	this->attack_damage = 0;
 
-	std::cout<<"ClapTrap "<<name<<" created by the default constructor\n";
+	std::cout<<"ClapTrap "<<name<<" created by the constructor\n";
 }
 
 ClapTrap::ClapTrap(const ClapTrap &src)
@@ -63,4 +63,9 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	energy--;
 	hp += amount;
 	std::cout<<"ClapTrap "<<name<<" got repaired and restored "<<amount<<" health points!\n";
+}
+
+std::string ClapTrap::getName()
+{
+	return (name);
 }
