@@ -69,16 +69,16 @@ int		ScavTrap::getHp()
 {
 	return(hp);
 }
-//void	ScavTrap::attack(std::string const &target)
-//{
-//	if ((hp > 0) && (energy > 0))
-//		std::cout<<"ScavTrap "<<name<<" dealt "<<attack_damage<<" points of damage to "<<target<<"!\n";
-//	else if (hp <= 0)
-//		std::cout<<"ScavTrap "<<name<<" is broken and need repairing.\n";
-//	else if (energy <= 0)
-//		std::cout<<"ScavTrap "<<name<<" is out of energy.\n";
-//	energy--;
-//}
+void	ScavTrap::attack(std::string const &target)
+{
+	if ((hp > 0) && (energy > 0))
+		std::cout<<"ScavTrap "<<name<<" dealt "<<attack_damage<<" points of damage to "<<target<<"!\n";
+	else if (hp <= 0)
+		std::cout<<"ScavTrap "<<name<<" is broken and need repairing.\n";
+	else if (energy <= 0)
+		std::cout<<"ScavTrap "<<name<<" is out of energy.\n";
+	energy--;
+}
 //void	ScavTrap::takeDamage(unsigned int amount)
 //{
 //
