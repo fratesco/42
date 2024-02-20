@@ -14,12 +14,16 @@ class ScavTrap : public ClapTrap
 			ScavTrap &operator=(const ScavTrap &src);
 			~ScavTrap();
 
-			void		setName(std::string name);
-			void		setHP(unsigned int amount);
-			void		setEnergy(unsigned int amount);
-			void		setAttack(unsigned int amount);
-			void		attack(std::string const &target);
-			void		guardGate();
+			void	setName(std::string name);
+			void	setHP(unsigned int amount);
+			void	setEnergy(unsigned int amount);
+			void	setAttack(unsigned int amount);
+			int		getAttack();
+			int		getEnergy();
+			int		getHp();
+			//void	attack(std::string const &target);
+			//void	takeDamage(unsigned int amount);
+			void	guardGate();
 			
 	private:
 			

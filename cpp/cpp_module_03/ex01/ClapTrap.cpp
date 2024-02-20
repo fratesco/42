@@ -39,11 +39,11 @@ ClapTrap::~ClapTrap()
 void	ClapTrap::attack(const std::string &target)
 {
 	if ((hp > 0) && (energy > 0))
-		std::cout<<"ClapTrap "<<name<<" dealt "<<attack_damage<<" points of damage to "<<target<<"!\n";
+		std::cout<<name<<" dealt "<<attack_damage<<" points of damage to "<<target<<"!\n";
 	else if (hp <= 0)
-		std::cout<<"ClapTrap "<<name<<" is broken and need repairing.\n";
+		std::cout<<name<<" is broken and need repairing.\n";
 	else if (energy <= 0)
-		std::cout<<"ClapTrap "<<name<<" is out of energy.\n";
+		std::cout<<name<<" is out of energy.\n";
 	energy--;
 }
 
@@ -53,7 +53,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 		hp -= amount;
 	else if (amount > hp)
 		hp = 0;
-	std::cout<<"ClapTrap "<<name<<" took "<<amount<<" points of damage and its health is reduced to "<<hp<<"\n";
+	std::cout<<name<<" took "<<amount<<" points of damage and its health is reduced to "<<hp<<"\n";
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
@@ -62,7 +62,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		return ((void)(std::cout<<"ClapTrap "<<name<<" is out of energy.\n"));
 	energy--;
 	hp += amount;
-	std::cout<<"ClapTrap "<<name<<" got repaired and restored "<<amount<<" health points!\n";
+	std::cout<<name<<" got repaired and restored "<<amount<<" health points!\n";
 }
 
 std::string ClapTrap::getName()

@@ -1,3 +1,6 @@
+#ifndef CLAPTRAP_HPP
+#define CLAPTRAP_HPP
+
 #include <iostream>
 #include <string>
 
@@ -22,3 +25,5 @@ class ClapTrap
 			int	attack_damage;
 			
 };
+
+#endif
