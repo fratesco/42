@@ -2,6 +2,7 @@
 
 Cat::Cat()
 {
+	brain = new Brain;
 	std::cout<<"A cat appeared to scratch you\n";
 }
 
@@ -19,6 +20,7 @@ Cat &Cat::operator=(const Cat &src)
 
 Cat::~Cat()
 {
+	delete (brain);
 	std::cout<<"The *totally* normal cat went away\n";
 }
 

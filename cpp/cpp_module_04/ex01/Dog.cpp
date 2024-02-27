@@ -2,6 +2,7 @@
 
 Dog::Dog()
 {
+	brain = new Brain;
 	std::cout<<"A Dog appeared to bite you\n";
 }
 
@@ -19,6 +20,7 @@ Dog &Dog::operator=(const Dog &src)
 
 Dog::~Dog()
 {
+	delete (brain);
 	std::cout<<"The *absolutely* normal Dog went away\n";
 }
 
