@@ -2,13 +2,15 @@
 #define CHARACTER_HPP
 
 #include "ICharacter.hpp"
-#include "AMateria.hpp"
+#include <vector>
+#include <iostream>
 
 class Character : public ICharacter
 {
 	protected:
-			std::string	name;
-			AMateria 	*inventory[4];
+			std::string				name;
+			AMateria 				*inventory[4];
+			std::vector<AMateria *>	floor;
 
 	public:
 			Character();

@@ -1,4 +1,5 @@
 #include "Character.hpp"
+#include "AMateria.hpp"
 
 Character::Character()
 {
@@ -50,6 +51,8 @@ Character::~Character()
 		if (inventory[i])
 			delete (inventory[i]);
 	}
+	for (int i = 0; i < floor.size(); i++)
+		delete(floor[i]);
 	std::cout<<getName()<<" just died!\n";
 }
 
@@ -73,5 +76,16 @@ void	Character::equip(AMateria *m)
 
 void	Character::unequip(int	idx)
 {
-	
+	if (idx > 0 && idx < 4 && inventory[idx])
+	{
+		std::cout<<getName()<<" dropped "<<inventory[idx]->getType()<<"on the floor"<<std::endl;
+		floor.push_back(inventory[idx]);
+		inventory[idx] = 0;
+	}
+}
+
+void	Character::use(int idx, ICharacter &target)
+{
+	if (idx >= 0 && idx < 4 && inventory[idx])
+		inventory[idx]->use(target);
 }
