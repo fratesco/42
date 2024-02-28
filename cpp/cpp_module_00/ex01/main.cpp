@@ -9,6 +9,8 @@ int	main()
 	{
 		std::cout<<"Enter one of the following commands: ADD, SEARCH, EXIT.\n>: ";
 		std::cin>>tmp;
+		if (!std::cin)
+			break;
 		if (tmp.compare("ADD") == 0)
 			book.add();
 		else if (tmp.compare("SEARCH") == 0)

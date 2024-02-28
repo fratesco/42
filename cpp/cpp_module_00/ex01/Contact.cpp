@@ -2,10 +2,10 @@
 
 void	aligner(std::string str)
 {
-		for(int j = ((int)str.size()); j < 9; j++)
+		for(int j = ((int)str.size()); j < 10; j++)
 			std::cout<<" ";
 		if ((int)str.size() >= 10)
-			std::cout<<(str.substr(0, 8))<<".";
+			std::cout<<(str.substr(0, 9))<<".";
 		else
 			std::cout<<str;
 		std::cout<<"|";
@@ -37,7 +37,7 @@ void	Contact::display()
 
 void	Contact::display_aligned(int i)
 {
-	for(int j = 0; j < 8; j++)
+	for(int j = 0; j < 9; j++)
 		std::cout<<" ";
 	std::cout<<(i+1)<<"|";
 	aligner(first_name);
