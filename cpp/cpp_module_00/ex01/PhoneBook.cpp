@@ -32,22 +32,26 @@ void PhoneBook::display()
 		if (tmp.empty() || tmp.size() > 1)
 		{
 			std::cout<<"Null or out of range index\n";
-			continue ;
+			break ;
 		}
+		int cond = 1;
 		for(int	i = 0; !tmp.empty() && tmp[i]; i++)
 		{
 			if (!isdigit(tmp[i]) || tmp[i] == '0')
 			{
 				std::cout<<"Not a valid index\n";
-				continue ;
+				cond = 0;
+				break ;
 			}
 			if ((tmp[i] - 48) > num_contact)
 			{
 				std::cout<<"That index has no contact\n";
-				continue ;
+				cond = 0;
+				break; ;
 			}
 		}
-		contact[tmp[0] - 49].display();
+		if (cond)
+			contact[tmp[0] - 49].display();
 		break ;
 	}
 }
