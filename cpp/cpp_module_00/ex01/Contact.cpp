@@ -14,19 +14,19 @@ void	aligner(std::string str)
 void	Contact::add()
 {
 	std::cout<<"Type their first name:";
-	while (first_name.length() == 0)
+	while (first_name.length() == 0 && std::cin)
 		std::cin>>first_name;
 	std::cout<<"Type their last name:";
-	while (last_name.length() == 0)
+	while (last_name.length() == 0 && std::cin)
 		std::cin>>last_name;
 	std::cout<<"Type their nickname name:";
-	while (nickname.length() == 0)
+	while (nickname.length() == 0 && std::cin)
 		std::cin>>nickname;
 	std::cout<<"Type their phone number:";
-	while (phone_number.length() == 0)
+	while (phone_number.length() == 0 && std::cin)
 		std::cin>>phone_number;
 	std::cout<<"Type their darkest secret:";
-	while (darkest_secret.length() == 0)
+	while (darkest_secret.length() == 0 && std::cin)
 		std::cin>>darkest_secret;
 }
 

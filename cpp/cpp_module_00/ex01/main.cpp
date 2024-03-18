@@ -6,8 +6,10 @@ int	main()
 	std::string		tmp;
 	while (1)
 	{
+		tmp.clear();
 		std::cout<<"Enter one of the following commands: ADD, SEARCH, EXIT.\n>: ";
-		getline(std::cin, tmp);
+		while (tmp.empty() && std::cin)
+			getline(std::cin, tmp);
 		if (!std::cin)
 			break;
 		if (tmp.compare("ADD") == 0)
