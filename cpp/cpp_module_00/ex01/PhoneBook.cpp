@@ -29,7 +29,7 @@ void PhoneBook::display()
 	{
 		std::cout<<"Insert the index of the contact you want to display: ";
 		std::string tmp;
-		std::cin>>tmp;
+		getline(std::cin, tmp);
 		if (tmp.empty() || tmp.size() > 1)
 		{
 			std::cout<<"Null or out of range index\n";
