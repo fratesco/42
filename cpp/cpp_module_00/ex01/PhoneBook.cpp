@@ -48,7 +48,7 @@ void PhoneBook::display()
 			{
 				std::cout<<"That index has no contact\n";
 				cond = 0;
-				break; ;
+				break;
 			}
 		}
 		if (cond)
