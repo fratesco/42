@@ -2,13 +2,12 @@
 
 int	main()
 {
-	PhoneBook	book;
-	std::string	tmp;
-	
+	PhoneBook		book;
+	std::string		tmp;
 	while (1)
 	{
 		std::cout<<"Enter one of the following commands: ADD, SEARCH, EXIT.\n>: ";
-		std::cin>>tmp;
+		getline(std::cin, tmp);
 		if (!std::cin)
 			break;
 		if (tmp.compare("ADD") == 0)

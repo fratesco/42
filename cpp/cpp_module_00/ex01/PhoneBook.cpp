@@ -8,10 +8,11 @@ PhoneBook::PhoneBook()
 
 void PhoneBook::add()
 {
-	if (current_contact > 7)
+	if (num_contact > 7)
 	{
+		if (current_contact == 8)
+			current_contact = 0;
 		std::cout<<"Maximum number of contacts reached; Overwriting the oldest one\n";
-		current_contact = 0;
 		contact[current_contact].clear();
 	}
 	else if (num_contact < 8)
