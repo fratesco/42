@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/26 14:49:42 by fgolino           #+#    #+#             */
-/*   Updated: 2024/03/26 14:49:43 by fgolino          ###   ########.fr       */
+/*   Created: 2023/01/26 10:42:05 by fgolino           #+#    #+#             */
+/*   Updated: 2023/01/27 11:52:42 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_linux/mlx.h"
+#include "libft.h"
 
-int	main(void)
+t_list	*ft_lstnew(void *content)
 {
-	//void	*mlx;
-	//void	*mlx_win;
-//
-	//mlx = mlx_init();
-	//mlx_win = mlx_new_window(mlx, 1280, 800, "Hello world!");
-	//mlx_loop(mlx);
-	
+	t_list	*new;
 
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
+		return (0);
+	new->content = content;
+	new->next = 0;
+	return (new);
 }
