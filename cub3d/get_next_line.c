@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:41:46 by fgolino           #+#    #+#             */
-/*   Updated: 2024/03/26 17:42:34 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/03/27 12:23:32 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*get_next_brokenl(char *brokenl)
 
 	i = 0;
 	j = 0;
-	while (brokenl[i] && brokenl[i - 1] != '\n')
+	while (brokenl[i] && brokenl[i] != '\n')
 		i++;
 	if (!brokenl[i])
 	{
@@ -31,7 +31,7 @@ char	*get_next_brokenl(char *brokenl)
 	if (!newbl)
 		return (NULL);
 	while (brokenl[i])
-		newbl[j++] = brokenl[i++];
+		newbl[j++] = brokenl[1 + i++];
 	newbl[j] = 0;
 	free(brokenl);
 	return (newbl);
@@ -46,7 +46,7 @@ char	*get_fixed_line(const char *brokenl)
 	i = 0;
 	if (!brokenl[0])
 		return (NULL);
-	while (brokenl[i] && brokenl[i - 1] != '\n')
+	while (brokenl[i] && brokenl[i] != '\n')
 		i++;
 	fixedl = (char *)malloc(sizeof(char) * (i + 1));
 	if (!fixedl)
@@ -68,15 +68,15 @@ char	*get_broken_line(int fd, char *brokenl)
 
 	buf = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!buf)
-		return (NULL);
+		return ((void *)1);
 	rlen = 1;
 	while (rlen != 0 && ft_strchr(brokenl, '\n') == 0)
 	{
 		rlen = read(fd, buf, BUFFER_SIZE);
-		if (rlen == -1)
+		if (rlen == -1 || rlen == 0)
 		{
 			free (buf);
-			return (NULL);
+			return ((void *)1);
 		}
 		buf[rlen] = 0;
 		brokenl = ft_strjoin(brokenl, buf);
@@ -91,9 +91,11 @@ char	*get_next_line(int fd)
 	static char	*brokenl;
 
 	if (fd < 0 || BUFFER_SIZE < 1)
-		return (NULL);
+		return ((void *)1);
 	brokenl = get_broken_line(fd, brokenl);
-	if (!brokenl)
+	if (brokenl == (void *)1)
+		return (brokenl);
+	else if (!brokenl)
 		return (NULL);
 	fixedl = get_fixed_line(brokenl);
 	brokenl = get_next_brokenl(brokenl);

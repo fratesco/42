@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/03/26 17:41:06 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/03/27 12:33:46 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int		check_input(int argc, char **argv, t_data *data);
 int		spaces_skipper(char *str, int start);
 int		string_to_rgb(char *str);
 int		comparer(char *tmp, t_data *data, int i);
-
+void	free_matrix(char **matrix);
+void	freerer(t_data *data);
+void	initializer(t_data *data);
 
 #endif

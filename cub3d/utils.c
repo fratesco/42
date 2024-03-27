@@ -1,39 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/20 16:23:53 by fgolino           #+#    #+#             */
-/*   Updated: 2024/03/27 12:04:29 by fgolino          ###   ########.fr       */
+/*   Created: 2024/03/27 12:28:23 by fgolino           #+#    #+#             */
+/*   Updated: 2024/03/27 12:32:35 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	free_matrix(char **matrix)
 {
-	int		len;
-	int		i;
-	char	*str;
+	int	i;
 
 	i = 0;
-	len = ft_strlen(s1);
-	str = (char *)malloc((len + ft_strlen(s2) + 1) * sizeof(char));
-	if (!str)
-		return (0);
-	while (s1 && s1[i])
+	while (matrix != NULL && matrix[i])
 	{
-		str[i] = s1[i];
+		free(matrix[i]);
 		i++;
 	}
-	i = 0;
-	while (s2 && s2[i])
+	if (matrix != NULL)
 	{
-		str[len + i] = s2[i];
-		i++;
+		if (matrix[i])
+			free(matrix[i]);
+		free(matrix);
 	}
-	str[len + i] = 0;
-	return (str);
+	return ;
+}
+
+void	freerer(t_data *data)
+{
+	if (data->n_path)
+		free(data->n_path);
+	if (data->s_path)
+		free(data->s_path);
+	if (data->w_path)
+		free(data->w_path);
+	if (data->e_path)
+		free(data->e_path);
+	free_matrix(data->map);
 }

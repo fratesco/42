@@ -6,12 +6,21 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:49:42 by fgolino           #+#    #+#             */
-/*   Updated: 2024/03/26 16:34:38 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/03/27 12:34:12 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_linux/mlx.h"
 #include "cub3d.h"
+
+void	initializer(t_data *data)
+{
+	data->map = NULL;
+	data->n_path = NULL;
+	data->e_path = NULL;
+	data->w_path = NULL;
+	data->s_path = NULL;
+}
 
 int	check_input(int argc, char **argv, t_data *data)
 {
@@ -44,8 +53,10 @@ int	main(int argc, char **argv)
 
 	if (check_input(argc, argv, &data))
 		exit(1);
+	initializer(&data);
 	checker(&data);
 	close(data.ber_fd);
+	freerer(&data);
 	//void	*mlx;
 	//void	*mlx_win;
 //
