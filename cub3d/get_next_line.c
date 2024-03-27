@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:41:46 by fgolino           #+#    #+#             */
-/*   Updated: 2024/03/27 12:23:32 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/03/27 12:48:56 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ char	*get_broken_line(int fd, char *brokenl)
 		if (rlen == -1 || rlen == 0)
 		{
 			free (buf);
+			if (brokenl)
+				free(brokenl);
 			return ((void *)1);
 		}
 		buf[rlen] = 0;
@@ -90,7 +92,12 @@ char	*get_next_line(int fd)
 	char		*fixedl;
 	static char	*brokenl;
 
-	if (fd < 0 || BUFFER_SIZE < 1)
+	if (fd == -1 && brokenl)
+	{
+		free(brokenl);
+		return (NULL);
+	}
+	else if (fd < 0 || BUFFER_SIZE < 1)
 		return ((void *)1);
 	brokenl = get_broken_line(fd, brokenl);
 	if (brokenl == (void *)1)

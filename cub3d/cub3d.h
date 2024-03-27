@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/03/27 12:33:46 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/03/27 12:38:18 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_data
 
 }	t_data;
 
-int		checker(t_data *data);
+int		checker(t_data *data, int i, int j);
 int		check_input(int argc, char **argv, t_data *data);
 int		spaces_skipper(char *str, int start);
 int		string_to_rgb(char *str);

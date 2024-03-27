@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:34:03 by fgolino           #+#    #+#             */
-/*   Updated: 2024/03/27 12:27:57 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/03/27 12:50:29 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,24 @@ int	comparer(char *tmp, t_data *data, int i)
 	else if (!ft_strncmp(&tmp[i], "C", 1))
 		data->ceiling_color = string_to_rgb(&tmp[spaces_skipper(tmp, i + 2)]);
 	else
+	{
+		printf("Invalid format for the .ber file\n");
+		free(tmp);
 		return (0);
+	}
 	free(tmp);
 	return (1);
 }
 
 int	string_to_rgb(char *str)
 {
-	return 0;
+	return (0);
 }
 
-int	checker(t_data *data)
+int	checker(t_data *data, int i, int j)
 {
 	char	*tmp;
-	int		i;
-	int		j;
 
-	j = 0;
 	while (j < 6)
 	{
 		tmp = get_next_line(data->ber_fd);
@@ -73,10 +74,7 @@ int	checker(t_data *data)
 		if (comparer(tmp, data, i))
 			j++;
 		else
-		{
-			printf("Invalid format for the .ber file\n");
-			free(tmp);
 			break ;
-		}
 	}
+	get_next_line(-1);
 }

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:49:42 by fgolino           #+#    #+#             */
-/*   Updated: 2024/03/27 12:34:12 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/03/27 12:38:24 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int argc, char **argv)
 	if (check_input(argc, argv, &data))
 		exit(1);
 	initializer(&data);
-	checker(&data);
+	checker(&data, 0, 0);
 	close(data.ber_fd);
 	freerer(&data);
 	//void	*mlx;
