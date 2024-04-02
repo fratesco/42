@@ -18,6 +18,7 @@
 # define NOTHING 0
 # include <unistd.h>
 # include <stdarg.h>
+# include <stdint.h>
 # include <stdlib.h>
 
 typedef enum b_bool{FALSE, TRUE}	t_bool;
