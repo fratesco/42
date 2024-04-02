@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:49:42 by fgolino           #+#    #+#             */
-/*   Updated: 2024/03/27 12:38:24 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/02 17:32:14 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	initializer(t_data *data)
 	data->e_path = NULL;
 	data->w_path = NULL;
 	data->s_path = NULL;
+	data->ceiling_color = 0;
+	data->floor_color = 0;
 }
 
 int	check_input(int argc, char **argv, t_data *data)

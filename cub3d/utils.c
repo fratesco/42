@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 12:28:23 by fgolino           #+#    #+#             */
-/*   Updated: 2024/03/27 12:32:35 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/02 17:48:48 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,21 @@ void	free_matrix(char **matrix)
 		free(matrix);
 	}
 	return ;
+}
+
+int	color_checker(char *str, int i)
+{
+	while (str && str[i])
+	{
+		if (((str[i] < '0' && str[i] != ',') || str[i] > '9')
+			&& (str[i] != ' ' || str[i] != '\t' || str[i] != '\v'))
+		{
+			printf("Only numbers are accepted as RGB values\n");
+			return (1);
+		}
+		i++;
+	}
+	return (0);
 }
 
 void	freerer(t_data *data)
