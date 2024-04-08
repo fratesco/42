@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/08 16:08:37 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/08 16:25:16 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <string.h>
 # include "libft/libft.h"
 # include "get_next_line.h"
+# include "mlx_linux/mlx.h"
 
 typedef struct s_data
 {
