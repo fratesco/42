@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 12:28:23 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/02 17:53:14 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/08 15:03:07 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,32 @@ void	freerer(t_data *data)
 	if (data->e_path)
 		free(data->e_path);
 	free_matrix(data->map);
+}
+
+char	**matrix_crusher(char **matrix, char *str, int i)
+{
+	char	**nmatrix;
+
+	while (matrix && matrix[i])
+		i++;
+	nmatrix = (char **)malloc(sizeof(char *) * (i + 2));
+	if (!nmatrix)
+	{
+		free (nmatrix);
+		return (NULL);
+	}
+	i = -1;
+	while (matrix && matrix[++i])
+		nmatrix[i] = ft_strdup(matrix[i]);
+	if (str)
+	{
+		if (!matrix)
+			i = 0;
+		nmatrix[i] = ft_strdup(str);
+		nmatrix[i + 1] = NULL;
+	}
+	else
+		nmatrix[i] = NULL;
+	free_matrix(matrix);
+	return (nmatrix);
 }

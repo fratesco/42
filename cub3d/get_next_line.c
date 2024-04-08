@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:41:46 by fgolino           #+#    #+#             */
-/*   Updated: 2024/03/27 12:48:56 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/08 15:09:44 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ char	*get_fixed_line(const char *brokenl)
 		i++;
 	fixedl = (char *)malloc(sizeof(char) * (i + 1));
 	if (!fixedl)
+	{
+		free (fixedl);
 		return (NULL);
+	}
 	x = 0;
 	while (i--)
 	{

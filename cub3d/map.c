@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:34:03 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/02 17:42:53 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/08 15:12:06 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	spaces_skipper(char *str, int start)
 	int	i;
 
 	i = start;
-	while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\v'))
+	while (str && str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\v'))
 		i++;
 	return (i);
 }
@@ -85,7 +85,7 @@ int	checker(t_data *data, int i, int j)
 		if (tmp == (void *)1)
 		{
 			printf("Not enough elements in the .ber file\n");
-			break ;
+			return (1);
 		}
 		if (!tmp)
 			continue ;
@@ -98,7 +98,38 @@ int	checker(t_data *data, int i, int j)
 		if (comparer(tmp, data, i))
 			j++;
 		else
-			break ;
+			return (1);
 	}
-	get_next_line(-1);
+	return (0);
+}
+
+int	check_map(t_data *data, int i, int j, int cond)
+{
+	char	*tmp;
+
+	while (cond)
+	{
+		tmp = get_next_line(data->ber_fd);
+		if (tmp == (void *)1)
+			break ;
+		else if (!tmp || !tmp[i])
+		{
+			free (tmp);
+			continue ;
+		}
+		i = spaces_skipper(tmp, 0);
+		if (j == 0)
+			if (check_lines(tmp, i, 0))
+				cond = 0;
+		else if (check_lines(tmp, i, 1))
+			cond = 0;
+		data->map = matrix_crusher(data->map, &tmp[i], 0);
+		free(tmp);
+		j++;
+	}
+	if (cond && check_lines(data->map[j - 2], i, 0))
+		cond = 0;
+	else if (!cond)
+		printf("Invalid map\n");
+	return (cond);
 }
