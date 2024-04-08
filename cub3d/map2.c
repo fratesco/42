@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:11:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/08 15:05:23 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/08 15:55:41 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	check_lines(char *str, int start, int raw)
 	int	i;
 
 	i = 0;
-	while (str[start + i])
+	while (str && str[start + i])
 	{
 		if ((raw == 0 || i == 0) && str[start] != '1')
 			return (1);
@@ -36,5 +36,7 @@ int	check_lines(char *str, int start, int raw)
 			return (1);
 		i++;
 	}
+	if (str && (str[start + i - 1] != '1' || str[start] == 0))
+		return (1);
 	return (0);
 }

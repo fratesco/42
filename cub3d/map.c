@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:34:03 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/08 15:12:06 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/08 15:59:40 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,16 +112,16 @@ int	check_map(t_data *data, int i, int j, int cond)
 		tmp = get_next_line(data->ber_fd);
 		if (tmp == (void *)1)
 			break ;
-		else if (!tmp || !tmp[i])
+		else if ((!tmp || !tmp[0]) && j == 0)
 		{
 			free (tmp);
 			continue ;
 		}
 		i = spaces_skipper(tmp, 0);
 		if (j == 0)
-			if (check_lines(tmp, i, 0))
+			if (tmp[0] && check_lines(tmp, i, 0))
 				cond = 0;
-		else if (check_lines(tmp, i, 1))
+		if (tmp[0] && cond && check_lines(tmp, i, 1))
 			cond = 0;
 		data->map = matrix_crusher(data->map, &tmp[i], 0);
 		free(tmp);

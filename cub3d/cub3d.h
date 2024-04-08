@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/08 15:25:20 by srapuano         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:01:32 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,15 @@ typedef struct s_data
 	char	*e_path;
 	int		floor_color;
 	int		ceiling_color;
+	void	*mlx;
+	void	*window;
 
 }	t_data;
 
 typedef struct s_node
 {
-	int x;
-	struct s_node *next;
+	int				x;
+	struct s_node	*next;
 }	t_node;
 
 int		checker(t_data *data, int i, int j);
