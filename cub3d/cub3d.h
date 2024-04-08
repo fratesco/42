@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/08 14:49:30 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/08 15:25:20 by srapuano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ typedef struct s_data
 	int		ceiling_color;
 
 }	t_data;
+
+typedef struct s_node
+{
+	int x;
+	struct s_node *next;
+}	t_node;
 
 int		checker(t_data *data, int i, int j);
 int		check_input(int argc, char **argv, t_data *data);
