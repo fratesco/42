@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/08 16:01:32 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/08 16:08:37 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_data
 	char	*e_path;
 	int		floor_color;
 	int		ceiling_color;
+	int		res_h;
+	int		res_w;
 	void	*mlx;
 	void	*window;
 
