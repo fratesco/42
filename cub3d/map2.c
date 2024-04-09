@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:11:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/09 18:36:21 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/09 18:57:32 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,10 @@ int	check_lines(char *str, int start, int raw, t_data *data)
 	int	i;
 
 	i = 0;
-
 // bisogna controllare anche che se le dimensioni delle righte non coincidono, allora i caratteri di "troppo"
 //delle righe più lunghe siano tutti "1"
-
 	if (data->list)
-		if (check_list(data, str) || list_free(data))
+		if (check_list(data, str, 0) || list_free(data))
 			return (1);
 	while (str && str[start + i])
 	{
@@ -58,29 +56,29 @@ int	check_lines(char *str, int start, int raw, t_data *data)
 	return (0);
 }
 
-int	check_list(t_data *data, char *str)
+int	check_list(t_data *data, char *str, int len)
 {
-	int		len;
-
 	if (!data->list)
 		return (0);
-	len = ft_strlen(data->map[data->map_height - 2]);
-	if ((int)data->list->content > len)
-		return (1);
-	if (data->map[data->map_height - 2][(int)data->list->content] != '1'
-		&& data->map[data->map_height - 2][(int)data->list->content] != ' ')
-		return (1);
+	if (data->map_height >= 2)
+	{	
+		len = ft_strlen(data->map[data->map_height - 2]);
+		if ((int)data->list->content > len)
+			return (1);
+		if (data->map[data->map_height - 2][(int)data->list->content] != '1'
+			&& data->map[data->map_height - 2][(int)data->list->content] != ' ')
+			return (1);
+	}
 	len = ft_strlen(str);
 	if ((int)data->list->content > len)
 		return (1);
-	if (str[data->list->content] != '1'
-		&& str[data->list->content] != ' ')
+	if (str[data->list->content] != '1' && str[data->list->content] != ' ')
 		return (1);
 	if (data->list->next)
 	{
 		data->save_list = data->list;
 		data->list = data->list->next;
-		if (check_list(data, str))
+		if (check_list(data, str, 0))
 			return (1);
 	}
 	return (0);
@@ -90,7 +88,7 @@ int	last_check(t_data *data, int i)
 {
 	if (check_lines(data->map[data->map_height - 1], i, 0, data))
 		return (1);
-	if (check_list(data, data->map[data->map_height - 1]) || list_free(data))
+	if (check_list(data, data->map[data->map_height - 1], 0) || list_free(data))
 		return (1);
 	return (0);
 }

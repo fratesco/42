@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/09 16:59:42 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/09 18:46:22 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	**matrix_crusher(char **matrix, char *str, int i);
 void	freerer(t_data *data);
 void	initializer(t_data *data);
 int		list_free(t_data *data);
-int		check_list(t_data *data, char *str);
+int		check_list(t_data *data, char *str, int len);
 int		last_check(t_data *data, int i);
 
 #endif

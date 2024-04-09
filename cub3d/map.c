@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:34:03 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/09 18:30:50 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/09 19:12:20 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	spaces_skipper(char *str, int start)
 	int	i;
 
 	i = start;
-	while (str && str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\v'))
+	while (str && str[i] && (str[i] == ' ' || str[i] == '\t'
+			|| str[i] == '\v' || str[i] == '\r' || str[i] == '\f' ))
 		i++;
 	return (i);
 }
