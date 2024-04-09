@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:11:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/09 17:54:43 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/09 18:36:21 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	check_lines(char *str, int start, int raw, t_data *data)
 			return (1);
 	while (str && str[start + i])
 	{
-		if ((raw == 0 || i == 0) && str[start] != '1')
+		if ((raw == 0 || i == 0) && (str[start + i] != '1' && str[start + i] != ' '))
 			return (1);
-		else if (str[start + i] == ' ')
+		if (str[start + i] == ' ')
 		{
 			if (new_check(data, start, i, str))
 				return (1);
@@ -90,7 +90,7 @@ int	last_check(t_data *data, int i)
 {
 	if (check_lines(data->map[data->map_height - 1], i, 0, data))
 		return (1);
-	if (check_list(data, data->map[data->map_height - 2]) || list_free(data))
+	if (check_list(data, data->map[data->map_height - 1]) || list_free(data))
 		return (1);
 	return (0);
 }

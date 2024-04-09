@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:34:03 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/09 17:56:13 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/09 18:30:50 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int	check_map(t_data *data, int i, char *tmp, int cond)
 	}
 	if (cond && last_check(data, i))
 		cond = 0;
-	else if (!cond)
+	if (!cond)
 		printf("Invalid map\n");
 	return (cond);
 }
