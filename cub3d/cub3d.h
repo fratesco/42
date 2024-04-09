@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/08 16:25:16 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/09 16:59:42 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 typedef struct s_data
 {
 	char	**map;
+	int		map_height;
 	int		ber_fd;
 	int		p_x;
 	int		p_y;
@@ -42,26 +43,26 @@ typedef struct s_data
 	int		res_w;
 	void	*mlx;
 	void	*window;
+	int		z;
+	t_list	*list;
+	t_list	*save_list;
 
 }	t_data;
 
-typedef struct s_node
-{
-	int				x;
-	struct s_node	*next;
-}	t_node;
-
 int		checker(t_data *data, int i, int j);
 int		check_input(int argc, char **argv, t_data *data);
-int		check_map(t_data *data, int i, int j, int cond);
+int		check_map(t_data *data, int i, char *tmp, int cond);
 int		spaces_skipper(char *str, int start);
 int		string_to_rgb(char *str, int i, int j, int counter);
-int		check_lines(char *str, int start, int raw);
+int		check_lines(char *str, int start, int raw, t_data *data);
 int		color_checker(char *str, int i);
 int		comparer(char *tmp, t_data *data, int i);
 void	free_matrix(char **matrix);
 char	**matrix_crusher(char **matrix, char *str, int i);
 void	freerer(t_data *data);
 void	initializer(t_data *data);
+int		list_free(t_data *data);
+int		check_list(t_data *data, char *str);
+int		last_check(t_data *data, int i);
 
 #endif

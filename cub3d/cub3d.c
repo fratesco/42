@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:49:42 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/08 16:25:30 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/09 16:48:37 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ void	initializer(t_data *data)
 	data->s_path = NULL;
 	data->ceiling_color = 0;
 	data->floor_color = 0;
+	data->map_height = 0;
+	data->list = NULL;
+	data->z = 0;
+	data->save_list = 0;
 }
 
 int	check_input(int argc, char **argv, t_data *data)
@@ -70,6 +74,4 @@ int	main(int argc, char **argv)
 	//mlx = mlx_init();
 	//mlx_win = mlx_new_window(mlx, 1280, 800, "Hello world!");
 	//mlx_loop(mlx);
-	
-
 }

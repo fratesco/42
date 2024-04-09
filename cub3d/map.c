@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:34:03 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/08 16:07:20 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/09 17:56:13 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,31 +103,29 @@ int	checker(t_data *data, int i, int j)
 	return (0);
 }
 
-int	check_map(t_data *data, int i, int j, int cond)
+int	check_map(t_data *data, int i, char *tmp, int cond)
 {
-	char	*tmp;
-
 	while (cond)
 	{
 		tmp = get_next_line(data->ber_fd);
 		if (tmp == (void *)1)
 			break ;
-		else if ((!tmp || !tmp[0]) && j == 0)
+		else if ((!tmp || !tmp[0]) && data->map_height == 0)
 		{
 			free (tmp);
 			continue ;
 		}
 		i = spaces_skipper(tmp, 0);
-		if (j == 0)
-			if (tmp[0] && check_lines(tmp, i, 0))
+		if (data->map_height == 0)
+			if (tmp[i] && check_lines(tmp, i, 0, data))
 				cond = 0;
-		if (tmp[0] && cond && check_lines(tmp, i, 1))
+		if (tmp[i] && cond && check_lines(tmp, i, 1, data) || !tmp[i])
 			cond = 0;
 		data->map = matrix_crusher(data->map, &tmp[i], 0);
 		free(tmp);
-		j++;
+		data->map_height++;
 	}
-	if (cond && check_lines(data->map[j - 2], i, 0))
+	if (cond && last_check(data, i))
 		cond = 0;
 	else if (!cond)
 		printf("Invalid map\n");
