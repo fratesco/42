@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:11:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/09 18:57:32 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/11 19:30:37 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 
 int	new_check(t_data *data, int start, int i, char *str)
 {
+	int	j;
+
+	if (start + i - 1 < 0)
+		return (1);
+	j = ft_strlen(str);
+	if (j < start + i + 1)
+		return (1);
 	if ((str[start + i - 1] != ' ' && str[start + i - 1] != '1')
 		|| (str[start + i + 1] != ' ' && str[start + i + 1] != '1'))
-	{
 		return (1);
-	}
 	if (data->list == NULL)
 		data->list = ft_lstnew(start + i);
 	else

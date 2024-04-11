@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/09 18:46:22 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/11 19:33:54 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,32 @@
 # include "get_next_line.h"
 # include "mlx_linux/mlx.h"
 
+typedef struct s_player
+{
+	int	x;
+	int	y;
+	int	orient;
+}	t_player;
+
 typedef struct s_data
 {
-	char	**map;
-	int		map_height;
-	int		ber_fd;
-	int		p_x;
-	int		p_y;
-	int		orientation;
-	char	*n_path;
-	char	*s_path;
-	char	*w_path;
-	char	*e_path;
-	int		floor_color;
-	int		ceiling_color;
-	int		res_h;
-	int		res_w;
-	void	*mlx;
-	void	*window;
-	int		z;
-	t_list	*list;
-	t_list	*save_list;
+	char		**map;
+	int			map_height;
+	int			ber_fd;
+	char		*n_path;
+	char		*s_path;
+	char		*w_path;
+	char		*e_path;
+	int			floor_color;
+	int			ceiling_color;
+	int			res_h;
+	int			res_w;
+	void		*mlx;
+	void		*window;
+	int			z;
+	t_list		*list;
+	t_list		*save_list;
+	t_player	*player;
 
 }	t_data;
 
@@ -64,5 +69,9 @@ void	initializer(t_data *data);
 int		list_free(t_data *data);
 int		check_list(t_data *data, char *str, int len);
 int		last_check(t_data *data, int i);
+
+int		nullifiereee(void);
+void	keys_control_movements(int kc, t_data *data);
+int		keys_controls(int kc, t_data *data);
 
 #endif
