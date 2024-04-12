@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlxste.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:04:23 by srapuano          #+#    #+#             */
-/*   Updated: 2024/04/12 12:26:03 by srapuano         ###   ########.fr       */
+/*   Updated: 2024/04/12 19:27:52 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,41 @@
 void	mlx_handler(t_data *data)
 {
 	data->mlx = mlx_init();
-	data->window = mlx_new_window(data->mlx, 1280,
-			720, "CUB3D");
+	data->window = mlx_new_window(data->mlx, data->res_w,
+			data->res_h, "CUB3D");
 	mlx_key_hook(data->window, keys_control, data);
 	mlx_hook(data->window, 17, 0, close_game, (void *)data);
 	mlx_loop_hook(data->mlx, nullifiereee, data);
 	mlx_loop(data->mlx);
 }
 
-int	close_game()
+int	close_game(void)
 {
 	exit (0);
 }
 
-int   nullifiereee(void)
+int	nullifiereee(t_data *data)
 {
-    return (0);
+	print_map(data);
+	return (0);
+}
+
+void	print_map(t_data *data)
+{
+	char *img;
+
+//questa roba va fatta quando andiamo a controllare tutte le texure e le salviamo
+	data->text->ceiling = mlx_new_image(data->mlx,
+			(data->res_w / 2), (data->res_h / 2));
+	data->text->floor = mlx_new_image(data->mlx,
+			(data->res_w / 2), (data->res_h / 2));
+	img = mlx_get_data_addr(data->text->ceiling, &data->text->bits_per_pixel,
+			&data->text->size_line, &data->text->endian);
+	*(unsigned int *)img = data->ceiling_color;
+	img = mlx_get_data_addr(data->text->floor, &data->text->bits_per_pixel,
+			&data->text->size_line, &data->text->endian);
+	*(unsigned int *)img = data->floor_color;
+	mlx_put_image_to_window(data->mlx, data->window, data->text->ceiling, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->window, data->text->floor, 639, 359);
+	
 }

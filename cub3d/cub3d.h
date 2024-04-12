@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/12 13:09:41 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/12 19:28:30 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,20 @@ typedef struct s_player
 	int		found;
 }	t_player;
 
+typedef struct s_texture
+{
+	void	*ceiling;
+	void	*floor;
+	void	*n;
+	void	*s;
+	void	*w;
+	void	*e;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
+
+}	t_texture;
+
 typedef struct s_data
 {
 	char		**map;
@@ -54,6 +68,7 @@ typedef struct s_data
 	t_list		*list;
 	t_list		*save_list;
 	t_player	*player;
+	t_texture	*text;
 
 }	t_data;
 
@@ -75,9 +90,10 @@ int		last_check(t_data *data, int i);
 int		find_player(t_data *data, int i, int j);
 void	find_direction(t_data *data);
 
-int		nullifiereee(void);
+int		nullifiereee(t_data *data);
 void	keys_control_movements(int kc, t_data *data);
 int		keys_control(int kc, t_data *data);
-int		close_game();
+int		close_game(void);
+void	print_map(t_data *data);
 
 #endif

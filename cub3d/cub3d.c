@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:49:42 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/12 13:10:31 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/12 17:53:46 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	initializer(t_data *data)
 	data->save_list = 0;
 	data->player = malloc(sizeof(t_player));
 	data->player->found = 0;
+	data->res_h = 720;
+	data->res_w = 1280;
 }
 
 int	check_input(int argc, char **argv, t_data *data)
@@ -70,10 +72,4 @@ int	main(int argc, char **argv)
 	}
 	close(data.ber_fd);
 	freerer(&data);
-	//void	*mlx;
-	//void	*mlx_win;
-//
-	//mlx = mlx_init();
-	//mlx_win = mlx_new_window(mlx, 1280, 800, "Hello world!");
-	//mlx_loop(mlx);
 }
