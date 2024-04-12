@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:11:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/12 12:26:45 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/12 13:08:28 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	check_lines(char *str, int start, int raw, t_data *data)
 	int	i;
 
 	i = 0;
-// bisogna controllare anche che se le dimensioni delle righte non coincidono, allora i caratteri di "troppo"
-//delle righe più lunghe siano tutti "1"
+// bisogna controllare anche che se le dimensioni delle righte non coincidono, allora i caratteri di 'troppo'
+//delle righe più lunghe siano tutti '1'
 	if (data->list)
 		if (check_list(data, str, 0) || list_free(data))
 			return (1);
@@ -105,8 +105,8 @@ int	find_player(t_data *data, int i, int j)
 		j = 0;
 		while (data->map[i][j])
 		{
-			if ((data->map[i][j] == "N" || data->map[i][j] == "S"
-				|| data->map[i][j] == "W" || data->map[i][j] == "E")
+			if ((data->map[i][j] == 'N' || data->map[i][j] == 'S'
+				|| data->map[i][j] == 'W' || data->map[i][j] == 'E')
 					&& data->player->found == 0)
 			{
 				data->player->x = i;
@@ -114,8 +114,8 @@ int	find_player(t_data *data, int i, int j)
 				data->player->found = 1;
 				data->player->direction = data->map[i][j];
 			}
-			else if ((data->map[i][j] == "N" || data->map[i][j] == "S"
-				|| data->map[i][j] == "W" || data->map[i][j] == "E")
+			else if ((data->map[i][j] == 'N' || data->map[i][j] == 'S'
+				|| data->map[i][j] == 'W' || data->map[i][j] == 'E')
 					&& data->player->found == 1)
 			{
 				printf("Too many players in the map!\n");

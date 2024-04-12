@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/12 12:26:23 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/12 13:09:41 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	find_direction(t_data *data);
 
 int		nullifiereee(void);
 void	keys_control_movements(int kc, t_data *data);
-int		keys_controls(int kc, t_data *data);
+int		keys_control(int kc, t_data *data);
+int		close_game();
 
 #endif

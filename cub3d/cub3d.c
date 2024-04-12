@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:49:42 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/09 16:48:37 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/12 13:10:31 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	initializer(t_data *data)
 	data->list = NULL;
 	data->z = 0;
 	data->save_list = 0;
+	data->player = malloc(sizeof(t_player));
+	data->player->found = 0;
 }
 
 int	check_input(int argc, char **argv, t_data *data)
