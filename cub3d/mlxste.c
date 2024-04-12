@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:04:23 by srapuano          #+#    #+#             */
-/*   Updated: 2024/04/12 19:27:52 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/12 19:36:05 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ void	print_map(t_data *data)
 	char *img;
 
 //questa roba va fatta quando andiamo a controllare tutte le texure e le salviamo
-	data->text->ceiling = mlx_new_image(data->mlx,
+	data->text.ceiling = mlx_new_image(data->mlx,
 			(data->res_w / 2), (data->res_h / 2));
-	data->text->floor = mlx_new_image(data->mlx,
+	data->text.floor = mlx_new_image(data->mlx,
 			(data->res_w / 2), (data->res_h / 2));
-	img = mlx_get_data_addr(data->text->ceiling, &data->text->bits_per_pixel,
-			&data->text->size_line, &data->text->endian);
+	img = mlx_get_data_addr(data->text.ceiling, &data->text.bits_per_pixel,
+			&data->text.size_line, &data->text.endian);
 	*(unsigned int *)img = data->ceiling_color;
-	img = mlx_get_data_addr(data->text->floor, &data->text->bits_per_pixel,
-			&data->text->size_line, &data->text->endian);
+	img = mlx_get_data_addr(data->text.floor, &data->text.bits_per_pixel,
+			&data->text.size_line, &data->text.endian);
 	*(unsigned int *)img = data->floor_color;
-	mlx_put_image_to_window(data->mlx, data->window, data->text->ceiling, 0, 0);
-	mlx_put_image_to_window(data->mlx, data->window, data->text->floor, 639, 359);
+	mlx_put_image_to_window(data->mlx, data->window, data->text.ceiling, 0, 0);
+	mlx_put_image_to_window(data->mlx, data->window, data->text.floor, 639, 359);
 	
 }

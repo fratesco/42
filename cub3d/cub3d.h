@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/12 19:33:15 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/12 19:34:38 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_data
 	t_list		*list;
 	t_list		*save_list;
 	t_player	*player;
-	t_texture	*text;
+	t_texture	text;
 
 }	t_data;
 

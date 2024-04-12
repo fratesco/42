@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:49:42 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/12 19:32:03 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/12 19:38:48 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ void	initializer(t_data *data)
 	data->player->found = 0;
 	data->res_h = 720;
 	data->res_w = 1280;
+	data->text.bits_per_pixel = 0;
+	data->text.endian = 0;
+	data->text.size_line = 0;
+	data->text.ceiling = 0;
+	data->text.floor = 0;
 }
 
 int	check_input(int argc, char **argv, t_data *data)
