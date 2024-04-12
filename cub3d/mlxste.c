@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:04:23 by srapuano          #+#    #+#             */
-/*   Updated: 2024/04/12 19:36:05 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/12 19:41:36 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,8 @@ void	print_map(t_data *data)
 	*(unsigned int *)img = data->floor_color;
 	mlx_put_image_to_window(data->mlx, data->window, data->text.ceiling, 0, 0);
 	mlx_put_image_to_window(data->mlx, data->window, data->text.floor, 639, 359);
-	
+	// tutta questa roba serve a modificare il colore di un solo pixel in particolare,
+	//bisogna quindi anche per il ceiling e per il floor calcolare pixel per pixel,
+	//la soluzione più semplice è riempire di pixel il tutto, e pio andare a modificare
+	// quelli dei muri.
 }
