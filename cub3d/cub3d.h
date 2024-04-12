@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/12 19:28:30 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/12 19:33:15 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ void	keys_control_movements(int kc, t_data *data);
 int		keys_control(int kc, t_data *data);
 int		close_game(void);
 void	print_map(t_data *data);
+void	mlx_handler(t_data *data);
 
 #endif
