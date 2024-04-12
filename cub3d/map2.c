@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:11:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/11 19:30:37 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/12 12:26:45 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,32 @@ int	last_check(t_data *data, int i)
 	if (check_list(data, data->map[data->map_height - 1], 0) || list_free(data))
 		return (1);
 	return (0);
+}
+
+int	find_player(t_data *data, int i, int j)
+{
+	while (data->map[i])
+	{
+		j = 0;
+		while (data->map[i][j])
+		{
+			if ((data->map[i][j] == "N" || data->map[i][j] == "S"
+				|| data->map[i][j] == "W" || data->map[i][j] == "E")
+					&& data->player->found == 0)
+			{
+				data->player->x = i;
+				data->player->y = j;
+				data->player->found = 1;
+				data->player->direction = data->map[i][j];
+			}
+			else if ((data->map[i][j] == "N" || data->map[i][j] == "S"
+				|| data->map[i][j] == "W" || data->map[i][j] == "E")
+					&& data->player->found == 1)
+			{
+				printf("Too many players in the map!\n");
+				return (1);
+			}
+			i++;
+		}
+	}
 }

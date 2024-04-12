@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/11 19:33:54 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/12 12:26:23 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,12 @@
 
 typedef struct s_player
 {
-	int	x;
-	int	y;
-	int	orient;
+	double	x;
+	double	y;
+	char	direction;
+	double	direct_x;
+	double	direct_y;
+	int		found;
 }	t_player;
 
 typedef struct s_data
@@ -69,6 +72,8 @@ void	initializer(t_data *data);
 int		list_free(t_data *data);
 int		check_list(t_data *data, char *str, int len);
 int		last_check(t_data *data, int i);
+int		find_player(t_data *data, int i, int j);
+void	find_direction(t_data *data);
 
 int		nullifiereee(void);
 void	keys_control_movements(int kc, t_data *data);
