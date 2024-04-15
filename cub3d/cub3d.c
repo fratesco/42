@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:49:42 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/15 10:44:26 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/15 10:58:09 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ void	initialize_texture(t_data *data)
 	data->e.img = NULL;
 	data->w.img = NULL;
 	data->s.img = NULL;
+	data->ceiling.img = NULL;
+	data->floor.img = NULL;
+	data->image.img = NULL;
 	data->n.w = 0;
 	data->n.h = 0;
 	data->s.w = 0;
@@ -45,6 +48,8 @@ void	initializer(t_data *data)
 	data->player->found = 0;
 	data->res_h = 720;
 	data->res_w = 1280;
+	data->window = NULL;
+	data->mlx = NULL;
 	initialize_texture(data);
 	//data->text.bits_per_pixel = 0;
 	//data->text.endian = 0;

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/15 10:32:15 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/15 10:54:17 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_player
 typedef struct s_texture
 {
 	void	*img;
+	char	*addr;
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
@@ -69,6 +70,7 @@ typedef struct s_data
 	t_texture	s;
 	t_texture	w;
 	t_texture	e;
+	t_texture	image;
 
 }	t_data;
 
@@ -92,6 +94,7 @@ int		find_player(t_data *data, int i, int j);
 void	find_direction(t_data *data);
 int		check_text_path(t_data *data);
 void	image_destroyer(t_data *data, void *img);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 int		nullifiereee(t_data *data);
 void	keys_control_movements(int kc, t_data *data);
