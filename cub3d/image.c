@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 10:23:25 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/15 10:58:23 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/15 11:20:09 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,28 @@ void	image_destroyer(t_data *data, void *img)
 		mlx_destroy_image(data->mlx, data->w.img);
 	if (data->e.img)
 		mlx_destroy_image(data->mlx, data->e.img);
+	if (data->image.img)
+		mlx_destroy_image(data->mlx, data->image.img);
 	if (data->window)
 		mlx_destroy_window(data->mlx, data->window);
 	if (data->mlx)
 		mlx_destroy_display(data->mlx);
+}
+
+int	create_images(t_data *data)
+{
+	data->image.img = mlx_new_image(data->mlx, data->res_w, data->res_h);
+	if (!data->image.img)
+		return (printf("Error while creating mlx images!\n"));
+	data->image.addr = mlx_get_data_addr(data->mlx, &data->image.bits_per_pixel,
+			&data->image.size_line, &data->image.endian);
+	data->n.addr = mlx_get_data_addr(data->mlx, &data->n.bits_per_pixel,
+			&data->n.size_line, &data->n.endian);
+	data->s.addr = mlx_get_data_addr(data->mlx, &data->s.bits_per_pixel,
+			&data->s.size_line, &data->s.endian);
+	data->w.addr = mlx_get_data_addr(data->mlx, &data->w.bits_per_pixel,
+			&data->w.size_line, &data->w.endian);
+	data->e.addr = mlx_get_data_addr(data->mlx, &data->e.bits_per_pixel,
+			&data->e.size_line, &data->e.endian);
+	return (0);
 }

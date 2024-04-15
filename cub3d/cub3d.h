@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/15 10:54:17 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/15 11:20:17 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_data
 	t_texture	w;
 	t_texture	e;
 	t_texture	image;
+	t_texture	minimap;
 
 }	t_data;
 
@@ -95,6 +96,7 @@ void	find_direction(t_data *data);
 int		check_text_path(t_data *data);
 void	image_destroyer(t_data *data, void *img);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int		create_images(t_data *data);
 
 int		nullifiereee(t_data *data);
 void	keys_control_movements(int kc, t_data *data);
