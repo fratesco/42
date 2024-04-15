@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:04:23 by srapuano          #+#    #+#             */
-/*   Updated: 2024/04/15 10:39:39 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/15 10:43:01 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	mlx_handler(t_data *data)
 {
-	//data->mlx = mlx_init();
+	data->mlx = mlx_init();
 	//data->window = mlx_new_window(data->mlx, data->res_w,
 	//		data->res_h, "CUB3D");
 	//mlx_key_hook(data->window, keys_control, data);
