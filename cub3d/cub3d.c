@@ -6,21 +6,37 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:49:42 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/12 19:38:48 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/15 10:36:07 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+void	initialize_texture(t_data *data)
+{
+	data->n.path = NULL;
+	data->e.path = NULL;
+	data->w.path = NULL;
+	data->s.path = NULL;
+	data->ceiling.color = 0;
+	data->floor.color = 0;
+	data->n.img = NULL;
+	data->e.img = NULL;
+	data->w.img = NULL;
+	data->s.img = NULL;
+	data->n.w = 0;
+	data->n.h = 0;
+	data->s.w = 0;
+	data->s.h = 0;
+	data->w.w = 0;
+	data->w.h = 0;
+	data->e.w = 0;
+	data->e.h = 0;
+}
+
 void	initializer(t_data *data)
 {
 	data->map = NULL;
-	data->n_path = NULL;
-	data->e_path = NULL;
-	data->w_path = NULL;
-	data->s_path = NULL;
-	data->ceiling_color = 0;
-	data->floor_color = 0;
 	data->map_height = 0;
 	data->list = NULL;
 	data->z = 0;
@@ -29,11 +45,10 @@ void	initializer(t_data *data)
 	data->player->found = 0;
 	data->res_h = 720;
 	data->res_w = 1280;
-	data->text.bits_per_pixel = 0;
-	data->text.endian = 0;
-	data->text.size_line = 0;
-	data->text.ceiling = 0;
-	data->text.floor = 0;
+	initialize_texture(data);
+	//data->text.bits_per_pixel = 0;
+	//data->text.endian = 0;
+	//data->text.size_line = 0;
 }
 
 int	check_input(int argc, char **argv, t_data *data)
@@ -68,7 +83,8 @@ int	main(int argc, char **argv)
 	if (check_input(argc, argv, &data))
 		exit(1);
 	initializer(&data);
-	if (checker(&data, 0, 0) || !check_map(&data, 0, 0, 1))
+	if (checker(&data, 0, 0) || !check_map(&data, 0, 0, 1)
+		|| check_text_path(&data))
 	{
 		get_next_line(-1);
 		close(data.ber_fd);

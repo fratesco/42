@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/12 19:34:38 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/15 10:32:15 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,14 @@ typedef struct s_player
 
 typedef struct s_texture
 {
-	void	*ceiling;
-	void	*floor;
-	void	*n;
-	void	*s;
-	void	*w;
-	void	*e;
+	void	*img;
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
+	int		color;
+	int		w;
+	int		h;
+	char	*path;
 
 }	t_texture;
 
@@ -54,10 +53,6 @@ typedef struct s_data
 	char		**map;
 	int			map_height;
 	int			ber_fd;
-	char		*n_path;
-	char		*s_path;
-	char		*w_path;
-	char		*e_path;
 	int			floor_color;
 	int			ceiling_color;
 	int			res_h;
@@ -68,7 +63,12 @@ typedef struct s_data
 	t_list		*list;
 	t_list		*save_list;
 	t_player	*player;
-	t_texture	text;
+	t_texture	ceiling;
+	t_texture	floor;
+	t_texture	n;
+	t_texture	s;
+	t_texture	w;
+	t_texture	e;
 
 }	t_data;
 
@@ -84,11 +84,14 @@ void	free_matrix(char **matrix);
 char	**matrix_crusher(char **matrix, char *str, int i);
 void	freerer(t_data *data);
 void	initializer(t_data *data);
+void	initialize_texture(t_data *data);
 int		list_free(t_data *data);
 int		check_list(t_data *data, char *str, int len);
 int		last_check(t_data *data, int i);
 int		find_player(t_data *data, int i, int j);
 void	find_direction(t_data *data);
+int		check_text_path(t_data *data);
+void	image_destroyer(t_data *data, void *img);
 
 int		nullifiereee(t_data *data);
 void	keys_control_movements(int kc, t_data *data);

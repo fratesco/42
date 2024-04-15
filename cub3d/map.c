@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:34:03 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/09 19:12:20 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/15 10:11:21 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@ int	spaces_skipper(char *str, int start)
 
 int	comparer(char *tmp, t_data *data, int i)
 {
-	if (!ft_strncmp(&tmp[i], "NO", 2))
-		data->n_path = ft_strdup(&tmp[spaces_skipper(tmp, i + 2)]);
-	else if (!ft_strncmp(&tmp[i], "WE", 2))
-		data->w_path = ft_strdup(&tmp[spaces_skipper(tmp, i + 2)]);
-	else if (!ft_strncmp(&tmp[i], "EA", 2))
-		data->e_path = ft_strdup(&tmp[spaces_skipper(tmp, i + 2)]);
-	else if (!ft_strncmp(&tmp[i], "SO", 2))
-		data->s_path = ft_strdup(&tmp[spaces_skipper(tmp, i + 2)]);
+	if (!ft_strncmp(&tmp[i], "NO", 2) && !data->n.path)
+		data->n.path = ft_strdup(&tmp[spaces_skipper(tmp, i + 2)]);
+	else if (!ft_strncmp(&tmp[i], "WE", 2) && !data->w.path)
+		data->w.path = ft_strdup(&tmp[spaces_skipper(tmp, i + 2)]);
+	else if (!ft_strncmp(&tmp[i], "EA", 2) && !data->e.path)
+		data->e.path = ft_strdup(&tmp[spaces_skipper(tmp, i + 2)]);
+	else if (!ft_strncmp(&tmp[i], "SO", 2) && !data->s.path)
+		data->s.path = ft_strdup(&tmp[spaces_skipper(tmp, i + 2)]);
 	else if (!ft_strncmp(&tmp[i], "F", 1))
-		data->floor_color = string_to_rgb(&tmp[spaces_skipper(tmp, i + 2)],
+		data->floor.color = string_to_rgb(&tmp[spaces_skipper(tmp, i + 2)],
 				0, 0, 3);
 	else if (!ft_strncmp(&tmp[i], "C", 1))
-		data->ceiling_color = string_to_rgb(&tmp[spaces_skipper(tmp, i + 2)],
+		data->ceiling.color = string_to_rgb(&tmp[spaces_skipper(tmp, i + 2)],
 				0, 0, 3);
 	else
 	{
@@ -46,7 +46,7 @@ int	comparer(char *tmp, t_data *data, int i)
 		return (0);
 	}
 	free(tmp);
-	if (data->floor_color == -1 || data->ceiling_color == -1)
+	if (data->floor.color == -1 || data->ceiling.color == -1)
 		return (0);
 	return (1);
 }

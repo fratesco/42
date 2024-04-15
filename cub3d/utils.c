@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 12:28:23 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/12 13:11:00 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/15 10:27:50 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,19 @@ int	color_checker(char *str, int i)
 
 void	freerer(t_data *data)
 {
-	if (data->n_path)
-		free(data->n_path);
-	if (data->s_path)
-		free(data->s_path);
-	if (data->w_path)
-		free(data->w_path);
-	if (data->e_path)
-		free(data->e_path);
+	if (data->n.path)
+		free(data->n.path);
+	if (data->s.path)
+		free(data->s.path);
+	if (data->w.path)
+		free(data->w.path);
+	if (data->e.path)
+		free(data->e.path);
 	if (data->list)
 		list_free(data);
 	if (data->player)
 		free(data->player);
+	image_destroyer(data, NULL);
 	free_matrix(data->map);
 }
 
