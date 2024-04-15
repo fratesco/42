@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:49:42 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/15 10:58:09 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/15 11:01:57 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	main(int argc, char **argv)
 	if (check_input(argc, argv, &data))
 		exit(1);
 	initializer(&data);
-	mlx_handler(&data);
+	data.mlx = mlx_init();
 	if (checker(&data, 0, 0) || !check_map(&data, 0, 0, 1)
 		|| check_text_path(&data))
 	{
