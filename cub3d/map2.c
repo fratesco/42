@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:11:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/12 13:08:28 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/18 17:44:49 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,19 +109,18 @@ int	find_player(t_data *data, int i, int j)
 				|| data->map[i][j] == 'W' || data->map[i][j] == 'E')
 					&& data->player->found == 0)
 			{
-				data->player->x = i;
-				data->player->y = j;
+				data->player->map_x = i;
+				data->player->map_y = j;
 				data->player->found = 1;
 				data->player->direction = data->map[i][j];
 			}
 			else if ((data->map[i][j] == 'N' || data->map[i][j] == 'S'
 				|| data->map[i][j] == 'W' || data->map[i][j] == 'E')
 					&& data->player->found == 1)
-			{
-				printf("Too many players in the map!\n");
-				return (1);
-			}
+				return (printf("Too many players in the map!\n"));
 			i++;
 		}
 	}
+	find_direction(data);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:49:42 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/15 11:19:36 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/18 17:44:54 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ void	initializer(t_data *data)
 	data->save_list = 0;
 	data->player = malloc(sizeof(t_player));
 	data->player->found = 0;
+	data->player->plane_x = 0;
+	data->player->plane_y = 0;
+	data->player->space = 4;
 	data->res_h = 720;
 	data->res_w = 1280;
 	data->window = NULL;
 	data->mlx = NULL;
 	initialize_texture(data);
-	//data->text.bits_per_pixel = 0;
-	//data->text.endian = 0;
-	//data->text.size_line = 0;
 }
 
 int	check_input(int argc, char **argv, t_data *data)
@@ -90,7 +90,8 @@ int	main(int argc, char **argv)
 	initializer(&data);
 	data.mlx = mlx_init();
 	if (checker(&data, 0, 0) || !check_map(&data, 0, 0, 1)
-		|| check_text_path(&data) || create_images(&data))
+		|| find_player(&data, 0, 0) || check_text_path(&data)
+		|| create_images(&data))
 	{
 		get_next_line(-1);
 		close(data.ber_fd);

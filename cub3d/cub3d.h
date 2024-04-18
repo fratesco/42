@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/15 11:20:17 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/18 17:44:43 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,19 @@ typedef struct s_player
 {
 	double	x;
 	double	y;
+	int		map_x;
+	int		map_y;
 	char	direction;
 	double	direct_x;
 	double	direct_y;
+	double	plane_x;
+	double	plane_y;
+	double	camera_x;
+	double	camera_y;
+	double	ray_dir_x;
+	double	ray_dir_y;
 	int		found;
+	int		space;
 }	t_player;
 
 typedef struct s_texture
@@ -97,6 +106,7 @@ int		check_text_path(t_data *data);
 void	image_destroyer(t_data *data, void *img);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		create_images(t_data *data);
+void	raycasting(t_data *data);
 
 int		nullifiereee(t_data *data);
 void	keys_control_movements(int kc, t_data *data);

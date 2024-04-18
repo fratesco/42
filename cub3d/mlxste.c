@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:04:23 by srapuano          #+#    #+#             */
-/*   Updated: 2024/04/15 11:02:48 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/18 16:56:35 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	mlx_handler(t_data *data)
 	//		data->res_h, "CUB3D");
 	//mlx_key_hook(data->window, keys_control, data);
 	//mlx_hook(data->window, 17, 0, close_game, (void *)data);
-	//mlx_loop_hook(data->mlx, nullifiereee, data);
+	//mlx_loop_hook(data->mlx, raycasting, data);
 	//mlx_loop(data->mlx);
 }
 
