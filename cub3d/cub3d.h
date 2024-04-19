@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/18 17:44:43 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/19 13:35:19 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # include "get_next_line.h"
 # include "mlx_linux/mlx.h"
 
+# define X 0
+# define Y 1
+
 typedef struct s_player
 {
 	double	x;
@@ -32,17 +35,27 @@ typedef struct s_player
 	int		map_x;
 	int		map_y;
 	char	direction;
+	double	camera_x;
+	double	camera_y;
+	int		found;
+	int		space;
+}	t_player;
+
+typedef struct s_ray
+{
 	double	direct_x;
 	double	direct_y;
 	double	plane_x;
 	double	plane_y;
-	double	camera_x;
-	double	camera_y;
 	double	ray_dir_x;
 	double	ray_dir_y;
-	int		found;
-	int		space;
-}	t_player;
+	double	delta_x;
+	double	delta_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	int		step_x;
+	int		step_y;
+}	t_ray;
 
 typedef struct s_texture
 {
@@ -70,6 +83,8 @@ typedef struct s_data
 	void		*mlx;
 	void		*window;
 	int			z;
+	int			hit;
+	int			side;
 	t_list		*list;
 	t_list		*save_list;
 	t_player	*player;
@@ -81,6 +96,7 @@ typedef struct s_data
 	t_texture	e;
 	t_texture	image;
 	t_texture	minimap;
+	t_ray		ray;
 
 }	t_data;
 
@@ -107,6 +123,8 @@ void	image_destroyer(t_data *data, void *img);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		create_images(t_data *data);
 void	raycasting(t_data *data);
+void	calcs(t_data *data);
+void	get_step(t_data *data);
 
 int		nullifiereee(t_data *data);
 void	keys_control_movements(int kc, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:49:42 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/18 17:44:54 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/19 13:23:02 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,11 @@ void	initializer(t_data *data)
 	data->save_list = 0;
 	data->player = malloc(sizeof(t_player));
 	data->player->found = 0;
-	data->player->plane_x = 0;
-	data->player->plane_y = 0;
-	data->player->space = 4;
+	data->ray.plane_x = 0;
+	data->ray.plane_y = 0;
+	data->ray.step_x = 0;
+	data->ray.step_y = 0;
+	data->player->space = 10;
 	data->res_h = 720;
 	data->res_w = 1280;
 	data->window = NULL;

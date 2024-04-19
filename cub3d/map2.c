@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:11:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/18 17:44:49 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/19 11:50:31 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ int	find_player(t_data *data, int i, int j)
 				|| data->map[i][j] == 'W' || data->map[i][j] == 'E')
 					&& data->player->found == 0)
 			{
-				data->player->map_x = i;
-				data->player->map_y = j;
+				data->player->x = i + 0.5;
+				data->player->y = j + 0.5;
 				data->player->found = 1;
 				data->player->direction = data->map[i][j];
 			}
