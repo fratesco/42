@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/19 13:35:19 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/23 11:26:26 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_ray
 	double	side_dist_y;
 	int		step_x;
 	int		step_y;
+	double	perpwall_dist;
 }	t_ray;
 
 typedef struct s_texture
@@ -85,6 +86,7 @@ typedef struct s_data
 	int			z;
 	int			hit;
 	int			side;
+	double		wall_x;
 	t_list		*list;
 	t_list		*save_list;
 	t_player	*player;
@@ -125,6 +127,9 @@ int		create_images(t_data *data);
 void	raycasting(t_data *data);
 void	calcs(t_data *data);
 void	get_step(t_data *data);
+void	wall_distance(t_data *data);
+void	dda(t_data *data);
+void	calculate_wall_x(t_data *data);
 
 int		nullifiereee(t_data *data);
 void	keys_control_movements(int kc, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 16:56:44 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/19 13:36:50 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/23 11:29:06 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ void	raycasting(t_data *data)
 	{
 		calcs(data);
 		data->hit = 0;
+		get_step(data);
+		dda(data);
+		wall_distance(data);
+		calculate_wall_x(data);
 		data->z++;
 	}
 }
@@ -72,7 +76,23 @@ void	dda(t_data *data)
 		{
 			data->ray.side_dist_x += data->ray.delta_x;
 			data->player->map_x += data->ray.step_x;
-			data->side = 0;
+			data->side = X;
 		}
+		else
+		{
+			data->ray.side_dist_y += data->ray.delta_y;
+			data->player->map_y += data->ray.step_y;
+			data->side = Y;
+		}
+		if (data->map[data->player->map_y][data->player->map_x] == '1')
+			data->hit = 1;
 	}
+}
+
+void	wall_distance(t_data *data)
+{
+	if (data->side == X)
+		data->ray.perpwall_dist = data->ray.side_dist_x - data->ray.delta_x;
+	else
+		data->ray.perpwall_dist = data->ray.side_dist_y - data->ray.delta_y;
 }
