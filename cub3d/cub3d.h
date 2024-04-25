@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/23 11:26:26 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/25 19:39:52 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ typedef struct s_ray
 	int		step_x;
 	int		step_y;
 	double	perpwall_dist;
+	int		draw_start;
+	int		draw_end;
 }	t_ray;
 
 typedef struct s_texture
@@ -86,7 +88,9 @@ typedef struct s_data
 	int			z;
 	int			hit;
 	int			side;
+	double		scale;
 	double		wall_x;
+	int			line_height;
 	t_list		*list;
 	t_list		*save_list;
 	t_player	*player;
@@ -123,6 +127,9 @@ void	find_direction(t_data *data);
 int		check_text_path(t_data *data);
 void	image_destroyer(t_data *data, void *img);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int		get_pixel(t_texture *img, int x, int y);
+void	draw_vertical(t_data *data, int start, int end, int color);
+void	draw_c_and_f(t_data *data);
 int		create_images(t_data *data);
 void	raycasting(t_data *data);
 void	calcs(t_data *data);
@@ -130,6 +137,12 @@ void	get_step(t_data *data);
 void	wall_distance(t_data *data);
 void	dda(t_data *data);
 void	calculate_wall_x(t_data *data);
+void	draw_textures(t_data *data);
+void	draw_north(t_data *data);
+void	draw_east(t_data *data);
+void	draw_west(t_data *data);
+void	draw_south(t_data *data);
+void	get_start_end(t_data *data);
 
 int		nullifiereee(t_data *data);
 void	keys_control_movements(int kc, t_data *data);

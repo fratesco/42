@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 16:56:44 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/23 11:29:06 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/25 19:42:50 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,18 @@
 
 void	raycasting(t_data *data)
 {
+	data->z = 0;
 	while (data->z < data->res_w)
 	{
 		calcs(data);
 		data->hit = 0;
-		get_step(data);
 		dda(data);
 		wall_distance(data);
 		calculate_wall_x(data);
+		data->line_height = (int)(data->res_h / data->ray.perpwall_dist);
+		get_start_end(data);
+		draw_textures(data);
+		draw_c_and_f(data);
 		data->z++;
 	}
 }
