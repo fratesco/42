@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:04:23 by srapuano          #+#    #+#             */
-/*   Updated: 2024/04/26 23:23:50 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/26 23:37:32 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	nullifiereee(void *data)
 {
 	t_data	*tmp;
 
+	printf("qui\n");
 	tmp = (t_data *)data;
 	raycasting(tmp);
 	return (0);
