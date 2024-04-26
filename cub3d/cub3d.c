@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:49:42 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/25 17:47:52 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/26 23:36:33 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int	main(int argc, char **argv)
 		freerer(&data);
 		exit(1);
 	}
+	mlx_handler(&data);
 	close(data.ber_fd);
 	freerer(&data);
 }
