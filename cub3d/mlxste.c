@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:04:23 by srapuano          #+#    #+#             */
-/*   Updated: 2024/04/18 16:56:35 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/26 23:23:50 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,26 @@
 
 void	mlx_handler(t_data *data)
 {
-	//data->window = mlx_new_window(data->mlx, data->res_w,
-	//		data->res_h, "CUB3D");
-	//mlx_key_hook(data->window, keys_control, data);
-	//mlx_hook(data->window, 17, 0, close_game, (void *)data);
-	//mlx_loop_hook(data->mlx, raycasting, data);
-	//mlx_loop(data->mlx);
+	data->window = mlx_new_window(data->mlx, data->res_w,
+			data->res_h, "CUB3D");
+	mlx_key_hook(data->window, keys_control, data);
+	mlx_hook(data->window, 17, 0, close_game, (void *)data);
+	mlx_loop_hook(data->mlx, nullifiereee, (void *)data);
+	mlx_loop(data->mlx);
 }
 
-int	close_game(void)
+int	close_game(void *data)
 {
+	freerer((t_data *)data);
 	exit (0);
 }
 
-int	nullifiereee(t_data *data)
+int	nullifiereee(void *data)
 {
-	//print_map(data);
+	t_data	*tmp;
+
+	tmp = (t_data *)data;
+	raycasting(tmp);
 	return (0);
 }
 

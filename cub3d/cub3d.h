@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/25 19:39:52 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/26 23:22:45 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,10 +144,10 @@ void	draw_west(t_data *data);
 void	draw_south(t_data *data);
 void	get_start_end(t_data *data);
 
-int		nullifiereee(t_data *data);
+int		nullifiereee(void *data);
 void	keys_control_movements(int kc, t_data *data);
 int		keys_control(int kc, t_data *data);
-int		close_game(void);
+int		close_game(void *data);
 void	print_map(t_data *data);
 void	mlx_handler(t_data *data);
 
