@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 10:13:03 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/15 11:08:53 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/26 23:39:32 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ int	check_text_path(t_data *data)
 			data->e.path, &data->e.w, &data->e.h);
 	if (!data->e.img)
 		return (printf("East texture path is wrong!"));
+	return (0);
 }
