@@ -18,6 +18,8 @@ void	mlx_handler(t_data *data)
 			data->res_h, "CUB3D");
 	mlx_key_hook(data->window, keys_control, data);
 	mlx_hook(data->window, 17, 0, close_game, (void *)data);
+	//raycasting(data);
+	//mlx_put_image_to_window(data->mlx, data->window, data->image.img, 0, 0);
 	mlx_loop_hook(data->mlx, nullifiereee, (void *)data);
 	mlx_loop(data->mlx);
 }

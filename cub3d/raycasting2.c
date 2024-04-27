@@ -16,10 +16,10 @@ void	calculate_wall_x(t_data *data)
 {
 	if (data->side == X)
 		data->wall_x = data->player->map_y + data->ray.perpwall_dist
-			* data->ray.ray_dir_y;
+			* data->ray.ray_dir_y - 0.5;
 	if (data->side == Y)
 		data->wall_x = data->player->map_x + data->ray.perpwall_dist
-			* data->ray.ray_dir_x;
+			* data->ray.ray_dir_x - 0.5;
 	data->wall_x -= floor(data->wall_x);
 }
 
