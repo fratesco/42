@@ -16,26 +16,26 @@ void	find_direction(t_data *data)
 {
 	if (data->player->direction == 'N')
 	{
-		data->ray.direct_x = 0;
-		data->ray.direct_y = 1;
-		data->ray.plane_x = 0.66;
+		data->ray.direct_x = -1;
+		data->ray.direct_y = 0;
+		data->ray.plane_y = -1.8;
 	}
 	if (data->player->direction == 'W')
 	{
-		data->ray.direct_x = -1;
-		data->ray.direct_y = 0;
-		data->ray.plane_y = -0.66;
+		data->ray.direct_x = 0;
+		data->ray.direct_y = -1;
+		data->ray.plane_x = 1.8;
 	}
 	if (data->player->direction == 'E')
 	{
-		data->ray.direct_x = 1;
-		data->ray.direct_y = 0;
-		data->ray.plane_y = 0.66;
+		data->ray.direct_x = 0;
+		data->ray.direct_y = 1;
+		data->ray.plane_x= -1.8;
 	}
 	if (data->player->direction == 'S')
 	{
-		data->ray.direct_x = 0;
-		data->ray.direct_y = -1;
-		data->ray.plane_x = -0.66;
+		data->ray.direct_x = 1;
+		data->ray.direct_y = 0;
+		data->ray.plane_y = 1.8;
 	}
 }

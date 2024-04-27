@@ -22,7 +22,7 @@ void	raycasting(t_data *data)
 		dda(data);
 		wall_distance(data);
 		calculate_wall_x(data);
-		data->line_height = (int)(data->res_h / data->ray.perpwall_dist);
+		data->line_height = (int)(data->res_h / (data->ray.perpwall_dist));
 		get_start_end(data);
 		draw_textures(data);
 		draw_c_and_f(data);
@@ -55,7 +55,7 @@ void	get_step(t_data *data)
 	else
 	{
 		data->ray.step_x = 1;
-		data->ray.side_dist_x = (data->player->x - data->player->map_x + 1)
+		data->ray.side_dist_x = (-data->player->x + data->player->map_x + 1)
 			* data->ray.delta_x;
 	}
 	if (data->ray.ray_dir_y < 0)
@@ -67,7 +67,7 @@ void	get_step(t_data *data)
 	else
 	{
 		data->ray.step_y = 1;
-		data->ray.side_dist_y = (data->player->y - data->player->map_y + 1)
+		data->ray.side_dist_y = (-data->player->y + data->player->map_y + 1)
 			* data->ray.delta_y;
 	}
 }
@@ -96,7 +96,7 @@ void	dda(t_data *data)
 void	wall_distance(t_data *data)
 {
 	if (data->side == X)
-		data->ray.perpwall_dist = data->ray.side_dist_x - data->ray.delta_x;
+		data->ray.perpwall_dist = (data->ray.side_dist_x - data->ray.delta_x);
 	else
-		data->ray.perpwall_dist = data->ray.side_dist_y - data->ray.delta_y;
+		data->ray.perpwall_dist = (data->ray.side_dist_y - data->ray.delta_y);
 }

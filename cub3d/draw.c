@@ -41,6 +41,6 @@ void	draw_vertical(t_data *data, int start, int end, int color)
 
 void	draw_c_and_f(t_data *data)
 {
-	draw_vertical(data, 0, data->ray.draw_start, data->ceiling_color);
-	draw_vertical(data, data->ray.draw_end, data->res_h - 1, data->floor_color);
+	draw_vertical(data, 0, data->ray.draw_start, data->ceiling.color);
+	draw_vertical(data, data->ray.draw_end, data->res_h - 1, data->floor.color);
 }
