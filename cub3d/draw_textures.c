@@ -34,7 +34,6 @@ void	draw_north(t_data *data)
 
 	tmp_y = data->ray.draw_start;
 	tex_x = (int)(data->wall_x * (double)data->n.w);
-	printf("%f\n", data->wall_x);
 	//if (data->side == X && data->ray.ray_dir_y > 0)
 	//	tex_x = data->n.w - tex_x - 0.5;
 	data->scale = (1.0 * data->n.h / (data->line_height));

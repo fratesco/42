@@ -30,7 +30,7 @@ void	find_direction(t_data *data)
 	{
 		data->ray.direct_x = 0;
 		data->ray.direct_y = 1;
-		data->ray.plane_x= +0.7;
+		data->ray.plane_x= 0.7;
 	}
 	if (data->player->direction == 'S')
 	{
