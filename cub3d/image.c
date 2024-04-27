@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 10:23:25 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/27 09:33:59 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/27 09:35:31 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,5 @@ int	create_images(t_data *data)
 			&data->w.size_line, &data->w.endian);
 	data->e.addr = mlx_get_data_addr(data->e.img, &data->e.bits_per_pixel,
 			&data->e.size_line, &data->e.endian);
-	printf("%p\n", data->e.addr);
 	return (0);
 }
