@@ -34,12 +34,11 @@ void	draw_north(t_data *data)
 
 	tmp_y = data->ray.draw_start;
 	tex_x = (int)(data->wall_x * (double)data->n.w);
-	if (data->side == Y && data->ray.ray_dir_y > 0)
+	if (data->side == X && data->ray.ray_dir_y > 0)
 		tex_x = data->n.w - tex_x - 1;
-	data->scale = ((double)data->n.h / (data->line_height));
+	data->scale = (1.0 * data->n.h / (data->line_height));
 	tex_pos = (data->ray.draw_start - (data->res_h / 2)
-			+ (data->line_height / 2)) * data->scale;
-	printf("%f  %f\n", data->scale, tex_pos); 	
+			+ (data->line_height / 2)) * data->scale;	
 	while (tmp_y < data->ray.draw_end)
 	{
 		tex_y = (int)tex_pos & (data->n.h - 1);
@@ -52,11 +51,11 @@ void	draw_north(t_data *data)
 
 void	draw_south(t_data *data)
 {
-	int	tmp_y;
-	int	pixel;
-	int	tex_x;
-	int	tex_pos;
-	int	tex_y;
+	int		tmp_y;
+	int		pixel;
+	int		tex_x;
+	double	tex_pos;
+	int		tex_y;
 
 	tmp_y = data->ray.draw_start;
 	tex_x = (int)(data->wall_x * (double)data->s.w);
@@ -77,11 +76,11 @@ void	draw_south(t_data *data)
 
 void	draw_east(t_data *data)
 {
-	int	tmp_y;
-	int	pixel;
-	int	tex_x;
-	int	tex_pos;
-	int	tex_y;
+	int		tmp_y;
+	int		pixel;
+	int		tex_x;
+	double	tex_pos;
+	int		tex_y;
 
 	tmp_y = data->ray.draw_start;
 	tex_x = (int)(data->wall_x * (double)data->e.w);
@@ -102,11 +101,11 @@ void	draw_east(t_data *data)
 
 void	draw_west(t_data *data)
 {
-	int	tmp_y;
-	int	pixel;
-	int	tex_x;
-	int	tex_pos;
-	int	tex_y;
+	int		tmp_y;
+	int		pixel;
+	int		tex_x;
+	double	tex_pos;
+	int		tex_y;
 
 	tmp_y = data->ray.draw_start;
 	tex_x = (int)(data->wall_x * (double)data->w.w);
