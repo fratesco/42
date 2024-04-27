@@ -96,7 +96,7 @@ void	dda(t_data *data)
 void	wall_distance(t_data *data)
 {
 	if (data->side == X)
-		data->ray.perpwall_dist = (data->ray.side_dist_x - data->ray.delta_x);
+		data->ray.perpwall_dist = data->ray.side_dist_x - data->ray.delta_x;
 	else
-		data->ray.perpwall_dist = (data->ray.side_dist_y - data->ray.delta_y);
+		data->ray.perpwall_dist = data->ray.side_dist_y - data->ray.delta_y;
 }

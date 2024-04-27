@@ -37,8 +37,7 @@ void	draw_north(t_data *data)
 	if (data->side == X && data->ray.ray_dir_y > 0)
 		tex_x = data->n.w - tex_x - 1;
 	data->scale = (1.0 * data->n.h / (data->line_height));
-	tex_pos = (data->ray.draw_start - (data->res_h / 2)
-			+ (data->line_height / 2)) * data->scale;	
+	tex_pos = 0;	
 	while (tmp_y < data->ray.draw_end)
 	{
 		tex_y = (int)tex_pos & (data->n.h - 1);
