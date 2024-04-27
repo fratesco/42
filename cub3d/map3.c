@@ -18,24 +18,24 @@ void	find_direction(t_data *data)
 	{
 		data->ray.direct_x = -1;
 		data->ray.direct_y = 0;
-		data->ray.plane_y = -1.8;
+		data->ray.plane_y = -0.66;
 	}
 	if (data->player->direction == 'W')
 	{
 		data->ray.direct_x = 0;
 		data->ray.direct_y = -1;
-		data->ray.plane_x = 1.8;
+		data->ray.plane_x = 0.66;
 	}
 	if (data->player->direction == 'E')
 	{
 		data->ray.direct_x = 0;
 		data->ray.direct_y = 1;
-		data->ray.plane_x= -1.8;
+		data->ray.plane_x= -0.66;
 	}
 	if (data->player->direction == 'S')
 	{
 		data->ray.direct_x = 1;
 		data->ray.direct_y = 0;
-		data->ray.plane_y = 1.8;
+		data->ray.plane_y = 0.66;
 	}
 }

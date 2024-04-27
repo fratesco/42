@@ -122,7 +122,7 @@ int	check_map(t_data *data, int i, char *tmp, int cond)
 				cond = 0;
 		if (tmp[i] && cond && check_lines(tmp, i, 1, data) || !tmp[i])
 			cond = 0;
-		data->map = matrix_crusher(data->map, &tmp[i], 0);
+		data->map = matrix_crusher(data->map, &tmp[0], 0);
 		free(tmp);
 		data->map_height++;
 	}
