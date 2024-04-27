@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 16:56:44 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/26 23:41:24 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/27 09:28:25 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	dda(t_data *data)
 			data->player->map_y += data->ray.step_y;
 			data->side = Y;
 		}
-		if (data->map[data->player->map_y][data->player->map_x] == '1') //segfault qui controlla se devi infertire coordinate
+		if (data->map[data->player->map_x][data->player->map_y] == '1')
 			data->hit = 1;
 	}
 }
