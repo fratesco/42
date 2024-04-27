@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/26 23:22:45 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/27 18:09:48 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,12 +143,18 @@ void	draw_east(t_data *data);
 void	draw_west(t_data *data);
 void	draw_south(t_data *data);
 void	get_start_end(t_data *data);
+void	turn_right(t_data *data);
+void	turn_left(t_data *data);
 
 int		nullifiereee(void *data);
-void	keys_control_movements(int kc, t_data *data);
+void	keys_movements(int kc, t_data *data);
 int		keys_control(int kc, t_data *data);
 int		close_game(void *data);
 void	print_map(t_data *data);
 void	mlx_handler(t_data *data);
+void	move_forward(t_data *data);
+void	move_backwards(t_data *data);
+void	move_left(t_data *data);
+void	move_right(t_data *data);
 
 #endif
