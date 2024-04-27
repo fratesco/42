@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 10:23:25 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/27 09:29:56 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/27 09:33:59 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ int	create_images(t_data *data)
 	data->image.img = mlx_new_image(data->mlx, data->res_w, data->res_h);
 	if (!data->image.img)
 		return (printf("Error while creating mlx images!\n"));
-	data->image.addr = mlx_get_data_addr(data->mlx, &data->image.bits_per_pixel,
+	data->image.addr = mlx_get_data_addr(data->image.img, &data->image.bits_per_pixel,
 			&data->image.size_line, &data->image.endian);
-	data->n.addr = mlx_get_data_addr(data->mlx, &data->n.bits_per_pixel,
+	data->n.addr = mlx_get_data_addr(data->n.img, &data->n.bits_per_pixel,
 			&data->n.size_line, &data->n.endian);
-	data->s.addr = mlx_get_data_addr(data->mlx, &data->s.bits_per_pixel,
+	data->s.addr = mlx_get_data_addr(data->s.img, &data->s.bits_per_pixel,
 			&data->s.size_line, &data->s.endian);
-	data->w.addr = mlx_get_data_addr(data->mlx, &data->w.bits_per_pixel,
+	data->w.addr = mlx_get_data_addr(data->w.img, &data->w.bits_per_pixel,
 			&data->w.size_line, &data->w.endian);
-	data->e.addr = mlx_get_data_addr(data->mlx, &data->e.bits_per_pixel,
+	data->e.addr = mlx_get_data_addr(data->e.img, &data->e.bits_per_pixel,
 			&data->e.size_line, &data->e.endian);
 	printf("%p\n", data->e.addr);
 	return (0);
