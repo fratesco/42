@@ -6,7 +6,7 @@
 /*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:38:13 by srapuano          #+#    #+#             */
-/*   Updated: 2024/04/27 18:54:02 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/04/28 23:05:48 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void    move_forward(t_data *data)
         * data->ray.direct_x)][(int)floor(data->player->y
         + 0.5 * data->ray.direct_y)] != '1')
     {
-        data->player->y += data->ray.direct_y * 0.1;
-        data->player->x += data->ray.direct_x * 0.1;
+        data->player->y += data->ray.direct_y * 0.05;
+        data->player->x += data->ray.direct_x * 0.05;
     }
 }
 
@@ -29,8 +29,8 @@ void    move_backwards(t_data *data)
         * data->ray.direct_x)][(int)floor(data->player->y
         - 0.5 * data->ray.direct_y)] != '1')
     {
-        data->player->y -= data->ray.direct_y * 0.1;
-        data->player->x -= data->ray.direct_x * 0.1;
+        data->player->y -= data->ray.direct_y * 0.05;
+        data->player->x -= data->ray.direct_x * 0.05;
     }
 }
 
@@ -40,9 +40,8 @@ void    move_right(t_data *data)
         * data->ray.plane_x)][(int)floor(data->player->y
         + 0.5 * data->ray.plane_y)] != '1')
     {
-        data->player->y += data->ray.plane_y * 0.1;
-        data->player->x += data->ray.plane_x * 0.1;
-        printf("%f %f \n", data->player->y, data->player->x);
+        data->player->y += data->ray.plane_y * 0.05;
+        data->player->x += data->ray.plane_x * 0.05;
     }
 }
 
@@ -52,7 +51,23 @@ void    move_left(t_data *data)
         * data->ray.plane_x)][(int)floor(data->player->y
         - 0.5 * data->ray.plane_y)] != '1')
     {
-        data->player->y -= data->ray.plane_y * 0.1;
-        data->player->x -= data->ray.plane_x * 0.1;
+        data->player->y -= data->ray.plane_y * 0.05;
+        data->player->x -= data->ray.plane_x * 0.05;
     }
+}
+
+void    check_movement(t_data *data)
+{
+    if (data->player->m_f)
+        move_forward(data);
+    if (data->player->m_b)
+        move_backwards(data);
+    if (data->player->m_l)
+        move_left(data);
+    if (data->player->m_r)
+        move_right(data);
+    if (data->player->r_l)
+        turn_left(data);
+    if (data->player->r_r)
+        turn_right(data);
 }

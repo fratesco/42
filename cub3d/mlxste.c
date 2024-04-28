@@ -6,7 +6,7 @@
 /*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:04:23 by srapuano          #+#    #+#             */
-/*   Updated: 2024/04/27 18:36:14 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/04/28 22:47:06 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	nullifiereee(void *data)
 	t_data	*tmp;
 
 	tmp = (t_data *)data;
+	check_movement(tmp);
 	raycasting(tmp);
 	mlx_put_image_to_window(tmp->mlx, tmp->window, tmp->image.img, 0, 0);
 	return (0);

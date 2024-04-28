@@ -6,7 +6,7 @@
 /*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/27 18:29:58 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/04/28 23:03:20 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct s_player
 	int		m_f;
 	int		m_l;
 	int		m_b;
+	int		r_r;
+	int		r_l;
 }	t_player;
 
 typedef struct s_ray
@@ -149,6 +151,7 @@ void	draw_south(t_data *data);
 void	get_start_end(t_data *data);
 void	turn_right(t_data *data);
 void	turn_left(t_data *data);
+void    check_movement(t_data *data);
 
 int		nullifiereee(void *data);
 int		keys_control_movements(int kc, t_data *data);
