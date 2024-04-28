@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 12:17:33 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/19 12:10:59 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/28 23:28:08 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	find_direction(t_data *data)
 	{
 		data->ray.direct_x = 0;
 		data->ray.direct_y = 1;
-		data->ray.plane_x= 0.7;
+		data->ray.plane_x = 0.7;
 	}
 	if (data->player->direction == 'S')
 	{

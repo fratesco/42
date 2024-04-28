@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   turns.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:46:09 by fratesco          #+#    #+#             */
-/*   Updated: 2024/04/28 23:09:14 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/04/28 23:22:04 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	turn_right(t_data *data)
 	tmp_dir = data->ray.direct_x;
 	tmp_plane = data->ray.plane_x;
 	rotate = 0.02;
-
 	data->ray.direct_x = tmp_dir * cos(rotate)
 		- data->ray.direct_y * sin(rotate);
 	data->ray.direct_y = tmp_dir * sin(rotate)
@@ -41,7 +40,6 @@ void	turn_left(t_data *data)
 	tmp_dir = data->ray.direct_x;
 	tmp_plane = data->ray.plane_x;
 	rotate = -0.02;
-
 	data->ray.direct_x = tmp_dir * cos(rotate)
 		- data->ray.direct_y * sin(rotate);
 	data->ray.direct_y = tmp_dir * sin(rotate)

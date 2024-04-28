@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlxste.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:04:23 by srapuano          #+#    #+#             */
-/*   Updated: 2024/04/28 22:47:06 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/04/28 23:31:19 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	mlx_handler(t_data *data)
 
 int	close_game(void *data)
 {
-	t_data *tmp;
+	t_data	*tmp;
 
 	tmp = (t_data *)data;
 	freerer(tmp);

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:11:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/26 23:30:07 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/28 23:28:00 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,13 @@ int	check_lines(char *str, int start, int raw, t_data *data)
 	int	i;
 
 	i = 0;
-// bisogna controllare anche che se le dimensioni delle righte non coincidono, allora i caratteri di 'troppo'
-//delle righe più lunghe siano tutti '1'
 	if (data->list)
 		if (check_list(data, str, 0) || list_free(data))
 			return (1);
 	while (str && str[start + i])
 	{
-		if ((raw == 0 || i == 0) && (str[start + i] != '1' && str[start + i] != ' '))
+		if ((raw == 0 || i == 0) && (str[start + i] != '1'
+				&& str[start + i] != ' '))
 			return (1);
 		if (str[start + i] == ' ')
 		{
@@ -66,7 +65,7 @@ int	check_list(t_data *data, char *str, int len)
 	if (!data->list)
 		return (0);
 	if (data->map_height >= 2)
-	{	
+	{
 		len = ft_strlen(data->map[data->map_height - 2]);
 		if ((int)data->list->content > len)
 			return (1);
