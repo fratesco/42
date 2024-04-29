@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/28 23:26:40 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/29 21:17:17 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,8 @@ void	get_start_end(t_data *data);
 void	turn_right(t_data *data);
 void	turn_left(t_data *data);
 void	check_movement(t_data *data);
+void	add_minimap(t_data *data);
+void	add_pixel_repeat(t_data *data, int x, int y, int color);
 
 int		nullifiereee(void *data);
 int		keys_control_movements(int kc, t_data *data);
