@@ -6,7 +6,7 @@
 /*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 21:02:01 by fratesco          #+#    #+#             */
-/*   Updated: 2024/04/30 21:26:10 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/04/30 21:42:52 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ void	add_minimap(t_data *data)
 		{
 			if ((int)floor(i) == ((int)floor(data->player->x))
 				&& ((int)floor(j) == ((int)floor(data->player->y))))
-				add_pixel_repeat(data, (int)(j * 10), (int)(i * 10), 0x00ff00);
+				add_pixel_repeat(data, (int)(j * 10), (int)(i * 9.9), 0x00ff00);
 			else if (data->map[(int)floor(i)][(int)floor(j)] == '1')
-				add_pixel_repeat(data, (int)(j * 10), (int)(i * 10), 0x969696);
+				add_pixel_repeat(data, (int)(j * 10), (int)(i * 9.9), 0x969696);
 			else if (data->map[(int)floor(i)][(int)floor(j)] == '0'
 					|| data->map[(int)floor(i)][(int)floor(j)]
 						== data->player->direction)
-				add_pixel_repeat(data, (int)(j * 10), (int)(i * 10), 0xffffff);
+				add_pixel_repeat(data, (int)(j * 10), (int)(i * 9.9), 0xffffff);
 			else if (data->map[(int)floor(i)][(int)floor(j)] == ' ')
-				add_pixel_repeat(data, (int)(j * 10), (int)(i * 10), 0x969696);
+				add_pixel_repeat(data, (int)(j * 10), (int)(i * 9.9), 0x969696);
 			j += 0.1;
 		}
 		i += 0.1;
