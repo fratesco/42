@@ -6,7 +6,7 @@
 /*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 21:02:01 by fratesco          #+#    #+#             */
-/*   Updated: 2024/04/30 21:19:01 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/04/30 21:24:07 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	add_minimap(t_data *data)
 				add_pixel_repeat(data, (int)(j * 10), (int)(i * 10), 0x00ff00);
 			else if (data->map[(int)floor(i)][(int)floor(j)] == '1')
 				add_pixel_repeat(data, (int)(j * 10), (int)(i * 10), 0x969696);
-			else if (data->map[(int)floor(i)][(int)floor(j)] == '0'
+			else if (data->map[(int)floor(i)][(int)floor(j)] == '0' 
 					|| data->map[(int)floor(i)][(int)floor(j)]
 						== data->player->direction)
 				add_pixel_repeat(data, (int)(j * 10), (int)(i * 10), 0xffffff);
@@ -49,8 +49,8 @@ void	add_pixel_repeat(t_data *data, int x, int y, int color)
 	while (ratio_x >= 0)
 	{
 		ratio_y = ((int)data->res_h / 1280);
-		while(ratio_y >= 0)
-		{	
+		while (ratio_y >= 0)
+		{
 			my_mlx_pixel_put(data, x + ratio_x, y + ratio_y, color);
 			ratio_y--;
 		}
