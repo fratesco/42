@@ -6,7 +6,7 @@
 /*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 21:02:01 by fratesco          #+#    #+#             */
-/*   Updated: 2024/04/30 21:24:07 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/04/30 21:26:10 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	add_minimap(t_data *data)
 				add_pixel_repeat(data, (int)(j * 10), (int)(i * 10), 0x00ff00);
 			else if (data->map[(int)floor(i)][(int)floor(j)] == '1')
 				add_pixel_repeat(data, (int)(j * 10), (int)(i * 10), 0x969696);
-			else if (data->map[(int)floor(i)][(int)floor(j)] == '0' 
+			else if (data->map[(int)floor(i)][(int)floor(j)] == '0'
 					|| data->map[(int)floor(i)][(int)floor(j)]
 						== data->player->direction)
 				add_pixel_repeat(data, (int)(j * 10), (int)(i * 10), 0xffffff);

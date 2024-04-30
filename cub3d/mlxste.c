@@ -6,7 +6,7 @@
 /*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:04:23 by srapuano          #+#    #+#             */
-/*   Updated: 2024/04/30 20:58:38 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/04/30 21:27:22 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,8 @@ int	nullifiereee(void *data)
 
 	tmp = (t_data *)data;
 	check_movement(tmp);
-	//mlx_mouse_show(tmp->mlx, tmp->window);
 	mlx_mouse_get_pos(tmp->mlx, tmp->window, &tmp->mouse_x, &tmp->mouse_y);
 	turn_mouse(data);
-	//mlx_mouse_hide(tmp->mlx, tmp->window);
 	raycasting(tmp);
 	add_minimap(data);
 	mlx_put_image_to_window(tmp->mlx, tmp->window, tmp->image.img, 0, 0);
