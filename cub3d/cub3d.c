@@ -6,7 +6,7 @@
 /*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:49:42 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/28 23:05:04 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/04/30 19:56:56 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	initialize_texture(t_data *data)
 {
+	data->def_x = (data->res_w / 2) - 1;
+	data->def_y = (data->res_h / 2) - 1;
 	data->n.path = NULL;
 	data->e.path = NULL;
 	data->w.path = NULL;

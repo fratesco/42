@@ -6,7 +6,7 @@
 /*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 21:02:01 by fratesco          #+#    #+#             */
-/*   Updated: 2024/04/29 22:28:00 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/04/30 21:19:01 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	add_minimap(t_data *data)
 		j = 0;
 		while (data->map[(int)floor(i)][(int)floor(j)])
 		{
-			if (((int)floor(i) == (int)floor(data->player->x))
-				&& ((int)floor(j) == (int)floor(data->player->y)))
+			if ((int)floor(i) == ((int)floor(data->player->x))
+				&& ((int)floor(j) == ((int)floor(data->player->y))))
 				add_pixel_repeat(data, (int)(j * 10), (int)(i * 10), 0x00ff00);
 			else if (data->map[(int)floor(i)][(int)floor(j)] == '1')
 				add_pixel_repeat(data, (int)(j * 10), (int)(i * 10), 0x969696);
-			else if (data->map[(int)floor(i)][(int)floor(j)] == '0' 
+			else if (data->map[(int)floor(i)][(int)floor(j)] == '0'
 					|| data->map[(int)floor(i)][(int)floor(j)]
 						== data->player->direction)
 				add_pixel_repeat(data, (int)(j * 10), (int)(i * 10), 0xffffff);

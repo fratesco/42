@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:38:13 by srapuano          #+#    #+#             */
-/*   Updated: 2024/04/28 23:26:11 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/04/30 21:07:53 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,42 @@
 
 void	move_forward(t_data *data)
 {
-	if (data->map[(int)floor(data->player->x + 0.5
-				* data->ray.direct_x)][(int)floor(data->player->y
-			+ 0.5 * data->ray.direct_y)] != '1')
-	{
+	if (data->map[(int)floor(data->player->x)][(int)floor(
+		data->player->y + 0.2 * data->ray.direct_y)] != '1')
 		data->player->y += data->ray.direct_y * 0.05;
+	if (data->map[(int)floor(data->player->x + 0.2
+				* data->ray.direct_x)][(int)floor(data->player->y)] != '1')
 		data->player->x += data->ray.direct_x * 0.05;
-	}
 }
 
 void	move_backwards(t_data *data)
 {
-	if (data->map[(int)floor(data->player->x - 0.5
-				* data->ray.direct_x)][(int)floor(data->player->y
-			- 0.5 * data->ray.direct_y)] != '1')
-	{
+	if (data->map[(int)floor(data->player->x)][(int)floor(
+		data->player->y - 0.2 * data->ray.direct_y)] != '1')
 		data->player->y -= data->ray.direct_y * 0.05;
+	if (data->map[(int)floor(data->player->x - 0.2
+				* data->ray.direct_x)][(int)floor(data->player->y)] != '1')
 		data->player->x -= data->ray.direct_x * 0.05;
-	}
 }
 
 void	move_right(t_data *data)
 {
-	if (data->map[(int)floor(data->player->x + 0.5
-				* data->ray.plane_x)][(int)floor(data->player->y
-			+ 0.5 * data->ray.plane_y)] != '1')
-	{
+	if (data->map[(int)floor(data->player->x)][(int)floor(
+		data->player->y + 0.2 * data->ray.plane_y)] != '1')
 		data->player->y += data->ray.plane_y * 0.05;
+	if (data->map[(int)floor(data->player->x + 0.2
+				* data->ray.plane_x)][(int)floor(data->player->y)] != '1')
 		data->player->x += data->ray.plane_x * 0.05;
-	}
 }
 
 void	move_left(t_data *data)
 {
-	if (data->map[(int)floor(data->player->x - 0.5
-				* data->ray.plane_x)][(int)floor(data->player->y
-			- 0.5 * data->ray.plane_y)] != '1')
-	{
+	if (data->map[(int)floor(data->player->x)][(int)floor(
+		data->player->y - 0.2 * data->ray.plane_y)] != '1')
 		data->player->y -= data->ray.plane_y * 0.05;
+	if (data->map[(int)floor(data->player->x - 0.2
+				* data->ray.plane_x)][(int)floor(data->player->y)] != '1')
 		data->player->x -= data->ray.plane_x * 0.05;
-	}
 }
 
 void	check_movement(t_data *data)
@@ -67,7 +63,7 @@ void	check_movement(t_data *data)
 	if (data->player->m_r)
 		move_right(data);
 	if (data->player->r_l)
-		turn_left(data);
+		turn_left(data, -0.02);
 	if (data->player->r_r)
-		turn_right(data);
+		turn_right(data, 0.02);
 }

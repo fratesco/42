@@ -6,7 +6,7 @@
 /*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/29 21:17:17 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/04/30 20:04:03 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,10 @@ typedef struct s_data
 	int			res_w;
 	void		*mlx;
 	void		*window;
+	int			def_x;
+	int			def_y;
+	int			mouse_x;
+	int			mouse_y;
 	int			z;
 	int			hit;
 	int			side;
@@ -149,8 +153,9 @@ void	draw_east(t_data *data);
 void	draw_west(t_data *data);
 void	draw_south(t_data *data);
 void	get_start_end(t_data *data);
-void	turn_right(t_data *data);
-void	turn_left(t_data *data);
+void	turn_right(t_data *data, double rotate);
+void	turn_left(t_data *data, double rotate);
+void	turn_mouse(t_data *data);
 void	check_movement(t_data *data);
 void	add_minimap(t_data *data);
 void	add_pixel_repeat(t_data *data, int x, int y, int color);

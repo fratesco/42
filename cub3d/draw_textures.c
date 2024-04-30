@@ -6,7 +6,7 @@
 /*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:24:26 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/28 22:59:44 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/04/30 20:54:53 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	draw_north(t_data *data)
 	if (data->side == X && data->ray.ray_dir_x > 0)
 		tex_x = data->n.w - tex_x - 0.5;
 	data->scale = (1.0 * data->n.h / (data->line_height));
-	tex_pos = 0;
+	tex_pos = (data->ray.draw_start - (data->res_h / 2)
+			+ (data->line_height / 2)) * data->scale;
 	while (tmp_y < data->ray.draw_end)
 	{
 		tex_y = (int)tex_pos & (data->n.h - 1);
@@ -58,10 +59,11 @@ void	draw_south(t_data *data)
 
 	tmp_y = data->ray.draw_start;
 	tex_x = (int)(data->wall_x * (double)data->s.w);
-	if (data->side == Y && data->ray.ray_dir_y > 0)
+	if (data->side == X && data->ray.ray_dir_x < 0)
 		tex_x = data->s.w - tex_x - 1;
 	data->scale = (data->s.h * 1.0) / data->line_height;
-	tex_pos = 0;
+	tex_pos = (data->ray.draw_start - (data->res_h / 2)
+			+ (data->line_height / 2)) * data->scale;
 	while (tmp_y < data->ray.draw_end)
 	{
 		tex_y = (int)tex_pos & (data->s.h - 1);
@@ -82,10 +84,11 @@ void	draw_east(t_data *data)
 
 	tmp_y = data->ray.draw_start;
 	tex_x = (int)(data->wall_x * (double)data->e.w);
-	if (data->side == X && data->ray.ray_dir_x < 0)
+	if (data->side == Y && data->ray.ray_dir_y > 0)
 		tex_x = data->e.w - tex_x - 1;
 	data->scale = (data->e.h * 1.0) / data->line_height ;
-	tex_pos = 0;
+	tex_pos = (data->ray.draw_start - (data->res_h / 2)
+			+ (data->line_height / 2)) * data->scale;
 	while (tmp_y < data->ray.draw_end)
 	{
 		tex_y = (int)tex_pos & (data->e.h - 1);
@@ -106,10 +109,11 @@ void	draw_west(t_data *data)
 
 	tmp_y = data->ray.draw_start;
 	tex_x = (int)(data->wall_x * (double)data->w.w);
-	if (data->side == X && data->ray.ray_dir_x < 0)
+	if (data->side == Y && data->ray.ray_dir_y < 0)
 		tex_x = data->w.w - tex_x - 1;
 	data->scale = (data->w.h * 1.0) / data->line_height;
-	tex_pos = 0;
+	tex_pos = (data->ray.draw_start - (data->res_h / 2)
+			+ (data->line_height / 2)) * data->scale;
 	while (tmp_y < data->ray.draw_end)
 	{
 		tex_y = (int)tex_pos & (data->w.h - 1);
