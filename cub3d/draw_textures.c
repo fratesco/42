@@ -6,7 +6,7 @@
 /*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:24:26 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/30 20:54:53 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/05/01 14:32:29 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	draw_textures(t_data *data)
 {
-	if (data->side == X && data->ray.step_x < 0)
+	if (data->hit == 2)
+		draw_door(data);
+	else if (data->side == X && data->ray.step_x < 0)
 		draw_north(data);
 	else if (data->side == X && data->ray.step_x > 0)
 		draw_south(data);

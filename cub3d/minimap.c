@@ -6,17 +6,14 @@
 /*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 21:02:01 by fratesco          #+#    #+#             */
-/*   Updated: 2024/04/30 21:42:52 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/05/01 15:02:36 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	add_minimap(t_data *data)
+void	add_minimap(t_data *data, double i, double j)
 {
-	double	i;
-	double	j;
-
 	i = 0;
 	while (data->map[(int)floor(i)])
 	{
@@ -26,14 +23,17 @@ void	add_minimap(t_data *data)
 			if ((int)floor(i) == ((int)floor(data->player->x))
 				&& ((int)floor(j) == ((int)floor(data->player->y))))
 				add_pixel_repeat(data, (int)(j * 10), (int)(i * 9.9), 0x00ff00);
-			else if (data->map[(int)floor(i)][(int)floor(j)] == '1')
+			else if (data->map[(int)floor(i)][(int)floor(j)] == '1'
+					|| data->map[(int)floor(i)][(int)floor(j)] == ' ')
 				add_pixel_repeat(data, (int)(j * 10), (int)(i * 9.9), 0x969696);
 			else if (data->map[(int)floor(i)][(int)floor(j)] == '0'
 					|| data->map[(int)floor(i)][(int)floor(j)]
-						== data->player->direction)
+					== data->player->direction)
 				add_pixel_repeat(data, (int)(j * 10), (int)(i * 9.9), 0xffffff);
-			else if (data->map[(int)floor(i)][(int)floor(j)] == ' ')
-				add_pixel_repeat(data, (int)(j * 10), (int)(i * 9.9), 0x969696);
+			else if (data->map[(int)floor(i)][(int)floor(j)] == '2')
+				add_pixel_repeat(data, (int)(j * 10), (int)(i * 9.9), 0xff0000);
+			else if (data->map[(int)floor(i)][(int)floor(j)] == '3')
+				add_pixel_repeat(data, (int)(j * 10), (int)(i * 9.9), 0x0000ff);
 			j += 0.1;
 		}
 		i += 0.1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:33:01 by srapuano          #+#    #+#             */
-/*   Updated: 2024/04/28 23:30:27 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/05/01 14:50:07 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	keys_control_movements(int kc, t_data *data)
 		data->player->r_r = 1;
 	if (kc == 65363)
 		data->player->r_l = 1;
+	if (kc == 32)
+		open_door(data);
 	if (kc == 65307)
 		close_game(data);
 	return (0);

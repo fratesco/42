@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 16:56:44 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/27 09:28:25 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/05/01 14:30:15 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void	dda(t_data *data)
 		}
 		if (data->map[data->player->map_x][data->player->map_y] == '1')
 			data->hit = 1;
+		else if (data->map[data->player->map_x][data->player->map_y] == '2')
+			data->hit = 2;
 	}
 }
 
