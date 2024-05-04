@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:41:46 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/09 18:15:45 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/05/04 11:51:14 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,18 +117,3 @@ char	*get_next_line(int fd)
 	brokenl = get_next_brokenl(brokenl);
 	return (fixedl);
 }
-
-// int	main()
-// {
-// 	int fd = open("loreipsum.txt", O_RDONLY);
-// 	char *s = get_next_line(fd);
-
-// 	while (s)
-// 	{
-// 		printf("%s", s);
-// 		s = get_next_line(fd);
-// 	}
-// 	close(fd);
-// 	check_leaks();
-// 	return (0);
-// }
