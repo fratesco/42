@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 10:13:03 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/27 09:29:15 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/05/05 18:11:22 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ int	check_text_path(t_data *data)
 			data->e.path, &data->e.w, &data->e.h);
 	if (!data->e.img)
 		return (printf("East texture path is wrong!"));
+	data->door.img = mlx_xpm_file_to_image(data->mlx,
+			"textures/poly.xpm", &data->door.w, &data->door.h);
 	return (0);
 }

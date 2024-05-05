@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_door.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 14:33:14 by fratesco          #+#    #+#             */
-/*   Updated: 2024/05/01 14:58:28 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/05/05 18:11:32 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	draw_door(t_data *data)
 	{
 		tex_y = (int)tex_pos & (data->n.h - 1);
 		tex_pos += data->scale;
-		my_mlx_pixel_put(data, data->z, tmp_y, 0x0000ff);
-		//my_mlx_pixel_put(data, data->z, tmp_y,
-		//	get_pixel(&data->door, tex_x, tex_y));
+		//my_mlx_pixel_put(data, data->z, tmp_y, 0x0000ff);
+		my_mlx_pixel_put(data, data->z, tmp_y,
+			get_pixel(&data->door, tex_x, tex_y));
 		tmp_y++;
 	}
 }

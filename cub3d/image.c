@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 10:23:25 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/28 23:31:05 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/05/05 18:11:10 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,8 @@ int	create_images(t_data *data)
 			&data->w.size_line, &data->w.endian);
 	data->e.addr = mlx_get_data_addr(data->e.img, &data->e.bits_per_pixel,
 			&data->e.size_line, &data->e.endian);
+	data->door.addr = mlx_get_data_addr(data->door.img,
+			&data->door.bits_per_pixel, &data->door.size_line,
+			&data->door.endian);
 	return (0);
 }

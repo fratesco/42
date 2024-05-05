@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:49:42 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/30 19:56:56 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/05/05 18:10:48 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	initialize_texture(t_data *data)
 	data->e.img = NULL;
 	data->w.img = NULL;
 	data->s.img = NULL;
+	data->door.img = NULL;
 	data->ceiling.img = NULL;
 	data->floor.img = NULL;
 	data->image.img = NULL;
