@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 10:23:25 by fgolino           #+#    #+#             */
-/*   Updated: 2024/05/05 18:11:10 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/05/05 18:25:11 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	image_destroyer(t_data *data, void *img)
 		mlx_destroy_image(data->mlx, data->w.img);
 	if (data->e.img)
 		mlx_destroy_image(data->mlx, data->e.img);
+	if (data->door.img)
+		mlx_destroy_image(data->mlx, data->door.img);
 	if (data->image.img)
 		mlx_destroy_image(data->mlx, data->image.img);
 	if (data->window)
