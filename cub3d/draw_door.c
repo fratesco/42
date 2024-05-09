@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_door.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 14:33:14 by fratesco          #+#    #+#             */
-/*   Updated: 2024/05/05 18:26:48 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/05/09 21:53:58 by srapuano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,3 +49,31 @@ void	open_door(t_data *data)
 		data->map[(int)floor(data->player->x + data->ray.direct_x)]
 		[(int)floor(data->player->y + data->ray.direct_y)] = '2';
 }
+
+void print_ani(t_data *data, int y, int x, int i)
+{
+	int paxxel;
+
+	y = 0;
+	while(y <= 47)
+	{
+		x = 0;
+		while(x <= 47)
+		{
+			paxxel = get_pixel(&data->frames[(int)floor(data->frame_c)], x, y);
+			if (paxxel == 0xff000000)
+			{
+				x++;
+				continue;
+			}
+			my_mlx_pixel_put(data, data->res_w - 48 + x,
+				data->res_h - 35 + y, paxxel);
+			x++;
+		}
+		y++;
+	}
+	data->frame_c += 0.09;
+	if ((int)floor(data->frame_c) > 14)
+		data->frame_c = 0;
+}
+

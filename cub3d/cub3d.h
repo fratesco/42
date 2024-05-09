@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/05/05 18:10:55 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/05/09 21:49:43 by srapuano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ typedef struct s_texture
 	int		w;
 	int		h;
 	char	*path;
-
 }	t_texture;
 
 typedef struct s_data
@@ -101,9 +100,11 @@ typedef struct s_data
 	double		scale;
 	double		wall_x;
 	int			line_height;
+	double			frame_c;
 	t_list		*list;
 	t_list		*save_list;
 	t_player	*player;
+	t_texture	frames[15];
 	t_texture	ceiling;
 	t_texture	floor;
 	t_texture	n;
@@ -162,7 +163,9 @@ void	turn_mouse(t_data *data);
 void	check_movement(t_data *data);
 void	add_minimap(t_data *data, double i, double j);
 void	add_pixel_repeat(t_data *data, int x, int y, int color);
-
+void	initialize_animation(t_data *data);
+void 	animations_addr(t_data *data);
+void 	print_ani(t_data *data, int y, int x, int i);
 int		nullifiereee(void *data);
 int		keys_control_movements(int kc, t_data *data);
 int		keys_control_released(int kc, t_data *data);

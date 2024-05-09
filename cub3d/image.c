@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 10:23:25 by fgolino           #+#    #+#             */
-/*   Updated: 2024/05/05 18:25:11 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/05/09 21:59:33 by srapuano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	image_destroyer(t_data *data, void *img)
 {
+	int i;
+
+	i = 0;
 	if (img)
 		mlx_destroy_image(data->mlx, img);
 	if (data->n.img)
@@ -28,6 +31,8 @@ void	image_destroyer(t_data *data, void *img)
 		mlx_destroy_image(data->mlx, data->door.img);
 	if (data->image.img)
 		mlx_destroy_image(data->mlx, data->image.img);
+	while(i < 15)
+		mlx_destroy_image(data->mlx, data->frames[i++].img);
 	if (data->window)
 		mlx_destroy_window(data->mlx, data->window);
 	if (data->mlx)
@@ -53,5 +58,6 @@ int	create_images(t_data *data)
 	data->door.addr = mlx_get_data_addr(data->door.img,
 			&data->door.bits_per_pixel, &data->door.size_line,
 			&data->door.endian);
+	initialize_animation(data);
 	return (0);
 }

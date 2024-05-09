@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
+/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:49:42 by fgolino           #+#    #+#             */
-/*   Updated: 2024/05/05 18:10:48 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/05/09 21:46:59 by srapuano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	initializer(t_data *data)
 	data->player->space = 10;
 	data->res_h = 720;
 	data->res_w = 1280;
+	data->frame_c = 0;
 	data->window = NULL;
 	data->mlx = NULL;
 	initialize_texture(data);
