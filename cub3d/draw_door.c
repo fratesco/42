@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_door.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 14:33:14 by fratesco          #+#    #+#             */
-/*   Updated: 2024/05/09 21:53:58 by srapuano         ###   ########.fr       */
+/*   Updated: 2024/05/09 22:12:45 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	draw_door(t_data *data)
 
 	tmp_y = data->ray.draw_start;
 	tex_x = (int)(data->wall_x * (double)data->door.w);
-	//if (data->side == X && data->ray.ray_dir_x > 0)
-	//	tex_x = data->door.w - tex_x - 0.5;
 	data->scale = (1.0 * data->door.h / (data->line_height));
 	tex_pos = (data->ray.draw_start - (data->res_h / 2)
 			+ (data->line_height / 2)) * data->scale;
@@ -31,7 +29,6 @@ void	draw_door(t_data *data)
 	{
 		tex_y = (int)tex_pos & (data->door.h - 1);
 		tex_pos += data->scale;
-		//my_mlx_pixel_put(data, data->z, tmp_y, 0x0000ff);
 		my_mlx_pixel_put(data, data->z, tmp_y,
 			get_pixel(&data->door, tex_x, tex_y));
 		tmp_y++;
@@ -50,21 +47,21 @@ void	open_door(t_data *data)
 		[(int)floor(data->player->y + data->ray.direct_y)] = '2';
 }
 
-void print_ani(t_data *data, int y, int x, int i)
+void	print_ani(t_data *data, int y, int x, int i)
 {
-	int paxxel;
+	int	paxxel;
 
 	y = 0;
-	while(y <= 47)
+	while (y <= 47)
 	{
 		x = 0;
-		while(x <= 47)
+		while (x <= 47)
 		{
 			paxxel = get_pixel(&data->frames[(int)floor(data->frame_c)], x, y);
 			if (paxxel == 0xff000000)
 			{
 				x++;
-				continue;
+				continue ;
 			}
 			my_mlx_pixel_put(data, data->res_w - 48 + x,
 				data->res_h - 35 + y, paxxel);
@@ -76,4 +73,3 @@ void print_ani(t_data *data, int y, int x, int i)
 	if ((int)floor(data->frame_c) > 14)
 		data->frame_c = 0;
 }
-

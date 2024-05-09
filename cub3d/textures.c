@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 10:13:03 by fgolino           #+#    #+#             */
-/*   Updated: 2024/05/09 22:03:24 by srapuano         ###   ########.fr       */
+/*   Updated: 2024/05/09 22:11:24 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ int	check_text_path(t_data *data)
 			"textures/poly.xpm", &data->door.w, &data->door.h);
 	return (0);
 }
+
 void	initialize_animation(t_data *data)
 {
 	int	i;
-	
+
 	data->frames[0].path = "textures/AnyConv.com__Crow-1.png.xpm";
 	data->frames[1].path = "textures/AnyConv.com__Crow-2.png.xpm";
 	data->frames[2].path = "textures/AnyConv.com__Crow-3.png.xpm";
@@ -54,25 +55,25 @@ void	initialize_animation(t_data *data)
 	data->frames[13].path = "textures/AnyConv.com__Crow-14.png.xpm";
 	data->frames[14].path = "textures/AnyConv.com__Crow-15.png.xpm";
 	i = 0;
-	while(i <= 14)
+	while (i <= 14)
 	{
 		data->frames[i].img = mlx_xpm_file_to_image(data->mlx,
-			data->frames[i].path, &data->frames[i].w, &data->frames[i].h);
+				data->frames[i].path, &data->frames[i].w, &data->frames[i].h);
 		i++;
 	}
 	animations_addr(data);
 }
 
-void animations_addr(t_data *data)
+void	animations_addr(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	while(i <= 14)
+	while (i <= 14)
 	{
 		data->frames[i].addr = mlx_get_data_addr(data->frames[i].img,
-			&data->frames[i].bits_per_pixel, &data->frames[i].size_line,
-			&data->frames[i].endian);
+				&data->frames[i].bits_per_pixel, &data->frames[i].size_line,
+				&data->frames[i].endian);
 		i++;
 	}
 }
