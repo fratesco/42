@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlxste.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:04:23 by srapuano          #+#    #+#             */
-/*   Updated: 2024/05/09 21:40:08 by srapuano         ###   ########.fr       */
+/*   Updated: 2024/05/09 22:47:06 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	nullifiereee(void *data)
 	mlx_mouse_get_pos(tmp->mlx, tmp->window, &tmp->mouse_x, &tmp->mouse_y);
 	turn_mouse(data);
 	raycasting(tmp);
-	add_minimap(data, 0, 0);
 	print_ani(tmp, 0, 0, 0);
+	add_minimap(data, 0, 0);
 	mlx_put_image_to_window(tmp->mlx, tmp->window, tmp->image.img, 0, 0);
 	return (0);
 }

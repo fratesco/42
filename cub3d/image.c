@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 10:23:25 by fgolino           #+#    #+#             */
-/*   Updated: 2024/05/09 22:11:44 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/05/09 22:38:16 by fratesco         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	image_destroyer(t_data *data, void *img)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	if (img)
 		mlx_destroy_image(data->mlx, img);
 	if (data->n.img)
