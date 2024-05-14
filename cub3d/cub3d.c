@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:49:42 by fgolino           #+#    #+#             */
-/*   Updated: 2024/05/14 11:41:56 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/05/14 12:39:23 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	initialize_texture(t_data *data)
 {
+	int	i;
+
+	i = 0;
 	data->def_x = (data->res_w / 2) - 1;
 	data->def_y = (data->res_h / 2) - 1;
 	data->n.path = NULL;
@@ -30,20 +33,15 @@ void	initialize_texture(t_data *data)
 	data->ceiling.img = NULL;
 	data->floor.img = NULL;
 	data->image.img = NULL;
-	data->n.w = 0;
-	data->n.h = 0;
-	data->s.w = 0;
-	data->s.h = 0;
-	data->w.w = 0;
-	data->w.h = 0;
-	data->e.w = 0;
-	data->e.h = 0;
+	while (i < 14)
+		data->frames[i++].img = 0;
 }
 
 void	initializer(t_data *data)
 {
 	data->map = NULL;
 	data->map_height = 0;
+	data->p = 0;
 	data->list = NULL;
 	data->z = 0;
 	data->save_list = 0;
@@ -59,7 +57,6 @@ void	initializer(t_data *data)
 	data->ray.plane_y = 0;
 	data->ray.step_x = 0;
 	data->ray.step_y = 0;
-	data->player->space = 10;
 	data->res_h = 1080;
 	data->res_w = 1920;
 	data->frame_c = 1;

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:34:03 by fgolino           #+#    #+#             */
-/*   Updated: 2024/04/15 10:11:21 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/05/14 12:45:44 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,11 +116,11 @@ int	check_map(t_data *data, int i, char *tmp, int cond)
 			free (tmp);
 			continue ;
 		}
-		i = spaces_skipper(tmp, 0);
+		data->p = spaces_skipper(tmp, 0);
 		if (data->map_height == 0)
-			if (tmp[i] && check_lines(tmp, i, 0, data))
+			if (tmp[data->p] && check_lin(tmp, 0, 0, data))
 				cond = 0;
-		if (tmp[i] && cond && check_lines(tmp, i, 1, data) || !tmp[i])
+		if (tmp[data->p] && cond && check_lin(tmp, 0, 1, data) || !tmp[data->p])
 			cond = 0;
 		data->map = matrix_crusher(data->map, &tmp[0], 0);
 		free(tmp);

@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:29:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/05/09 22:12:24 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/05/14 12:38:38 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_data
 	double		wall_x;
 	int			line_height;
 	double		frame_c;
+	int			p;
 	t_list		*list;
 	t_list		*save_list;
 	t_player	*player;
@@ -123,7 +124,7 @@ int		check_input(int argc, char **argv, t_data *data);
 int		check_map(t_data *data, int i, char *tmp, int cond);
 int		spaces_skipper(char *str, int start);
 int		string_to_rgb(char *str, int i, int j, int counter);
-int		check_lines(char *str, int start, int raw, t_data *data);
+int		check_lin(char *str, int i, int raw, t_data *data);
 int		color_checker(char *str, int i);
 int		comparer(char *tmp, t_data *data, int i);
 void	free_matrix(char **matrix);
