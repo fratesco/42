@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 14:49:42 by fgolino           #+#    #+#             */
-/*   Updated: 2024/05/09 22:35:05 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/05/14 11:41:56 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	initializer(t_data *data)
 	data->ray.step_x = 0;
 	data->ray.step_y = 0;
 	data->player->space = 10;
-	data->res_h = 720;
-	data->res_w = 1280;
+	data->res_h = 1080;
+	data->res_w = 1920;
 	data->frame_c = 1;
 	data->window = NULL;
 	data->mlx = NULL;

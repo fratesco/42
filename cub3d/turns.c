@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   turns.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:46:09 by fratesco          #+#    #+#             */
-/*   Updated: 2024/04/30 21:27:09 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/05/14 11:54:53 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ void	turn_mouse(t_data *data)
 {
 	if (data->def_x > data->mouse_x)
 	{
-		turn_left(data, ((0.004 * (data->def_x - data->mouse_x))));
-		mlx_mouse_get_pos(data->mlx, data->window, &data->def_x, &data->def_y);
+		turn_left(data, ((0.002 * (data->def_x - data->mouse_x))));
+		mlx_mouse_move(data->mlx, data->window, data->def_x, data->def_y);
 	}
 	else if (data->def_x < data->mouse_x)
 	{
-		turn_right(data, (-(0.004 * (data->mouse_x - data->def_x))));
-		mlx_mouse_get_pos(data->mlx, data->window, &data->def_x, &data->def_y);
+		turn_right(data, (-(0.002 * (data->mouse_x - data->def_x))));
+		mlx_mouse_move(data->mlx, data->window, data->def_x, data->def_y);
 	}
 }
