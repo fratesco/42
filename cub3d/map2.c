@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:11:13 by fgolino           #+#    #+#             */
-/*   Updated: 2024/05/01 14:22:43 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/05/14 12:40:44 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,31 +31,31 @@ int	new_check(t_data *data, int start, int i, char *str)
 	return (0);
 }
 
-int	check_lines(char *str, int start, int raw, t_data *data)
+int	check_lin(char *str, int i, int raw, t_data *data)
 {
-	int	i;
-
-	i = 0;
 	if (data->list)
 		if (check_list(data, str, 0) || list_free(data))
 			return (1);
-	while (str && str[start + i])
+	while (str && str[data->p + i])
 	{
-		if ((raw == 0 || i == 0) && (str[start + i] != '1'
-				&& str[start + i] != ' '))
+		if ((raw == 0 || i == 0) && (str[data->p + i] != '1'
+				&& str[data->p + i] != ' '))
 			return (1);
-		if (str[start + i] == ' ')
+		if (data->map_height > 0 && ((data->p + i) > strlen(data->map
+					[data->map_height - 1]) && str[data->p + i] != '1'))
+			return (1);
+		if (str[data->p + i] == ' ')
 		{
-			if (new_check(data, start, i, str))
+			if (new_check(data, data->p, i, str))
 				return (1);
 		}
-		else if (str[start + i] != 'N' && str[start + i] != 'W'
-			&& str[start + i] != 'E' && str[start + i] != 'S' && str[start + i]
-			!= '0' && str[start + i] != '1' && str[start + i] != '2')
+		else if (str[data->p + i] != 'N' && str[data->p + i] != 'W' && str
+			[data->p + i] != 'E' && str[data->p + i] != 'S' && str[data->p + i]
+			!= '0' && str[data->p + i] != '1' && str[data->p + i] != '2')
 			return (1);
 		i++;
 	}
-	if (str && (str[start + i - 1] != '1' || str[start] == 0))
+	if (str && (str[data->p + i - 1] != '1' || str[data->p] == 0))
 		return (1);
 	return (0);
 }
@@ -90,7 +90,8 @@ int	check_list(t_data *data, char *str, int len)
 
 int	last_check(t_data *data, int i)
 {
-	if (check_lines(data->map[data->map_height - 1], i, 0, data))
+	data->p = i;
+	if (check_lin(data->map[data->map_height - 1], 0, 0, data))
 		return (1);
 	if (check_list(data, data->map[data->map_height - 1], 0) || list_free(data))
 		return (1);

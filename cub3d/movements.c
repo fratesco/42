@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fratesco <fratesco@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 16:38:13 by srapuano          #+#    #+#             */
-/*   Updated: 2024/05/01 14:22:24 by fratesco         ###   ########.fr       */
+/*   Updated: 2024/05/14 11:52:03 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	check_movement(t_data *data)
 	if (data->player->m_r)
 		move_right(data);
 	if (data->player->r_l)
-		turn_left(data, -0.02);
+		turn_left(data, -0.04);
 	if (data->player->r_r)
-		turn_right(data, 0.02);
+		turn_right(data, 0.04);
 }

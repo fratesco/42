@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlxste.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: srapuano <srapuano@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:04:23 by srapuano          #+#    #+#             */
-/*   Updated: 2024/05/09 21:40:08 by srapuano         ###   ########.fr       */
+/*   Updated: 2024/05/14 16:50:03 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ void	mlx_handler(t_data *data)
 {
 	data->window = mlx_new_window(data->mlx, data->res_w,
 			data->res_h, "CUB3D");
+	mlx_mouse_move(data->mlx, data->window,
+		(data->res_w / 2) - 1, (data->res_h / 2) - 1);
+	mlx_mouse_hide(data->mlx, data->window);
 	mlx_mouse_get_pos(data->mlx, data->window, &data->def_x, &data->def_y);
 	mlx_hook(data->window, 2, 1L << 0, keys_control_movements, data);
 	mlx_hook(data->window, 3, 1L << 1, keys_control_released, data);
@@ -42,8 +45,8 @@ int	nullifiereee(void *data)
 	mlx_mouse_get_pos(tmp->mlx, tmp->window, &tmp->mouse_x, &tmp->mouse_y);
 	turn_mouse(data);
 	raycasting(tmp);
-	add_minimap(data, 0, 0);
 	print_ani(tmp, 0, 0, 0);
+	add_minimap(data, 0, 0);
 	mlx_put_image_to_window(tmp->mlx, tmp->window, tmp->image.img, 0, 0);
 	return (0);
 }
