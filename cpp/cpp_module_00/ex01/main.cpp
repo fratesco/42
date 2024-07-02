@@ -7,7 +7,8 @@ int	main()
 	while (1)
 	{
 		tmp.clear();
-		std::cout<<"Enter one of the following commands: ADD, SEARCH, EXIT.\n>: ";
+		if (std::cin)
+			std::cout<<"Enter one of the following commands: ADD, SEARCH, EXIT.\n>: ";
 		while (tmp.empty() && std::cin)
 			getline(std::cin, tmp);
 		if (!std::cin)

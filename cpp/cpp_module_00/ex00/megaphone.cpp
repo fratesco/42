@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 00:25:19 by fgolino           #+#    #+#             */
-/*   Updated: 2023/12/01 01:51:04 by fgolino          ###   ########.fr       */
+/*   Updated: 2024/07/02 16:02:27 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	main(int argc, char **argv)
 				for (j = 0; matrix[i - 1][j]; j++)
 					matrix[i - 1][j] = toupper(matrix[i - 1][j]);
 				std::cout << matrix[i - 1];
+				if (i < argc - 1)
+				std::cout << ' ';
 				i++;
 			}
 			while (i > 1)
