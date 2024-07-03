@@ -77,6 +77,7 @@ void	ScavTrap::attack(std::string const &target)
 		std::cout<<"ScavTrap "<<name<<" is broken and need repairing.\n";
 	else if (energy <= 0)
 		std::cout<<"ScavTrap "<<name<<" is out of energy.\n";
+	if ((hp > 0) && (energy > 0))
 	energy--;
 }
 //void	ScavTrap::takeDamage(unsigned int amount)
@@ -85,5 +86,5 @@ void	ScavTrap::attack(std::string const &target)
 //}
 void	ScavTrap::guardGate()
 {
-	std::cout<<"Scavtrap"<<name<<"entered gate keeper mode\n";
+	std::cout<<"Scavtrap "<<name<<" entered gate keeper mode\n";
 }

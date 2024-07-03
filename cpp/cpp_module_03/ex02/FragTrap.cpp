@@ -77,7 +77,8 @@ void	FragTrap::attack(std::string const &target)
 		std::cout<<"FragTrap "<<name<<" is broken and need repairing.\n";
 	else if (energy <= 0)
 		std::cout<<"FragTrap "<<name<<" is out of energy.\n";
-	energy--;
+	if ((hp > 0) && (energy > 0))
+		energy--;
 }
 
 void	FragTrap::highFivesGuys()

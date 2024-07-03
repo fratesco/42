@@ -77,7 +77,8 @@ void	ScavTrap::attack(std::string const &target)
 		std::cout<<"ScavTrap "<<name<<" is broken and need repairing.\n";
 	else if (energy <= 0)
 		std::cout<<"ScavTrap "<<name<<" is out of energy.\n";
-	energy--;
+	if ((hp > 0) && (energy > 0))
+		energy--;
 }
 //void	ScavTrap::takeDamage(unsigned int amount)
 //{
