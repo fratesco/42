@@ -10,12 +10,12 @@ Dog::Dog()
 Dog::Dog(const Dog &src)
 {
 	*this = src;
-	this->brain = new Brain;
 	std::cout<<"The copy of a Dog appeared to bite you\n";
 }
 
 Dog &Dog::operator=(const Dog &src)
 {
+	brain = new Brain;
 	*(this->brain) = *(src.brain);
 	this->type = src.type;
 	return (*this);
@@ -25,6 +25,11 @@ Dog::~Dog()
 {
 	delete (this->brain);
 	std::cout<<"The *absolutely* normal Dog went away\n";
+}
+
+void	Dog::setIdea()
+{
+	brain->setIdea();
 }
 
 void	Dog::makeSound() const 

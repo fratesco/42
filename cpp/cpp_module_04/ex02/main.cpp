@@ -14,6 +14,13 @@ int main()
 		else
 			zoo[i] = new Cat;
 	}
+	{
+		Cat cane;
+		cane.setIdea();
+		{
+			Cat tmp = cane;
+		}
+	}
 	for(int i = 0; i < 10; i++)
 		delete(zoo[i]);
 

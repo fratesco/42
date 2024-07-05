@@ -13,6 +13,7 @@ class Dog : public Animal
 			~Dog();
 
 			void	makeSound() const;
+			void	setIdea();
 	private:
 			Brain	*brain;
 };
