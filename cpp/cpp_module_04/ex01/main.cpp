@@ -5,17 +5,22 @@
 
 int main()
 {
-	const Animal	*zoo[10];
-	
-	for(int	i = 0; i < 10; i++)
+	//const Animal	*zoo[10];
+	//
+	//for(int	i = 0; i < 10; i++)
+	//{
+	//	if (i < 5)
+	//		zoo[i] = new Dog;
+	//	else
+	//		zoo[i] = new Cat;
+	//}
+	Dog cane;
+	//cane.brain->setIdea();
 	{
-		if (i < 5)
-			zoo[i] = new Dog;
-		else
-			zoo[i] = new Cat;
+		Dog tmp = cane;
 	}
-	for(int i = 0; i < 10; i++)
-		delete(zoo[i]);
+	//for(int i = 0; i < 10; i++)
+	//	delete(zoo[i]);
 
 	return (0);
 }
