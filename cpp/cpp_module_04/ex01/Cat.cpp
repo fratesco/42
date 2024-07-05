@@ -3,6 +3,7 @@
 Cat::Cat()
 {
 	brain = new Brain;
+	this->type = "Cat";
 	std::cout<<"A cat appeared to scratch you\n";
 }
 

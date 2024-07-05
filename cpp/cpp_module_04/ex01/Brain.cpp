@@ -2,7 +2,7 @@
 
 Brain::Brain()
 {
-
+	std::cout<<"*Brainy sounds*\n";
 }
 
 Brain::Brain(const Brain &src)
@@ -19,5 +19,5 @@ Brain &Brain::operator=(const Brain &src)
 
 Brain::~Brain()
 {
-
+	std::cout<<"*Dies of cringe*\n";
 }
