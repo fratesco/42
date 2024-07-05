@@ -1,4 +1,4 @@
-SRC := $(wildcard *.cpp)
+SRC := Animal.cpp Cat.cpp Dog.cpp main.cpp Brain.cpp
 
 OBJ := $(SRC:.cpp=.o)
 

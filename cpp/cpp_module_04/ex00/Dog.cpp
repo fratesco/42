@@ -2,6 +2,7 @@
 
 Dog::Dog()
 {
+	this->type = "Dog";
 	std::cout<<"A Dog appeared to bite you\n";
 }
 

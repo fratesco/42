@@ -2,6 +2,7 @@
 
 WrongCat::WrongCat()
 {
+	this->type = "WrongCat";
 	std::cout<<"A Wrongcat appeared to scratch you\n";
 }
 

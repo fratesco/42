@@ -19,7 +19,7 @@ Animal	&Animal::operator=(const Animal &src)
 
 std::string	Animal::getType() const 
 {
-	return(type);
+	return(this->type);
 }
 
 Animal::~Animal()

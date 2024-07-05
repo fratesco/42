@@ -1,7 +1,8 @@
 #include "Cat.hpp"
 
-Cat::Cat()
+Cat::Cat() : Animal()
 {
+	this->type = "Cat";
 	std::cout<<"A cat appeared to scratch you\n";
 }
 
