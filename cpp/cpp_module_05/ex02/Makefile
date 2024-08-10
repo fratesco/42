@@ -4,7 +4,7 @@ OBJ := $(SRC:.cpp=.o)
 
 CC := c++
 
-NAME := forms
+NAME := formss
 
 FLAGS := -Wextra -Wall -Werror
 
