@@ -4,7 +4,7 @@ OBJ := $(SRC:.cpp=.o)
 
 CC := c++
 
-NAME := mutatanStack
+NAME := mutantStack
 
 FLAGS := -Wextra -Wall -Werror
 
