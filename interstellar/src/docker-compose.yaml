@@ -1,0 +1,64 @@
+
+services:
+
+  mariadb:
+    image: mariadb:me
+    container_name: mariadb
+    build: ./requirements/mariadb
+    volumes:
+      - mariadb:/var/lib/mysql
+    env_file :
+      - .env
+    networks :
+      - viktor_twink
+    restart: always
+
+  nginx:
+    image: nginx:io
+    container_name: nginx
+    build: ./requirements/nginx
+    ports:
+      - "443:443"
+    depends_on:
+      - wordpress
+    volumes:
+      - wordpress:/var/www/wordpress
+    env_file:
+      - .env
+    networks:
+      - viktor_twink
+    restart: always
+
+  wordpress:
+    image: wordpress:mestesso
+    container_name: wordpress
+    build: ./requirements/wordpress
+    depends_on:
+      - mariadb
+    volumes:
+      - wordpress:/var/www/wordpress
+    env_file :
+      - .env
+    networks:
+      - viktor_twink
+    restart: always
+
+volumes:
+  mariadb:
+    name: mariadb
+    driver: local
+    driver_opts:
+      device: ~/data/mariadb
+      o : bind
+      type : none
+  wordpress:
+    name: wordpress
+    driver: local
+    driver_opts:
+      device: ~/data/wordpress
+      o : bind
+      type : none
+
+networks:
+  viktor_twink:
+    name: viktor_twink
