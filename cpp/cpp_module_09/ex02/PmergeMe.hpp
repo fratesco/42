@@ -18,17 +18,17 @@ class PmergeMe
 
 			void list_add(int value);
 			void vector_add(int value);
+			uint64_t	get_list_time();
+			uint64_t	get_vector_time();
 			std::vector<int> list_sorter();
 			std::vector<int> vector_sorter();
-			uint64_t	get_vector_time();
-			uint64_t	get_list_time();
 
 			
 	private:
 			uint64_t time_list;
 			uint64_t time_vector;
-			std::vector<int> vector;
 			std::list<int>	 list;
+			std::vector<int> vector;
 };
 
 #endif
