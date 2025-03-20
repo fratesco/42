@@ -6,7 +6,7 @@
 /*   By: fgolino <fgolino@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:47:49 by fgolino           #+#    #+#             */
-/*   Updated: 2024/01/22 15:04:43 by fgolino          ###   ########.fr       */
+/*   Updated: 2025/03/20 21:20:16 by fgolino          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ void	get_environment(t_info *g_info, char **environment)
 	tmp = get_global(g_info->environment, "PATH");
 	if (tmp)
 		g_info->global_path = ft_split(tmp, ':');
-	if (tmp)
-		free(tmp);
+	//if (tmp)
+	//	free(tmp);
 	tmp = get_global(g_info->environment, "USER");
 	g_info->user = ft_strjoin(tmp, (":~"));
-	free(tmp);
+	//free(tmp);
 	signal_rewire();
-	g_info->current_path = get_global(g_info->environment, "HOME");
+	g_info->current_path = ft_strdup(get_global(g_info->environment, "HOME"));
 	chdir(g_info->current_path);
 	initializer(g_info);
 }
