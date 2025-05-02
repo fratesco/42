@@ -23,6 +23,7 @@ int main()
 	try
 	{
 		AForm *form = intern.makeForm("random", "random");
+		(void)form;
 	}
 	catch(const std::exception& e)
 	{

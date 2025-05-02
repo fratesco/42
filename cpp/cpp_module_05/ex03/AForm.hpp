@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <exception>
+#include <cstdlib>
 
 class Bureaucrat;
 
@@ -14,12 +15,12 @@ class AForm
 			AForm(std::string n, int sign, int exec);
 			AForm(const AForm &src);
 			AForm &operator=(const AForm &src);
-			~AForm();
+			virtual ~AForm();
 
 			std::string	const	getName() const;
-			bool const			is_Signed();
-			int const			getExecGrade();
-			int const			getSignGrade();
+			bool 		is_Signed();
+			int 			getExecGrade();
+			int 			getSignGrade();
 			void				beSigned(Bureaucrat &src);
 			void				execute(Bureaucrat const & executor) const;
 			virtual void		action() const  = 0;

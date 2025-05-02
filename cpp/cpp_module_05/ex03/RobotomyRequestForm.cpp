@@ -14,6 +14,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src) :  AFor
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &src)
 {
+	(void)src;
 	return *this;
 }
 

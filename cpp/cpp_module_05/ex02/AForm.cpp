@@ -5,7 +5,7 @@ AForm::AForm() : name("Undefined"), is_signed(false), sign_grade(150), exec_grad
 {
 }
 
-AForm::AForm(std::string n, int sign, int exec) : name(n), sign_grade(sign), exec_grade(exec), is_signed(false)
+AForm::AForm(std::string n, int sign, int exec) : name(n), is_signed(false) ,sign_grade(sign), exec_grade(exec)
 {
 	if (sign > 150 || exec > 150)
 		throw GradeTooLowException();
@@ -13,7 +13,7 @@ AForm::AForm(std::string n, int sign, int exec) : name(n), sign_grade(sign), exe
 		throw GradeTooHighException();
 }
 
-AForm::AForm(const AForm &src) : name(src.name), sign_grade(src.sign_grade), exec_grade(src.exec_grade), is_signed(src.is_signed)
+AForm::AForm(const AForm &src) : name(src.name), is_signed(src.is_signed), sign_grade(src.sign_grade), exec_grade(src.exec_grade)
 {
 }
 
@@ -32,17 +32,17 @@ std::string const AForm::getName() const
 	return name;
 }
 
-bool const AForm::is_Signed()
+bool AForm::is_Signed()
 {
 	return is_signed;
 }
 
-int const AForm::getExecGrade()
+int AForm::getExecGrade()
 {
 	return exec_grade;
 }
 
-int const AForm::getSignGrade()
+int AForm::getSignGrade()
 {
 	return sign_grade;
 }

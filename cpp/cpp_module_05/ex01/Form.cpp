@@ -1,7 +1,7 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
-Form::Form() : name("Undefined"), is_signed(false), sign_grade(150), exec_grade(1)
+Form::Form() : name("Undefined"), sign_grade(150), exec_grade(1), is_signed(false)
 {
 }
 
@@ -32,17 +32,17 @@ std::string const Form::getName()
 	return name;
 }
 
-bool const Form::is_Signed()
+bool Form::is_Signed()
 {
 	return is_signed;
 }
 
-int const Form::getExecGrade()
+int  Form::getExecGrade()
 {
 	return exec_grade;
 }
 
-int const Form::getSignGrade()
+int Form::getSignGrade()
 {
 	return sign_grade;
 }

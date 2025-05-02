@@ -17,9 +17,9 @@ class Form
 			~Form();
 
 			std::string	const	getName();
-			bool const			is_Signed();
-			int const			getExecGrade();
-			int const			getSignGrade();
+			bool 				is_Signed();
+			int 				getExecGrade();
+			int 				getSignGrade();
 			void				beSigned(Bureaucrat &src);
 
 			class GradeTooHighException : public std::exception
@@ -35,9 +35,9 @@ class Form
 			
 	private:
 			const std::string name;
-			bool	is_signed;
 			const int sign_grade;
 			const int exec_grade;
+			bool	is_signed;
 			
 };
 

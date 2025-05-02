@@ -11,6 +11,7 @@ Intern::Intern(const Intern &src)
 
 Intern &Intern::operator=(const Intern &src)
 {
+	(void)src;
 	return *this;
 }
 
@@ -35,7 +36,7 @@ AForm *Intern::robotomy(std::string targ)
 
 AForm *Intern::makeForm(std::string name, std::string target)
 {
-	std::string forms[3] {"shrubbery creation", "presidential pardon", "robotomy request"};
+	std::string forms[3] = {"shrubbery creation", "presidential pardon", "robotomy request"};
 	AForm *(Intern::*method [3])(std::string targ) = {&Intern::creation, &Intern::pardon, &Intern::robotomy};
 
 	for (int i = 0 ; i < 3; i++)
