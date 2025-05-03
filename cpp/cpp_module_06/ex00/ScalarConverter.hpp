@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include <cerrno>
+#include <cstdlib>
 
 class ScalarConverter
 {
@@ -13,6 +15,9 @@ class ScalarConverter
 			~ScalarConverter();
 
 			static void convert(std::string str);
+			static int stoint(const std::string& str);
+			static float stofloat(const std::string& str);
+			static double stodouble(const std::string& str);
 			
 	private:
 			ScalarConverter();
