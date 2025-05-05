@@ -6,11 +6,11 @@
 #include <iostream>
 
 template <typename T>
-class MutantStack : public std::stack<T, std::deque<T>>
+class MutantStack : public std::stack<T, std::deque<T> >
 {
 	public:
 			MutantStack() {};
-			MutantStack(const MutantStack &src) {*this = src;};
+			MutantStack(const MutantStack &src) : std::stack<T, std::deque<T> >(src) {*this = src;};
 			MutantStack &operator=(const MutantStack &src) {this->c = src.c; return *this;};
 			~MutantStack() {this->c.clear();};
 

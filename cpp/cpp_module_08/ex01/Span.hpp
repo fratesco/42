@@ -23,7 +23,7 @@ class Span
 	private:
 			Span();
 			
-			int max_space;
+			unsigned long int max_space;
 			std::vector<int> vector;
 			
 };

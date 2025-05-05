@@ -19,6 +19,7 @@ int main()
 	}
 	catch(const std::exception& e)
 	{
+		std::cout<<"-3\n";
 		std::cerr << e.what() << '\n';
 	}
 
@@ -28,12 +29,14 @@ int main()
 	}
 	catch(const std::exception& e)
 	{
+		std::cout<<"2\n";
 		std::cerr << e.what() << '\n';
 	}
 
 	try
 	{
 		easyfind(v, 25);
+		std::cout<<"25\n";
 	}
 	catch(const std::exception& e)
 	{
@@ -43,6 +46,7 @@ int main()
 	try
 	{
 		easyfind(v, 81);
+		std::cout<<"81\n";
 	}
 	catch(const std::exception& e)
 	{

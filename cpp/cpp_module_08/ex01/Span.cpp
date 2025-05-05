@@ -39,9 +39,9 @@ int Span::shortestSpan()
 	std::vector<int>::iterator it = vector.begin();
 	int lowest = abs(*(it) - *(it + 1));
 
-	for (int i = 0; i < max_space; i++)
+	for (unsigned long int i = 0; i < max_space; i++)
 	{
-		for (int j = i + 1; j + i < max_space; j++)
+		for (unsigned long int j = i + 1; j + i < max_space; j++)
 		{
 			int value = abs(*(it + i) - *(it + j));
 			if (lowest > value)
@@ -59,9 +59,9 @@ int Span::longestSpan()
 	int highest = 0;
 	std::vector<int>::iterator it = vector.begin();
 
-	for (int i = 0; i < max_space; i++)
+	for (unsigned long int i = 0; i < max_space; i++)
 	{
-		for (int j = i + 1; j + i < max_space; j++)
+		for (unsigned long int j = i + 1; j + i < max_space; j++)
 		{
 			int value = abs(*(it + i) - *(it + j));
 			if (highest < value)
