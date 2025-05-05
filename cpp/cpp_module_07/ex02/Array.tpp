@@ -25,7 +25,7 @@ template <typename T>
 Array<T> &Array<T>::operator=(const Array& src)
 {
 	_size = src.size();
-	for (unsigned int i; i < _size; i++)
+	for (unsigned int i = 0; i < _size; i++)
 		array[i] = src.array[i];
 	return *this;
 }
@@ -49,7 +49,7 @@ T &Array<T>::operator[](unsigned int i)
 template <typename T>
 Array<T>::~Array()
 {
-	delete array;
+	delete [] array;
 }
 
 template <typename T>
