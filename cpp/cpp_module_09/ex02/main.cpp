@@ -1,23 +1,24 @@
 #include "PmergeMe.hpp"
 
-void	check_string(std::string str)
+int stoint(const std::string& str)
 {
-	if (!atoi(str.c_str()))
-	{
-		if (str.size() != 1)
-			throw std::invalid_argument("Invalid input argument");
-	}
-	else if (atoi(str.c_str()) < 0)
-		throw std::invalid_argument("Invalid input argument");
-	else if (str.compare("2147483647") > 0)
-		throw std::invalid_argument("Invalid input argument");
+
+	const char *sptr = str.c_str();
+	char *end;
+	errno = 0;
+	long result = std::strtol(sptr, &end, 10);
+	if (sptr == end)
+		throw std::invalid_argument("invalid stoi argument");
+	if (errno == ERANGE || result < 0 || result > 2147483647)
+		throw std::out_of_range("stoi argument out of range");
+	return ((int)result);
 }
 
-template <typename T>
-void	print_value(std::string str, std::vector<T> vector)
+template <typename T, template <typename , class> typename K>
+void	print_value(std::string str, K <T, std::allocator<T> > vector)
 {
 	std::cout<<str<<": ";
-	for (typename std::vector<T>::iterator it = vector.begin(); it != vector.end(); ++it)
+	for (typename K <T, std::allocator<T> >::iterator it = vector.begin(); it != vector.end(); ++it)
 		std::cout<<*it<<" ";
 	std::cout<<std::endl;
 }
@@ -25,8 +26,6 @@ void	print_value(std::string str, std::vector<T> vector)
 int main(int argc, char** argv)
 {
 	std::vector<std::string> tmp;
-	uint64_t time1 = 0;
-	uint64_t time2 = 0;
 	PmergeMe sorter;
 	
 	try
@@ -37,18 +36,29 @@ int main(int argc, char** argv)
 		{
 			for (int i = 1; argv[i]; i++)
 			{
-				tmp.push_back(argv[i]);
-				check_string(tmp.back());
+				try
+				{
+					stoint(argv[i]);
+					tmp.push_back(argv[i]);
+				}
+				catch(const std::exception& e)
+				{
+					std::cerr << e.what() << '\n';
+				}
 			}
-			print_value("Before", tmp);
 			for (std::vector<std::string>::iterator it = tmp.begin(); it != tmp.end(); ++it)
-				sorter.vector_add(atoi((*it).c_str()));
+				sorter.vector_add(stoint((*it)));
 			for (std::vector<std::string>::iterator it = tmp.begin(); it != tmp.end(); ++it)
-				sorter.list_add(atoi((*it).c_str()));
+				sorter.list_add(stoint((*it)));
+			print_value("Before", sorter.get_deque());
+			sorter.list_sorter(sorter.get_list());
+			print_value("After list", sorter.get_list());
+			std::cout<<"Time to process a range of "<<tmp.size()<<" elements with std::list : "<<sorter.get_list_time()<<" us"<<std::endl;
+			sorter.deque_sorter(sorter.get_deque());
+			print_value("After deque", sorter.get_deque());
+			std::cout<<"Time to process a range of "<<tmp.size()<<" elements with std::deque : "<<sorter.get_vector_time()<<" us"<<std::endl;
+			
 			//print_value("After", sorter.vector_sorter());
-			//sorter.list_sorter();
-			//std::cout<<"Time to process a range of"<<tmp.size()<<"elements with std::vector :"<<sorter.get_vector_time()<<std::endl;
-			//std::cout<<"Time to process a range of"<<tmp.size()<<"elements with std::list :"<<sorter.get_list_time()<<std::endl;
 		
 		}
 	}

@@ -3,9 +3,7 @@
 
 #include <stack>
 #include <iostream>
-#include <sstream>
 #include <exception>
-#include <string>
 
 #define ADD '+'
 #define SUB '-'

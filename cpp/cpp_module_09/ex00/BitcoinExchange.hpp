@@ -6,6 +6,7 @@
 #include <map>
 #include <string>
 #include <exception>
+#include <cstdlib>
 
 class BitcoinExchange
 {
@@ -24,6 +25,9 @@ class BitcoinExchange
 			std::map<std::string, float>::iterator get_end_table();
 			std::map<std::string, float>::iterator return_lower(std::map<std::string, float>::iterator it);
 
+			int stoint(const std::string& str);
+			float stofloat(const std::string& str);
+			
 			class DatabaseError : public std::exception
 			{
 				public: 

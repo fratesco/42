@@ -10,6 +10,9 @@ FLAGS := -Wextra -Wall -Werror
 
 STD := -std=c++98
 
+%.o: %.cpp
+		$(CC) $(FLAGS) $(STD) -c $< -o $@
+
 all : $(NAME)
 		@echo $(NAME) compiled successfully!
 

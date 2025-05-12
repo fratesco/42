@@ -10,7 +10,7 @@ BitcoinExchange::BitcoinExchange(std::string input)
 	std::string tmp;
 	std::fstream file;
 
-	file.open(input);
+	file.open(input.c_str());
 	if (!file.is_open())
 	{
 		std::cout<<"Error couldn't open data.csv\n";
@@ -55,7 +55,7 @@ void BitcoinExchange::append(std::string str)
 	pos = str.find(',', 0);
 	if (pos == str.npos)
 		throw DatabaseError();
-	data.insert(std::pair<std::string, float>(str.substr(0, pos), std::stof(str.substr(pos + 1, str.npos))));
+	data.insert(std::pair<std::string, float>(str.substr(0, pos), stofloat(str.substr(pos + 1, str.npos))));
 	//std::map<std::string, float>::iterator it;
 	//it = data.begin();
 	//std::cout<<it->first<<" "<<it->second<<"\n";
@@ -68,7 +68,7 @@ void BitcoinExchange::append_input(std::string str)
 	pos = str.find('|', 0);
 	if (pos == str.npos)
 		table.insert(std::pair<std::string, float>(str.substr(0, pos), - 1));
-	table.insert(std::pair<std::string, float>(str.substr(0, pos), std::stof(str.substr(pos + 1, str.npos))));
+	table.insert(std::pair<std::string, float>(str.substr(0, pos), stofloat(str.substr(pos + 1, str.npos))));
 	
 }
 
@@ -77,7 +77,7 @@ void BitcoinExchange::add_table(std::string input)
 	std::string tmp;
 	std::fstream file;
 
-	file.open(input);
+	file.open(input.c_str());
 	if (!file.is_open())
 	{
 		std::cout<<"Error couldn't open input file\n";
@@ -98,12 +98,12 @@ void BitcoinExchange::check_date(std::string date)
 	pos = date.find('-', 0);
 	if (pos == date.npos)
 		throw WrongDateFormat();
-	time[0] = std::stoi(date.substr(0, pos));
+	time[0] = stoint(date.substr(0, pos));
 	pos = date.rfind('-');
 	if (pos == date.npos)
 		throw WrongDateFormat();
-	time[1] = std::stoi((date.substr(date.find('-') + 1, pos)));
-	time[2] = std::stoi((date.substr(pos + 1, date.npos)));
+	time[1] = stoint((date.substr(date.find('-') + 1, pos)));
+	time[2] = stoint((date.substr(pos + 1, date.npos)));
 	if (time[1] <= 0 || time[1] > 12)
 		throw WrongDateFormat();
 	if (time[2] <= 0 || time[2] > days[time[1] - 1])
@@ -144,3 +144,32 @@ const char *BitcoinExchange::ValueError::what() const throw()
 {
 	return ("The value must be positive and not bigger than 1000\n");
 }
+
+int BitcoinExchange::stoint(const std::string& str)
+{
+		const char *sptr = str.c_str();
+		char *end;
+		errno = 0;
+		long result = std::strtol(sptr, &end, 10);
+
+		if (sptr == end)
+			throw std::invalid_argument("invalid stoi argument");
+		if (errno == ERANGE)
+			throw std::out_of_range("stoi argument out of range");
+
+		return ((int)result);
+}
+
+float BitcoinExchange::stofloat(const std::string& str)
+	{
+		const char *ptr = str.data();
+		errno = 0;
+		char *end;
+		float result = std::strtof(ptr, &end);
+
+		if (ptr == end)
+			throw std::invalid_argument("invalid stod argument");
+		if (errno == ERANGE)
+			throw std::out_of_range("stof argument out of range");
+		return result;
+	}
