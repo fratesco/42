@@ -1,12 +1,11 @@
-#include "ft_strlen.o"
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-int ft_strlen(char *str);
+size_t ft_strlen(char *str);
 
-int main(void)
+int main(int argc, char **argv)
 {
         printf("%d", ft_strlen("CIAO"));
-        return 0;
-}
+        return(0);
+}       
