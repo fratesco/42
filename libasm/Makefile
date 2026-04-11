@@ -42,17 +42,17 @@ clean:
 			fi
 
 cleantest:
-		rm $(COBJS) 2>/dev/null; if [ $$? -eq 0 ] ; then \echo "c object files cleaned!"; \
+		@rm $(COBJS) 2>/dev/null; if [ $$? -eq 0 ] ; then echo "c object files cleaned!"; \
 			else \
 				echo "nothing to clean"; \
 			fi
 
 fclean: clean cleantest
-		@rm $(NAME) 2>/dev/null; if [ $$? -eq 0 ] ; then \echo "$(NAME) cleaned!"; \
+		@rm $(NAME) 2>/dev/null; if [ $$? -eq 0 ] ; then echo "$(NAME) cleaned!"; \
 			else \
 				echo "nothing to clean"; \
 			fi
-		@rm $(TEST) 2>/dev/null; if [ $$? -eq 0 ] ; then \echo "$(TEST)cleaned!"; \
+		@rm $(TEST) 2>/dev/null; if [ $$? -eq 0 ] ; then echo "$(TEST)cleaned!"; \
 			else \
 				echo "nothing to clean"; \
 			fi
@@ -76,7 +76,7 @@ re: fclean all
 #le librerie devono essere sempre specificate dopo i file oggetto che hanno le reference alle definizioni contenute nei file oggetto
 #il linker lavora in ordine e cerca nelle librerie solo i le reference che non ha trovato prima
 #questo vale solo per le librerie e non i file oggetto, il loro ordine non ha importanza
-.SILENT : cleantest test all clean fclean $(NAME) $(OBJS) $(COBJS)
+.SILENT : re cleantest test all clean fclean $(NAME) $(OBJS) $(COBJS)
 
 .PHONY : 
-		all clean fclean re test
+		all clean fclean re test cleantest
