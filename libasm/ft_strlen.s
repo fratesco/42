@@ -8,10 +8,9 @@ SECTION .text
 
 ft_strlen:
 
-			mov rax, 0
+			mov rax, -1
 			ALIGN 8
-			cmp byte[rdi], 0
-			jnz _loop
+			jmp _loop
 			ret
 
 _loop:

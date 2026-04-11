@@ -1,27 +1,61 @@
 NAME := libasm.a
-
 SRCS := $(wildcard *.s)
-
+CSRCS := $(wildcard *.c)
+EXIT  := 
 OBJS := $(SRCS:.s=.o)
+
+COBJS := $(CSRCS:.c=.o)
+
+CC := gcc
 
 NASM := nasm
 
 FLAGS:= -f elf64
 
+CFLAGS := -g -c
+
+TEST := manual_link.out
+
 %.o: %.s
 		$(NASM) $(FLAGS) $< -o $@
+%.o: %.c
+		$(CC) $(CFLAGS) $< -o $@
 
 all: $(NAME)
-		@echo $(NAME) archive created successfully!
 
 $(NAME) : $(OBJS)
 	ar rc $(NAME) $(OBJS) #dovrebbe creare l'archivio a partire da tutti i file oggetto
-clean: 
-		@rm -f $(OBJS)
-		@echo object files cleaned 
-fclean: clean
-		@rm -f $(NAME)
-		@echo $(NAME) cleaned
+	echo $(NAME) archive created successfully!
+
+test: $(NAME) $(COBJS) 
+	ld -dynamic-linker /lib64/ld-linux-x86-64.so.2 -m elf_x86_64 main.o libasm.a -o $(TEST) -lc \
+	/usr/lib/x86_64-linux-gnu/crti.o /usr/lib/x86_64-linux-gnu/crt1.o /usr/lib/x86_64-linux-gnu/crtn.o -pie \
+	
+	@echo test linked!
+
+clean:
+		rm $(OBJS) 2>/dev/null; \
+			if [ $$? -eq 0 ] ; then \
+				echo "object files cleaned!"; \
+			else \
+				echo "nothing to clean"; \
+			fi
+
+cleantest:
+		rm $(COBJS) 2>/dev/null; if [ $$? -eq 0 ] ; then \echo "c object files cleaned!"; \
+			else \
+				echo "nothing to clean"; \
+			fi
+
+fclean: clean cleantest
+		@rm $(NAME) 2>/dev/null; if [ $$? -eq 0 ] ; then \echo "$(NAME) cleaned!"; \
+			else \
+				echo "nothing to clean"; \
+			fi
+		@rm $(TEST) 2>/dev/null; if [ $$? -eq 0 ] ; then \echo "$(TEST)cleaned!"; \
+			else \
+				echo "nothing to clean"; \
+			fi
 
 re: fclean all
 
@@ -42,7 +76,7 @@ re: fclean all
 #le librerie devono essere sempre specificate dopo i file oggetto che hanno le reference alle definizioni contenute nei file oggetto
 #il linker lavora in ordine e cerca nelle librerie solo i le reference che non ha trovato prima
 #questo vale solo per le librerie e non i file oggetto, il loro ordine non ha importanza
-.SILENT : $(NAME) $(OBJS)
+.SILENT : cleantest test all clean fclean $(NAME) $(OBJS) $(COBJS)
 
 .PHONY : 
-		all clean fclean re
+		all clean fclean re test
