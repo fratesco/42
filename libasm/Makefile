@@ -59,6 +59,13 @@ fclean: clean cleantest
 
 re: fclean all
 
+valgrind: test
+
+		@valgrind --leak-check=full --track-origins=yes -s ./manual_link.out
+
+debug: test
+		@debug ./manual_link.out
+
 #ld -dynamic-linker /lib64/ld-linux-x86-64.so.2 -m elf_x86_64 ft_strlen.o main.o -o manual_link.out -lc /usr/lib/x86_64-linux-gnu/crti.o /usr/lib/x86_64-linux-gnu/crt1.o /usr/lib/x86_64-linux-gnu/crtn.o -pie
 
 #ld linker utilizzato
@@ -76,7 +83,7 @@ re: fclean all
 #le librerie devono essere sempre specificate dopo i file oggetto che hanno le reference alle definizioni contenute nei file oggetto
 #il linker lavora in ordine e cerca nelle librerie solo i le reference che non ha trovato prima
 #questo vale solo per le librerie e non i file oggetto, il loro ordine non ha importanza
-.SILENT : re cleantest test all clean fclean $(NAME) $(OBJS) $(COBJS)
+.SILENT : debug valgrind re cleantest test all clean fclean $(NAME) $(OBJS) $(COBJS)
 
 .PHONY : 
-		all clean fclean re test cleantest
+		debug all clean fclean re test cleantest

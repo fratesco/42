@@ -10,8 +10,6 @@ ft_strlen:
 
 			mov rax, -1
 			ALIGN 8
-			jmp _loop
-			ret
 
 _loop:
 			add rax, 1

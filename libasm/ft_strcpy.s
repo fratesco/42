@@ -9,7 +9,6 @@ SECTION .text
 ft_strcpy:
             mov rax, -1
             ALIGN 8
-            jmp _loop
 
 
 _loop:
