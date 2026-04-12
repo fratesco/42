@@ -1,0 +1,14 @@
+default rel
+
+BITS 64
+
+global ft_strcmp
+
+SECTION .text
+
+ft_strcmp:
+
+            mov rax, -1
+            ALIGN 8
+            jmp _loop
+
