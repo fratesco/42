@@ -2,7 +2,7 @@ SRC := $(wildcard *.c)
 
 OBJ := $(SRC:.c=.o)
 
-CC := gcc
+CC := clang
 
 NAME := cub3d
 
