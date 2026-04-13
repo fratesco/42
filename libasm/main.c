@@ -11,7 +11,7 @@ char *ft_strcpy(char *dest, const char *src);
 int ft_strcmp(char *s1, char *s2);
 size_t ft_write(int fd, const void *buf, size_t count);
 size_t ft_read(int fd, void *buf, size_t count);
-
+char *ft_strdup(const char *str);
 
 int main(int argc, char **argv)
 {
@@ -41,14 +41,19 @@ int main(int argc, char **argv)
         fflush(stdout);
         ft_write(STDOUT_FILENO, buf, 10);
         ft_write(STDOUT_FILENO, "\n", 1);
-
+        
         ft_read(writeonly, buf, 10);
         printf("ft_read(writeonly, buf, 10) causes: %s\n", (strerror(errno)));
         ft_read(readonly, 0x0, 15);
         printf("the call ft_read(readonly, 0x0, 15) causes: %s\n", (strerror(errno)));
         
+        printf("\nFT_STRDUP TEST START HERE\n");
+        char *dup = ft_strdup(str);
+        printf("The duplicate string is %s\n", dup);
+
         free(buf);
         free(str);
+        free(dup);
         close(readonly);
         close(writeonly);
         return(0);
