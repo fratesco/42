@@ -16,10 +16,10 @@ void	mlx_handler(t_data *data)
 {
 	data->window = mlx_new_window(data->mlx, data->res_w,
 			data->res_h, "CUB3D");
-	mlx_mouse_move(data->mlx, data->window,
-		(data->res_w / 2) - 1, (data->res_h / 2) - 1);
-	mlx_mouse_hide(data->mlx, data->window);
-	mlx_mouse_get_pos(data->mlx, data->window, &data->def_x, &data->def_y);
+	//mlx_mouse_move(data->mlx, data->window,
+	//	(data->res_w / 2) - 1, (data->res_h / 2) - 1);
+	//mlx_mouse_hide(data->mlx, data->window);
+	//mlx_mouse_get_pos(data->mlx, data->window, &data->def_x, &data->def_y);
 	mlx_hook(data->window, 2, 1L << 0, keys_control_movements, data);
 	mlx_hook(data->window, 3, 1L << 1, keys_control_released, data);
 	mlx_hook(data->window, 17, 0, close_game, (void *)data);
