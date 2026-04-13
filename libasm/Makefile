@@ -12,7 +12,7 @@ NASM := nasm
 
 FLAGS:= -f elf64
 
-CFLAGS := -g -c
+CFLAGS := -g -fPIE -c
 
 TEST := manual_link.out
 
@@ -52,7 +52,7 @@ fclean: clean cleantest
 			else \
 				echo "nothing to clean"; \
 			fi
-		@rm $(TEST) 2>/dev/null; if [ $$? -eq 0 ] ; then echo "$(TEST)cleaned!"; \
+		@rm $(TEST) 2>/dev/null; if [ $$? -eq 0 ] ; then echo "$(TEST) cleaned!"; \
 			else \
 				echo "nothing to clean"; \
 			fi
@@ -64,7 +64,7 @@ valgrind: test
 		@valgrind --leak-check=full --track-origins=yes -s ./manual_link.out
 
 debug: test
-		@debug ./manual_link.out
+		@gdb ./manual_link.out
 
 #ld -dynamic-linker /lib64/ld-linux-x86-64.so.2 -m elf_x86_64 ft_strlen.o main.o -o manual_link.out -lc /usr/lib/x86_64-linux-gnu/crti.o /usr/lib/x86_64-linux-gnu/crt1.o /usr/lib/x86_64-linux-gnu/crtn.o -pie
 
