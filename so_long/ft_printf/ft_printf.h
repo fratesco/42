@@ -25,7 +25,7 @@ typedef enum b_bool{FALSE, TRUE}	t_bool;
 
 int		ft_printf(const char *str, ...);
 void	ft_putstr_special(const char *str, size_t *n);
-size_t	ft_strlen(const char *str);
+//size_t	ft_strlen(const char *str);
 int		check_special(const char *str);
 int		parsing_checking(const char *str, va_list list, size_t *n);
 void	ft_putchar(const char c, size_t *n);

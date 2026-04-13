@@ -46,15 +46,15 @@ void	ft_putnbr(long nbr, size_t *n)
 	}
 }
 
-size_t	ft_strlen(const char *str)
-{
+extern size_t	ft_strlen(const char *str);
+/*{
 	size_t	i;
 
 	i = 0;
 	while (str[i])
 		i++;
 	return (i);
-}
+}*/
 
 void	ft_putstr_special(const char *str, size_t *n)
 {

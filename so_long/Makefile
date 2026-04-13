@@ -15,7 +15,7 @@ SRC		:= so_long.c map/map_handler.c get_next_line/get_next_line.c get_next_line/
 
 OBJ		:= $(SRC:.c=.o)
 
-CC		:= gcc
+CC		:= clang
 
 NAME	:= so_long
 
@@ -25,7 +25,7 @@ LIBFT	:= libft/
 
 PRINTF	:= ft_printf/
 
-MLX     := minilibx_opengl_20191021/
+MLX     := mlx_linux
 
 all: $(NAME)
 		
@@ -33,7 +33,7 @@ $(NAME): $(OBJ)
 		make -C $(LIBFT)
 		make -C $(PRINTF)
 		make -C $(MLX)
-		$(CC) $(FLAGS) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit minilibx_opengl_20191021/libmlx.a libft/libft.a ft_printf/libftprintf.a -o $(NAME)   
+		$(CC) $(FLAGS) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz libft/libft.a ft_printf/libftprintf.a -o $(NAME)   
 
 clean:
 		cd $(LIBFT); make clean
