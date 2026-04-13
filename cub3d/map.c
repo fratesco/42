@@ -59,7 +59,7 @@ int	string_to_rgb(char *str, int i, int j, int counter)
 	{
 		i = i << 8;
 		j = ft_atoi(str);
-		if (j < 0, j > 255)
+		if (j < 0 || j > 255)
 		{
 			printf ("RGB numbers must be 0 <= n <= 255\n");
 			return (-1);
