@@ -13,13 +13,15 @@ all: $(NAMES)
 
 $(NAMES) : $(OBJS)
 			for words in $(NAMES); do \
-				$(CC) $(FLAGS) $(OBJS) -o $$words; \
+				$(CC) $(FLAGS) $$words.o -o $$words; \
 				echo $$words compiled; \
 			done
 
 
-test_1: $(NAMES)
+test1: $(NAMES)
 		@./Colleen > tmp ; diff Colleen.c tmp
+test2: $(NAMES)
+		@./Grace ; diff Grace.c Grace_kid.c ; rm Grace_kid.c
 
 clean:
 		rm $(OBJS) 2>/dev/null; \
@@ -46,7 +48,7 @@ fclean: clean cleantest
 
 re: fclean all
 
-.SILENT : re cleantest test_1 all clean fclean $(NAMES) $(OBJS)
+.SILENT : re cleantest test1 all clean fclean $(NAMES) $(OBJS)
 
 .PHONY : 
 		all clean fclean re test cleantest
