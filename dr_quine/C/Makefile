@@ -24,7 +24,7 @@ test1: $(NAMES)
 test2: $(NAMES)
 		@./Grace ; diff Grace.c Grace_kid.c ; rm Grace_kid.c
 test3: $(NAMES)
-		mkdir -p tmp; cp Sully tmp/; cd tmp/; ./Sully ; ls -al | grep Sully | wc -l
+		mkdir -p tmpr; cp Sully tmpr/; cd tmpr/; ./Sully ; ls -al | grep Sully | wc -l
 		rm -rf tmp
 		./Sully ; 
 		for int in {0..5}; do { \
