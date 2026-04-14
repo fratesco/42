@@ -24,7 +24,8 @@ test1: $(NAMES)
 test2: $(NAMES)
 		@./Grace ; diff Grace.c Grace_kid.c ; rm Grace_kid.c
 test3: $(NAMES)
-		@mkdir -p tmp; cp Sully tmp/; cd tmp/; ./Sully ; ls -al | grep Sully | wc -l ; rm -rf tmp
+		mkdir -p tmp; cp Sully tmp/; cd tmp/; ./Sully ; ls -al | grep Sully | wc -l
+		rm -rf tmp
 		./Sully ; 
 		for int in {0..5}; do { \
 		diff Sully_$$int.c Sully.c;\
@@ -45,7 +46,8 @@ clean:
 			fi
 
 cleantest:
-		@echo tests cleaned 
+		rm -rf tmp
+		echo tests cleaned 
 
 fclean: clean cleantest
 		for words in $(NAMES); do { \
