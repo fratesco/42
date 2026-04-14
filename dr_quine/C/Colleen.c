@@ -1,0 +1,1 @@
+extern int printf(const char *f, ...);/*Questo é il codice!*/int main(void){/*Questo é il main*/char str[]="extern int printf(const char *f, ...);%c%cQuesto é il codice!%c%cint main(void){%c%cQuesto é il main%c%cchar str[]=%c%s%c;printf(str,47,42,42,47,47,42,42,47,34,str,34);}";printf(str,47,42,42,47,47,42,42,47,34,str,34);}
