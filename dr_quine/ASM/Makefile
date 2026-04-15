@@ -7,9 +7,9 @@ CC := gcc
 
 NASM := nasm
 
-FLAGS := -f elf64
+FLAGS := -f elf64 -g -F dwarf
 
-CFLAGS := -Werror -Wall -Wextra
+CFLAGS := -Werror -Wall -Wextra -g
 
 %.o: %.s
 		$(NASM) $(FLAGS) $< -o $@
@@ -25,8 +25,8 @@ $(NAMES) : $(OBJS)
 
 test1: $(NAMES)
 		@./Colleen > tmp ; diff Colleen.s tmp
-#test2: $(NAMES)
-#		@./Grace ; diff Grace.c Grace_kid.c ; rm Grace_kid.c
+test2: $(NAMES)
+		@./Grace ; diff Grace.s Grace_kid.s ; rm Grace_kid.*
 #test3: $(NAMES)
 #		mkdir -p tmpr; cp Sully tmpr/; cd tmpr/; ./Sully ; ls -al | grep Sully | wc -l
 #		rm -rf tmpr
