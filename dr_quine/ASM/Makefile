@@ -27,19 +27,19 @@ test1: $(NAMES)
 		@./Colleen > tmp ; diff Colleen.s tmp
 test2: $(NAMES)
 		@./Grace ; diff Grace.s Grace_kid.s ; rm Grace_kid.*
-#test3: $(NAMES)
-#		mkdir -p tmpr; cp Sully tmpr/; cd tmpr/; ./Sully ; ls -al | grep Sully | wc -l
-#		rm -rf tmpr
-#		./Sully ; 
-#		for int in {0..5}; do { \
-#		diff Sully_$$int.c Sully.c;\
-#		echo "" ;  #se non metto un comando qui il make file mi da errore \
-#		} done
-#		@rm -f Sully_{5..0}.c Sully_{5..0}.o Sully_{5..0}
+test3: $(NAMES)
+		#mkdir -p tmpr; cp Sully tmpr/; cd tmpr/; ./Sully ; ls -al | grep Sully | wc -l
+		#rm -rf tmpr
+		./Sully ; 
+		#for int in {0..5}; do { \
+		#diff Sully_$$int.s Sully.s;\
+		#echo "" ;  #se non metto un comando qui il make file mi da errore \
+		#} done
+		@rm -f Sully_{5..0}.s Sully_{5..0}.o Sully_{5..0}
 		
 
-#sullyclean:
-#		@rm -f Sully_{5..0}.c Sully_{5..0}.o Sully_{5..0}
+sullyclean:
+		@rm -f Sully_{5..0}.s Sully_{5..0}.o Sully_{5..0}
 
 clean:
 		rm $(OBJS) 2>/dev/null; \
