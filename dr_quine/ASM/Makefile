@@ -28,13 +28,13 @@ test1: $(NAMES)
 test2: $(NAMES)
 		@./Grace ; diff Grace.s Grace_kid.s ; rm Grace_kid.*
 test3: $(NAMES)
-		#mkdir -p tmpr; cp Sully tmpr/; cd tmpr/; ./Sully ; ls -al | grep Sully | wc -l
-		#rm -rf tmpr
+		mkdir -p tmpr; cp Sully tmpr/; cd tmpr/; ./Sully ; ls -al | grep Sully | wc -l
+		rm -rf tmpr
 		./Sully ; 
-		#for int in {0..5}; do { \
-		#diff Sully_$$int.s Sully.s;\
-		#echo "" ;  #se non metto un comando qui il make file mi da errore \
-		#} done
+		for int in {0..5}; do { \
+		diff Sully_$$int.s Sully.s;\
+		echo "" ;  #se non metto un comando qui il make file mi da errore \
+		} done
 		@rm -f Sully_{5..0}.s Sully_{5..0}.o Sully_{5..0}
 		
 
@@ -53,7 +53,7 @@ cleantest:
 		rm -rf tmp
 		echo tests cleaned 
 
-fclean: clean cleantest
+fclean: clean cleantest sullyclean
 		for words in $(NAMES); do { \
 			rm $$words 2>/dev/null; \
 			if [ $$? -eq 0 ]; then \
